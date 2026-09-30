@@ -324,7 +324,7 @@ a.chip:hover { background: var(--accent-wash); border-color: color-mix(in srgb, 
 
 /* ========================================================== filters */
 .filters {
-  position: sticky; top: var(--head-h); z-index: 20;
+  position: static;
   display: flex; flex-wrap: wrap; gap: .7rem; align-items: flex-end;
   background: color-mix(in srgb, var(--surface) 93%, transparent);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
@@ -489,7 +489,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .tl-title { font-weight: 600; font-size: .95rem; margin: .1rem 0; }
 .tl-detail { font-size: .86rem; color: var(--ink-2); }
 .tl-year {
-  position: sticky; top: calc(var(--head-h) + .35rem); z-index: 5;
+  position: static;
   display: inline-block; margin: 1.3rem 0 .2rem -1.6rem;
   background: var(--ink); color: var(--bg);
   font-size: .76rem; font-weight: 700; letter-spacing: .04em;
