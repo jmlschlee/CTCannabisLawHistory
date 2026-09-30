@@ -2,13 +2,13 @@
    Charts. Plain HTML and SVG, no library.
 
    Rules applied throughout, from the data-viz method:
-   - one series gets one colour; bar length already encodes magnitude, so no ramp
+   - one series gets one color; bar length already encodes magnitude, so no ramp
    - categorical hues in fixed slot order, never cycled, never reassigned by rank
    - a legend whenever there are two or more series, plus direct labels
    - 2px surface gap between stacked segments
    - hairline recessive axes, thin marks
    - a hover layer on every plotted mark
-   - a table equivalent is always reachable; colour never carries meaning alone
+   - a table equivalent is always reachable; color never carries meaning alone
    ========================================================================== */
 import { esc, num } from './app.js';
 
@@ -16,7 +16,7 @@ const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(
 
 /* --------------------------------------------------------- horizontal bars
    One series. Labels and values are always printed, so the chart is readable
-   without colour at all. */
+   without color at all. */
 export function barChart(node, rows, { max = null, fmt = num, color = 'var(--s1)' } = {}) {
   const hi = max ?? Math.max(1, ...rows.map(r => r.n));
   node.innerHTML = `<div class="bars">${rows.map(r => {
@@ -48,7 +48,7 @@ export function columnChart(node, rows, { fmt = num, color = 'var(--s1)', everyN
 /* --------------------------------------------------------- stacked bars
    Several series. Legend is mandatory; each segment also carries a title and an
    aria-label, and the counts are printed beside the bar, so identity never rests
-   on colour. A 2px gap separates segments. */
+   on color. A 2px gap separates segments. */
 export function stackedBars(node, rows, series, { fmt = num } = {}) {
   const hi = Math.max(1, ...rows.map(r => series.reduce((a, s) => a + (r[s.key] || 0), 0)));
   node.innerHTML = `<div class="stack">${rows.map(r => {
@@ -71,8 +71,8 @@ export function stackedBars(node, rows, series, { fmt = num } = {}) {
 
 /* --------------------------------------------------------- ego network
    A deterministic radial layout around one chosen actor, not a force-directed
-   hairball. Edge colour is the evidence strength, and the strength is also
-   printed on every spoke label, so colour never carries it alone. */
+   hairball. Edge color is the evidence strength, and the strength is also
+   printed on every spoke label, so color never carries it alone. */
 const STRENGTH_COLOR = { 5: 'var(--s7)', 4: 'var(--s1)', 3: 'var(--s2)', 2: 'var(--ink-muted)', 1: 'var(--rule-strong)', 0: 'var(--rule-strong)' };
 const STRENGTH_WIDTH = { 5: 2.4, 4: 2, 3: 1.6, 2: 1.2, 1: 1, 0: 1 };
 

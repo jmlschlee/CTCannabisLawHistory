@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Shared behaviour. No framework, no build step, no dependencies.
+   Shared behavior. No framework, no build step, no dependencies.
    Every page: <body data-page="x"> then <script type="module" src="assets/app.js">
    ========================================================================== */
 
