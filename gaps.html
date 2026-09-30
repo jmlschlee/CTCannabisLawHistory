@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Open gaps &middot; CT Cannabis Law</title>
+<title>Gaps &middot; CT Cannabis Law</title>
 <meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta name="color-scheme" content="light dark">
-<meta property="og:title" content="Open gaps &middot; CT Cannabis Law">
+<meta property="og:title" content="Gaps &middot; CT Cannabis Law">
 <meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -21,106 +21,99 @@ try { var t = localStorage.getItem('ctcl-theme');
 <main id="main">
 
 <div class="page-head">
-  <div class="eyebrow">What is missing, and whether it can be got</div>
-  <h1>Open gaps</h1>
-  <p class="lede">Every question this record cannot answer, with the specific document that
-  would answer it and the body that holds it. Two of these were closed by going back to the
-  public record rather than by asking anyone for anything. The rest cannot be, and the reason
-  they cannot be is itself a finding.</p>
+  <div class="eyebrow">What was missing, and what the public record turned out to hold</div>
+  <h1>Gaps</h1>
+  <p class="lede">Every question this record could not answer at first, checked again against
+  published sources on 30 September 2026. Each card says what the public record shows, what is
+  still missing, and the exact record that would close the rest.</p>
 </div>
 
 <div class="grid four" id="stats"></div>
 
-<div class="callout caution">
-  <div class="hd">Why most of these cannot simply be looked up</div>
-  <p class="small" style="margin:0 0 .5rem">A gap here is not a gap in the research. It is a
-  gap in what Connecticut publishes. There is no public conversion register, no published
-  lottery award file, no published version history for the policies and procedures document,
-  and no published record of who requested a given amendment. Those records exist inside the
-  agencies that hold them; none of them is on a website to be fetched.</p>
-  <p class="small" style="margin:0"><strong>No records request in this project has been
-  sent.</strong> Each one below is drafted and held.</p>
+<div class="callout note">
+  <div class="hd">How to read the status</div>
+  <p class="small" style="margin:0"><strong>Closed</strong>: answered from published records.
+  <strong>Partly closed</strong>: the published record answers part of the question, and the card
+  names the part that still needs a records request. <strong>Open</strong>: nothing published
+  answers it. <strong>No records request in this project has been sent.</strong></p>
 </div>
 
-<h2>Closed from the public record</h2>
-<p class="small" style="margin-top:-.4rem">These needed no request. They needed another look.</p>
-<div class="records" id="closed"></div>
-
-<h2>Still open</h2>
-<p class="small" style="margin-top:-.4rem">Each of these names the exact record that would
-close it. None of them is published.</p>
 <div class="filters" id="f"></div>
 <div class="resultbar"><span id="count"></span>
   <button class="btn" id="dl" type="button">Download CSV</button></div>
-<div class="records" id="list"></div>
+
+<h2>Closed</h2>
+<div class="records" id="closed"></div>
+<h2>Partly closed</h2>
+<div class="records" id="partial"></div>
+<h2>Open</h2>
+<div class="records" id="open"></div>
 
 </main>
 <script type="module">
 
-import { load, $, num, esc, cap, plural, searchField, selectField, clearButton, wire,
+import { load, $, num, esc, searchField, selectField, clearButton, wire,
          downloadCSV, fail } from './assets/app.js';
 
 try {
   const d = await load('issues');
   const G = d.gaps || [];
-  const isClosed = g => /^CLOSED/i.test(g.st || '');
-  const closed = G.filter(isClosed), open = G.filter(g => !isClosed(g));
+  const by = k => G.filter(g => g.res === k);
+  const LABEL = { closed: ['ok', 'Closed'], partial: ['warn', 'Partly closed'], open: ['bad', 'Open'] };
 
   $('#stats').innerHTML = [
-    ['hero', G.length, 'gaps logged in total'],
-    ['', closed.length, 'closed from the public record'],
-    ['', open.length, 'still open, each with a drafted request'],
-    ['', 0, 'requests sent to anyone'],
+    ['hero', G.length, 'gaps logged'],
+    ['', by('closed').length, 'closed from the public record'],
+    ['', by('partial').length, 'partly closed'],
+    ['', by('open').length, 'still open'],
   ].map(([k, n, lab]) =>
     `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
 
-  $('#closed').innerHTML = closed.length ? closed.map(g => `
+  $('#f').innerHTML =
+    searchField('q', 'Search', 'record, body, finding') +
+    selectField('who', 'Held by', [...new Set(G.map(g => g.who))].sort()) +
+    selectField('res', 'Status', ['Closed', 'Partly closed', 'Open']) +
+    clearButton();
+
+  const card = g => `
     <article class="rec" id="${esc(g.id)}">
       <div class="rec-head">
         <h3 class="rec-title">${esc(g.what)}</h3>
-        <span class="chip ok">Closed</span>
+        <span class="chip ${LABEL[g.res][0]}">${LABEL[g.res][1]}</span>
       </div>
       <dl class="kv">
-        <dt>Gap</dt><dd class="mono">${esc(g.id)}</dd>
+        <dt>Gap</dt><dd class="mono">${esc(g.id)}${g.pri ? ' &middot; priority ' + esc(g.pri.toLowerCase()) : ''}</dd>
         <dt>Held by</dt><dd>${esc(g.who)}</dd>
-        <dt>Why it mattered</dt><dd>${esc(g.why)}</dd>
-        <dt>How it closed</dt><dd>${esc(g.st)}</dd>
+        <dt>Why it matters</dt><dd>${esc(g.why)}</dd>
+        ${g.found ? `<dt>What the public record shows</dt><dd>${esc(g.found)}</dd>` : `<dt>How it closed</dt><dd>${esc(g.st)}</dd>`}
+        ${g.left ? `<dt>Still missing</dt><dd>${esc(g.left)}</dd>` : ''}
+        ${g.res !== 'closed' && g.rec ? `<dt>Record that would close it</dt><dd>${esc(g.rec)}</dd>` : ''}
+        ${g.src && g.src.length ? `<dt>Sources</dt><dd><ul class="clean">${g.src.map(x => `<li><a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)} &#8599;</a></li>`).join('')}</ul></dd>` : ''}
+        ${g.checked ? `<dt>Checked</dt><dd>${esc(g.checked)}</dd>` : ''}
       </dl>
-    </article>`).join('') : '<div class="empty">None closed yet.</div>';
-
-  $('#f').innerHTML =
-    searchField('q', 'Search', 'record, body, reason') +
-    selectField('who', 'Held by', [...new Set(open.map(g => g.who))].sort()) +
-    clearButton();
+    </article>`;
 
   function current() {
-    const q = $('#q').value.trim().toLowerCase(), who = $('#who').value;
-    return open.filter(g => (!who || g.who === who) &&
-      (!q || (g.id + ' ' + g.what + ' ' + g.why + ' ' + (g.rec || '')).toLowerCase().includes(q)));
+    const q = $('#q').value.trim().toLowerCase(), who = $('#who').value, res = $('#res').value;
+    return G.filter(g => (!who || g.who === who) && (!res || LABEL[g.res][1] === res) &&
+      (!q || [g.id, g.what, g.why, g.rec, g.found, g.left].join(' ').toLowerCase().includes(q)));
   }
   function draw() {
     const rows = current();
-    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(open.length)} open gaps`;
-    $('#list').innerHTML = rows.length ? rows.map(g => `
-      <article class="rec" id="${esc(g.id)}">
-        <div class="rec-head">
-          <h3 class="rec-title">${esc(g.what)}</h3>
-          <span class="chip bad">${esc(g.st || 'Drafted, not sent')}</span>
-        </div>
-        <dl class="kv">
-          <dt>Gap</dt><dd class="mono">${esc(g.id)}</dd>
-          <dt>Held by</dt><dd>${esc(g.who)}</dd>
-          <dt>Why it matters</dt><dd>${esc(g.why)}</dd>
-          <dt>The exact record</dt><dd>${esc(g.rec || '')}</dd>
-        </dl>
-      </article>`).join('') : '<div class="empty">No gaps match these filters.</div>';
+    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(G.length)} gaps`;
+    for (const k of ['closed', 'partial', 'open']) {
+      const r = rows.filter(g => g.res === k);
+      $('#' + k).innerHTML = r.length ? r.map(card).join('') : '<div class="empty">None match these filters.</div>';
+    }
   }
-  $('#dl').addEventListener('click', () => downloadCSV('ct-open-gaps.csv', current(), [
+  $('#dl').addEventListener('click', () => downloadCSV('ct-cannabis-law-gaps.csv', current(), [
     { key: 'id', label: 'gap_id' }, { key: 'who', label: 'custodian' },
-    { key: 'what', label: 'record_requested' }, { key: 'why', label: 'reason' },
-    { key: 'rec', label: 'exact_record' }, { key: 'st', label: 'status' }]));
-  wire(['q', 'who'], draw);
-} catch (e) { fail(document.querySelector('#list'), e); }
+    { key: 'what', label: 'record' }, { key: 'why', label: 'reason' },
+    { key: 'st', label: 'status' }, { key: 'found', label: 'public_record_shows' },
+    { key: 'left', label: 'still_missing' }, { key: 'rec', label: 'exact_record' }]));
+  wire(['q', 'who', 'res'], draw);
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+} catch (e) { fail(document.querySelector('#closed'), e); }
 
 </script>
 </body>

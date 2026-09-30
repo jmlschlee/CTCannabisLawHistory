@@ -23,7 +23,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 <div class="page-head">
   <div class="eyebrow">Fourteen ways into the same record</div>
   <h1>Issues</h1>
-  <p class="lede">Each issue gathers the changes, the acts and the open gaps that belong to it.
+  <p class="lede">Each issue gathers the changes, the acts and the gaps that belong to it, with what the public record now shows about each gap.
   Medical cannabis, adult use, hemp and laboratory testing are kept apart on purpose: they are
   governed by different instruments with different effective dates, and collapsing them is the
   commonest error in writing about this subject.</p>
@@ -52,13 +52,16 @@ $('#list').innerHTML = d.issues.sort((a,b)=>b.n-a.n).map(i => `
       <a class="chip" href="laws.html?cat=${encodeURIComponent(i.cat)}">See the ${num(i.n)} changes</a>
       <a class="chip" href="timeline.html">See them on the timeline</a>
     </div>
-    ${i.gaps.length ? `<div class="callout warn" style="margin:.7rem 0 0">
-      <div class="hd">${num(i.gaps.length)} open gap${i.gaps.length===1?'':'s'} on this issue</div>
-      <ul class="clean">${i.gaps.map(gid => { const g = G[gid]; return g ? `
-        <li class="small"><strong>${esc(g.id)}</strong> &middot; ${esc(g.what)}
-        <br><span style="color:var(--ink-muted)">${esc(g.why)}</span>
-        <br><em>The record that would close it:</em> ${esc(g.rec)} &mdash; held by ${esc(g.who)}.
-        <span class="chip bad">${esc(g.st)}</span></li>` : ''; }).join('')}</ul></div>` : ''}
+    ${i.gaps.length ? (() => { const gs = i.gaps.map(gid => G[gid]).filter(Boolean);
+      const openN = gs.filter(g => g.res !== 'closed').length;
+      const L = { closed: ['ok', 'Closed'], partial: ['warn', 'Partly closed'], open: ['bad', 'Open'] };
+      return `<div class="callout ${openN ? 'warn' : 'note'}" style="margin:.7rem 0 0">
+      <div class="hd">Gaps on this issue: ${["closed","partial","open"].map(k => [k, gs.filter(g => g.res === k).length]).filter(([, n]) => n).map(([k, n]) => `${n} ${L[k][1].toLowerCase()}`).join(", ")}</div>
+      <ul class="clean">${gs.map(g => `
+        <li class="small" style="margin-bottom:.5rem"><span class="chip ${L[g.res][0]}">${L[g.res][1]}</span> <strong>${esc(g.id)}</strong> &middot; ${esc(g.what)}
+        ${g.found ? `<br><span style="color:var(--ink-muted)">${esc(g.found.length > 260 ? g.found.slice(0, 257) + '…' : g.found)}</span>` : ''}
+        ${g.res !== 'closed' && g.left ? `<br><em>Still missing:</em> ${esc(g.left)}` : ''}
+        <br><a href="gaps.html#${esc(g.id)}">Full record and sources &rarr;</a></li>`).join('')}</ul></div>`; })() : ''}
   </article>`).join('');
 
 if (location.hash) {

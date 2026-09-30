@@ -19,7 +19,7 @@ export const NAV = [
     ['laws.html', 'Changes', 'Each enacted change, old text against new'],
     ['statutes.html', 'Statutes', 'By statute section, with repeals flagged'],
     ['issues.html', 'Topics', 'Fourteen subjects, kept apart on purpose'],
-    ['gaps.html', 'Gaps', 'What is missing, and whether it can be got'],
+    ['gaps.html', 'Gaps', 'What was missing, and what the record holds'],
   ]},
   { group: 'The people', items: [
     ['people.html', 'People', 'Ranked by how often they filed'],

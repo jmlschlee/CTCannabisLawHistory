@@ -60,7 +60,7 @@ try { var t = localStorage.getItem('ctcl-theme');
     followed. It never claims one caused the other.</p></div>
   <div class="card"><h3>It does not guess at a gap</h3>
     <p class="small" style="margin:0">Where the record runs out, the site says so and names the
-    document that would close it. Fourteen such gaps are listed by name.</p></div>
+    document that would close it. Twelve such gaps are logged by name, and each has been checked against the published record.</p></div>
   <div class="card"><h3>It does not quote a stale statute</h3>
     <p class="small" style="margin:0">Statutory text comes from the enacted acts, never from the
     chapter pages, which were still printing a repealed subsection nine months after the
@@ -109,9 +109,9 @@ try {
     ['Nothing in the influence record reaches the top of the scale',
      'A strength-5 rating needs a document tying an actor directly to a drafting or decision act. No such document is in the public record examined, so the site says so rather than implying more than it holds.',
      'influence.html', 'See the influence record'],
-    [plural(c.gaps_open, 'gap') + ' remain open, and each one names its document',
-     'Where the record cannot answer a question, the gap is logged with the specific record that would close it and the body that holds it. Two were closed by going back to the public record; the rest cannot be, because the documents are not published. No records request in this project has been sent.',
-     'gaps.html', 'See the open gaps'],
+    [`${c.gaps_closed} of ${c.gaps} gaps closed from the public record, ${c.gaps_partial} partly closed`,
+     'Every gap was checked again against published sources. Committee votes, the policies-and-procedures history, lottery winners, conversions and floor-amendment sponsors are all on the record. What is left needs a records request, and each gap names the exact document. No records request in this project has been sent.',
+     'gaps.html', 'See the gaps'],
   ].map(([t, p, h, cta]) => `<div class="card">
       <h3 style="margin:0 0 .4rem">${esc(t)}</h3>
       <p class="small" style="margin:0 0 .7rem">${esc(p)}</p>

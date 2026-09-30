@@ -24,7 +24,7 @@ example, on its methodology page.
 
 What the site covers: 463 enacted legal changes across 16 public acts, 23 bills (7 of which did
 not pass), 110 statute sections, 683 testimony filings by 504 named parties, 1,035 influence
-events, and 12 logged gaps — 2 of them closed from the public record, 10 still open.
+events, and 12 logged gaps — 5 closed from the public record, 6 partly closed and 1 still open (checked 30 September 2026).
 
 **There is no build step.** No npm, no Node, no compiler, no framework. The files you see are the
 files the browser gets. That is deliberate: a site with no build step cannot break because a
