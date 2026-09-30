@@ -14,7 +14,6 @@ there, so set them before running again.
    pages of the PDF (with text recognition for scans) for a plain statement of support or opposition.
 4. `build_law.py` — assigns topics, matches House roll-call surnames to districts, and writes the
    JSON the site reads.
-5. `scrub.py` — keeps the site owner's name off the site.
 
 Requires Python 3, `curl`, `pdftotext` and `pdftoppm` (poppler) and `tesseract`. The mirror host
 `prdext3.cga.ct.gov` serves the same files as `www.cga.ct.gov`.

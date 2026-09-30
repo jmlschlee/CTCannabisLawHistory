@@ -15,7 +15,7 @@ laws = json.load(open(f'{LAW}/laws.json'))
 roster = {'House': json.load(open('/home/claude/cga/hlist.json')), 'Senate': json.load(open('/home/claude/cga/slist.json'))}
 
 # The site owner asked that his name and identifiers stay off the site.
-WITHHOLD = re.compile(os.environ.get('WITHHOLD_NAMES', r'(?!x)x'), re.I)  # set WITHHOLD_NAMES='name1|name2'
+WITHHOLD = re.compile(r'(?!x)x')  # nothing withheld: testimony is public record
 
 SMALL = {'and', 'or', 'of', 'the', 'to', 'for', 'in', 'on', 'by', 'a', 'an', 'at', 'as', 'vs', 'with', 'from', 'into', 'per'}
 KEEP = {'THC': 'THC', 'DCP': 'DCP', 'LCO': 'LCO', 'CGA': 'CGA', 'DMHAS': 'DMHAS', 'DRS': 'DRS', 'OLR': 'OLR', 'OFA': 'OFA',
@@ -251,6 +251,9 @@ def parse_who(t):
     if not m or len(m.group(1).split()) > 3:
         return dict(who=t, role='', org='', pos=pos)
     last, suf, first, role, org = m.groups()
+    fw = first.strip().split()
+    if len(fw) > 1 and fw[-1].lower() == last.strip().lower(): first = ' '.join(fw[:-1])  # "Smith, John Smith"
+    if first.strip().lower() == last.strip().lower(): return dict(who=last.strip(), role=(role or '').strip(), org=(org or '').strip(), pos=pos)  # "CHA, CHA"
     if len(last.split()) >= 2 and not suf:  # "Ethan Ruby, CEO of Theraplant": name first, role after the comma
         return dict(who=last.strip(), role=', '.join(x for x in (first, role) if x).strip(), org=(org or '').strip(), pos=pos)
     who = f'{first.strip()} {last.strip()}' + (f', {suf}' if suf else '')
@@ -289,6 +292,8 @@ for r in rows:
     if r['wh'] or r['anon']: r['eid'] = ''; continue
     if not r['eid']:
         k = norm(r['who'])
+        rev = norm(' '.join(reversed(r['who'].split()))) if len(r['who'].split()) == 2 else ''
+        if k not in eid_by_name and rev in eid_by_name: k = rev  # filed with first and last name swapped
         if k not in eid_by_name: eid_by_name[k] = f'TMYP_{nxt:04d}'; nxt += 1
         r['eid'] = eid_by_name[k]
 
