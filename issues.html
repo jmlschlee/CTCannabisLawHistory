@@ -23,10 +23,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 <div class="page-head">
   <div class="eyebrow">Fourteen ways into the same record</div>
   <h1>Issues</h1>
-  <p class="lede">Each issue gathers the changes, the acts and the gaps that belong to it, with what the public record now shows about each gap.
-  Medical cannabis, adult use, hemp and laboratory testing are kept apart on purpose: they are
-  governed by different instruments with different effective dates, and collapsing them is the
-  commonest error in writing about this subject.</p>
+  <p class="lede">The main subjects in Connecticut cannabis law, each with the changes and open questions that belong to it.</p>
 </div>
 <div class="records" id="list"></div>
 
@@ -58,7 +55,7 @@ $('#list').innerHTML = d.issues.sort((a,b)=>b.n-a.n).map(i => `
       return `<div class="callout ${openN ? 'warn' : 'note'}" style="margin:.7rem 0 0">
       <div class="hd">Gaps on this issue: ${["closed","partial","open"].map(k => [k, gs.filter(g => g.res === k).length]).filter(([, n]) => n).map(([k, n]) => `${n} ${L[k][1].toLowerCase()}`).join(", ")}</div>
       <ul class="clean">${gs.map(g => `
-        <li class="small" style="margin-bottom:.5rem"><span class="chip ${L[g.res][0]}">${L[g.res][1]}</span> <strong>${esc(g.id)}</strong> &middot; ${esc(g.what)}
+        <li class="small" style="margin-bottom:.5rem"><span class="chip ${L[g.res][0]}">${L[g.res][1]}</span> ${esc(g.what)}
         ${g.found ? `<br><span style="color:var(--ink-muted)">${esc(g.found.length > 260 ? g.found.slice(0, 257) + '…' : g.found)}</span>` : ''}
         ${g.res !== 'closed' && g.left ? `<br><em>Still missing:</em> ${esc(g.left)}` : ''}
         <br><a href="gaps.html#${esc(g.id)}">Full record and sources &rarr;</a></li>`).join('')}</ul></div>`; })() : ''}

@@ -23,21 +23,12 @@ try { var t = localStorage.getItem('ctcl-theme');
 <div class="page-head">
   <div class="eyebrow">Ranked by how often they filed</div>
   <h1>Who testified</h1>
-  <p class="lede">Every named party who filed testimony on a Connecticut cannabis bill, ordered
-  by the number of filings. The same person filing as &ldquo;Accettullo, Joseph&rdquo; and as
-  &ldquo;Joseph R Accettullo&rdquo; is one person here, and every spelling the record used is
-  shown on their entry.</p>
+  <p class="lede">Everyone who filed written testimony on a Connecticut cannabis bill, with a label for who they are: lawmaker, state agency, police, town official, industry, advocate, health professional or member of the public. Tap a name to see everything they filed.</p>
 </div>
 
 <div class="grid four" id="stats"></div>
 
-<div class="callout note">
-  <div class="hd">What a filing count does and does not mean</div>
-  <p class="small" style="margin:0">It counts written positions filed on the public record. It
-  is not a measure of influence, of time spent, or of whether anyone was persuaded. Someone who
-  filed once may have been decisive; someone who filed ten times may have been ignored. The
-  <a href="influence.html">influence page</a> explains the evidence scale in full.</p>
-</div>
+<div id="profile"></div>
 
 <div class="filters" id="f"></div>
 <div class="resultbar">
@@ -57,11 +48,31 @@ try { var t = localStorage.getItem('ctcl-theme');
 </main>
 <script type="module">
 
-import { load, $, $$, num, esc, plural, searchField, selectField, clearButton, wire,
-         downloadCSV, fail } from './assets/app.js';
+import { load, $, $$, num, esc, plural, fmtDate, searchField, selectField, clearButton, wire,
+         downloadCSV, fail, kindChip, dirChip, leanDot, billHref, legHref } from './assets/app.js';
 
 try {
-  const d = await load('testimony');
+  const [d, BB] = await Promise.all([load('testimony'), load('bills')]);
+  const BILL = new Map(BB.bills.map(b => [b.id, b]));
+  const qs = new URLSearchParams(location.search);
+  function profile(id) {
+    const s = d.speakers.find(x => x.id === id);
+    if (!s) { $('#profile').innerHTML = ''; return; }
+    const rows = d.rows.filter(r => r.eid === id).sort((a, b) => b.yr.localeCompare(a.yr));
+    $('#profile').innerHTML = `<div class="card" style="margin:0 0 1rem">
+      <div class="profile-head"><h2>${esc(s.who)}</h2><span class="chips">${kindChip(s.k)}
+        ${s.leg ? `<a class="chip" href="${legHref(s.leg)}">Voting Record as a Lawmaker</a>` : ''}
+        <button class="btn" type="button" id="pclose">Back to Everyone</button></span></div>
+      <p class="small muted" style="margin:.3rem 0">${esc(s.orgs.join('; ') || 'No organization given')} &middot; filed ${plural(s.n, 'time')} on ${plural(s.bills, 'bill')}, ${esc(s.first)}&ndash;${esc(s.last)}${s.aka.length ? ` &middot; also filed as ${esc(s.aka.join('; '))}` : ''}</p>
+      ${s.st.pro + s.st.anti ? `<p style="margin:.2rem 0 .6rem">${leanDot(s.st.pro, s.st.anti, true)} <span class="small muted">&middot; ${s.st.pro} pro-cannabis and ${s.st.anti} anti-cannabis positions on bills that clearly expand access or add enforcement</span></p>` : ''}
+      <div class="vlist">${rows.map(r => { const b = BILL.get(r.bid); return `<div class="vrow" style="grid-template-columns:auto minmax(0,1fr) auto">
+        <span class="chip ${r.p === 'Supports' ? 'ok' : r.p === 'Opposes' ? 'bad' : ''}">${esc(r.p)}</span>
+        <div><div class="l1">${b ? dirChip(b.dir) : ''} <a href="${billHref(r.bid)}"><strong>${esc(b ? b.num : r.b)}</strong> (${esc(r.yr)})</a> <span class="muted">&middot; ${esc(r.c)} committee</span></div>
+          <div class="l2">${esc(b ? b.title : '')}</div>${r.how === 'Text' ? '<div class="small muted">Position read from the filing text</div>' : ''}</div>
+        <div class="end">${r.u ? `<a href="${esc(r.u)}" rel="noopener">Read It &#8599;</a>` : ''}</div></div>`; }).join('')}</div></div>`;
+    $('#pclose').onclick = () => { history.replaceState(null, '', 'people.html'); $('#profile').innerHTML = ''; };
+    $('#profile').scrollIntoView({ behavior: 'smooth' });
+  }
   const S = d.summary;
   const POS = { Supports: 'var(--s3)', Opposes: 'var(--s2)', Other: 'var(--s8)' };
 
@@ -76,6 +87,7 @@ try {
   const years = [...new Set(d.speakers.flatMap(s => [s.first, s.last]))].sort().reverse();
   $('#f').innerHTML =
     searchField('q', 'Search a name or organization', 'name, organization') +
+    selectField('kd', 'Who', d.speakers.length ? [...new Set(d.speakers.map(x => x.k).filter(Boolean))].sort().map(x => [x, x]) : [], { all: 'Everyone' }) +
     selectField('yr', 'Active in', years) +
     selectField('st', 'Stance', [['sup', 'Supported at least once'],
                                  ['opp', 'Opposed at least once'],
@@ -86,9 +98,10 @@ try {
   let sortKey = 'n', limit = 60;
 
   function current() {
-    const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value,
+    const kd = $('#kd').value, q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value,
           st = $('#st').value, rep = $('#rep').value;
     let rows = d.speakers.filter(s => {
+      if (kd && s.k !== kd) return false;
       if (q && !(s.who + ' ' + s.orgs.join(' ') + ' ' + s.aka.join(' ')).toLowerCase().includes(q)) return false;
       if (yr && !(s.first <= yr && s.last >= yr)) return false;
       if (st === 'sup' && !s.sup) return false;
@@ -116,10 +129,10 @@ try {
               title="${esc(k)}: ${num(v)}"></i>`).join('');
       const stance = [s.sup ? `${num(s.sup)} supporting` : '', s.opp ? `${num(s.opp)} opposing` : '',
                       s.oth ? `${num(s.oth)} other or unstated` : ''].filter(Boolean).join(' &middot; ');
-      return `<div class="rank">
+      return `<a class="rank" href="?id=${esc(s.id)}" data-id="${esc(s.id)}" style="text-decoration:none;color:inherit">
         <div class="pos">${num(i + 1)}</div>
         <div>
-          <div class="who">${esc(s.who)}</div>
+          <div class="who">${leanDot(s.st.pro, s.st.anti)} <span style="color:var(--accent-ink);text-decoration:underline">${esc(s.who)}</span> ${kindChip(s.k)}</div>
           <div class="meta">${esc(s.orgs.slice(0, 2).join('; ') || 'no organization given')}${
             s.norgs > 2 ? ` and ${num(s.norgs - 2)} more` : ''} &middot; ${esc(s.first)}&ndash;${esc(s.last)}
             &middot; ${stance}</div>
@@ -128,7 +141,7 @@ try {
         </div>
         <div class="n">${num(s.n)}<small>${s.n === 1 ? 'FILING' : 'FILINGS'}</small>
           <small>on ${plural(s.bills, 'bill')}</small></div>
-      </div>`;
+      </a>`;
     }).join('') : '<div class="empty">No one matches these filters.</div>';
     const more = $('#more');
     more.hidden = rows.length <= limit;
@@ -149,7 +162,11 @@ try {
     { label: 'organizations', get: r => r.orgs.join('; ') },
     { label: 'other_spellings_in_the_record', get: r => r.aka.join('; ') }]));
 
-  wire(['q', 'yr', 'st', 'rep'], () => { limit = 60; draw(); });
+  wire(['q', 'kd', 'yr', 'st', 'rep'], () => { limit = 60; draw(); });
+  $('#list').addEventListener('click', e => { const a = e.target.closest('[data-id]'); if (!a) return; e.preventDefault();
+    history.replaceState(null, '', '?id=' + a.dataset.id); profile(a.dataset.id); });
+  if (qs.get('id')) profile(qs.get('id'));
+  if (qs.get('q')) { $('#q').value = qs.get('q'); draw(); }
 } catch (e) { fail(document.querySelector('#list'), e); }
 
 </script>

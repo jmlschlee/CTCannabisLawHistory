@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where They Stand &middot; CT Cannabis Law</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Where They Stand &middot; CT Cannabis Law">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Bills and Votes &middot; For and Against</div>
+  <h1>Where They Stand</h1>
+  <p class="lede">Who has backed cannabis access and who has pushed for penalties and enforcement:
+  lawmakers by how they voted, and department heads, police, town officials, advocates and
+  businesses by the positions they filed in testimony. Every count opens the votes or filings behind it.</p>
+</div>
+
+<div class="callout note">
+  <div class="hd">What &ldquo;pro&rdquo; and &ldquo;anti&rdquo; mean here</div>
+  <p class="small" style="margin:0">Each cannabis bill is classed from its own statement of purpose as
+  <strong>expanding access or easing penalties</strong>, <strong>adding penalties, restrictions or enforcement</strong>,
+  mixed, or regulation and study. A <strong>pro-cannabis</strong> vote or filing supports a bill of the first kind or
+  opposes one of the second. An <strong>anti-cannabis</strong> vote or filing does the reverse. Mixed and regulatory
+  bills are left out of these counts, and each bill&rsquo;s page shows how it was classed and why.</p>
+</div>
+
+<div class="legend-lean"><span class="lean pro">Mostly pro-cannabis</span><span class="lean mid">Mixed record</span><span class="lean anti">Mostly anti-cannabis</span><span class="muted">Tap any row to see the votes or filings behind it.</span></div>
+<div class="tabs" id="tab" role="tablist" aria-label="Who">
+  <button type="button" data-v="leg" aria-pressed="true">Lawmakers (Votes)</button>
+  <button type="button" data-v="gov" aria-pressed="false">Officials, Agencies and Police</button>
+  <button type="button" data-v="adv" aria-pressed="false">Advocates, Industry and Health</button>
+  <button type="button" data-v="pub" aria-pressed="false">Members of the Public</button>
+</div>
+<div class="filters" id="f"></div>
+<div class="cols2" id="two"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, cap, fmtDate, searchField, selectField, fail, dirChip, kindChip, leanDot,
+         billHref, legHref, personHref } from './assets/app.js';
+
+try {
+  const [L, V, B, T] = await Promise.all([load('legislators'), load('votes'), load('bills'), load('testimony')]);
+  const VOTE = new Map(V.votes.map(v => [v.id, v])), BILL = new Map(B.bills.map(b => [b.id, b]));
+  const qs = new URLSearchParams(location.search);
+  let tab = qs.get('tab') || 'leg';
+  const GROUPS = { gov: ['State Agency', 'Law Enforcement', 'Local Official', 'Lawmaker'], adv: ['Advocate or Group', 'Industry', 'Health and Medical'], pub: ['Member of the Public'] };
+  const MIN = { leg: 5, gov: 1, adv: 2, pub: 3 };
+
+  function filters() {
+    $('#f').innerHTML = searchField('q', 'Search a Name', tab === 'leg' ? 'lawmaker or district' : 'name or organization') +
+      (tab === 'leg' ? selectField('ch', 'Chamber', [['House', 'House'], ['Senate', 'Senate']], { all: 'Both Chambers' }) +
+        selectField('cur', 'Serving', [['cur', 'Serving Now (2026)']], { all: 'Everyone Since 2012' }) +
+        selectField('pty', 'Party', [['D', 'Democrat'], ['R', 'Republican']], { all: 'Any' })
+      : selectField('kd', 'Who', GROUPS[tab].map(k => [k, k]), { all: 'All' })) +
+      selectField('min', 'At Least', [['1', '1 Counted Vote or Filing'], ['3', '3'], ['5', '5'], ['10', '10']], { all: `${MIN[tab]} Counted`, value: '' });
+    ['q', 'ch', 'cur', 'pty', 'kd', 'min'].forEach(i => { const n = $('#' + i); if (n) n.addEventListener('input', draw); });
+    if (qs.get('q')) $('#q').value = qs.get('q');
+  }
+
+  const bar = (p, a) => { const t = Math.max(1, p + a); return `<div class="tmybar" style="margin:.3rem 0"><i style="width:${p / t * 100}%;background:var(--good)"></i><i style="width:${a / t * 100}%;background:var(--serious)"></i></div>`; };
+  const legWhy = l => {
+    const items = l.dv.map(([vid, c, pa]) => ({ v: VOTE.get(vid), c, pa })).filter(x => x.v).sort((a, b) => (b.v.date || '').localeCompare(a.v.date || ''));
+    const spon = [...new Map(l.spon.map(s => [s.bid, s])).values()].map(s => ({ ...s, b: BILL.get(s.bid) })).filter(x => x.b && (x.b.dir === 'E' || x.b.dir === 'R'));
+    return `${spon.length ? `<p class="small" style="margin:.4rem 0 .2rem"><strong>Sponsored:</strong></p><ul class="clean small">${spon.map(s => `<li style="margin:.2rem 0">${dirChip(s.b.dir)} <a href="${billHref(s.b.id)}">${esc(s.b.num)} (${esc(s.b.yr)})</a> ${esc(s.role)} &middot; ${esc(s.b.title.replace(/^An Act /, ''))}</li>`).join('')}</ul>` : ''}
+      <p class="small" style="margin:.5rem 0 .2rem"><strong>Counted votes:</strong></p>
+      <ul class="clean small">${items.map(x => { const b = BILL.get(x.v.bid); return `<li style="margin:.25rem 0"><span class="v ${x.c}">${x.c === 'Y' ? 'Yea' : 'Nay'}</span>
+        <span class="chip ${x.pa === 'P' ? 'ok' : 'bad'}">${x.pa === 'P' ? 'Pro' : 'Anti'}</span>
+        <a href="${billHref(b.id)}">${esc(b.num)} (${esc(b.yr)})</a> ${esc(b.title.replace(/^An Act /, ''))}
+        <span class="muted">&middot; ${esc(x.v.kind === 'committee' ? x.v.body + ' Committee' : x.v.body + ' Floor')}, ${esc(fmtDate(x.v.date))}</span></li>`; }).join('')}</ul>
+      <p class="small"><a href="${legHref(l.id)}">Full voting record, amendments and testimony &rarr;</a></p>`;
+  };
+  const spWhy = s => `<ul class="clean small">${s.sb.map(([bid, p, pa]) => { const b = BILL.get(bid); return b ? `<li style="margin:.25rem 0">
+      <span class="chip ${p === 'S' ? 'ok' : 'bad'}">${p === 'S' ? 'Supported' : 'Opposed'}</span> ${dirChip(b.dir)}
+      <a href="${billHref(b.id)}">${esc(b.num)} (${esc(b.yr)})</a> ${esc(b.title.replace(/^An Act /, ''))}</li>` : ''; }).join('')}</ul>
+      <p class="small"><a href="${s.leg ? legHref(s.leg) : personHref(s.id)}">Everything they filed &rarr;</a></p>`;
+
+  function row(x, i, side) {
+    const p = x.p, a = x.a;
+    return `<details class="rank" style="display:block">
+      <summary style="display:grid;grid-template-columns:2rem 1fr auto;gap:.7rem;align-items:center;cursor:pointer;list-style:none">
+        <span class="pos">${i + 1}</span>
+        <span>${leanDot(p, a)} <span class="who">${esc(x.name)}</span> ${x.chip || ''}
+          <span class="meta" style="display:block">${x.meta}</span>${bar(p, a)}</span>
+        <span class="n">${side === 'pro' ? num(p) : num(a)}<small>${side === 'pro' ? 'pro' : 'anti'} of ${num(p + a)}</small></span></summary>
+      <div style="padding:.3rem 0 0 2.7rem">${x.why()}</div></details>`;
+  }
+
+  function items() {
+    const q = ($('#q')?.value || '').trim().toLowerCase(), min = Number($('#min')?.value || MIN[tab]);
+    if (tab === 'leg') {
+      const ch = $('#ch').value, cur = $('#cur').value, pty = $('#pty').value;
+      return L.legislators.filter(l => l.stance.n >= min && (!ch || l.ch === ch) && (!cur || l.current) && (!pty || l.party === pty) &&
+        (!q || (l.name + ' ' + l.aka.join(' ') + ' ' + l.dist).toLowerCase().includes(q)))
+        .map(l => ({ name: (l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name, p: l.stance.pro, a: l.stance.anti,
+          chip: l.party ? `<span class="chip">${esc(l.party === 'D' ? 'Democrat' : l.party === 'R' ? 'Republican' : l.party)}</span>` : '',
+          meta: `${l.dist && l.dist !== '?' ? l.ch + ' District ' + esc(l.dist) : esc(l.ch)} &middot; ${l.first}&ndash;${l.last}${l.stance.sponE || l.stance.sponR ? ` &middot; sponsored ${l.stance.sponE} access and ${l.stance.sponR} enforcement bills` : ''}`,
+          why: () => legWhy(l) }));
+    }
+    const kd = $('#kd').value, ks = GROUPS[tab];
+    return T.speakers.filter(s => ks.includes(s.k) && (!kd || s.k === kd) && (s.st.pro + s.st.anti) >= min &&
+      (!q || (s.who + ' ' + s.orgs.join(' ') + ' ' + (s.aka || []).join(' ')).toLowerCase().includes(q)))
+      .map(s => ({ name: s.who, p: s.st.pro, a: s.st.anti, chip: kindChip(s.k),
+        meta: `${esc(s.orgs.slice(0, 2).join('; ') || 'No organization given')} &middot; ${s.first}&ndash;${s.last}`, why: () => spWhy(s) }));
+  }
+  function draw() {
+    const all = items();
+    const pro = all.filter(x => x.p > x.a).sort((a, b) => (b.p - b.a) - (a.p - a.a) || b.p - a.p);
+    const anti = all.filter(x => x.a > x.p).sort((a, b) => (b.a - b.p) - (a.a - a.p) || b.a - a.a);
+    const split = all.filter(x => x.a === x.p);
+    const col = (t, arr, side, c) => `<section><h2 style="color:${c}">${t} <span class="muted small">(${num(arr.length)})</span></h2>
+      <div class="ranklist">${arr.slice(0, 60).map((x, i) => row(x, i, side)).join('') || '<div class="empty">No one matches these filters.</div>'}</div>
+      ${arr.length > 60 ? `<p class="small muted">Showing the top 60. Search a name to find anyone else.</p>` : ''}</section>`;
+    $('#two').innerHTML = col(tab === 'leg' ? 'Most Pro-Cannabis Voting Records' : 'Most Pro-Cannabis Positions', pro, 'pro', 'var(--good)') +
+      col(tab === 'leg' ? 'Most Anti-Cannabis Voting Records' : 'Most Anti-Cannabis Positions', anti, 'anti', 'var(--serious)') +
+      (split.length ? `<p class="small muted" style="grid-column:1/-1">${num(split.length)} more are evenly split and appear in neither list.</p>` : '');
+    const u = new URL(location); u.searchParams.set('tab', tab); history.replaceState(null, '', u);
+  }
+  $('#tab').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; tab = b.dataset.v;
+    $('#tab').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); filters(); draw(); });
+  $('#tab').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.v === tab));
+  filters(); draw();
+} catch (e) { fail(document.querySelector('#two'), e); console.error(e); }
+
+</script>
+</body>
+</html>

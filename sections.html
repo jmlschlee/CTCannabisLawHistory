@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Special Sections &middot; CT Cannabis Law</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Special Sections &middot; CT Cannabis Law">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Bills and Votes &middot; Special Sections</div>
+  <h1>Special Sections</h1>
+  <p class="lede">The bills that fight over the same ground, gathered together: police stops and the
+  smell of cannabis, enforcement crackdowns, impaired driving, attempts to roll back legalization,
+  criminal justice relief and patient access. Each bill shows who pushed it, who testified for and
+  against it, and how it ended.</p>
+</div>
+
+<nav class="jump" id="jump" aria-label="Sections"></nav>
+<div id="secs"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, fmtDate, fail, dirChip, kindChip, billHref, legHref, personHref } from './assets/app.js';
+
+try {
+  const [B, T, L, V] = await Promise.all([load('bills'), load('testimony'), load('legislators'), load('votes')]);
+  const META = B.meta, LEG = new Map(L.legislators.map(l => [l.id, l])), VOTE = new Map(V.votes.map(v => [v.id, v]));
+  const byBill = {}; T.rows.forEach(r => (byBill[r.bid] = byBill[r.bid] || []).push(r));
+  const lg = s => { const l = LEG.get(s.pid); return l ? `<a href="${legHref(s.pid)}">${esc((l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name)}</a>${l.party ? `<span class="muted"> (${esc(l.party)})</span>` : ''}` : esc(s.n); };
+  const KEY = ['Lawmaker', 'State Agency', 'Law Enforcement', 'Local Official', 'Industry', 'Advocate or Group', 'Health and Medical'];
+  const people = (rows, p) => {
+    const r = rows.filter(x => x.p === p);
+    const named = r.filter(x => KEY.includes(x.k)).sort((a, b) => KEY.indexOf(a.k) - KEY.indexOf(b.k));
+    const pub = r.length - named.length;
+    return named.slice(0, 12).map(x => `<span style="display:inline-flex;gap:.3rem;align-items:center;margin:.15rem .5rem .15rem 0">${kindChip(x.k)}
+      ${x.leg ? `<a href="${legHref(x.leg)}">${esc(x.who)}</a>` : x.eid ? `<a href="${personHref(x.eid)}">${esc(x.who)}</a>` : esc(x.who)}${x.org ? `<span class="muted small">${esc(x.org)}</span>` : ''}</span>`).join('')
+      + (named.length > 12 ? `<span class="muted small">and ${named.length - 12} more</span> ` : '')
+      + (pub ? `<span class="muted small">${named.length ? '+ ' : ''}${num(pub)} member${pub === 1 ? '' : 's'} of the public or anonymous</span>` : '')
+      || '<span class="muted small">None filed.</span>';
+  };
+  const card = b => {
+    const rows = byBill[b.id] || [];
+    const floor = b.votes.map(id => VOTE.get(id)).filter(v => v && v.type === 'Final Passage');
+    const intro = b.spon.filter(s => s.role === 'Introduced'), co = b.spon.filter(s => s.role === 'Co-Sponsor');
+    return `<article class="rec">
+      <div class="top" style="display:flex;flex-wrap:wrap;gap:.4rem;justify-content:space-between;align-items:center">
+        <h3 class="rec-title" style="margin:0"><a href="${billHref(b.id)}">${esc(b.num.replace(/^(HB|SB)/, '$1 '))} (${esc(b.yr)})</a></h3>
+        <span class="chips">${dirChip(b.dir)}<span class="chip ${b.enacted ? 'ok' : 'warn'}">${b.enacted ? esc(b.pa) : 'Did Not Pass: ' + esc(b.stage)}</span></span></div>
+      <p class="rec-body" style="margin:.3rem 0">${esc(b.purpose || b.title)}</p>
+      <dl class="kv">
+        <dt>Pushed by</dt><dd>${intro.length ? intro.map(lg).join(', ') : esc(b.by || 'A committee (no individual named)')}${co.length ? ` <span class="muted small">with ${co.map(lg).join(', ')}</span>` : ''}</dd>
+        <dt>Testified for</dt><dd>${people(rows, 'Supports')}</dd>
+        <dt>Testified against</dt><dd>${people(rows, 'Opposes')}</dd>
+        ${b.amds.some(a => a.called) ? `<dt>Amendments</dt><dd>${b.amds.filter(a => a.called).map(a => `${esc(a.sched || 'LCO ' + a.lco)} by ${a.by.map(o => { const l = LEG.get(o.pid); return l ? `<a href="${legHref(o.pid)}">${esc(l.name)}</a>` : esc(o.n); }).join(', ') || 'unnamed'}: <strong>${esc(a.res || 'called')}</strong>`).join('; ')}</dd>` : ''}
+        ${floor.length ? `<dt>Floor votes</dt><dd>${floor.map(v => `${esc(v.body)} ${esc(v.res.toLowerCase())} ${v.t.y}&ndash;${v.t.n}`).join('; ')}</dd>` : ''}
+      </dl>
+      <p class="small" style="margin:.4rem 0 0"><a href="${billHref(b.id)}">Full bill page: every filing, amendment and vote &rarr;</a></p>
+    </article>`;
+  };
+  $('#jump').innerHTML = META.spots.map(s => `<a class="chip" href="#${esc(s.id)}">${esc(s.t)} (${s.n})</a>`).join('');
+  $('#secs').innerHTML = META.spots.map(s => {
+    const bs = B.bills.filter(b => b.spot.includes(s.id)).sort((a, b) => b.yr.localeCompare(a.yr) || b.tmy.n - a.tmy.n);
+    return `<section id="${esc(s.id)}"><h2>${esc(s.t)}</h2><p class="small muted" style="margin-top:-.4rem">${esc(s.d)}</p>
+      <div class="records">${bs.map(card).join('')}</div></section>`;
+  }).join('');
+  if (location.hash) { const n = document.querySelector(location.hash); if (n) n.scrollIntoView(); }
+} catch (e) { fail(document.querySelector('#secs'), e); console.error(e); }
+
+</script>
+</body>
+</html>

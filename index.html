@@ -20,118 +20,96 @@ try { var t = localStorage.getItem('ctcl-theme');
 <body>
 <main id="main">
 
-<div class="page-head" style="max-width:66ch">
-  <div class="eyebrow">Connecticut &middot; 2012 to 2027</div>
-  <h1>How Connecticut cannabis law actually changed</h1>
-  <p class="lede">Every enacted change, traced back to the bill that carried it, the people
-  who testified for and against it, and the agency that implemented it. Built from the
-  public acts themselves. Every number on this site opens onto the document it came from.</p>
+<div class="page-head" style="max-width:70ch">
+  <div class="eyebrow">Connecticut &middot; 2012 to Today</div>
+  <h1>Who Shaped Connecticut Cannabis Law</h1>
+  <p class="lede">Every cannabis bill in Connecticut since 2012: who sponsored it, who testified for
+  and against it, how every lawmaker voted, which amendments were tried, and what ended up in the
+  law. Every vote and filing links to the official General Assembly record.</p>
+  <div class="hero-search gsearch" role="search"><label for="hq">Look up a lawmaker, a bill or anyone who testified</label>
+    <input id="hq" type="search" placeholder="Try a name, or a bill like HB 5429" autocomplete="off"><div class="res" hidden></div></div>
 </div>
 
 <div class="grid four" id="stats"></div>
 
-<h2>Start here</h2>
-<p class="small" style="margin-top:-.4rem">Four ways in, depending on what you came for.</p>
-<div class="grid four" id="entry"></div>
+<h2>Start with a question</h2>
+<div class="qgrid" id="qs"></div>
+
+<div class="cols2" style="margin-top:1.4rem">
+  <section class="card"><h3 style="margin:0 0 .2rem">Most Pro-Cannabis Voting Records</h3>
+    <p class="small muted" style="margin:0 0 .5rem">Lawmakers with at least eight counted votes</p><div id="topPro"></div>
+    <a class="small" href="stances.html">See everyone &rarr;</a></section>
+  <section class="card"><h3 style="margin:0 0 .2rem">Most Anti-Cannabis Voting Records</h3>
+    <p class="small muted" style="margin:0 0 .5rem">Lawmakers with at least eight counted votes</p><div id="topAnti"></div>
+    <a class="small" href="stances.html">See everyone &rarr;</a></section>
+</div>
+<div class="legend-lean" style="margin-top:.6rem"><span class="lean pro">Pro-cannabis</span><span class="lean mid">Mixed</span><span class="lean anti">Anti-cannabis</span>
+  <span class="muted">Colors used across the site. <a href="guide.html#colors">What they mean</a>.</span></div>
+
+<h2>Special sections</h2>
+<div class="grid three" id="spots"></div>
 
 <h2>What the record shows</h2>
-<div class="grid two" id="findings"></div>
+<div class="grid three" id="findings"></div>
 
-<h2>The shape of it</h2>
+<h2>What changed in the law</h2>
 <div class="grid two">
-  <div class="chartbox">
-    <h3>Dated events per year</h3>
-    <div class="sub">Every act, bill action, vote, filing and agency step that carries a date.</div>
-    <div id="byYear"></div>
-  </div>
-  <div class="chartbox">
-    <h3>Changes by subject</h3>
-    <div class="sub">A change can touch more than one subject, so these sum to more than the
-    total number of changes.</div>
-    <div id="byCat"></div>
-  </div>
+  <div class="chartbox"><h3>Changes to the law by year</h3><div class="sub">Every dated act, vote and effective date.</div><div id="byYear"></div></div>
+  <div class="chartbox"><h3>Changes by subject</h3><div class="sub">One change can touch several subjects.</div><div id="byCat"></div></div>
 </div>
 
-<h2>What this site will not do</h2>
-<div class="grid three">
-  <div class="card"><h3>It does not allege corruption</h3>
-    <p class="small" style="margin:0">Testifying, lobbying, donating and attending events are
-    lawful, ordinary and disclosed. The site records what happened and, separately, what
-    followed. It never claims one caused the other.</p></div>
-  <div class="card"><h3>It does not guess at a gap</h3>
-    <p class="small" style="margin:0">Where the record runs out, the site says so and names the
-    document that would close it. Twelve such gaps are logged by name, and each has been checked against the published record.</p></div>
-  <div class="card"><h3>It does not quote a stale statute</h3>
-    <p class="small" style="margin:0">Statutory text comes from the enacted acts, never from the
-    chapter pages, which were still printing a repealed subsection nine months after the
-    repeal took effect.</p></div>
-</div>
-
-<h2>Recent milestones</h2>
-<div class="tl" id="mile"></div>
+<p class="small muted" style="margin-top:2rem">New here? The <a href="guide.html">site guide</a> explains every page in two minutes.</p>
 
 </main>
 <script type="module">
 
-import { load, $, num, esc, cap, fmtDate, plural, fail } from './assets/app.js';
+import { load, $, num, esc, cap, fmtDate, plural, fail, leanDot, billHref, legHref, wireSearch } from './assets/app.js';
 import { barChart, columnChart } from './assets/charts.js';
 
 try {
-  const d = await load('home');
-  const c = d.counts;
-
+  const [d, L, B] = await Promise.all([load('home'), load('legislators'), load('bills')]);
+  const c = d.counts, M = B.meta;
   $('#stats').innerHTML = [
-    ['hero', c.legal_changes, 'enacted legal changes, 2012 to 2027'],
-    ['', c.acts, 'public acts read section by section'],
-    ['', c.bills, 'cannabis bills since 2012, ' + num(c.failed_bills) + ' of which did not pass'],
-    ['', c.member_votes, 'lawmaker votes from ' + num(c.votes) + ' tally sheets and roll calls'],
-  ].map(([k, n, lab]) =>
-    `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
+    ['hero', c.bills, 'cannabis bills since 2012, ' + num(c.failed_bills) + ' of which did not pass'],
+    ['', c.member_votes, 'lawmaker votes, each linked to its roll call'],
+    ['', c.testimony, 'pieces of written testimony'],
+    ['', c.legal_changes, 'changes that became law'],
+  ].map(([k, n, lab]) => `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
 
-  $('#entry').innerHTML = [
-    ['legislators.html', 'Look up a lawmaker',
-     'How every legislator voted on cannabis bills, in committee and on the floor, by topic and year, with what they sponsored.'],
-    ['bills.html', 'See the bills that died',
-     'Every cannabis bill since 2012, how far it got, and the ones that failed ranked by support and opposition in testimony.'],
-    ['timeline.html', 'Follow it in order',
-     'Every dated event from the 2012 medical act to the changes taking effect in 2027, in one stream you can filter.'],
-    ['laws.html', 'Read what changed',
-     'Each enacted change with the old text beside the new, the effective date, and the act and section it came from.'],
-  ].map(([h, t, p]) => `<a class="card" href="${h}" style="text-decoration:none;display:block">
-      <h3 style="margin:0 0 .3rem">${esc(t)} &rarr;</h3>
-      <p class="small" style="margin:0;color:var(--ink-2)">${esc(p)}</p></a>`).join('');
+  $('#qs').innerHTML = [
+    ['stances.html', 'Where does my lawmaker stand?', 'Every legislator marked pro-cannabis, anti-cannabis or mixed, with the votes behind it. Also department heads, police and advocates.', 'Where They Stand'],
+    ['sections.html', 'Who wanted penalties and police stops?', 'Odor and smoke bills, enforcement task forces, impaired driving and attempts to roll back legalization, with who pushed each one.', 'Special Sections'],
+    ['bills.html', 'Which bills passed, and which died?', 'All 231 cannabis bills, what each would do, how far it got, and the failed bills ranked by support and opposition.', 'Bills'],
+    ['testimony.html', 'Who testified, and for which side?', 'Every written filing, labeled by who filed it: lawmaker, agency, police, town, industry, advocate or public.', 'Testimony'],
+    ['laws.html', 'What actually changed in the law?', 'Each change, section by section, with the old text beside the new and the date it took effect.', 'Changes'],
+    ['legislators.html', 'How did one lawmaker vote?', 'A full record for every legislator: votes, bills sponsored, amendments offered and testimony filed.', 'Lawmakers'],
+  ].map(([h, t, p, cta]) => `<a class="qcard" href="${h}"><strong>${esc(t)}</strong><span>${esc(p)}</span><em>${esc(cta)} &rarr;</em></a>`).join('');
+
+  const ranked = L.legislators.filter(l => l.stance.n >= 8);
+  const li = l => `<a class="mini" href="${legHref(l.id)}">${leanDot(l.stance.pro, l.stance.anti)}
+    <span>${esc((l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name)}${l.party ? ` <span class="muted">(${esc(l.party)})</span>` : ''}</span>
+    <span class="muted small">${l.stance.pro}&ndash;${l.stance.anti}</span></a>`;
+  $('#topPro').innerHTML = ranked.filter(l => l.stance.pro > l.stance.anti).sort((a, b) => (b.stance.pro - b.stance.anti) - (a.stance.pro - a.stance.anti)).slice(0, 5).map(li).join('');
+  $('#topAnti').innerHTML = ranked.filter(l => l.stance.anti > l.stance.pro).sort((a, b) => (b.stance.anti - b.stance.pro) - (a.stance.anti - a.stance.pro)).slice(0, 5).map(li).join('');
+
+  $('#spots').innerHTML = M.spots.map(s => `<a class="card" href="sections.html#${esc(s.id)}" style="text-decoration:none;color:inherit;display:block">
+    <h3 style="margin:0 0 .3rem">${esc(s.t)} &rarr;</h3><p class="small" style="margin:0;color:var(--ink-2)">${esc(s.d)}</p>
+    <p class="small muted" style="margin:.4rem 0 0">${plural(s.n, 'bill')}</p></a>`).join('');
 
   const ft = d.failed_top || {};
   $('#findings').innerHTML = [
-    ...(ft.sup ? [[`The most-supported bill that failed: ${ft.sup.num.replace(/^(HB|SB)/, '$1 ')} (${ft.sup.yr})`,
-     `${ft.sup.title}. ${ft.sup.n} written filings supported it. It got no further than: ${ft.sup.stage}. The most-opposed failed bill was ${ft.opp.num.replace(/^(HB|SB)/, '$1 ')} (${ft.opp.yr}), with ${ft.opp.n} filings against it.`,
-     'bills.html#rank', 'See the ranking']] : []),
-    ['The rules most operators follow are not regulations',
-     'Adult-use requirements, testing among them, sit in a Department policies and procedures document rather than in regulations adopted under chapter 54. That document skips notice, comment, Attorney General review and the Legislative Regulation Review Committee. Its version history is not published.',
-     'agencies.html', 'See the implementation record'],
-    [plural(c.uncalled, 'amendment') + ' were filed and never called',
-     'An amendment that is filed and never called is the clearest record of what someone asked for and did not get. One 2012 bill alone, the medical marijuana act, carries ' + (d.top_uncalled ? d.top_uncalled.n : 49) + ' of them. They are shown here as prominently as the ones that passed.',
-     'bills.html', 'See every amendment'],
-    ['Nothing in the influence record reaches the top of the scale',
-     'A strength-5 rating needs a document tying an actor directly to a drafting or decision act. No such document is in the public record examined, so the site says so rather than implying more than it holds.',
-     'influence.html', 'See the influence record'],
-    [`${c.gaps_closed} of ${c.gaps} gaps closed from the public record, ${c.gaps_partial} partly closed`,
-     'Every gap was checked again against published sources. Committee votes, the policies-and-procedures history, lottery winners, conversions and floor-amendment sponsors are all on the record. What is left needs a records request, and each gap names the exact document. No records request in this project has been sent.',
-     'gaps.html', 'See the gaps'],
-  ].map(([t, p, h, cta]) => `<div class="card">
-      <h3 style="margin:0 0 .4rem">${esc(t)}</h3>
-      <p class="small" style="margin:0 0 .7rem">${esc(p)}</p>
-      <a class="chip" href="${h}">${esc(cta)} &rarr;</a></div>`).join('');
+    ...(ft.sup ? [[`${ft.sup.num.replace(/^(HB|SB)/, '$1 ')} (${ft.sup.yr}) drew the most support of any bill that failed`,
+      `${ft.sup.title}. ${ft.sup.n} written filings supported it. It got no further than: ${ft.sup.stage}.`, 'bills.html#rank', 'See the ranking']] : []),
+    [plural(c.uncalled, 'amendment') + ' were filed and never called', 'An amendment filed and never called is a record of what someone asked for and did not get. Every one is listed with who offered it.', 'bills.html', 'See the bills'],
+    ['Many rules come from agency policy, not regulations', 'Adult-use requirements, including testing, sit in a Department of Consumer Protection policy document rather than formal regulations, which skips public comment and legislative review.', 'agencies.html', 'See how agencies carried out the law'],
+  ].map(([t, p, h, cta]) => `<div class="card"><h3 style="margin:0 0 .4rem">${esc(t)}</h3>
+      <p class="small" style="margin:0 0 .7rem">${esc(p)}</p><a class="chip" href="${h}">${esc(cta)} &rarr;</a></div>`).join('');
 
   columnChart($('#byYear'), d.events_by_year.map(r => ({ k: r.y, n: r.n })), { everyN: 2 });
   barChart($('#byCat'), d.categories.slice(0, 9).map(r => ({ k: cap(r.k), n: r.n })));
 
-  const m = d.latest.slice(-9).reverse();
-  $('#mile').innerHTML = m.map(e => `<div class="tl-item"><div class="tl-dot"></div>
-    <div class="tl-date">${esc(fmtDate(e.d) || e.d)}</div>
-    <div class="tl-title">${esc(e.title)}</div></div>`).join('')
-    + `<p class="small" style="margin-top:1rem"><a href="timeline.html">All ${num(d.counts.timeline)} dated events &rarr;</a></p>`;
-} catch (e) { fail(document.querySelector('#stats'), e); }
+  wireSearch(document.querySelector('.hero-search'));
+} catch (e) { fail(document.querySelector('#stats'), e); console.error(e); }
 
 </script>
 </body>

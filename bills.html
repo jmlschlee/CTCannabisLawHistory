@@ -69,7 +69,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 <script type="module">
 
 import { load, $, num, esc, cap, fmtDate, plural, cite, setSources, searchField,
-         selectField, clearButton, wire, downloadCSV, fail } from './assets/app.js';
+         selectField, clearButton, wire, downloadCSV, fail, dirChip, DIRS, billHref, leanDot } from './assets/app.js';
 
 try {
   const [d, src, V, L] = await Promise.all([load('bills'), load('sources'), load('votes'), load('legislators')]);
@@ -109,10 +109,10 @@ try {
       div: b => (S(b) + O(b) >= 6 ? Math.min(S(b), O(b)) / Math.max(S(b), O(b)) * 100 + Math.min(S(b), O(b)) / 1000 : -1),
       net: b => S(b) - O(b) }[rk];
     rows = rows.filter(b => key(b) > 0).sort((a, b) => key(b) - key(a)).slice(0, 15);
-    $('#rl').innerHTML = rows.length ? rows.map((b, i) => `<a class="rank" href="#${esc(b.id)}" data-open="${esc(b.id)}" style="text-decoration:none;color:inherit">
+    $('#rl').innerHTML = rows.length ? rows.map((b, i) => `<a class="rank" href="${billHref(b.id)}" style="text-decoration:none;color:inherit">
       <div class="pos">${i + 1}</div>
       <div><div class="who">${esc(b.num)} (${esc(b.yr)}) &middot; ${esc(b.title.replace(/^An Act /, ''))}</div>
-        <div class="meta">${esc(b.stage)} &middot; ${b.topics.map(esc).join(', ')}</div>
+        <div class="meta">${dirChip(b.dir)} ${esc(b.stage)} &middot; ${b.topics.map(esc).join(', ')}</div>
         ${tmyBar(b.tmy, wt)}
         <div class="meta">${num(S(b))} support &middot; ${num(O(b))} oppose &middot; ${num(b.tmy.n - S(b) - O(b))} not stated or mixed</div></div>
       <div class="n">${rk === 'div' ? Math.round(Math.min(S(b), O(b)) / Math.max(S(b), O(b)) * 100) + '%' : num(key(b))}
@@ -128,6 +128,8 @@ try {
   $('#f').innerHTML =
     searchField('q', 'Search', 'bill number, title, sponsor, act') +
     selectField('yr', 'Session', [...new Set(B.map(b => b.yr))].sort().reverse()) +
+    selectField('dr', 'Direction', Object.entries(DIRS).map(([k, v]) => [k, v[1]])) +
+    selectField('sp', 'Special Section', META.spots.map(x => [x.id, x.t])) +
     selectField('tp', 'Topic', META.topics) +
     selectField('out', 'Outcome', [['yes', 'Became a Public Act'], ['no', 'Did Not Pass']]) +
     selectField('st', 'Got As Far As', META.stages) +
@@ -137,8 +139,8 @@ try {
   let limit = 30;
   function current() {
     const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value, out = $('#out').value,
-          tp = $('#tp').value, st = $('#st').value, sc = $('#sc').value;
-    return B.filter(b => (!yr || b.yr === yr) && (!out || (out === 'yes' ? b.enacted : !b.enacted)) &&
+          tp = $('#tp').value, st = $('#st').value, sc = $('#sc').value, dr = $('#dr').value, sp = $('#sp').value;
+    return B.filter(b => (!dr || b.dir === dr) && (!sp || b.spot.includes(sp)) && (!yr || b.yr === yr) && (!out || (out === 'yes' ? b.enacted : !b.enacted)) &&
       (!tp || b.topics.includes(tp)) && (!st || b.stage === st) && (!sc || (sc === 'focus' ? b.focus : !b.focus)) &&
       (!q || (b.num + ' ' + b.yr + ' ' + b.title + ' ' + (b.pa || '') + ' ' + b.by + ' ' + b.spon.map(s => s.n).join(' ')).toLowerCase().includes(q)));
   }
@@ -163,10 +165,11 @@ try {
     const called = b.amds.filter(a => a.called).length, uncalled = b.amds.length - called;
     const t = b.tmy;
     return `<article class="rec bill-card" id="${esc(b.id)}">
-      <div class="top"><h3 class="rec-title" style="margin:0">${esc(b.num)} <span class="muted" style="font-weight:400">(${esc(b.yr)})</span></h3>
-        <span class="chips">${b.topics.map(x => `<span class="chip">${esc(x)}</span>`).join('')}
+      <div class="top"><h3 class="rec-title" style="margin:0"><a href="${billHref(b.id)}">${esc(b.num.replace(/^(HB|SB)/, '$1 '))}</a> <span class="muted" style="font-weight:400">(${esc(b.yr)})</span></h3>
+        <span class="chips">${dirChip(b.dir)}${b.topics.map(x => `<span class="chip">${esc(x)}</span>`).join('')}
         <span class="chip ${b.enacted ? 'ok' : 'warn'}">${b.enacted ? esc(b.pa) : 'Did Not Pass'}</span></span></div>
       <p class="rec-body" style="margin:.25rem 0 .1rem">${esc(b.title)}</p>
+      ${b.purpose ? `<p class="small" style="margin:.2rem 0 .4rem;color:var(--ink-2)"><strong>What it would do:</strong> ${esc(b.purpose.length > 320 ? b.purpose.slice(0, 318).replace(/\s+\S*$/, '') + '…' : b.purpose)}</p>` : ''}
       ${stageBar(b)}<div class="small muted">Got as far as: <strong>${esc(b.stage)}</strong>${b.last ? ` &middot; last action ${esc(fmtDate(b.last))}` : ''}</div>
       <dl class="kv" style="margin-top:.6rem">
         <dt>Introduced by</dt><dd>${b.spon.filter(s => s.role === 'Introduced').map(s => s.pid ? person(s.pid, s.n) : esc(s.n)).join(', ') || esc(b.by || 'Not stated on the bill status page')}</dd>
@@ -186,7 +189,7 @@ try {
       ${b.hist.length ? `<details class="more"><summary>Full bill history, ${plural(b.hist.length, 'action')}</summary>
         <div class="tl" style="margin-top:.6rem">${b.hist.map(h => `<div class="tl-item"><div class="tl-dot"></div>
           <div class="tl-date">${esc(fmtDate(h.d) || h.d)}</div><div class="tl-title" style="font-size:.9rem;font-weight:550">${esc(h.a)}</div></div>`).join('')}</div></details>` : ''}
-      <p class="small" style="margin:.6rem 0 0"><a href="${esc(b.l)}" rel="noopener">Bill status page at the General Assembly &#8599;</a>${b.docs.map(x => ` &middot; <a href="${esc(x.url)}" rel="noopener">${esc(x.label)}</a>`).join('')}</p>
+      <p class="small" style="margin:.6rem 0 0"><a class="btn" href="${billHref(b.id)}">Open the full bill page</a> &nbsp; <a href="${esc(b.l)}" rel="noopener">Bill status page at the General Assembly &#8599;</a>${b.docs.map(x => ` &middot; <a href="${esc(x.url)}" rel="noopener">${esc(x.label)}</a>`).join('')}</p>
       ${cite(b.s, b.l)}
     </article>`;
   }
@@ -200,7 +203,7 @@ try {
   $('#more').addEventListener('click', () => { limit += 30; draw(); });
   $('#dl').addEventListener('click', () => downloadCSV('ct-cannabis-bills-view.csv', current(), [
     { key: 'num', label: 'bill' }, { key: 'yr', label: 'session_year' }, { key: 'title', label: 'title' },
-    { label: 'topics', get: b => b.topics.join('; ') }, { key: 'stage', label: 'furthest_stage' }, { key: 'pa', label: 'public_act' },
+    { label: 'topics', get: b => b.topics.join('; ') }, { label: 'direction', get: b => (DIRS[b.dir] || DIRS.O)[1] }, { key: 'purpose', label: 'statement_of_purpose' }, { key: 'stage', label: 'furthest_stage' }, { key: 'pa', label: 'public_act' },
     { label: 'introduced_by', get: b => b.spon.filter(s => s.role === 'Introduced').map(s => s.n).join('; ') || b.by },
     { label: 'cosponsors', get: b => b.spon.filter(s => s.role === 'Co-Sponsor').map(s => s.n).join('; ') },
     { label: 'testimony_total', get: b => b.tmy.n }, { label: 'supports_filename', get: b => b.tmy.sup }, { label: 'supports_text', get: b => b.tmy.supT },
@@ -211,8 +214,10 @@ try {
   // Deep link: bills.html?id=BILL_2025_HB5429 or #BILL_...
   const want = qs.get('id') || location.hash.slice(1);
   if (qs.get('yr')) $('#yr').value = qs.get('yr');
+  if (qs.get('dir')) $('#dr').value = qs.get('dir');
+  if (qs.get('section')) $('#sp').value = qs.get('section');
   if (want && B.some(b => b.id === want)) { const b = B.find(x => x.id === want); $('#q').value = b.num; $('#yr').value = b.yr; }
-  wire(['q', 'yr', 'tp', 'out', 'st', 'sc'], () => { limit = 30; draw(); });
+  wire(['q', 'yr', 'dr', 'sp', 'tp', 'out', 'st', 'sc'], () => { limit = 30; draw(); });
   if (want) { const n = document.getElementById(want); if (n) { const dd = n.querySelector('details.more'); if (dd) dd.open = true; n.scrollIntoView(); } }
   $('#rl').addEventListener('click', e => {
     const a = e.target.closest('[data-open]'); if (!a) return; e.preventDefault();

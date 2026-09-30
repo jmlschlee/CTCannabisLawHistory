@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bill &middot; CT Cannabis Law</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Bill &middot; CT Cannabis Law">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+<div id="bill"><div class="empty">Loading the bill&hellip;</div></div>
+</main>
+<script type="module">
+
+import { load, $, num, esc, cap, fmtDate, plural, cite, setSources, fail, dirChip, DIRS, kindChip,
+         billHref, legHref, personHref } from './assets/app.js';
+
+try {
+  const [d, src, V, L, T] = await Promise.all([load('bills'), load('sources'), load('votes'), load('legislators'), load('testimony')]);
+  setSources(src.map);
+  const qs = new URLSearchParams(location.search);
+  const B = d.bills, META = d.meta;
+  const b = B.find(x => x.id === qs.get('id')) || B.find(x => x.num + '-' + x.yr === qs.get('bill'));
+  if (!b) { $('#bill').innerHTML = `<div class="empty">No bill with that id. <a href="bills.html">See every bill</a>.</div>`; throw 0; }
+  document.title = `${b.num} (${b.yr}) · CT Cannabis Law`;
+  const VOTE = new Map(V.votes.map(v => [v.id, v])), LEG = new Map(L.legislators.map(l => [l.id, l]));
+  const vs = b.votes.map(id => VOTE.get(id)).filter(Boolean).sort((x, y) => (x.date || '').localeCompare(y.date || '') || x.label.localeCompare(y.label));
+  const tmy = T.rows.filter(r => r.bid === b.id);
+  const lg = (id, fb) => { const l = LEG.get(id); return l ? `<a href="${legHref(id)}">${esc((l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name)}</a>${l.party ? ` <span class="muted small">(${esc(l.party)})</span>` : ''}` : esc(fb || ''); };
+  const names = ms => ms.map(m => { const l = LEG.get(m[0]); return l ? `<a href="${legHref(m[0])}">${esc(l.name)}</a>${l.party ? `<span class="muted"> ${esc(l.party)}</span>` : ''}` : esc(m[2] || ''); }).join(', ') || '<span class="muted">none</span>';
+  const voteBlock = v => {
+    const Y = v.m.filter(m => m[1] === 'Y'), N = v.m.filter(m => m[1] === 'N'), A = v.m.filter(m => m[1] === 'A' || m[1] === 'X');
+    return `<div class="vrow" style="grid-template-columns:minmax(0,1fr) auto">
+      <div><div class="l1"><strong>${esc(v.kind === 'committee' ? v.body + ' Committee' : v.body + ' Floor')}</strong>
+        <span class="muted">&middot; ${esc(v.type)}${v.inf ? ' (identified from vote order)' : ''}${v.action ? ' &middot; ' + esc(v.action) : ''}${v.amd ? ` &middot; on amendment LCO ${esc(v.amd)}` : ''}</span></div>
+        <details class="more" style="margin-top:.25rem"><summary class="small">Who voted Yea (${Y.length}), Nay (${N.length})${A.length ? `, absent or abstained (${A.length})` : ''}</summary>
+          <p class="names"><span class="v Y">Yea</span> ${names(Y)}</p>
+          <p class="names"><span class="v N">Nay</span> ${names(N)}</p>
+          ${A.length ? `<p class="names"><span class="v A">Absent</span> ${names(A)}</p>` : ''}</details></div>
+      <div class="end"><span class="small nowrap">${esc(fmtDate(v.date))}</span><br>
+        <span class="chip ${/Passed|Adopted/.test(v.res) ? 'ok' : 'bad'}">${esc(v.res)} ${v.t.y}&ndash;${v.t.n}</span><br>
+        <a class="small" href="${esc(v.u)}" rel="noopener">${v.kind === 'committee' ? 'Tally Sheet' : 'Roll Call'} &#8599;</a></div></div>`;
+  };
+
+  // testimony grouped: support / oppose / other, each labeled by who is filing
+  const grp = { Supports: [], Opposes: [], Other: [] };
+  tmy.forEach(r => (r.p === 'Supports' ? grp.Supports : r.p === 'Opposes' ? grp.Opposes : grp.Other).push(r));
+  const KORD = META.kinds;
+  const who = r => `<div class="w">${kindChip(r.k)}
+      ${r.anon ? '<span class="muted">Anonymous witness</span>' : r.leg ? `<a href="${legHref(r.leg)}">${esc(r.who)}</a>` : r.eid ? `<a href="${personHref(r.eid)}">${esc(r.who)}</a>` : esc(r.who)}
+      ${r.org || r.role ? `<span class="org">${esc([r.role, r.org].filter(Boolean).join(' · '))}</span>` : ''}
+      ${r.how === 'Text' ? '<span class="org" title="Position read from the testimony text">(read from text)</span>' : ''}
+      ${r.u ? `<a class="small" href="${esc(r.u)}" rel="noopener" style="margin-left:auto">PDF</a>` : ''}</div>`;
+  const byKind = rows => KORD.map(k => rows.filter(r => r.k === k)).flat();
+  const kindCount = rows => KORD.map(k => [k, rows.filter(r => r.k === k).length]).filter(x => x[1]).map(([k, n]) => `${esc(k)} ${n}`).join(' &middot; ');
+
+  const spotName = Object.fromEntries(META.spots.map(s => [s.id, s.t]));
+  const amdRows = b.amds.slice().sort((x, y) => (y.called - x.called) || (x.sched || '').localeCompare(y.sched || ''));
+  const t = b.tmy;
+
+  $('#bill').innerHTML = `
+  <div class="page-head" style="margin-bottom:.6rem">
+    <div class="eyebrow"><a href="bills.html">Bills</a> &middot; ${esc(b.yr)} Session</div>
+    <h1 style="margin-bottom:.3rem">${esc(b.num.replace(/^(HB|SB)/, '$1 '))} <span class="muted" style="font-weight:500">(${esc(b.yr)})</span></h1>
+    <p class="lede" style="margin:0">${esc(b.title)}</p>
+  </div>
+  <div class="chips" style="margin-bottom:.8rem">${dirChip(b.dir, false)}
+    <span class="chip ${b.enacted ? 'ok' : 'warn'}">${b.enacted ? esc(b.pa) : 'Did Not Pass'}</span>
+    <span class="chip">Got As Far As: ${esc(b.stage)}</span>
+    ${b.topics.map(x => `<span class="chip">${esc(x)}</span>`).join('')}
+    ${b.spot.map(s => `<a class="chip" href="sections.html#${esc(s)}">Special Section: ${esc(spotName[s])}</a>`).join('')}</div>
+  <nav class="jump" aria-label="On this page">
+    <a class="chip" href="#what">What It Does</a><a class="chip" href="#who">Who Pushed It</a>
+    <a class="chip" href="#tmy">Testimony (${num(t.n)})</a><a class="chip" href="#amd">Amendments (${num(b.amds.length)})</a>
+    <a class="chip" href="#votes">Votes (${num(vs.length)})</a><a class="chip" href="#hist">History</a></nav>
+
+  <div class="card bill-hero" id="what">
+    <h2 style="margin:0;border:0;padding:0">What it does</h2>
+    ${b.purpose ? `<div><div class="small muted">Statement of purpose, as printed on the bill</div>
+      <div class="purpose">${esc(b.purpose)}</div>${b.purpose_u ? `<a class="small" href="${esc(b.purpose_u)}" rel="noopener">Bill text &#8599;</a>` : ''}</div>` : ''}
+    ${b.summary ? `<div><div class="small muted">${esc(b.summary_kind || 'OLR summary')} (Office of Legislative Research)</div>
+      <p style="margin:.3rem 0">${esc(b.summary)}</p>${b.summary_u ? `<a class="small" href="${esc(b.summary_u)}" rel="noopener">Full analysis &#8599;</a>` : ''}</div>` : ''}
+    <p class="small muted" style="margin:0"><strong>How this bill is classed:</strong> ${esc((DIRS[b.dir] || DIRS.O)[1])}. The class is this site&rsquo;s reading of the statement of purpose above, and is what the lawmaker stance counts use.</p>
+  </div>
+
+  <div class="cols2" style="margin-top:.8rem" id="who">
+    <div class="card"><h2 style="margin:0 0 .4rem;border:0;padding:0">Who pushed it</h2>
+      ${b.spon.length ? `<div class="who-list">${b.spon.map(s => `<div class="w"><span class="chip">${esc(s.role)}</span> ${s.pid ? lg(s.pid, s.n) : esc(s.n)}</div>`).join('')}</div>`
+        : '<p class="small muted">No sponsor is printed on the bill status page.</p>'}
+      ${b.by && !b.spon.some(s => s.role === 'Introduced') ? `<p class="small">Introduced by: ${esc(b.by)}</p>` : ''}
+      ${b.amds.some(a => a.by.length) ? `<p class="small" style="margin:.6rem 0 0"><strong>Offered amendments:</strong> ${[...new Map(b.amds.flatMap(a => a.by).map(o => [o.pid, o])).values()].map(o => lg(o.pid, o.n)).join(', ')}</p>` : ''}
+    </div>
+    <div class="card"><h2 style="margin:0 0 .4rem;border:0;padding:0">Where it went</h2>
+      <dl class="kv"><dt>Furthest stage</dt><dd>${esc(b.stage)}</dd>
+      <dt>Result</dt><dd>${b.enacted ? 'Became ' + esc(b.pa) : 'Did not pass'}</dd>
+      <dt>First action</dt><dd>${esc(fmtDate(b.first))}</dd><dt>Last action</dt><dd>${esc(fmtDate(b.last))}</dd>
+      <dt>Recorded votes</dt><dd>${num(vs.length)}</dd></dl>
+      <p class="small" style="margin:.5rem 0 0"><a href="${esc(b.l)}" rel="noopener">Bill status page at the General Assembly &#8599;</a></p></div>
+  </div>
+
+  <h2 id="tmy">Testimony</h2>
+  ${t.n ? `<p class="small muted" style="margin-top:-.4rem">${num(t.n)} filings &middot; ${kindCount(tmy)}. Labels come from the name, role and organization each witness filed under. Names open everything that person filed on cannabis bills.</p>
+  ${!b.focus ? '<div class="callout note"><p class="small" style="margin:0">This is a multi-subject bill. Much of this testimony is about its other parts.</p></div>' : ''}
+  <div class="cols2">
+    <div class="card"><h3 style="margin:0 0 .3rem;color:var(--good)">Supports (${grp.Supports.length})</h3><div class="who-list">${byKind(grp.Supports).map(who).join('') || '<p class="small muted">None.</p>'}</div></div>
+    <div class="card"><h3 style="margin:0 0 .3rem;color:var(--serious)">Opposes (${grp.Opposes.length})</h3><div class="who-list">${byKind(grp.Opposes).map(who).join('') || '<p class="small muted">None.</p>'}</div></div>
+  </div>
+  ${grp.Other.length ? `<details class="more" style="margin-top:.6rem"><summary>Position not stated, mixed or comments only (${grp.Other.length})</summary><div class="who-list">${byKind(grp.Other).map(who).join('')}</div></details>` : ''}`
+  : '<p class="small muted">The General Assembly posted no written testimony for this bill.</p>'}
+
+  <h2 id="amd">Amendments</h2>
+  ${b.amds.length ? `<p class="small muted" style="margin-top:-.4rem">${num(b.amds.filter(a => a.called).length)} called on the floor, ${num(b.amds.filter(a => !a.called).length)} filed and never called. &ldquo;What it changes&rdquo; is the Office of Legislative Research&rsquo;s description where one exists; otherwise the amendment&rsquo;s own opening text is shown.</p>
+  ${amdRows.map(a => { const v = a.vote ? VOTE.get(a.vote) : null; return `<div class="amd-card">
+    <div class="profile-head"><strong>${a.sched ? esc(a.sched.replace('"', 'Amendment "')) : esc(a.ch + ' Amendment')} &middot; LCO ${esc(a.lco)}</strong>
+      <span class="chips">${a.res ? `<span class="chip ${a.res === 'Adopted' ? 'ok' : a.res === 'Rejected' ? 'bad' : ''}">${esc(a.res)}${a.resd ? ' ' + esc(fmtDate(a.resd)) : ''}</span>` : `<span class="chip warn">${a.called ? 'Called' : 'Never Called'}</span>`}
+      ${(a.also || []).map(x => `<span class="chip">${esc(x.ch)} ${esc(x.res)}</span>`).join('')}</span></div>
+    <div class="small" style="margin-top:.3rem">Offered by: ${a.by.length ? a.by.map(o => lg(o.pid, o.n)).join(', ') : '<span class="muted">not printed on the amendment</span>'}</div>
+    ${a.eff ? `<div class="eff"><strong>What it changes (OLR):</strong> ${esc(a.eff)}</div>` : ''}
+    ${a.open ? `<div class="txt"><span class="muted">${a.eff ? 'Amendment text begins' : 'What it changes (amendment text)'}:</span> ${esc(a.open)}&hellip;</div>` : ''}
+    <a class="small" href="${esc(a.u)}" rel="noopener">Full amendment &#8599;</a>
+    ${v ? `<div style="margin-top:.4rem">${voteBlock(v)}</div>` : a.called ? '<p class="small muted" style="margin:.4rem 0 0">No roll call is matched to this amendment; it was decided by voice vote or its roll call could not be matched.</p>' : ''}
+  </div>`; }).join('')}` : '<p class="small muted">No amendments were filed.</p>'}
+
+  <h2 id="votes">Every vote</h2>
+  ${vs.length ? `<div class="card"><div class="vlist">${vs.map(voteBlock).join('')}</div></div>` : '<p class="small muted">No committee tally sheet or floor roll call is posted for this bill.</p>'}
+
+  <h2 id="hist">History</h2>
+  <div class="tl">${b.hist.map(h => `<div class="tl-item"><div class="tl-dot"></div><div class="tl-date">${esc(fmtDate(h.d) || h.d)}</div>
+    <div class="tl-title" style="font-size:.9rem;font-weight:550" data-keepcase>${esc(h.a)}</div></div>`).join('')}</div>
+  ${cite(b.s, b.l)}`;
+  if (location.hash) { const n = document.querySelector(location.hash); if (n) n.scrollIntoView(); }
+} catch (e) { if (e !== 0) { fail(document.querySelector('#bill'), e); console.error(e); } }
+
+</script>
+</body>
+</html>

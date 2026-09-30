@@ -55,7 +55,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 </main>
 <script type="module">
 
-import { load, $, num, esc, plural, searchField, selectField, clearButton, wire,
+import { load, $, num, esc, plural, searchField, selectField, clearButton, wire, kindChip, billHref, legHref, personHref, dirChip,
          downloadCSV, table, fail } from './assets/app.js';
 import { stackedBars } from './assets/charts.js';
 
@@ -90,6 +90,7 @@ try {
     selectField('b', 'Bill', [...new Set(d.rows.map(r => r.b))].sort()) +
     selectField('c', 'Committee', d.committees) +
     selectField('p', 'Position', d.positions) +
+    selectField('k', 'Who Filed', ['Lawmaker', 'State Agency', 'Law Enforcement', 'Local Official', 'Health and Medical', 'Industry', 'Advocate or Group', 'Member of the Public', 'Anonymous'].map(x => [x, x]), { all: 'Everyone' }) +
     selectField('h', 'Position From', [['Filename', 'Filename'], ['Text', 'Read From Text']]) +
     selectField('sc', 'Scope', [['focus', 'Cannabis and Hemp Bills Only']], { all: 'All Bills' }) +
     clearButton();
@@ -97,19 +98,18 @@ try {
   let limit = 150;
   function current() {
     const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value, b = $('#b').value, p = $('#p').value,
-          c = $('#c').value, h = $('#h').value, sc = $('#sc').value;
+          c = $('#c').value, h = $('#h').value, sc = $('#sc').value, k = $('#k').value;
     return d.rows.filter(r =>
-      (!yr || r.yr === yr) && (!b || r.b === b) && (!p || r.p === p) && (!c || r.c === c) && (!h || r.how === h) &&
+      (!k || r.k === k) && (!yr || r.yr === yr) && (!b || r.b === b) && (!p || r.p === p) && (!c || r.c === c) && (!h || r.how === h) &&
       (!sc || r.focus) && (!q || (r.who + ' ' + r.org + ' ' + r.role).toLowerCase().includes(q)));
   }
 
   const COLS = [
     { key: 'who', label: 'Who Filed', html: r => r.wh ? '<span class="muted">Name withheld</span>' : r.anon
         ? '<span class="muted">Anonymous witness</span>'
-        : r.leg ? `<a href="legislators.html?id=${esc(r.leg)}">${esc(r.who)}</a> <span class="chip">Lawmaker</span>`
-        : `<a href="people.html?q=${encodeURIComponent(r.who)}">${esc(r.who)}</a>${r.role ? `<br><span class="small muted">${esc(r.role)}</span>` : ''}` },
+        : `${kindChip(r.k)}<br><a href="${r.leg ? legHref(r.leg) : personHref(r.eid)}">${esc(r.who)}</a>${r.role ? `<br><span class="small muted">${esc(r.role)}</span>` : ''}` },
     { key: 'org', label: 'Organization as Filed', html: r => esc(r.org) || '<span class="muted">None given</span>' },
-    { key: 'b', label: 'Bill', html: r => `<a class="mono nowrap" href="bills.html?id=${esc(r.bid)}">${esc(r.b)}</a>` },
+    { key: 'b', label: 'Bill', html: r => `<a class="nowrap" href="${billHref(r.bid)}">${esc(r.b.replace(/-0*/, ' '))}</a>` },
     { key: 'yr', label: 'Session', num: true },
     { key: 'c', label: 'Committee' },
     { key: 'p', label: 'Position', html: r =>
@@ -134,11 +134,11 @@ try {
     { key: 'id', label: 'testimony_id' }, { key: 'who', label: 'who_filed' },
     { key: 'org', label: 'organization_as_filed' }, { key: 'role', label: 'role_as_filed' },
     { key: 'b', label: 'bill' }, { key: 'yr', label: 'session_year' },
-    { key: 'c', label: 'committee' }, { key: 'p', label: 'position' }, { key: 'how', label: 'position_source' },
+    { key: 'k', label: 'who_filed_type' }, { key: 'c', label: 'committee' }, { key: 'p', label: 'position' }, { key: 'how', label: 'position_source' },
     { key: 'q', label: 'phrase_matched' }, { key: 'u', label: 'document_url' }]));
   if (qs.get('bill')) $('#b').value = qs.get('bill');
   if (qs.get('yr')) $('#yr').value = qs.get('yr');
-  wire(['q', 'yr', 'b', 'p', 'c', 'h', 'sc'], () => { limit = 150; draw(); });
+  wire(['q', 'yr', 'b', 'p', 'k', 'c', 'h', 'sc'], () => { limit = 150; draw(); });
 } catch (e) { fail(document.querySelector('#tbl'), e); }
 
 </script>

@@ -40,8 +40,8 @@ try { var t = localStorage.getItem('ctcl-theme');
   are listed in each record but not counted, because a Yea on an amendment can help or hurt the
   bill. <strong>Why</strong> a member voted is not on a tally sheet; the closest public evidence is
   what they sponsored, the amendments they offered, the testimony they filed and the floor debate,
-  all linked below. Party is shown only for members on the General Assembly&rsquo;s current
-  (2026) roster, because older roll calls do not print it.</p>
+  all linked below. Party comes from the state&rsquo;s official election results for the seat
+  each member held (<a href="https://electionhistory.ct.gov/" rel="noopener">electionhistory.ct.gov</a>).</p>
 </div>
 
 <h2 id="compare">Compare by topic</h2>
@@ -74,7 +74,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 </main>
 <script type="module">
 
-import { load, $, num, esc, cap, fmtDate, plural, selectField, downloadCSV, table, fail } from './assets/app.js';
+import { load, $, num, esc, cap, fmtDate, plural, selectField, downloadCSV, table, fail, dirChip, leanDot, billHref } from './assets/app.js';
 
 try {
   const [L, V, B] = await Promise.all([load('legislators'), load('votes'), load('bills')]);
@@ -99,6 +99,7 @@ try {
     selectField('ct', 'Topic', TOPICS.filter(t => t !== 'Budget and Multi-Subject Bills').map(t => [t, t]), { all: 'All Cannabis Topics' }) +
     selectField('cc', 'Chamber', [['House', 'House'], ['Senate', 'Senate']], { all: 'Both Chambers' }) +
     selectField('cs', 'Serving', [['cur', 'Serving Now (2026 Roster)']], { all: 'Everyone Since 2012' }) +
+    selectField('cp', 'Party', [['D', 'Democrat'], ['R', 'Republican']], { all: 'Any Party' }) +
     selectField('co', 'Sort', [['yes', 'Most Yea First'], ['no', 'Most Nay First'], ['n', 'Most Votes First'], ['name', 'Name']], { all: 'Most Yea First' });
   let cmpLimit = 40;
   function tallies(l, topic) {
@@ -110,8 +111,8 @@ try {
     return l.topics[topic] || { Y: 0, N: 0, A: 0 };
   }
   function drawCmp() {
-    const t = $('#ct').value, ch = $('#cc').value, cur = $('#cs').value, o = $('#co').value || 'yes';
-    let rows = LEG.filter(l => (!ch || l.ch === ch) && (!cur || l.current))
+    const t = $('#ct').value, ch = $('#cc').value, cur = $('#cs').value, cp = $('#cp').value, o = $('#co').value || 'yes';
+    let rows = LEG.filter(l => (!ch || l.ch === ch) && (!cur || l.current) && (!cp || l.party === cp))
       .map(l => ({ l, c: tallies(l, t) })).filter(r => r.c.Y + r.c.N >= 2);
     const share = r => r.c.Y / (r.c.Y + r.c.N);
     rows.sort(o === 'no' ? (a, b) => share(a) - share(b) || b.c.N - a.c.N
@@ -123,7 +124,7 @@ try {
       <div class="axis"><div></div><div><span>&larr; Nay</span><span>Yea &rarr;</span></div><div style="text-align:right">Yea&ndash;Nay</div></div>
       ${rows.slice(0, cmpLimit).map(r => `<div class="row click" data-id="${esc(r.l.id)}" tabindex="0" role="button"
         aria-label="${esc(chamberLabel(r.l))}: ${r.c.Y} Yea, ${r.c.N} Nay">
-        <div class="lab" title="${esc(chamberLabel(r.l))}">${esc(chamberLabel(r.l))}
+        <div class="lab" title="${esc(chamberLabel(r.l))}">${leanDot(r.l.stance.pro, r.l.stance.anti)} ${esc(chamberLabel(r.l))}
           <span class="muted small">${r.l.party ? '(' + esc(r.l.party) + ') ' : ''}${r.l.dist && r.l.dist !== '?' ? esc(r.l.dist) : ''}</span></div>
         <div class="bar"><div class="l"><i style="width:${(r.c.N / hi) * 100}%;background:var(--serious)"></i></div>
           <div class="r"><i style="width:${(r.c.Y / hi) * 100}%;background:var(--good)"></i></div></div>
@@ -132,7 +133,7 @@ try {
     const m = $('#cmpMore'); m.hidden = rows.length <= cmpLimit;
     m.textContent = `Show ${num(Math.min(40, rows.length - cmpLimit))} more of ${num(rows.length)}`;
   }
-  ['ct', 'cc', 'cs', 'co'].forEach(i => $('#' + i).addEventListener('input', () => { cmpLimit = 40; drawCmp(); }));
+  ['ct', 'cc', 'cs', 'cp', 'co'].forEach(i => $('#' + i).addEventListener('input', () => { cmpLimit = 40; drawCmp(); }));
   $('#cmpMore').addEventListener('click', () => { cmpLimit += 40; drawCmp(); });
   const openFrom = e => { const r = e.target.closest('[data-id]'); if (r) { pick(r.dataset.id, true); } };
   $('#cmp').addEventListener('click', openFrom);
@@ -147,7 +148,7 @@ try {
     const rows = LEG.filter(l => (!chF || (chF === 'cur' ? l.current : l.ch === chF)) &&
       (!q || (l.name + ' ' + l.aka.join(' ') + ' ' + l.dist + ' ' + l.ch).toLowerCase().includes(q))).slice(0, 250);
     $('#ll').innerHTML = rows.map(l => `<button type="button" role="listitem" data-id="${esc(l.id)}" aria-current="${l.id === cur}">
-      <span><span class="t">${esc(l.name)}</span><br><span class="s">${esc(where(l))}${l.party ? ' &middot; ' + esc(l.party) : ''} &middot; ${l.first}&ndash;${l.last}</span></span>
+      <span><span class="t">${esc(l.name)}</span> ${leanDot(l.stance.pro, l.stance.anti)}<br><span class="s">${esc(where(l))}${l.party ? ' &middot; ' + esc(l.party) : ''} &middot; ${l.first}&ndash;${l.last}</span></span>
       <span class="n">${num(l.n.votes)}</span></button>`).join('') || '<div class="empty">No match.</div>';
   }
   $('#lq').addEventListener('input', drawList);
@@ -174,6 +175,8 @@ try {
       <div class="profile-head"><h2>${esc(chamberLabel(l))}</h2>
         <span class="chips">${l.party ? `<span class="chip">${l.party === 'D' ? 'Democrat' : l.party === 'R' ? 'Republican' : esc(l.party)}</span>` : ''}
         <span class="chip">${esc(where(l))}</span>${l.current ? '<span class="chip ok">Serving Now</span>' : ''}</span></div>
+      <p style="margin:.5rem 0 0">${l.stance.n ? `${leanDot(l.stance.pro, l.stance.anti, true)} <span class="small muted">&middot; ${l.stance.pro} pro-cannabis and ${l.stance.anti} anti-cannabis votes on bills that clearly expand access or add enforcement. <a href="stances.html?q=${encodeURIComponent(l.sur)}">Compare with everyone</a></span>`
+        : '<span class="small muted">No counted votes on bills that clearly expand access or add enforcement.</span>'}</p>
       <p class="small muted" style="margin:.3rem 0 0">On the cannabis record from ${l.first} to ${l.last}${l.aka.length ? ` &middot; printed on tally sheets and roll calls as ${l.aka.map(esc).join('; ')}` : ''}</p>
       <div class="kpis">
         <div class="kpi"><b>${num(l.n.votes)}</b><span>Votes Recorded</span></div>
@@ -202,11 +205,11 @@ try {
     <div class="grid two" style="margin-top:.8rem">
       <div class="card"><h3 style="margin:0 0 .4rem">Bills sponsored</h3>${l.spon.length ? `<ul class="clean">${
         [...new Map(l.spon.map(s => [s.bid, s])).values()].map(s => { const b = BILL.get(s.bid); return b ? `<li style="margin:.35rem 0">
-          <a href="bills.html?id=${esc(b.id)}#${esc(b.id)}"><strong>${esc(b.num)}</strong> (${esc(b.yr)})</a> <span class="chip">${esc(s.role)}</span>
+          <a href="bill.html?id=${esc(b.id)}"><strong>${esc(b.num)}</strong> (${esc(b.yr)})</a> <span class="chip">${esc(s.role)}</span>
           <span class="chip ${b.enacted ? 'ok' : 'warn'}">${b.enacted ? esc(b.pa) : 'Did Not Pass'}</span><br><span class="small">${esc(b.title)}</span></li>` : ''; }).join('')}</ul>`
         : '<p class="small muted">No cannabis bill in this dataset names this member as introducer or co-sponsor. Committee bills name no individual.</p>'}</div>
       <div class="card"><h3 style="margin:0 0 .4rem">Amendments offered</h3>${l.amd.length ? `<ul class="clean">${l.amd.map(a => { const b = BILL.get(a.bid); return `<li style="margin:.35rem 0">
-          <a href="${esc(a.u)}" rel="noopener">LCO ${esc(a.lco)}</a> to <a href="bills.html?id=${esc(a.bid)}#${esc(a.bid)}">${esc(b ? b.num + ' (' + b.yr + ')' : a.bid)}</a>
+          <a href="${esc(a.u)}" rel="noopener">LCO ${esc(a.lco)}</a> to <a href="bill.html?id=${esc(a.bid)}">${esc(b ? b.num + ' (' + b.yr + ')' : a.bid)}</a>
           <span class="chip ${a.called ? '' : 'warn'}">${a.called ? 'Called' : 'Never Called'}</span><br><span class="small muted">${esc(a.lab)}</span></li>`; }).join('')}</ul>`
         : '<p class="small muted">No amendment in this dataset lists this member under &ldquo;Offered by.&rdquo;</p>'}</div>
     </div>
@@ -234,9 +237,10 @@ try {
       const rows = rowsFor();
       $('#vtab').innerHTML = rows.length ? `<div class="vlist">${rows.slice(0, vlim).map(r => `<div class="vrow">
         <span class="v ${r.c}">${VL[r.c]}</span>
-        <div class="mid"><div class="l1"><a href="bills.html?id=${esc(r.b.id)}#${esc(r.b.id)}"><strong>${esc(r.b.num)}</strong> (${esc(r.b.yr)})</a>
+        <div class="mid"><div class="l1">${dirChip(r.b.dir)} <a href="${billHref(r.b.id)}"><strong>${esc(r.b.num)}</strong> (${esc(r.b.yr)})</a>
           <span class="muted">&middot; ${esc(r.v.kind === 'committee' ? r.v.body + ' Committee' : r.v.body + ' Floor')} &middot; ${esc(r.v.type)}${r.v.inf ? '<span title="Older Senate roll calls carry no description; identified from vote order and the bill history."> *</span>' : ''}</span></div>
           <div class="l2" title="${esc(r.b.title)}">${esc(r.b.title)}</div>
+          ${r.v.amd ? (() => { const a = r.b.amds.find(x => x.lco === r.v.amd); return a ? `<div class="small" style="margin-top:.2rem">On ${esc(a.sched ? a.sched.replace('"', 'Amendment "') : 'amendment LCO ' + a.lco)}, offered by ${a.by.map(o => { const x = byId.get(o.pid); return x ? `<a href="legislators.html?id=${esc(o.pid)}#record">${esc(x.name)}</a>` : esc(o.n); }).join(', ') || 'unnamed'}${a.res ? ` &middot; ${esc(a.res)}` : ''}${a.eff ? ` &middot; <span class="muted">${esc(a.eff.slice(0, 160))}&hellip;</span>` : ''}</div>` : ''; })() : ''}
           <div class="chips" style="margin-top:.25rem">${r.b.topics.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div></div>
         <div class="end"><span class="nowrap small">${esc(fmtDate(r.v.date) || r.v.yr)}</span><br>
           <span class="small">${esc(r.v.res)} ${r.v.t.y}&ndash;${r.v.t.n}</span><br>

@@ -52,7 +52,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 </main>
 <script type="module">
 
-import { load, $, num, esc, searchField, selectField, clearButton, wire,
+import { load, $, num, esc, cap, searchField, selectField, clearButton, wire,
          downloadCSV, fail } from './assets/app.js';
 
 try {
@@ -82,7 +82,7 @@ try {
         <span class="chip ${LABEL[g.res][0]}">${LABEL[g.res][1]}</span>
       </div>
       <dl class="kv">
-        <dt>Gap</dt><dd class="mono">${esc(g.id)}${g.pri ? ' &middot; priority ' + esc(g.pri.toLowerCase()) : ''}</dd>
+        ${g.pri ? `<dt>Priority</dt><dd>${esc(cap(g.pri.toLowerCase()))}</dd>` : ''}
         <dt>Held by</dt><dd>${esc(g.who)}</dd>
         <dt>Why it matters</dt><dd>${esc(g.why)}</dd>
         ${g.found ? `<dt>What the public record shows</dt><dd>${esc(g.found)}</dd>` : `<dt>How it closed</dt><dd>${esc(g.st)}</dd>`}

@@ -295,7 +295,7 @@ try {
         </div>
         <div class="chips" style="margin-bottom:.5rem">
           <span class="chip">${esc(cap(r.et))}</span>
-          <span class="chip ${r.str >= 4 ? '' : 'warn'}">Strength ${r.str} &middot; ${esc(cap(d.scale[String(r.str)] || ''))}</span>
+          <span class="chip ${r.str >= 4 ? '' : 'warn'}" title="Evidence strength ${r.str} of 5">Evidence: ${esc(cap(d.scale[String(r.str)] || ''))}</span>
         </div>
         <dl class="kv">
           <dt>What is recorded</dt><dd>${esc(r.act)}</dd>

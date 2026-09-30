@@ -21,14 +21,19 @@ export const NAV = [
     ['issues.html', 'Topics', 'Fourteen subjects, kept apart on purpose'],
   ]},
   { group: 'Bills and Votes', items: [
+    ['stances.html', 'Where They Stand', 'Who is for and against cannabis, and why'],
     ['bills.html', 'Bills', 'Every cannabis bill since 2012, passed or not'],
-    ['legislators.html', 'Lawmakers', 'How each legislator voted, by topic and year'],
+    ['sections.html', 'Special Sections', 'Odor and stops, enforcement, driving, rollbacks'],
+    ['legislators.html', 'Lawmakers', 'Every vote by every legislator'],
     ['testimony.html', 'Testimony', 'Every written filing, across every committee'],
   ]},
   { group: 'People and Influence', items: [
     ['people.html', 'Who Testified', 'Ranked by how often they filed'],
     ['influence.html', 'Influence', 'A map of what the record ties together'],
     ['agencies.html', 'Agencies', 'Regulation, or policy?'],
+  ]},
+  { group: 'Help', items: [
+    ['guide.html', 'Site Guide', 'How to use this site, in two minutes'],
   ]},
   { group: 'Check the Work', items: [
     ['gaps.html', 'Gaps', 'What was missing, and what the record holds'],
@@ -53,8 +58,7 @@ function here() {
 /* Six links that cover most visits, then everything else grouped behind "More".
    Sixteen links in a row is not navigation, it is a list that happens to be at the
    top of the page. */
-const PRIMARY = ['timeline.html', 'laws.html', 'bills.html', 'legislators.html',
-                 'testimony.html', 'influence.html'];
+const PRIMARY = ['stances.html', 'bills.html', 'sections.html', 'legislators.html', 'testimony.html'];
 
 function buildHeader() {
   const cur = here();
@@ -66,9 +70,8 @@ function buildHeader() {
   const h = document.createElement('header');
   h.className = 'masthead';
   h.innerHTML = `<div class="masthead-in">
-    <a class="brand" href="index.html">${LOGO}<span>CT Cannabis Law <span class="sub">&middot; 2012&ndash;2027</span></span></a>
+    <a class="brand" href="index.html">${LOGO}<span>CT Cannabis Law</span></a>
     <nav class="main" aria-label="Main">
-      <a href="index.html"${cur === 'index.html' ? ' aria-current="page"' : ''}>Home</a>
       ${prim.map(([href, t]) => `<a href="${href}"${href === cur ? ' aria-current="page"' : ''}>${t}</a>`).join('')}
     </nav>
     <div class="more-wrap">
@@ -85,6 +88,8 @@ function buildHeader() {
               <strong>${t}</strong><span>${d}</span></a>`).join('')}</div>`).join('')}
         </div>
     </div>
+    <div class="gsearch" role="search"><input id="gq" type="search" placeholder="Search a lawmaker, bill or person" aria-label="Search the site" autocomplete="off">
+      <div class="res" id="gres" hidden></div></div>
     <button class="theme-btn" type="button" id="themeBtn" aria-live="polite" title="Light, dark, or follow the system">
       <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M12.5 3.5l-1.4 1.4M4.9 11.1l-1.4 1.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
       <span id="themeLbl">Theme</span></button>
@@ -115,8 +120,52 @@ function buildHeader() {
     applyTheme(cm === 'system' ? null : cm);
     setLbl();
   });
+  wireSearch(h.querySelector('.gsearch'));
   const on = h.querySelector('nav.main a[aria-current="page"]');
   if (on) on.scrollIntoView({ block: 'nearest', inline: 'center' });
+}
+
+export function wireSearch(root) {
+  const inp = root.querySelector('input'), box = root.querySelector('.res');
+  let idx = null, act = -1, links = [];
+  const build = async () => {
+    if (idx) return idx;
+    const [L, B, T] = await Promise.all([load('legislators'), load('bills'), load('testimony')]);
+    idx = [
+      ...L.legislators.map(l => ({ g: 'Lawmakers', t: (l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name,
+        s: `${l.party ? (l.party === 'D' ? 'Democrat' : l.party === 'R' ? 'Republican' : l.party) + ' · ' : ''}${l.ch}${l.dist && l.dist !== '?' ? ' District ' + l.dist : ''} · ${l.first}–${l.last}`,
+        k: (l.name + ' ' + l.aka.join(' ') + ' ' + l.sur).toLowerCase(), u: `legislators.html?id=${encodeURIComponent(l.id)}#record`, w: l.n.votes })),
+      ...B.bills.map(b => ({ g: 'Bills', t: `${b.num.replace(/^(HB|SB)/, '$1 ')} (${b.yr})`, s: b.title,
+        k: (b.num + ' ' + b.num.replace(/^(HB|SB)/, '$1 ') + ' ' + b.yr + ' ' + b.title + ' ' + (b.pa || '')).toLowerCase(), u: `bill.html?id=${encodeURIComponent(b.id)}`, w: b.tmy.n })),
+      ...T.speakers.map(p => ({ g: 'People Who Testified', t: p.who, s: `${p.k || ''} · ${p.orgs.slice(0, 1).join('')} · ${p.n} filing${p.n === 1 ? '' : 's'}`,
+        k: (p.who + ' ' + p.orgs.join(' ') + ' ' + (p.aka || []).join(' ')).toLowerCase(), u: `people.html?id=${encodeURIComponent(p.id)}`, w: p.n })),
+    ];
+    return idx;
+  };
+  const show = async () => {
+    const q = inp.value.trim().toLowerCase();
+    if (q.length < 2) { box.hidden = true; return; }
+    const all = await build();
+    const words = q.split(/\s+/);
+    const hit = all.filter(x => words.every(w => x.k.includes(w)));
+    const groups = ['Lawmakers', 'Bills', 'People Who Testified'].map(g => [g, hit.filter(x => x.g === g)
+      .sort((a, b) => (b.t.toLowerCase().startsWith(q) - a.t.toLowerCase().startsWith(q)) || b.w - a.w).slice(0, 6)]).filter(x => x[1].length);
+    links = groups.flatMap(x => x[1]); act = -1;
+    box.innerHTML = groups.length ? groups.map(([g, xs]) => `<h6>${esc(g)}</h6>${xs.map(x => `<a href="${x.u}"><strong>${esc(x.t)}</strong><small>${esc(x.s)}</small></a>`).join('')}`).join('')
+      : '<p class="small muted" style="padding:.5rem .6rem;margin:0">Nothing matches.</p>';
+    box.hidden = false;
+  };
+  inp.addEventListener('input', debounce(show, 120));
+  inp.addEventListener('focus', () => { build(); if (inp.value.trim().length > 1) show(); });
+  inp.addEventListener('keydown', e => {
+    const as = [...box.querySelectorAll('a')];
+    if (e.key === 'ArrowDown') { e.preventDefault(); act = Math.min(act + 1, as.length - 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); act = Math.max(act - 1, 0); }
+    else if (e.key === 'Enter') { const a = as[act >= 0 ? act : 0]; if (a) location.href = a.href; return; }
+    else if (e.key === 'Escape') { box.hidden = true; return; } else return;
+    as.forEach((a, i) => a.classList.toggle('on', i === act)); if (as[act]) as[act].scrollIntoView({ block: 'nearest' });
+  });
+  document.addEventListener('click', e => { if (!root.contains(e.target)) box.hidden = true; });
 }
 
 function buildFooter() {
@@ -127,16 +176,10 @@ function buildFooter() {
       ${NAV.map(g => `<div><h4>${g.group}</h4><ul class="clean">
         ${g.items.map(([h, t]) => `<li><a href="${h}">${t}</a></li>`).join('')}</ul></div>`).join('')}
       <div><h4>About this site</h4>
-        <p style="margin:0 0 .6rem">A public record of how Connecticut cannabis law changed
-        between 2012 and 2027, built from primary documents. Every figure links to the
-        source it came from.</p>
-        <p style="margin:0">No records request in this project has been sent to anyone.</p></div>
-    </div>
-    <p style="margin:0;border-top:1px solid var(--rule);padding-top:1rem">
-      Statutory text on this site comes from the <strong>enacted public acts</strong>, never from
-      the General Assembly&rsquo;s published chapter pages, which lag the session.
-      <a href="methodology.html">Why that matters</a>.
-    </p></div>`;
+        <p style="margin:0 0 .6rem">Connecticut cannabis law from 2012 on: every bill, vote,
+        amendment and piece of testimony, linked to the official record.</p>
+        <p style="margin:0"><a href="guide.html">New here? Read the site guide.</a></p></div>
+    </div></div>`;
   document.body.appendChild(f);
 }
 
@@ -203,24 +246,23 @@ export function fmtDate(d) {
 /* Citation chip. Every assertion on this site carries one. */
 let SRCMAP = null;
 export function setSources(map) { SRCMAP = map; }
+const TIER = { '1': 'Primary record', '2': 'Official record', '3': 'Published summary (can lag the law)', '4': 'Secondary source' };
 export function cite(sourceId, locator) {
   if (!sourceId) return '';
   const s = (SRCMAP || {})[sourceId];
-  const tier = s ? s.r : '?';
-  const title = s ? s.t : sourceId;
-  const lag = tier === '3'
-    ? `<dt>Warning</dt><dd>Tier 3 lags the session. It is never relied on for current law here.</dd>` : '';
+  const title = s ? s.t : 'Source document';
+  const loc = locator && /^https?:/.test(locator) ? locator : '';
+  const url = loc || (s && /^https?:/.test(s.u) ? s.u : '');
+  const shortT = title.length > 70 ? title.slice(0, 68).replace(/\s+\S*$/, '') + '…' : title;
   return `<details class="cite"><summary>
-      <svg width="10" height="10" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2h5l3 3v9H6z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 2v4h4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4 5v9h7" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
-      Source ${esc(sourceId)} &middot; tier ${esc(tier)}</summary>
+      <svg width="10" height="10" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2h5l3 3v9H6z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 2v4h4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+      Source: ${esc(shortT)}</summary>
     <div class="body"><dl>
-      <dt>Source</dt><dd>${esc(title)}</dd>
-      ${s && s.c ? `<dt>Held by</dt><dd>${esc(s.c)}</dd>` : ''}
-      ${locator ? `<dt>Exact locator</dt><dd class="mono">${esc(locator)}</dd>` : ''}
-      ${s && s.u ? `<dt>Where</dt><dd>${/^https?:/.test(s.u)
-        ? `<a href="${esc(s.u)}" rel="noopener">${esc(s.u)}</a>` : `<span class="mono">${esc(s.u)}</span>`}</dd>` : ''}
+      <dt>Document</dt><dd>${url ? `<a href="${esc(url)}" rel="noopener">${esc(title)} &#8599;</a>` : esc(title)}</dd>
+      ${s && s.c ? `<dt>Published by</dt><dd>${esc(s.c)}</dd>` : ''}
+      ${s && s.r ? `<dt>Kind of record</dt><dd>${esc(TIER[s.r] || 'Record')}</dd>` : ''}
+      ${locator && !loc && !/^runs\//.test(locator) ? `<dt>Where in it</dt><dd>${esc(locator)}</dd>` : ''}
       ${s && s.n ? `<dt>Limits</dt><dd>${esc(s.n)}</dd>` : ''}
-      ${lag}
     </dl></div></details>`;
 }
 
@@ -391,11 +433,11 @@ function tcNode(el) {
   const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
   let n; while ((n = w.nextNode())) {
     const v = n.nodeValue; if (!/[a-z]/.test(v)) continue;
-    if (n.parentElement && n.parentElement.closest('.mono, code, input, textarea, [data-keepcase]')) continue;
+    if (n.parentElement && n.parentElement.closest('.mono, code, input, textarea, [data-keepcase], .meta, p, .org, .l2, .rec-body')) continue;
     const lead = v.match(/^\s*/)[0], trail = v.match(/\s*$/)[0], core = v.trim();
     if (!core) continue;
     // A full sentence keeps sentence case, with a capital first letter.
-    const t = (/[.!?]$/.test(core) && core.split(/\s+/).length > 3) ? core.replace(/[a-z]/, c => c.toUpperCase()) : titleCase(core);
+    const t = (/[.!?]$/.test(core) && core.split(/\s+/).length > 3) ? core.replace(/^([^A-Za-z]*)([a-z])/, (m, p, c) => p + c.toUpperCase()) : titleCase(core);
     if (t !== core) n.nodeValue = lead + t + trail;
   }
 }
@@ -428,3 +470,30 @@ export function boot() {
 }
 
 if (!document.body.dataset.noChrome) boot();
+
+/* ---------------------------------------------------------------- shared labels */
+export const DIRS = {
+  E: ['ok', 'Expands Access or Eases Penalties', 'Expands Access'],
+  R: ['bad', 'Adds Penalties, Restrictions or Enforcement', 'Adds Penalties or Enforcement'],
+  M: ['warn', 'Mixed: Both Directions', 'Mixed'],
+  N: ['', 'Regulation, Tax or Study', 'Regulation or Study'],
+  O: ['', 'Budget or Multi-Subject Bill', 'Multi-Subject'],
+};
+export const dirChip = (d, short = true) => { const x = DIRS[d] || DIRS.O;
+  return `<span class="chip dir ${x[0]}" title="${esc(x[1])}">${esc(short ? x[2] : x[1])}</span>`; };
+const KIND_CLS = { 'Lawmaker': 'k-leg', 'State Agency': 'k-gov', 'Law Enforcement': 'k-police', 'Local Official': 'k-local',
+  'Health and Medical': 'k-health', 'Industry': 'k-ind', 'Advocate or Group': 'k-adv', 'Member of the Public': 'k-pub', 'Anonymous': 'k-pub' };
+export const kindChip = k => k ? `<span class="chip kind ${KIND_CLS[k] || ''}">${esc(k)}</span>` : '';
+export const billHref = id => `bill.html?id=${encodeURIComponent(id)}`;
+export const legHref = id => `legislators.html?id=${encodeURIComponent(id)}#record`;
+export const personHref = id => `people.html?id=${encodeURIComponent(id)}`;
+/* Green = pro-cannabis, red = anti-cannabis, yellow = in between. */
+export function lean(p, a) {
+  const n = p + a; if (!n) return null;
+  const s = p / n; return s >= 0.67 ? 'pro' : s <= 0.33 ? 'anti' : 'mid';
+}
+const LEAN_T = { pro: 'Mostly pro-cannabis', anti: 'Mostly anti-cannabis', mid: 'Mixed record' };
+export function leanDot(p, a, withText = false) {
+  const l = lean(p, a); if (!l) return '';
+  return `<span class="lean ${l}" title="${LEAN_T[l]}: ${p} pro, ${a} anti">${withText ? LEAN_T[l] : ''}</span>`;
+}

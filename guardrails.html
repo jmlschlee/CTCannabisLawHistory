@@ -73,7 +73,6 @@ $('#dns').innerHTML = d.do_not_say.map(g => `
   <article class="rec">
     <div class="rec-head">
       <h3 class="rec-title">${esc(g.avoid)}</h3>
-      <span class="rec-sub mono">${esc(g.id)}</span>
     </div>
     <dl class="kv">
       <dt>Why not</dt><dd>${esc(g.why)}</dd>
@@ -85,7 +84,6 @@ $('#flag').innerHTML = d.flagged.length ? d.flagged.map(c => `
   <article class="rec">
     <div class="rec-head">
       <h3 class="rec-title">${esc(c.claim)}</h3>
-      <span class="rec-sub mono">${esc(c.id)}</span>
     </div>
     <div class="chips" style="margin-bottom:.45rem">
       <span class="chip ${TONE[c.rdy] === 'bad' ? 'bad' : ''}">${esc(c.rdy)}</span>
@@ -113,7 +111,6 @@ function draw() {
   const rows = current();
   $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.claims.length)} reviewed claims`;
   table($('#tbl'), [
-    {key:'id', label:'ID', html: r => `<span class="mono">${esc(r.id)}</span>`},
     {key:'claim', label:'Claim'},
     {key:'st', label:'Status'},
     {key:'risk', label:'Risk'},

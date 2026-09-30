@@ -23,9 +23,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 <div class="page-head">
   <div class="eyebrow">Check the work</div>
   <h1>Source library</h1>
-  <p class="lede">Every figure, date and quotation on this site carries a source identifier.
-  This is the list those identifiers point to. Each row names the document, who holds it,
-  the exact citation, the date it was retrieved, and what the document cannot be used for.</p>
+  <p class="lede">The documents behind this site: public acts, bill records, testimony, agency records and data sets, each with a link to the original.</p>
 </div>
 <div class="notice">
 <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6 15 14H1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12" r=".8" fill="currentColor"/></svg>
@@ -53,14 +51,14 @@ const byTier = {};
 d.list.forEach(s => { const t = String(s.tier).split(' ')[0]; byTier[t] = (byTier[t]||0)+1; });
 $('#tiers').innerHTML = ['1','2','3'].map(t => `
   <div class="card">
-    <div class="chips"><span class="chip t${esc(t)}">Tier ${esc(t)}</span>
+    <div class="chips"><span class="chip t${esc(t)}">${esc({'1':'Primary Record','2':'Official Record','3':'Published Summary','4':'Secondary Source'}[String(t)[0]] || 'Record')}</span>
       <span class="chip">${num(byTier[t]||0)} source${(byTier[t]||0)===1?'':'s'}</span></div>
     <p class="small" style="margin:.55rem 0 0">${esc(d.tiers[t])}</p>
   </div>`).join('');
 
 $('#f').innerHTML =
   searchField('q','Search','title, issuer, citation, act, bill') +
-  selectField('tier','Tier', ['1','2','3'].map(t => [t, 'Tier ' + t])) +
+  selectField('tier','Kind of Record', [['1','Primary Record'],['2','Official Record'],['3','Published Summary']]) +
   selectField('type','Document type', [...new Set(d.list.map(s=>s.type))].sort()) +
   `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
 
@@ -74,9 +72,9 @@ function current() {
 
 const COLS = [
   {key:'id', label:'ID', html: r => `<a href="#${esc(r.id)}" class="mono">${esc(r.id)}</a>`},
-  {key:'tier', label:'Tier', html: r => {
+  {key:'tier', label:'Kind of Record', html: r => {
     const t = String(r.tier).split(' ')[0];
-    return `<span class="chip t${esc(t)}">${esc(t)}</span>`; },
+    return `<span class="chip t${esc(t)}">${esc({'1':'Primary','2':'Official','3':'Summary','4':'Secondary'}[t] || 'Record')}</span>`; },
     sortVal: r => Number(String(r.tier).split(' ')[0]) || 9},
   {key:'title', label:'Document'},
   {key:'issuer', label:'Held by'},
@@ -93,10 +91,9 @@ function draw() {
     return `<article class="rec" id="${esc(s.id)}">
       <div class="rec-head">
         <h3 class="rec-title">${esc(s.title)}</h3>
-        <span class="rec-sub mono">${esc(s.id)}</span>
       </div>
       <div class="chips" style="margin-bottom:.45rem">
-        <span class="chip t${esc(t)}">Tier ${esc(s.tier)}</span>
+        <span class="chip t${esc(t)}">${esc({'1':'Primary Record','2':'Official Record','3':'Published Summary','4':'Secondary Source'}[String(s.tier)[0]] || 'Record')}</span>
         <span class="chip">${esc(s.type)}</span>
         ${s.pa ? `<span class="chip mono">${esc(s.pa)}</span>` : ''}
         ${s.bill ? `<span class="chip mono">${esc(s.bill)}</span>` : ''}

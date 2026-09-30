@@ -1,0 +1,53 @@
+# Hand classification of every cannabis-focused bill, from its own Statement of Purpose (or OLR summary).
+# E = expands access or eases penalties; R = adds penalties, restrictions or enforcement;
+# M = both; N = regulation, tax, study or administration without a clear direction.
+D = {
+'2012|HB-05008':'N','2012|HB-05389':'E','2013|SB-00295':'N','2013|SB-01117':'N','2014|HB-05476':'N','2014|SB-00039':'N',
+'2015|HB-05780':'E','2015|HB-05892':'E','2015|HB-06051':'E','2015|HB-06330':'R','2015|HB-06473':'E','2015|HB-06703':'E',
+'2015|HB-06862':'N','2015|HB-07057':'E','2015|SB-00462':'N','2015|SB-01064':'E','2016|HB-05209':'E','2016|HB-05236':'E',
+'2016|HB-05240':'E','2016|HB-05351':'E','2016|HB-05450':'E','2017|HB-05194':'E','2017|HB-05303':'R','2017|HB-05314':'E',
+'2017|HB-05539':'E','2017|HB-05931':'E','2017|HB-05975':'R','2017|HB-06198':'R','2017|HB-06287':'E','2017|HB-06518':'E',
+'2017|HB-06551':'N','2017|HB-06644':'E','2017|HB-06950':'E','2017|HB-07182':'E','2017|HB-07289':'R','2017|SB-00011':'E',
+'2017|SB-00603':'E','2018|HB-05111':'E','2018|HB-05112':'E','2018|HB-05394':'E','2018|HB-05458':'E','2018|HB-05582':'N',
+'2018|SB-00225':'E','2018|SB-00487':'E','2019|HB-05152':'N','2019|HB-05197':'R','2019|HB-05442':'E','2019|HB-05481':'E',
+'2019|HB-05595':'E','2019|HB-05649':'E','2019|HB-05881':'R','2019|HB-05973':'N','2019|HB-06140':'E','2019|HB-06509':'E',
+'2019|HB-06511':'E','2019|HB-06512':'R','2019|HB-06662':'E','2019|HB-06849':'E','2019|HB-06863':'E','2019|HB-07017':'E',
+'2019|HB-07135':'E','2019|HB-07287':'E','2019|HB-07371':'E','2019|SB-00008':'E','2019|SB-00045':'E','2019|SB-00350':'R',
+'2019|SB-00476':'E','2019|SB-00496':'E','2019|SB-00598':'E','2019|SB-00690':'E','2019|SB-00744':'E','2019|SB-00893':'E',
+'2019|SB-01085':'E','2019|SB-01089':'R','2020|HB-05130':'E','2020|HB-05174':'N','2020|HB-05295':'N','2020|HB-07003':'N',
+'2020|SB-00006':'E','2020|SB-00016':'E','2020|SB-00079':'E','2020|SB-00360':'E','2020|SB-00452':'N','2021|HB-05313':'N',
+'2021|HB-05577':'E','2021|HB-05663':'E','2021|HB-05664':'E','2021|HB-05853':'E','2021|HB-05862':'E','2021|HB-06099':'N',
+'2021|HB-06100':'N','2021|HB-06213':'E','2021|HB-06377':'N','2021|HB-06500':'N','2021|SB-00129':'E','2021|SB-00187':'R',
+'2021|SB-00612':'E','2021|SB-00644':'N','2021|SB-00861':'E','2021|SB-00888':'E','2021|SB-01118':'E','2021|SB-01201':'E',
+'2022|HB-05091':'N','2022|HB-05147':'E','2022|HB-05155':'N','2022|HB-05329':'M','2022|HB-05330':'N','2023|HB-05043':'N',
+'2023|HB-05413':'N','2023|HB-05432':'N','2023|HB-05434':'R','2023|HB-05457':'E','2023|HB-05460':'R','2023|HB-05539':'N',
+'2023|HB-05725':'N','2023|HB-05728':'E','2023|HB-05730':'N','2023|HB-05731':'R','2023|HB-05965':'N','2023|HB-06091':'R',
+'2023|HB-06094':'R','2023|HB-06268':'R','2023|HB-06426':'R','2023|HB-06460':'R','2023|HB-06514':'E','2023|HB-06694':'N',
+'2023|HB-06695':'N','2023|HB-06697':'M','2023|HB-06699':'M','2023|HB-06700':'M','2023|HB-06718':'N','2023|HB-06787':'E',
+'2023|HB-06915':'N','2023|SB-00203':'E','2023|SB-00232':'R','2023|SB-00402':'E','2023|SB-00403':'E','2023|SB-00652':'N',
+'2024|HB-05150':'M','2024|HB-05235':'M','2024|SB-00200':'M','2024|SB-00444':'E','2025|HB-05166':'R','2025|HB-05167':'R',
+'2025|HB-05360':'R','2025|HB-05429':'E','2025|HB-05692':'R','2025|HB-05736':'R','2025|HB-06046':'R','2025|HB-06050':'N',
+'2025|HB-06054':'R','2025|HB-06056':'E','2025|HB-06058':'E','2025|HB-06160':'R','2025|HB-06325':'R','2025|HB-06358':'R',
+'2025|HB-06375':'R','2025|HB-06377':'E','2025|HB-06389':'R','2025|HB-06401':'N','2025|HB-06629':'E','2025|HB-06642':'R',
+'2025|HB-06782':'N','2025|HB-06842':'N','2025|HB-06855':'M','2025|HB-07132':'M','2025|HB-07178':'M','2025|HB-07181':'R',
+'2025|HB-07258':'R','2025|SB-00216':'R','2025|SB-00642':'N','2025|SB-00748':'R','2025|SB-00970':'M','2025|SB-01208':'R',
+'2026|HB-05109':'N','2026|HB-05222':'N','2026|HB-05242':'E','2026|HB-05350':'M','2026|HB-05351':'M','2026|HB-05458':'E',
+'2026|SB-00059':'N','2026|SB-00231':'N','2026|SB-00352':'N',
+}
+LABEL = {'E': 'Expands Access or Eases Penalties', 'R': 'Adds Penalties, Restrictions or Enforcement',
+         'M': 'Mixed: Both Directions', 'N': 'Regulation, Tax or Study'}
+# Special sections, chosen from each bill's Statement of Purpose.
+SPOT = [
+ ('odor', 'Odor, Smoke and Police Stops', 'Bills that would let police stop or search on the smell or sight of cannabis, let neighbors sue over smoke or odor, or limit where cannabis can be used.',
+  ['2023|HB-05460','2023|HB-06268','2025|HB-05736','2025|HB-06375','2025|HB-06642','2025|SB-00216','2025|HB-06389','2025|HB-06160','2019|HB-06512','2025|HB-05166','2025|HB-05167','2025|HB-05692','2025|HB-06358','2025|HB-07132']),
+ ('enforce', 'Enforcement Task Forces and Crackdowns', 'Bills that create enforcement task forces, add seizure powers, or raise penalties on unlicensed sellers and on sales to minors.',
+  ['2025|HB-07181','2025|HB-06046','2025|SB-01208','2025|HB-06054','2022|HB-05329','2021|SB-00187','2023|HB-06460','2025|SB-00748','2025|HB-06855','2023|HB-06697']),
+ ('driving', 'Impaired Driving', 'Bills on driving under the influence of cannabis: blood-level limits, testing, and traffic stops.',
+  ['2017|HB-05975','2017|HB-06198','2017|HB-07289','2019|HB-05881','2019|HB-05152','2023|HB-06426','2023|SB-00232','2025|HB-07258','2023|HB-05043','2023|HB-05965']),
+ ('rollback', 'Attempts to Roll Back Legalization', 'Bills that would repeal the adult-use law, cap potency, treat cannabis like other regulated substances, or stop state promotion of the industry.',
+  ['2023|HB-06094','2023|HB-05434','2025|HB-06325','2025|HB-05360','2023|HB-06091','2023|HB-05731']),
+ ('relief', 'Criminal Justice Relief', 'Bills that decriminalize, erase records, modify sentences, or stop police from joining cannabis eradication programs.',
+  ['2015|HB-06473','2019|SB-01085','2023|HB-05457','2023|HB-06787','2024|SB-00444','2025|HB-06377','2025|HB-06629','2026|HB-05458','2017|HB-05931','2017|HB-06644']),
+ ('patients', 'Patient Access', 'Bills that add conditions, let patients grow, waive fees, or protect patients in care facilities.',
+  ['2025|HB-05429','2026|HB-05242','2025|HB-06058','2019|HB-05442','2019|HB-06849','2019|SB-00476','2021|HB-05664','2019|HB-07287','2015|HB-05892','2016|HB-05450']),
+]
