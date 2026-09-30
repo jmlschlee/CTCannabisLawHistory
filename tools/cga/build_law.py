@@ -111,9 +111,31 @@ def surname_of(name):  # 'Candelaria, J.' or "D'Agostino M." or 'John W. Fonfara
 def initial_of(name):
     m = re.search(r',\s*([A-Z])', name) or re.search(r'\s([A-Z])\.?$', name)
     return m.group(1) if m else ''
+# ------------------------------------------------------------------ party and full name from the state's official election results
+ELEC = json.load(open('/home/claude/cga/elections.json'))
+seats = defaultdict(list)   # (chamber, dist) -> [(start_year, name, party)]
+PMAP = {'Democratic': 'D', 'Republican': 'R', 'Independent Party': 'I', 'Working Families': 'WF', 'Green': 'G', 'Libertarian': 'L'}
+for y, cs in ELEC.items():
+    for c in cs:
+        if 'Primary' in c['eventTypeDisplayName']: continue
+        m = re.search(r'(Representative|Senate) District (\d+)', c['division']['displayName'])
+        if not m: continue
+        ch = 'House' if m.group(1) == 'Representative' else 'Senate'
+        win = [k for k in c['candidates'] if k['isWinner'] and not re.match(r'Total ', k['displayName'])]
+        if not win: continue
+        nm = win[0]['displayName']; ps = [k['party']['name'] for k in c['candidates'] if k['displayName'] == nm and k.get('party')]
+        pty = next((PMAP[p] for p in ps if p in ('Democratic', 'Republican')), PMAP.get(ps[0], ps[0][:1]) if ps else '')
+        # uncontested winners sometimes carry no party line; fill from the same person's other races below
+        date = c['event']['startDate'][:10]
+        start = int(date[:4]) + (1 if date[5:7] >= '09' else 0)   # November winners serve from the next January
+        seats[(ch, m.group(2))].append((start, nm, pty, date))
+for k in seats: seats[k].sort(key=lambda x: (x[3], x[0]))   # by election date
 def person(ch, dist, name, yr, full=None, sur=None):
     sur = sur or surname_of(name)
-    k = pkey(ch, dist, sur)
+    ini = initial_of(name) if (',' in name or re.search(r'\s[A-Z]\.?$', name)) else (norm(full)[:1] if full else '')
+    h = seat_holder(ch, dist, yr, sur, ini) if dist not in ('', '?') else None
+    # one record per real person: the seat holder named in the official results for that year
+    k = h[2] if h else pkey(ch, dist, sur) + (f'|{ini}' if ini and dist not in ('', '?') and seats.get((ch, dist)) else '')
     p = people.setdefault(k, dict(id='LEG_' + re.sub(r'[^A-Z0-9]', '', k.upper().replace('|', '_')), ch=ch, dist=dist,
                                   sur=sur, names=Counter(), full=Counter(), yrs=set(), votes=[], spon=[], amd=[], tmy=[]))
     p['names'][name] += 1; p['yrs'].add(int(yr))
@@ -136,29 +158,61 @@ def term_years(y):
     y = int(y); a = y if y % 2 else y - 1
     return [str(a), str(a + 1)]
 
-# ------------------------------------------------------------------ party and full name from the state's official election results
-ELEC = json.load(open('/home/claude/cga/elections.json'))
-seats = defaultdict(list)   # (chamber, dist) -> [(start_year, name, party)]
-PMAP = {'Democratic': 'D', 'Republican': 'R', 'Independent Party': 'I', 'Working Families': 'WF', 'Green': 'G', 'Libertarian': 'L'}
-for y, cs in ELEC.items():
-    for c in cs:
-        if 'Primary' in c['eventTypeDisplayName']: continue
-        m = re.search(r'(Representative|Senate) District (\d+)', c['division']['displayName'])
-        if not m: continue
-        ch = 'House' if m.group(1) == 'Representative' else 'Senate'
-        win = [k for k in c['candidates'] if k['isWinner'] and k.get('party')]
-        if not win: continue
-        nm = win[0]['displayName']; ps = [k['party']['name'] for k in c['candidates'] if k['displayName'] == nm and k.get('party')]
-        pty = next((PMAP[p] for p in ps if p in ('Democratic', 'Republican')), PMAP.get(ps[0], ps[0][:1]) if ps else '')
-        date = c['event']['startDate'][:10]
-        start = int(date[:4]) + (1 if date[5:7] >= '09' else 0)   # November winners serve from the next January
-        seats[(ch, m.group(2))].append((start, nm, pty, date))
-for k in seats: seats[k].sort()
-def seat_holder(ch, dist, yr, sur):
+def _inits(nm):
+    toks = re.findall(r'[A-Za-z]+', re.sub(r'"([^"]*)"', ' ', nm))
+    out = {toks[0][0].upper()} if toks else set()
+    out |= {q[0].upper() for q in re.findall(r'"([^"]+)"', nm)}
+    return out
+def _last(nm):
+    parts = [p for p in re.sub(r'"[^"]*"', ' ', nm).replace(',', ' ').split() if p.rstrip('.').upper() not in ('JR', 'SR', 'II', 'III', 'IV')]
+    return norm(parts[-1]) if parts else norm(nm)
+# One identity per person per seat: consecutive winners with the same surname and a shared first
+# initial (or nickname initial) are one person; anyone else is a new person.
+seat_people = {}
+for key, lst in seats.items():
+    people_here = []
+    for x in lst:
+        st, nm, pty, date = x
+        prev = people_here[-1] if people_here else None
+        first = lambda n: (re.findall(r'[A-Za-z]+', re.sub(r'"[^"]*"', ' ', n)) or [''])[0].upper()
+        same = prev and ((_last(prev['names'][-1]) == _last(nm) and (prev['inits'] & _inits(nm)))
+                         or (first(prev['names'][-1]) == first(nm) and len(first(nm)) > 2 and (_last(prev['names'][-1]) in _last(nm) or _last(nm) in _last(prev['names'][-1]))))
+        back = next((q for q in reversed(people_here) if _last(q['names'][-1]) == _last(nm) and (q['inits'] & _inits(nm))), None) if not same else None
+        if back:   # the same person returning to the seat after someone else held it
+            back['names'].append(nm); back['terms'].append(x); back['terms'].sort(key=lambda t: t[3]); continue
+        if same:
+            pp = people_here[-1]; pp['names'].append(nm); pp['inits'] |= _inits(nm); pp['terms'].append(x)
+        else:
+            people_here.append(dict(names=[nm], inits=_inits(nm), terms=[x], pid=f'{key[0]}|{key[1]}|{_last(nm)}|{len(people_here)}'))
+    seat_people[key] = people_here
+for key, pl in seat_people.items():
+    for pp in pl:
+        known = Counter(t[2] for t in pp['terms'] if t[2])
+        if known:
+            best_p = known.most_common(1)[0][0]
+            pp['terms'] = [(a, b, c or best_p, d) for a, b, c, d in pp['terms']]
+def seat_holder(ch, dist, yr, sur, ini=''):
+    """The person holding this seat this year, per the official results, if the surname matches.
+    Returns (display name, party, identity key)."""
     best = None
-    for start, nm, pty, date in seats.get((ch, dist), []):
-        if start <= yr and norm(sur) and norm(sur) in norm(nm): best = (nm, pty)
-    return best
+    for pp in seat_people.get((ch, dist), []):
+        for st, nm, pty, date in pp['terms']:
+            if st <= int(yr) and (best is None or (st, date) > best[3]): best = (pp, nm, pty, (st, date))
+    cands = [best[:3]] if best else []
+    # a same-term special election winner can overlap; allow the previous holder too
+    for pp in seat_people.get((ch, dist), []):
+        for st, nm, pty, date in pp['terms']:
+            if best and best[3][0] - 1 <= st <= int(yr) and pp is not best[0]: cands.append((pp, nm, pty))
+    for strict in (True, False):
+        for pp, nm, pty in cands:
+            if norm(sur) and any(norm(sur) in norm(n) or _last(n) in norm(sur) for n in pp['names']) and (not strict or not ini or ini in pp['inits']):
+                return (pp['names'][-1], pty, pp['pid'])
+    # took the seat in a special election the results database does not list: match the next winner
+    for pp in seat_people.get((ch, dist), []):
+        st0 = pp['terms'][0][0]
+        if int(yr) < st0 <= int(yr) + 2 and norm(sur) and any(norm(sur) in norm(n) for n in pp['names']) and ini and ini in pp['inits']:
+            return (pp['names'][-1], pp['terms'][0][2], pp['pid'])
+    return None
 
 def holders(ch, yr):
     out = []
@@ -309,13 +363,44 @@ for key in sorted(raw):
         first=b['hist'][0]['d'] if b['hist'] else '', last=b['hist'][-1]['d'] if b['hist'] else '',
         hist=[dict(d=h['d'], a=h['a']) for h in b['hist']], amds=amds, votes=[x['id'] for x in vs],
         why=ob.get('why', ''), s='SOURCE_0014', l=b['url'],
-        dir=DIR.D.get(key, 'O'), purpose=PURP.get(key, {}).get('purpose', ''), purpose_u=PURP.get(key, {}).get('purpose_u', ''),
+        dir=DIR.D.get(key, 'O'), purpose=re.sub(r'\s*(LCO No\.|\[ ?Proposed deletions|Proposed deletions are).*$', '', PURP.get(key, {}).get('purpose', '')).strip(), purpose_u=PURP.get(key, {}).get('purpose_u', ''),
         summary=re.sub(r'^(?:O F F I C E|OLR).{0,200}?(?=[A-Z][a-z])', '', PURP.get(key, {}).get('summary', ''))[:1400] if PURP.get(key, {}).get('summary', '') else '',
         summary_u=PURP.get(key, {}).get('summary_u', ''), summary_kind=PURP.get(key, {}).get('summary_kind', ''),
         spot=[sid for sid, _, _, ks in DIR.SPOT if key in ks], docs=[d for d in b['docs'] if re.search(r'Bill Analysis|Fiscal Note For File|Public Act No|Summary for Public Act|Joint Fav', d['label'])][:8]))
 
+# ------------------------------------------------------------------ merge leftovers
+# Records keyed only by surname (no match in the election results for that year) are folded into the
+# seat's matching person when exactly one person in that seat has that surname within four years and no
+# other printed initial conflicts.
+redirect = {}
+bykey = defaultdict(list)
+for k, p in people.items(): bykey[(p['ch'], p['dist'], norm(p['sur']))].append((k, p))
+for key, lst in bykey.items():
+    if len(lst) < 2 or key[1] in ('', '?'): continue
+    real = [(k, p) for k, p in lst if k.count('|') == 3 and k.split('|')[3].isdigit()]
+    left = [(k, p) for k, p in lst if (k, p) not in real]
+    for k, p in left:
+        inis = {initial_of(n) for n in p['names'] if initial_of(n)}
+        fits = [(rk, rp) for rk, rp in real if min(abs(y - z) for y in p['yrs'] for z in rp['yrs']) <= 4
+                and (not inis or inis & {initial_of(n) for n in rp['names'] if initial_of(n)} | {norm(x)[:1] for x in rp['full']})]
+        others = [q for q, qp in left if q != k and {initial_of(n) for n in qp['names'] if initial_of(n)} and not inis]
+        if len(fits) == 1 and not others:
+            rk, rp = fits[0]; redirect[p['id']] = rp['id']
+            rp['names'].update(p['names']); rp['full'].update(p['full']); rp['yrs'] |= p['yrs']
+            rp['votes'] += p['votes']; rp['spon'] += p['spon']; rp['amd'] += p['amd']; rp['tmy'] += p['tmy']
+            del people[k]
+if redirect:
+    for v in votes_out:
+        for m in v['m']:
+            if m[0] in redirect: m[0] = redirect[m[0]]
+        if v.get('amdby'): v['amdby'] = [redirect.get(x, x) for x in v['amdby']]
+    for B in bills_out:
+        for s_ in B['spon']: s_['pid'] = redirect.get(s_['pid'], s_['pid'])
+        for a in B['amds']:
+            for o in a['by']: o['pid'] = redirect.get(o['pid'], o['pid'])
+
 # ------------------------------------------------------------------ testimony
-POSMAP = {'Supports': 'Supports', 'Opposes': 'Opposes', 'Comments': 'Comments Only'}
+POSMAP = {'Supports': 'Supports', 'Opposes': 'Opposes', 'Comments': 'Comments Only', 'Qualified': 'Qualified or Partial'}
 old_by_u = {r['u']: r for r in oldt['rows']}
 def parse_who(t):
     t = re.sub(r'\s+', ' ', t).strip()
@@ -328,7 +413,7 @@ def parse_who(t):
         return dict(who=t, role='', org='', pos=pos)
     last, suf, first, role, org = m.groups()
     fw = first.strip().split()
-    if len(fw) > 1 and fw[-1].lower() == last.strip().lower(): first = ' '.join(fw[:-1])  # "Smith, John Smith"
+    if len(fw) > 1 and fw[-1].lower() == last.strip().lower(): first = ' '.join(fw[:-1])  # "Schlee, Josiah Schlee"
     if first.strip().lower() == last.strip().lower(): return dict(who=last.strip(), role=(role or '').strip(), org=(org or '').strip(), pos=pos)  # "CHA, CHA"
     if len(last.split()) >= 2 and not suf:  # "Ethan Ruby, CEO of Theraplant": name first, role after the comma
         return dict(who=last.strip(), role=', '.join(x for x in (first, role) if x).strip(), org=(org or '').strip(), pos=pos)
@@ -343,11 +428,15 @@ for key in sorted(raw):
     for t in b['tmy'] or []:
         o = old_by_u.get(t['u'])
         pw = parse_who(t['who'])
-        p = t['p'] or ('Opposes' if re.search(r'oppos', pw['pos'], re.I) else 'Supports' if re.search(r'support', pw['pos'], re.I) else '')
+        # The position counts only when the witness's filed position (the last part of the file name,
+        # which the legislature takes from the filing form) is a plain Support or Oppose.
+        mm = re.search(r'-([^-]*)-TMY\.PDF$', t['u'], re.I); tok = (mm.group(1) if mm else '').strip()
+        if re.fullmatch(r'(In )?Supports?', tok, re.I): p = 'Supports'
+        elif re.fullmatch(r'(In )?Oppos(es|e|ition)?', tok, re.I): p = 'Opposes'
+        elif re.search(r'support|oppos|concern|modif|changes|section', tok, re.I): p = 'Qualified'
+        else: p = ''
         how = 'Filename' if p else ''
-        if not p and o and o['p'] in ('Supports', 'Opposes'): p, how = o['p'], 'Filename'
-        tx = tmytext.get(t['u'])
-        if not p and tx and tx['tp']: p, how = tx['tp'], 'Text'
+        tx = None   # automatic reading of the PDF text was dropped: it misread filings (see methodology). Only positions the legislature recorded count.
         who = o['who'] if o else pw['who']
         anon = bool(re.match(r'anonymous', who, re.I)) or (o or {}).get('anon', False)
         wh = bool(WITHHOLD.search(t['who'] + t['u']))
@@ -393,25 +482,48 @@ for r in rows:
         cands[0]['tmy'].append(dict(id=r['id'], bid=r['bid'], p=r['p'], u=r['u'], c=r['c'])); r['leg'] = cands[0]['id']
 
 # ------------------------------------------------------------------ who is filing: a small label from the name, role and organization as filed
-KINDS = [
- ('Lawmaker', None),
- ('Law Enforcement', r"police|sheriff|state'?s attorney|prosecutor|trooper|public safety|DESPP|highway safety"),
- ('State Agency', r"department of|commissioner|office of the|division of|state of connecticut|attorney general|ombudsman|\bDCP\b|DMHAS|\bDPH\b|\bDRS\b|judicial branch|public defender|social equity council|office of policy|governor|\bOHA\b|\bOCO\b"),
- ('Local Official', r"\btown of|city of|mayor|first selectman|selectm[ae]n|municipal|\balder|council ?member|town council|board of education|health district|\bCCM\b|conference of municipalities"),
- ('Industry', r"\bLLC\b|\binc\b\.?|corp\b|corporation|company|dispensar|cultivat|retailer|producer|farms?\b|chamber of commerce|\bCBIA\b|licensee|brands?\b|wholesal|distribut|package store|smoke shop|vape shop|hemp (company|farm)|holdings"),
- ('Advocate or Group', r"advoca|coalition|alliance|\bNORML\b|canna ?warriors?|prevention|\bACLU\b|association|council|network|union|foundation|institute|campaign|league|society|center|project|partnership|action|citizens|parents|federation|organizer"),
- ('Health and Medical', r"\bM\.?D\b|physician|doctor|\bdr\.|\bRN\b|nurse|hospital|psychiatr|psycholog|pediatric|pharmac|clinic|health system|\bAPRN\b|counselor|therapist"),
- ('Industry', r"\bceo\b|founder|owner|business|president"),
+RULES = [
+ ('Lawmaker', r"general assembly|house of representatives|state senate|\bsenate\b.*state of|assembly district|senate district|house district|\d+(st|nd|rd|th) district"),
+ ('Industry', r"government strategies|government affairs|public affairs|lobby|strategies\b|consulting"),
+ ('Law Enforcement', r"police|sheriff|state'?s attorney|prosecutor|trooper|DESPP|emergency services and public protection|highway safety|division of criminal justice"),
+ ('State Agency', r"department of|dept\.? of|commissioner|office of the (attorney general|governor|chief|state)|attorney general|ombudsman|\bOHA\b|\bOCO\b|\bDCP\b|DMHAS|\bDPH\b|\bDRS\b|\bDECD\b|CTDOT|\bCSDE\b|\bSEEC\b|judicial branch|public defender|social equity council|office of policy and management|state elections enforcement|state of connecticut(?! senate| house)"),
+ ('Local Official', r"\btown of|city of|mayor|first selectm|selectm[ae]n|municipal|\balder|town council|board of education|health district|\bCCM\b|conference of municipalities|council of governments|tribal nation|\btribe\b"),
+ ('Health and Medical', r"physician|doctor|\bM\.?D\.?\b|\bRN\b|\bAPRN\b|nurse|hospital|psychiatr|pediatric|pharmac|medical society|clinic|health center|emergency physicians|psycholog|therapist|counsel(or|ing)|school of medicine|public health association|\bMPH\b"),
+ ('Industry', r"dispensar|cultivat|retailer|producer|growers|craft cannabis|\bsba\b|chamber of commerce|\bCBIA\b|industry|business association|licensee|cannabis (company|business|brand)|hemp (company|farm|house)"),
+ ('Advocate or Group', r"\bunion\b|\bUFCW\b|\bSEIU\b|local \d+|workers|advoca|coalition|alliance|\bNORML\b|canna ?warriors?|prevention|\bACLU\b|association|council|network|foundation|institute|campaign|league|society|project|partnership|citizens|parents|federation|organizer|veterans|colleges|policy project|\bSSDP\b|leadingage|nonprofit|smart approaches|\bSAM\b|\bNAMI\b|radio|media"),
+ ('Industry', r"\bLLC\b|\binc\b\.?|\bcorp\b|corporation|company|farms?\b|holdings|brands?\b|wholesal|distribut|package store|smoke shop|vape|\bceo\b|founder|owner|business|budr|acreage|roots\b|green check|consult"),
 ]
-def filer_kind(r):
-    if r.get('leg'): return 'Lawmaker'
-    txt = ' '.join([r['who'], r['role'], r['org']])
-    if re.search(r'\b(State )?(Senator|Representative)\b|^(Rep|Sen)\.', r['who'] + ' ' + r['role']): return 'Lawmaker'
-    if r['anon']: return 'Anonymous'
-    for k, rx in KINDS[1:]:
+def classify_text(txt):
+    for k, rx in RULES:
         if re.search(rx, txt, re.I): return k
     return 'Member of the Public'
+def filer_kind(r):
+    if r.get('leg'): return 'Lawmaker'
+    if re.search(r'\b(State )?(Senator|Representative)\b|^(Rep|Sen)\.', r['who'] + ' ' + r['role']): return 'Lawmaker'
+    if r['anon']: return 'Anonymous'
+    return classify_text(' | '.join([r['who'], r['role'], r['org']]))
+# One label per person: judged from everything they ever filed under, not one filing at a time.
+# The organizations they filed for decide first; their own titles only if no organization says anything.
+alltxt = defaultdict(lambda: [[], []])
+for r in rows:
+    if r['eid']:
+        alltxt[r['eid']][0].append(r['org']); alltxt[r['eid']][1].append(' | '.join([r['who'], r['role']]))
 for r in rows: r['k'] = filer_kind(r)
+PRI = ['Lawmaker', 'Law Enforcement', 'State Agency', 'Local Official', 'Health and Medical', 'Industry', 'Advocate or Group', 'Member of the Public', 'Anonymous']
+eid_kind = {}
+for eid, txts in alltxt.items():
+    ks = [r['k'] for r in rows if r['eid'] == eid]
+    if 'Lawmaker' in ks: eid_kind[eid] = 'Lawmaker'; continue
+    k1 = classify_text(' || '.join(x for x in txts[0] if x))
+    eid_kind[eid] = k1 if k1 != 'Member of the Public' else classify_text(' || '.join(txts[1]))
+# Each filing keeps the capacity it was filed in (an organization named on that filing decides first).
+# Only a filing that says nothing about who the person is falls back to the person's usual label.
+for r in rows:
+    if r['k'] in ('Lawmaker', 'Anonymous'): continue
+    ko = classify_text(r['org']) if r['org'] else 'Member of the Public'
+    kr = classify_text(' | '.join([r['who'], r['role']]))
+    selfish = re.fullmatch(r"\s*(self|myself|none|n/?a|individual|private citizen|citizen|resident|constituent|personal)?\s*", r['org'] or '', re.I) and r['org']
+    r['k'] = ko if ko != 'Member of the Public' else kr if kr != 'Member of the Public' else 'Member of the Public' if selfish else eid_kind.get(r['eid'], 'Member of the Public')
 
 # ------------------------------------------------------------------ bill testimony tallies
 tc = defaultdict(Counter)
@@ -428,7 +540,13 @@ vote_by_id = {v['id']: v for v in votes_out}
 legs = []
 for k, p in people.items():
     if not p['votes'] and not p['spon'] and not p['amd']: continue
-    cur = next((r for r in roster[p['ch']] if r['dist'] == p['dist'] and norm(surname_of(r['name'])) == norm(p['sur'])), None)
+    cur = next((r for r in roster[p['ch']] if r['dist'] == p['dist'] and norm(surname_of(r['name'])) == norm(p['sur'])
+                and max(p['yrs']) >= 2025 and (not p['full'] and not p['names'] or True)), None)
+    if cur:
+        fi = (r := cur)['name'].split(',')[1].strip()[:1].upper() if ',' in cur['name'] else ''
+        mine = {initial_of(n) for n in p['names'] if initial_of(n)} | ({norm(k)[:1] for k in p['full']} if p['full'] else set())
+        if fi and mine and fi not in mine: cur = None
+    
     hist = [seat_holder(p['ch'], p['dist'], y, p['sur']) for y in sorted(p['yrs'])] if p['dist'] not in ('', '?') else []
     hist = [h for h in hist if h]
     epar = Counter(h[1] for h in hist).most_common(1)[0][0] if hist else ''
@@ -447,14 +565,15 @@ for k, p in people.items():
         v = vote_by_id[vid]; B = bill_by_id[v['bid']]
         if v['type'] not in ('Final Passage', 'Committee Vote'): continue
         for t in B['topics']: by_topic[t][code] += 1
-    pro = anti = 0; dv = []
+    pro = anti = 0; dv = []; dabs = []
     for vid, code in p['votes']:
         v = vote_by_id[vid]; B = bill_by_id[v['bid']]
-        if v['type'] not in ('Final Passage', 'Committee Vote') or B['dir'] not in ('E', 'R') or code not in ('Y', 'N'): continue
+        if v['type'] not in ('Final Passage', 'Committee Vote') or B['dir'] not in ('E', 'R'): continue
+        if code not in ('Y', 'N'): dabs.append(vid); continue
         good = (B['dir'] == 'E') == (code == 'Y')
         pro += good; anti += (not good); dv.append([vid, code, 'P' if good else 'A'])
     sp = Counter(bill_by_id[x['bid']]['dir'] for x in p['spon'])
-    legs.append(dict(stance=dict(pro=pro, anti=anti, n=pro + anti, sponE=sp['E'], sponR=sp['R'], sponM=sp['M']), dv=dv,
+    legs.append(dict(stance=dict(pro=pro, anti=anti, n=pro + anti, sponE=sp['E'], sponR=sp['R'], sponM=sp['M']), dv=dv, dabs=dabs,
                      id=p['id'], name=nm, ch=p['ch'], dist=p['dist'], party=(cur or {}).get('party', '') or epar, pparty=sorted({h[1] for h in hist}), current=bool(cur),
                      sur=p['sur'], first=min(p['yrs']), last=max(p['yrs']), yrs=sorted(p['yrs']),
                      aka=[n for n, _ in p['names'].most_common(4)],
@@ -500,7 +619,7 @@ for eid, s in spk.items():
                          sup=s['sup'], opp=s['opp'], oth=s['oth'], aka=[x for x in s['names'] if x != nm][:4]))
 speakers.sort(key=lambda s: (-s['n'], s['who']))
 tb = sorted({f"{r['yr']} {r['b']}" for r in rows}, reverse=True)
-tmy = dict(bills=tb, positions=['Supports', 'Opposes', 'Mixed', 'Comments Only', 'Not Stated'],
+tmy = dict(bills=tb, positions=['Supports', 'Opposes', 'Qualified or Partial', 'Not Stated'],
            years=sorted({r['yr'] for r in rows}, reverse=True), committees=sorted({r['c'] for r in rows}), rows=rows, speakers=speakers,
            summary=dict(records=len(rows), people=len(speakers), anonymous=sum(r['anon'] for r in rows), bills=len({r['bid'] for r in rows}),
                         once_only=sum(1 for s in speakers if s['n'] == 1), repeat=sum(1 for s in speakers if s['n'] > 1),

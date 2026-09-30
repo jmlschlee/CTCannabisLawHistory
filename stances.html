@@ -20,121 +20,110 @@ try { var t = localStorage.getItem('ctcl-theme');
 <body>
 <main id="main">
 
-<div class="page-head">
+<div class="page-head" style="margin-bottom:.4rem">
   <div class="eyebrow">Bills and Votes &middot; For and Against</div>
   <h1>Where They Stand</h1>
-  <p class="lede">Who has backed cannabis access and who has pushed for penalties and enforcement:
-  lawmakers by how they voted, and department heads, police, town officials, advocates and
-  businesses by the positions they filed in testimony. Every count opens the votes or filings behind it.</p>
+  <p class="lede" style="font-size:1.05rem">Who is for and against cannabis in Connecticut, and the votes and filings that show it. Tap any name to see why.</p>
 </div>
 
-<div class="callout note">
-  <div class="hd">What &ldquo;pro&rdquo; and &ldquo;anti&rdquo; mean here</div>
-  <p class="small" style="margin:0">Each cannabis bill is classed from its own statement of purpose as
-  <strong>expanding access or easing penalties</strong>, <strong>adding penalties, restrictions or enforcement</strong>,
-  mixed, or regulation and study. A <strong>pro-cannabis</strong> vote or filing supports a bill of the first kind or
-  opposes one of the second. An <strong>anti-cannabis</strong> vote or filing does the reverse. Mixed and regulatory
-  bills are left out of these counts, and each bill&rsquo;s page shows how it was classed and why.</p>
+<div class="switch" id="side" role="group" aria-label="Show">
+  <button type="button" data-v="pro" aria-pressed="true">Most Pro</button>
+  <button type="button" data-v="anti" aria-pressed="false">Most Anti</button>
+  <button type="button" data-v="mid" aria-pressed="false">Mixed</button>
 </div>
 
-<div class="legend-lean"><span class="lean pro">Mostly pro-cannabis</span><span class="lean mid">Mixed record</span><span class="lean anti">Mostly anti-cannabis</span><span class="muted">Tap any row to see the votes or filings behind it.</span></div>
-<div class="tabs" id="tab" role="tablist" aria-label="Who">
-  <button type="button" data-v="leg" aria-pressed="true">Lawmakers (Votes)</button>
-  <button type="button" data-v="gov" aria-pressed="false">Officials, Agencies and Police</button>
-  <button type="button" data-v="adv" aria-pressed="false">Advocates, Industry and Health</button>
-  <button type="button" data-v="pub" aria-pressed="false">Members of the Public</button>
+<div class="toolbar">
+  <div class="field"><label for="grp">Showing</label><select id="grp">
+    <option value="leg">Lawmakers, by their votes</option>
+    <option value="gov">Agencies, police and town officials, by testimony</option>
+    <option value="adv">Advocates, industry and health, by testimony</option>
+    <option value="pub">Members of the public, by testimony</option></select></div>
+  <div class="field grow"><label for="q">Find a name</label><input id="q" type="search" placeholder="Name, district or organization" autocomplete="off"></div>
 </div>
-<div class="filters" id="f"></div>
-<div class="cols2" id="two"></div>
+<details class="more" id="morefilters" style="margin:-.3rem 0 .8rem"><summary>More filters</summary>
+  <div class="toolbar" style="margin-top:.5rem" id="f2"></div></details>
+<details class="more" style="margin:0 0 1rem"><summary>How pro and anti are decided</summary>
+  <p class="small" style="margin:.5rem 0 0">Each cannabis bill is marked from its own statement of purpose: <span class="lean pro">expands access or eases penalties</span>,
+  <span class="lean anti">adds penalties, restrictions or enforcement</span>, or mixed. A <strong>pro</strong> vote or filing supports the first kind or opposes the second;
+  an <strong>anti</strong> vote or filing does the reverse. Mixed and regulatory bills are not counted. Lawmakers are scored on committee and final votes;
+  everyone else on the positions they filed in testimony. Two thirds one way is pro or anti; anything closer is mixed.</p></details>
+
+<p class="small muted" id="count" style="margin:0 0 .5rem"></p>
+<div id="list"></div>
+<div class="pagenav"><button class="btn" id="more" type="button" hidden>Show more</button></div>
 
 </main>
 <script type="module">
 
-import { load, $, num, esc, cap, fmtDate, searchField, selectField, fail, dirChip, kindChip, leanDot,
-         billHref, legHref, personHref } from './assets/app.js';
+import { load, $, num, esc, fail, kindChip, lean, lawmakerWhy, filerWhy, legHref, personHref, selectField } from './assets/app.js';
 
 try {
   const [L, V, B, T] = await Promise.all([load('legislators'), load('votes'), load('bills'), load('testimony')]);
-  const VOTE = new Map(V.votes.map(v => [v.id, v])), BILL = new Map(B.bills.map(b => [b.id, b]));
+  const VOTE = new Map(V.votes.map(v => [v.id, v])), BILL = new Map(B.bills.map(b => [b.id, b])), LEGM = new Map(L.legislators.map(l => [l.id, l]));
   const qs = new URLSearchParams(location.search);
-  let tab = qs.get('tab') || 'leg';
+  let side = qs.get('side') || 'pro', limit = 40;
   const GROUPS = { gov: ['State Agency', 'Law Enforcement', 'Local Official', 'Lawmaker'], adv: ['Advocate or Group', 'Industry', 'Health and Medical'], pub: ['Member of the Public'] };
-  const MIN = { leg: 5, gov: 1, adv: 2, pub: 3 };
+  if (qs.get('tab')) $('#grp').value = qs.get('tab');
+  if (qs.get('q')) $('#q').value = qs.get('q');
 
-  function filters() {
-    $('#f').innerHTML = searchField('q', 'Search a Name', tab === 'leg' ? 'lawmaker or district' : 'name or organization') +
-      (tab === 'leg' ? selectField('ch', 'Chamber', [['House', 'House'], ['Senate', 'Senate']], { all: 'Both Chambers' }) +
-        selectField('cur', 'Serving', [['cur', 'Serving Now (2026)']], { all: 'Everyone Since 2012' }) +
-        selectField('pty', 'Party', [['D', 'Democrat'], ['R', 'Republican']], { all: 'Any' })
-      : selectField('kd', 'Who', GROUPS[tab].map(k => [k, k]), { all: 'All' })) +
-      selectField('min', 'At Least', [['1', '1 Counted Vote or Filing'], ['3', '3'], ['5', '5'], ['10', '10']], { all: `${MIN[tab]} Counted`, value: '' });
-    ['q', 'ch', 'cur', 'pty', 'kd', 'min'].forEach(i => { const n = $('#' + i); if (n) n.addEventListener('input', draw); });
-    if (qs.get('q')) $('#q').value = qs.get('q');
+  function extraFilters() {
+    const g = $('#grp').value;
+    $('#f2').innerHTML = g === 'leg'
+      ? selectField('ch', 'Chamber', [['House', 'House'], ['Senate', 'Senate']], { all: 'Both' }) +
+        selectField('pty', 'Party', [['D', 'Democrat'], ['R', 'Republican']], { all: 'Any' }) +
+        selectField('cur', 'Serving', [['cur', 'Serving now']], { all: 'Everyone since 2012' }) +
+        selectField('min', 'At least', [['3', '3 counted votes'], ['5', '5 counted votes'], ['10', '10 counted votes']], { all: '5 counted votes', value: '' })
+      : selectField('kd', 'Who', GROUPS[g].map(k => [k, k]), { all: 'All' }) +
+        selectField('min', 'At least', [['1', '1 filing'], ['2', '2 filings'], ['5', '5 filings']], { all: g === 'pub' ? '3 filings' : g === 'gov' ? '1 filing' : '2 filings', value: '' });
+    ['ch', 'pty', 'cur', 'min', 'kd'].forEach(i => { const n = $('#' + i); if (n) n.addEventListener('input', () => { limit = 40; draw(); }); });
   }
+  const bar = (p, a) => { const t = Math.max(1, p + a); return `<div class="scorebar"><i style="width:${p / t * 100}%;background:#1a9a5f"></i><i style="width:${a / t * 100}%;background:#d23a3a"></i></div>`; };
+  const pname = l => (l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name;
+  const PARTY = { D: 'Democrat', R: 'Republican' };
 
-  const bar = (p, a) => { const t = Math.max(1, p + a); return `<div class="tmybar" style="margin:.3rem 0"><i style="width:${p / t * 100}%;background:var(--good)"></i><i style="width:${a / t * 100}%;background:var(--serious)"></i></div>`; };
-  const legWhy = l => {
-    const items = l.dv.map(([vid, c, pa]) => ({ v: VOTE.get(vid), c, pa })).filter(x => x.v).sort((a, b) => (b.v.date || '').localeCompare(a.v.date || ''));
-    const spon = [...new Map(l.spon.map(s => [s.bid, s])).values()].map(s => ({ ...s, b: BILL.get(s.bid) })).filter(x => x.b && (x.b.dir === 'E' || x.b.dir === 'R'));
-    return `${spon.length ? `<p class="small" style="margin:.4rem 0 .2rem"><strong>Sponsored:</strong></p><ul class="clean small">${spon.map(s => `<li style="margin:.2rem 0">${dirChip(s.b.dir)} <a href="${billHref(s.b.id)}">${esc(s.b.num)} (${esc(s.b.yr)})</a> ${esc(s.role)} &middot; ${esc(s.b.title.replace(/^An Act /, ''))}</li>`).join('')}</ul>` : ''}
-      <p class="small" style="margin:.5rem 0 .2rem"><strong>Counted votes:</strong></p>
-      <ul class="clean small">${items.map(x => { const b = BILL.get(x.v.bid); return `<li style="margin:.25rem 0"><span class="v ${x.c}">${x.c === 'Y' ? 'Yea' : 'Nay'}</span>
-        <span class="chip ${x.pa === 'P' ? 'ok' : 'bad'}">${x.pa === 'P' ? 'Pro' : 'Anti'}</span>
-        <a href="${billHref(b.id)}">${esc(b.num)} (${esc(b.yr)})</a> ${esc(b.title.replace(/^An Act /, ''))}
-        <span class="muted">&middot; ${esc(x.v.kind === 'committee' ? x.v.body + ' Committee' : x.v.body + ' Floor')}, ${esc(fmtDate(x.v.date))}</span></li>`; }).join('')}</ul>
-      <p class="small"><a href="${legHref(l.id)}">Full voting record, amendments and testimony &rarr;</a></p>`;
-  };
-  const spWhy = s => `<ul class="clean small">${s.sb.map(([bid, p, pa]) => { const b = BILL.get(bid); return b ? `<li style="margin:.25rem 0">
-      <span class="chip ${p === 'S' ? 'ok' : 'bad'}">${p === 'S' ? 'Supported' : 'Opposed'}</span> ${dirChip(b.dir)}
-      <a href="${billHref(b.id)}">${esc(b.num)} (${esc(b.yr)})</a> ${esc(b.title.replace(/^An Act /, ''))}</li>` : ''; }).join('')}</ul>
-      <p class="small"><a href="${s.leg ? legHref(s.leg) : personHref(s.id)}">Everything they filed &rarr;</a></p>`;
-
-  function row(x, i, side) {
-    const p = x.p, a = x.a;
-    return `<details class="rank" style="display:block">
-      <summary style="display:grid;grid-template-columns:2rem 1fr auto;gap:.7rem;align-items:center;cursor:pointer;list-style:none">
-        <span class="pos">${i + 1}</span>
-        <span>${leanDot(p, a)} <span class="who">${esc(x.name)}</span> ${x.chip || ''}
-          <span class="meta" style="display:block">${x.meta}</span>${bar(p, a)}</span>
-        <span class="n">${side === 'pro' ? num(p) : num(a)}<small>${side === 'pro' ? 'pro' : 'anti'} of ${num(p + a)}</small></span></summary>
-      <div style="padding:.3rem 0 0 2.7rem">${x.why()}</div></details>`;
-  }
-
-  function items() {
-    const q = ($('#q')?.value || '').trim().toLowerCase(), min = Number($('#min')?.value || MIN[tab]);
-    if (tab === 'leg') {
-      const ch = $('#ch').value, cur = $('#cur').value, pty = $('#pty').value;
-      return L.legislators.filter(l => l.stance.n >= min && (!ch || l.ch === ch) && (!cur || l.current) && (!pty || l.party === pty) &&
-        (!q || (l.name + ' ' + l.aka.join(' ') + ' ' + l.dist).toLowerCase().includes(q)))
-        .map(l => ({ name: (l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name, p: l.stance.pro, a: l.stance.anti,
-          chip: l.party ? `<span class="chip">${esc(l.party === 'D' ? 'Democrat' : l.party === 'R' ? 'Republican' : l.party)}</span>` : '',
-          meta: `${l.dist && l.dist !== '?' ? l.ch + ' District ' + esc(l.dist) : esc(l.ch)} &middot; ${l.first}&ndash;${l.last}${l.stance.sponE || l.stance.sponR ? ` &middot; sponsored ${l.stance.sponE} access and ${l.stance.sponR} enforcement bills` : ''}`,
-          why: () => legWhy(l) }));
+  function people() {
+    const g = $('#grp').value, q = $('#q').value.trim().toLowerCase();
+    if (g === 'leg') {
+      const min = Number($('#min')?.value || 5), ch = $('#ch')?.value, pty = $('#pty')?.value, cur = $('#cur')?.value;
+      return L.legislators.filter(l => l.stance.n >= min && (!ch || l.ch === ch) && (!pty || l.party === pty) && (!cur || l.current) &&
+          (!q || (l.name + ' ' + l.aka.join(' ') + ' district ' + l.dist).toLowerCase().includes(q)))
+        .map(l => ({ id: l.id, name: pname(l), p: l.stance.pro, a: l.stance.anti,
+          meta: `${PARTY[l.party] || l.party || ''}${l.party ? ' · ' : ''}${l.dist && l.dist !== '?' ? l.ch + ' District ' + l.dist : l.ch} · ${l.first}–${l.last}`,
+          why: () => lawmakerWhy(l, VOTE, BILL, LEGM) + `<p style="margin:.8rem 0 0"><a class="btn" href="${legHref(l.id)}">Every vote ${esc(pname(l))} cast</a></p>` }));
     }
-    const kd = $('#kd').value, ks = GROUPS[tab];
-    return T.speakers.filter(s => ks.includes(s.k) && (!kd || s.k === kd) && (s.st.pro + s.st.anti) >= min &&
-      (!q || (s.who + ' ' + s.orgs.join(' ') + ' ' + (s.aka || []).join(' ')).toLowerCase().includes(q)))
-      .map(s => ({ name: s.who, p: s.st.pro, a: s.st.anti, chip: kindChip(s.k),
-        meta: `${esc(s.orgs.slice(0, 2).join('; ') || 'No organization given')} &middot; ${s.first}&ndash;${s.last}`, why: () => spWhy(s) }));
+    const min = Number($('#min')?.value || (g === 'pub' ? 3 : g === 'gov' ? 1 : 2)), kd = $('#kd')?.value;
+    return T.speakers.filter(s => GROUPS[g].includes(s.k) && (!kd || s.k === kd) && (s.st.pro + s.st.anti) >= min &&
+        (!q || (s.who + ' ' + s.orgs.join(' ') + ' ' + (s.aka || []).join(' ')).toLowerCase().includes(q)))
+      .map(s => ({ id: s.id, name: s.who, chip: kindChip(s.k), p: s.st.pro, a: s.st.anti,
+        meta: `${s.orgs.slice(0, 2).join('; ') || 'No organization given'} · ${s.first}–${s.last}`,
+        why: () => filerWhy(s, T.rows, BILL) + `<p style="margin:.8rem 0 0"><a class="btn" href="${s.leg ? legHref(s.leg) : personHref(s.id)}">Everything ${esc(s.who)} filed</a></p>` }));
   }
   function draw() {
-    const all = items();
-    const pro = all.filter(x => x.p > x.a).sort((a, b) => (b.p - b.a) - (a.p - a.a) || b.p - a.p);
-    const anti = all.filter(x => x.a > x.p).sort((a, b) => (b.a - b.p) - (a.a - a.p) || b.a - a.a);
-    const split = all.filter(x => x.a === x.p);
-    const col = (t, arr, side, c) => `<section><h2 style="color:${c}">${t} <span class="muted small">(${num(arr.length)})</span></h2>
-      <div class="ranklist">${arr.slice(0, 60).map((x, i) => row(x, i, side)).join('') || '<div class="empty">No one matches these filters.</div>'}</div>
-      ${arr.length > 60 ? `<p class="small muted">Showing the top 60. Search a name to find anyone else.</p>` : ''}</section>`;
-    $('#two').innerHTML = col(tab === 'leg' ? 'Most Pro-Cannabis Voting Records' : 'Most Pro-Cannabis Positions', pro, 'pro', 'var(--good)') +
-      col(tab === 'leg' ? 'Most Anti-Cannabis Voting Records' : 'Most Anti-Cannabis Positions', anti, 'anti', 'var(--serious)') +
-      (split.length ? `<p class="small muted" style="grid-column:1/-1">${num(split.length)} more are evenly split and appear in neither list.</p>` : '');
-    const u = new URL(location); u.searchParams.set('tab', tab); history.replaceState(null, '', u);
+    const all = people().map(x => ({ ...x, l: lean(x.p, x.a) }));
+    const rows = all.filter(x => x.l === side).sort(side === 'pro' ? (a, b) => (b.p - b.a) - (a.p - a.a) || b.p - a.p
+      : side === 'anti' ? (a, b) => (b.a - b.p) - (a.a - a.p) || b.a - a.a : (a, b) => (b.p + b.a) - (a.p + a.a));
+    const label = { pro: 'pro-cannabis', anti: 'anti-cannabis', mid: 'mixed' }[side];
+    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> ${label} of ${num(all.length)} with enough counted ${$('#grp').value === 'leg' ? 'votes' : 'filings'}`;
+    $('#list').innerHTML = rows.length ? rows.slice(0, limit).map((x, i) => `<details class="prow" data-i="${i}">
+      <summary><span class="pos">${i + 1}</span>
+        <span><span class="nm"><span class="lean ${x.l}"></span> ${esc(x.name)}</span> ${x.chip || ''}
+          <div class="mt">${esc(x.meta)}</div>${bar(x.p, x.a)}</span>
+        <span class="sc"><span style="color:#177a4b">${x.p}</span> &ndash; <span style="color:#b3302f">${x.a}</span><small>pro &ndash; anti</small></span></summary>
+      <div class="body"></div></details>`).join('') : '<div class="empty">No one matches. Try another group or fewer filters.</div>';
+    $('#list').querySelectorAll('details').forEach((d, i) => d.addEventListener('toggle', () => {
+      const bd = d.querySelector('.body'); if (d.open && !bd.innerHTML) bd.innerHTML = rows[i].why(); }, { once: false }));
+    const m = $('#more'); m.hidden = rows.length <= limit; m.textContent = `Show ${num(Math.min(40, rows.length - limit))} more`;
+    const u = new URL(location); u.searchParams.set('side', side); u.searchParams.set('tab', $('#grp').value); history.replaceState(null, '', u);
   }
-  $('#tab').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; tab = b.dataset.v;
-    $('#tab').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); filters(); draw(); });
-  $('#tab').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.v === tab));
-  filters(); draw();
-} catch (e) { fail(document.querySelector('#two'), e); console.error(e); }
+  $('#side').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; side = b.dataset.v; limit = 40;
+    $('#side').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); draw(); });
+  $('#side').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.v === side));
+  $('#grp').addEventListener('input', () => { limit = 40; extraFilters(); draw(); });
+  $('#q').addEventListener('input', () => { limit = 40; draw(); });
+  $('#more').addEventListener('click', () => { limit += 40; draw(); });
+  extraFilters(); draw();
+  if (qs.get('q')) { const d = $('#list details'); if (d) d.open = true; }
+} catch (e) { fail(document.querySelector('#list'), e); console.error(e); }
 
 </script>
 </body>

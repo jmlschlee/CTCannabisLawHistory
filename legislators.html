@@ -49,8 +49,8 @@ try { var t = localStorage.getItem('ctcl-theme');
 <div class="filters static" id="cf"></div>
 <div class="chartbox">
   <div class="legend-inline" style="margin-bottom:.6rem">
-    <span><i style="background:var(--serious)"></i>Nay</span>
-    <span><i style="background:var(--good)"></i>Yea</span>
+    <span><i style="background:var(--anti)"></i>Nay</span>
+    <span><i style="background:var(--pro)"></i>Yea</span>
     <span>Minimum two counted votes in the topic</span></div>
   <div id="cmp"></div>
   <div class="pagenav"><button class="btn" id="cmpMore" type="button" hidden>Show more</button></div>
@@ -74,7 +74,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 </main>
 <script type="module">
 
-import { load, $, num, esc, cap, fmtDate, plural, selectField, downloadCSV, table, fail, dirChip, leanDot, billHref } from './assets/app.js';
+import { load, $, num, esc, cap, fmtDate, plural, selectField, downloadCSV, table, fail, dirChip, leanDot, billHref, lawmakerWhy, lean } from './assets/app.js';
 
 try {
   const [L, V, B] = await Promise.all([load('legislators'), load('votes'), load('bills')]);
@@ -126,8 +126,8 @@ try {
         aria-label="${esc(chamberLabel(r.l))}: ${r.c.Y} Yea, ${r.c.N} Nay">
         <div class="lab" title="${esc(chamberLabel(r.l))}">${leanDot(r.l.stance.pro, r.l.stance.anti)} ${esc(chamberLabel(r.l))}
           <span class="muted small">${r.l.party ? '(' + esc(r.l.party) + ') ' : ''}${r.l.dist && r.l.dist !== '?' ? esc(r.l.dist) : ''}</span></div>
-        <div class="bar"><div class="l"><i style="width:${(r.c.N / hi) * 100}%;background:var(--serious)"></i></div>
-          <div class="r"><i style="width:${(r.c.Y / hi) * 100}%;background:var(--good)"></i></div></div>
+        <div class="bar"><div class="l"><i style="width:${(r.c.N / hi) * 100}%;background:var(--anti)"></i></div>
+          <div class="r"><i style="width:${(r.c.Y / hi) * 100}%;background:var(--pro)"></i></div></div>
         <div class="val">${num(r.c.Y)}&ndash;${num(r.c.N)}</div></div>`).join('')}</div>`
       : '<div class="empty">No lawmaker has two or more counted votes on this topic with these filters.</div>';
     const m = $('#cmpMore'); m.hidden = rows.length <= cmpLimit;
@@ -186,7 +186,10 @@ try {
         <div class="kpi"><b>${num(l.n.amd)}</b><span>Amendments Offered</span></div>
         <div class="kpi"><b>${num(l.n.tmy)}</b><span>Testimony Filed</span></div>
       </div>
-      <h3 style="margin:.2rem 0 .1rem">Stance by topic</h3>
+      <h3 style="margin:.4rem 0 .2rem">Why ${esc(chamberLabel(l))} is marked ${l.stance.n ? ({ pro: 'pro-cannabis', anti: 'anti-cannabis', mid: 'mixed' }[lean(l.stance.pro, l.stance.anti)]) : 'unscored'}</h3>
+      <p class="small muted" style="margin:0 0 .3rem">Every counted vote, with where it happened. Amendment votes and votes on mixed bills are listed below them.</p>
+      ${lawmakerWhy(l, VOTE, BILL, byId)}
+      <h3 style="margin:1.1rem 0 .1rem">Stance by topic</h3>
       <p class="small muted" style="margin:0 0 .5rem">Committee and final-passage votes on bills in each topic. A bill can sit in more than one topic.</p>
       <div id="pt"></div>
       ${Object.keys(yrs).length > 1 ? `<h3 style="margin:1rem 0 .1rem">Year by year</h3><div id="py"></div>` : ''}
@@ -224,7 +227,7 @@ try {
     const dv = (rows, link) => { const hi = Math.max(1, ...rows.map(r => Math.max(r.Y, r.N)));
       return `<div class="diverge"><div class="axis"><div></div><div><span>&larr; Nay</span><span>Yea &rarr;</span></div><div style="text-align:right">Yea&ndash;Nay</div></div>
       ${rows.map(r => `<div class="row${link ? ' click' : ''}"${link ? ` data-topic="${esc(r.k)}" role="button" tabindex="0"` : ''}><div class="lab" title="${esc(r.k)}">${esc(r.k)}</div>
-        <div class="bar"><div class="l"><i style="width:${r.N / hi * 100}%;background:var(--serious)"></i></div><div class="r"><i style="width:${r.Y / hi * 100}%;background:var(--good)"></i></div></div>
+        <div class="bar"><div class="l"><i style="width:${r.N / hi * 100}%;background:var(--anti)"></i></div><div class="r"><i style="width:${r.Y / hi * 100}%;background:var(--pro)"></i></div></div>
         <div class="val">${r.Y}&ndash;${r.N}${r.A ? ` <span title="Absent or abstained">(${r.A})</span>` : ''}</div></div>`).join('')}</div>`; };
     $('#pt').innerHTML = topicRows.length ? dv(topicRows, true) + '<p class="small muted" style="margin:.4rem 0 0">Click a topic to compare every lawmaker on it. Numbers in brackets are absences or abstentions.</p>' : '<div class="empty">No counted votes.</div>';
     $('#pt').addEventListener('click', e => { const r = e.target.closest('[data-topic]'); if (r) { $('#ct').value = r.dataset.topic; cmpLimit = 40; drawCmp(); $('#compare').scrollIntoView({ behavior: 'smooth' }); } });

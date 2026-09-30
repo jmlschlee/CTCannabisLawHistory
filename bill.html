@@ -60,7 +60,6 @@ try {
   const who = r => `<div class="w">${kindChip(r.k)}
       ${r.anon ? '<span class="muted">Anonymous witness</span>' : r.leg ? `<a href="${legHref(r.leg)}">${esc(r.who)}</a>` : r.eid ? `<a href="${personHref(r.eid)}">${esc(r.who)}</a>` : esc(r.who)}
       ${r.org || r.role ? `<span class="org">${esc([r.role, r.org].filter(Boolean).join(' · '))}</span>` : ''}
-      ${r.how === 'Text' ? '<span class="org" title="Position read from the testimony text">(read from text)</span>' : ''}
       ${r.u ? `<a class="small" href="${esc(r.u)}" rel="noopener" style="margin-left:auto">PDF</a>` : ''}</div>`;
   const byKind = rows => KORD.map(k => rows.filter(r => r.k === k)).flat();
   const kindCount = rows => KORD.map(k => [k, rows.filter(r => r.k === k).length]).filter(x => x[1]).map(([k, n]) => `${esc(k)} ${n}`).join(' &middot; ');

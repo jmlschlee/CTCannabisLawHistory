@@ -23,21 +23,32 @@ try { var t = localStorage.getItem('ctcl-theme');
 <div class="page-head">
   <div class="eyebrow">Bills and Votes &middot; Every Written Filing, Every Committee</div>
   <h1>Testimony</h1>
-  <p class="lede">Every piece of written testimony the General Assembly posted for the cannabis
-  bills on this site, 2012 to 2026, across every committee that heard them: General Law,
-  Judiciary, Public Health, Finance, Labor and the rest. Each filing opens the PDF itself.</p>
+  <p class="lede">Every piece of written testimony on Connecticut cannabis bills since 2012, with who filed it,
+  which side they took, and a link to the filing itself.</p>
 </div>
 
 <div class="grid four" id="stats"></div>
 
-<div class="callout note">
-  <div class="hd">Where each position comes from</div>
-  <p class="small" style="margin:0"><strong>Filename:</strong> the witness&rsquo;s position as the
-  General Assembly printed it in the file name. <strong>Read from text:</strong> older filings have
-  no position in the name, so the first pages were searched for a plain statement of support or
-  opposition, after text recognition where the PDF was a scan. That reading is automatic; check the
-  PDF before relying on one filing. <strong>Not stated:</strong> neither gave a clear answer.</p>
+<h2 id="browse">Browse the testimony</h2>
+<div class="viewtabs" id="view" role="group" aria-label="How to organize">
+  <button type="button" data-v="group" aria-pressed="true">By Group</button>
+  <button type="button" data-v="bill" aria-pressed="false">By Bill</button>
+  <button type="button" data-v="all" aria-pressed="false">Every Filing</button>
 </div>
+<p class="small muted" id="viewnote" style="margin:.2rem 0 .7rem"></p>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span>
+  <button class="btn" id="dl" type="button">Download This View as CSV</button></div>
+<div id="tbl"></div>
+<div class="pagenav"><button class="btn" id="more" type="button" hidden>Show more</button></div>
+
+<h2 style="margin-top:2rem">The most-testified bills</h2>
+<details class="callout note">
+  <summary class="hd">Where each position comes from</summary>
+  <p class="small" style="margin:0">Only the position each witness picked when filing: the legislature prints it in the file name as
+  Supports or Opposes. Filings before about 2019 carry no position, and filings marked &ldquo;support with changes&rdquo; or about one
+  section only are shown as qualified. Nothing is guessed from the text.</p>
+</details>
 
 <div class="chartbox">
   <h3>Positions filed on the most-testified bills</h3>
@@ -45,28 +56,22 @@ try { var t = localStorage.getItem('ctcl-theme');
   <div id="byBill"></div>
 </div>
 
-<h2>Every filing</h2>
-<div class="filters" id="f"></div>
-<div class="resultbar"><span id="count"></span>
-  <button class="btn" id="dl" type="button">Download This View as CSV</button></div>
-<div id="tbl"></div>
-<div class="pagenav"><button class="btn" id="more" type="button" hidden>Show more</button></div>
-
 </main>
 <script type="module">
 
-import { load, $, num, esc, plural, searchField, selectField, clearButton, wire, kindChip, billHref, legHref, personHref, dirChip,
+import { load, $, $$, num, esc, plural, searchField, selectField, clearButton, wire, kindChip, billHref, legHref, personHref, dirChip,
          downloadCSV, table, fail } from './assets/app.js';
 import { stackedBars } from './assets/charts.js';
 
 try {
-  const d = await load('testimony');
+  const [d, BB] = await Promise.all([load('testimony'), load('bills')]);
+  const BILLS = new Map(BB.bills.map(b => [b.id, b]));
   const S = d.summary, qs = new URLSearchParams(location.search);
 
   $('#stats').innerHTML = [
     ['hero', S.records, 'testimony filings, all committees'],
     ['', S.bills, 'bills drew testimony'],
-    ['', S.filename + S.text, 'with a position, ' + num(S.filename) + ' from the filename'],
+    ['', S.filename, 'filings that state Supports or Opposes'],
     ['', S.committees, 'committees heard them'],
   ].map(([k, n, lab]) =>
     `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
@@ -80,10 +85,18 @@ try {
   const bars = Object.values(agg).sort((a, b) =>
     (b.Supports + b.Opposes + b.Other) - (a.Supports + a.Opposes + a.Other)).slice(0, 25);
   stackedBars($('#byBill'), bars, [
-    { key: 'Supports', label: 'Supports', color: 'var(--good)' },
-    { key: 'Opposes', label: 'Opposes', color: 'var(--serious)' },
+    { key: 'Supports', label: 'Supports', color: 'var(--pro)' },
+    { key: 'Opposes', label: 'Opposes', color: 'var(--anti)' },
     { key: 'Other', label: 'Mixed or Not Stated', color: 'var(--s8)' }]);
 
+  /* Bigger groups, so people can sort testimony by who is behind it. */
+  const GROUPS = [
+    ['office', 'Public Office', 'Lawmakers, state agencies and department heads, police, towns and tribal nations.', ['Lawmaker', 'State Agency', 'Law Enforcement', 'Local Official']],
+    ['industry', 'Industry, Business and Lobbying', 'Cannabis and hemp companies, other businesses, trade associations and government-affairs or consulting firms.', ['Industry']],
+    ['advocacy', 'Advocacy Groups and Nonprofits', 'Advocacy organizations, coalitions, unions and nonprofits.', ['Advocate or Group']],
+    ['health', 'Health and Medical', 'Doctors, nurses, hospitals, treatment providers and medical groups.', ['Health and Medical']],
+    ['public', 'Members of the Public', 'People filing for themselves, with no title or organization.', ['Member of the Public', 'Anonymous']],
+  ];
   $('#f').innerHTML =
     searchField('q', 'Search', 'name, organization, role as filed') +
     selectField('yr', 'Session', d.years) +
@@ -91,45 +104,129 @@ try {
     selectField('c', 'Committee', d.committees) +
     selectField('p', 'Position', d.positions) +
     selectField('k', 'Who Filed', ['Lawmaker', 'State Agency', 'Law Enforcement', 'Local Official', 'Health and Medical', 'Industry', 'Advocate or Group', 'Member of the Public', 'Anonymous'].map(x => [x, x]), { all: 'Everyone' }) +
-    selectField('h', 'Position From', [['Filename', 'Filename'], ['Text', 'Read From Text']]) +
-    selectField('sc', 'Scope', [['focus', 'Cannabis and Hemp Bills Only']], { all: 'All Bills' }) +
+    `<div id="grpf">${selectField('grp', 'Group', GROUPS.map(g => [g[0], g[1]]), { all: 'All Groups' })}</div>` +
+    selectField('so', 'Sort', [['n', 'Most testimony first'], ['sup', 'Most support first'], ['opp', 'Most opposition first'], ['new', 'Most recent first'], ['az', 'A to Z']], { all: null, value: 'n' }) +
+    selectField('sc', 'Bills', [['focus', 'Cannabis and Hemp Bills']], { all: 'Include Budget and Multi-Subject Bills', value: 'focus' }) +
     clearButton();
 
-  let limit = 150;
   function current() {
     const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value, b = $('#b').value, p = $('#p').value,
-          c = $('#c').value, h = $('#h').value, sc = $('#sc').value, k = $('#k').value;
+          c = $('#c').value, sc = $('#sc').value, k = $('#k').value;
     return d.rows.filter(r =>
-      (!k || r.k === k) && (!yr || r.yr === yr) && (!b || r.b === b) && (!p || r.p === p) && (!c || r.c === c) && (!h || r.how === h) &&
+      (!k || r.k === k) && (!yr || r.yr === yr) && (!b || r.b === b) && (!p || r.p === p) && (!c || r.c === c) &&
       (!sc || r.focus) && (!q || (r.who + ' ' + r.org + ' ' + r.role).toLowerCase().includes(q)));
   }
 
-  const COLS = [
-    { key: 'who', label: 'Who Filed', html: r => r.wh ? '<span class="muted">Name withheld</span>' : r.anon
-        ? '<span class="muted">Anonymous witness</span>'
-        : `${kindChip(r.k)}<br><a href="${r.leg ? legHref(r.leg) : personHref(r.eid)}">${esc(r.who)}</a>${r.role ? `<br><span class="small muted">${esc(r.role)}</span>` : ''}` },
-    { key: 'org', label: 'Organization as Filed', html: r => esc(r.org) || '<span class="muted">None given</span>' },
-    { key: 'b', label: 'Bill', html: r => `<a class="nowrap" href="${billHref(r.bid)}">${esc(r.b.replace(/-0*/, ' '))}</a>` },
-    { key: 'yr', label: 'Session', num: true },
-    { key: 'c', label: 'Committee' },
-    { key: 'p', label: 'Position', html: r =>
-        `<span class="chip ${r.p === 'Supports' ? 'ok' : r.p === 'Opposes' ? 'bad' : ''}">${esc(r.p)}</span>` +
-        (r.how === 'Text' ? `<br><span class="small muted" title="${esc(r.q)}">read from text</span>` : '') },
-    { key: 'u', label: 'Document', html: r => r.u
-        ? `<a href="${esc(r.u)}" rel="noopener">Open Filing</a>`
-        : '<span class="muted">Not linked</span>' },
-  ];
+  const GROUP_OF = {}; GROUPS.forEach(g => g[3].forEach(k => GROUP_OF[k] = g[0]));
+  const grpOf = r => GROUP_OF[r.k] || 'public';
+  const pcls = p => p === 'Supports' ? 'ok' : p === 'Opposes' ? 'bad' : p === 'Qualified or Partial' ? 'warn' : '';
+  const tally = rs => { const t = { n: rs.length, s: 0, o: 0, x: 0 }; rs.forEach(r => r.p === 'Supports' ? t.s++ : r.p === 'Opposes' ? t.o++ : t.x++); return t; };
+  const tallyHtml = t => `<span class="tally"><span class="lean pro">${num(t.s)} supported</span><span class="lean anti">${num(t.o)} opposed</span>${t.x ? `<span class="muted">${num(t.x)} other or not stated</span>` : ''}</span>`;
+  const bar = t => `<div class="tbar" aria-hidden="true"><i style="flex:${t.s};background:var(--pro)"></i><i style="flex:${t.o};background:var(--anti)"></i><i style="flex:${t.x};background:var(--rule-strong)"></i></div>`;
+  const bnum = r => esc(r.b.replace(/-0*/, ' '));
+
+  const card = r => {
+    const b = BILLS.get(r.bid);
+    const who = r.anon ? '<span class="muted">Anonymous witness</span>'
+      : `<a href="${r.leg ? legHref(r.leg) : personHref(r.eid)}"><strong>${esc(r.who)}</strong></a>`;
+    return `<article class="tcard">
+      <div class="tc1"><span class="chip ${pcls(r.p)}">${esc(r.p)}</span> ${who} ${kindChip(r.k)}</div>
+      ${r.org || r.role ? `<div class="tc2">${esc([r.role, r.org].filter(Boolean).join(' · '))}</div>` : ''}
+      <div class="tc3">${b ? dirChip(b.dir) : ''} <a href="${billHref(r.bid)}">${bnum(r)} (${esc(r.yr)})</a>
+        <span class="muted">&middot; ${esc(r.c)} committee</span>
+        ${r.u ? `<a class="tc-doc" href="${esc(r.u)}" rel="noopener">Read the filing &#8599;</a>` : ''}</div>
+      ${b ? `<div class="tc2">${esc(b.title.replace(/^An Act /, ''))}</div>` : ''}
+    </article>`;
+  };
+  // one line per filing inside an opened group
+  const line = r => { const b = BILLS.get(r.bid); return `<div class="tline"><span class="chip ${pcls(r.p)}">${esc(r.p)}</span>
+    <span>${b ? dirChip(b.dir) : ''} <a href="${billHref(r.bid)}">${bnum(r)} (${esc(r.yr)})</a> <span class="muted small">${esc(b ? b.title.replace(/^An Act /, '') : '')}</span></span>
+    ${r.u ? `<a class="small nowrap" href="${esc(r.u)}" rel="noopener">Read &#8599;</a>` : ''}</div>`; };
+
+  // an organization or person inside a group
+  const entityKey = r => {
+    if (r.anon) return 'anon';
+    if (r.k === 'Member of the Public' || r.k === 'Lawmaker' || !r.org) return 'p:' + (r.eid || r.who);
+    return 'o:' + r.org.toLowerCase().replace(/^the /, '').replace(/[.,]/g, '').replace(/\s+/g, ' ').trim();
+  };
+  function entities(rows) {
+    const m = new Map();
+    rows.forEach(r => { const k = entityKey(r); let e = m.get(k);
+      if (!e) { e = { k, rows: [], people: new Set(), name: k === 'anon' ? 'Anonymous witnesses' : k.startsWith('o:') ? r.org : r.who, link: k.startsWith('p:') && !r.anon ? (r.leg ? legHref(r.leg) : personHref(r.eid)) : '', kind: r.k }; m.set(k, e); }
+      e.rows.push(r); if (!r.anon) e.people.add(r.who); });
+    return [...m.values()];
+  }
+  const entityRow = e => { const t = tally(e.rows); const ppl = [...e.people];
+    return `<details class="erow"><summary>
+      <span class="en"><strong>${esc(e.name)}</strong> ${kindChip(e.kind)}
+        ${e.k.startsWith('o:') && ppl.length ? `<span class="small muted">${esc(ppl.slice(0, 3).join(', '))}${ppl.length > 3 ? ` and ${ppl.length - 3} more` : ''}</span>` : ''}</span>
+      <span class="ec"><b>${num(t.n)}</b> <span class="small muted">${t.n === 1 ? 'filing' : 'filings'}</span></span>
+      <span class="et">${tallyHtml(t)}${bar(t)}</span></summary>
+      <div class="ebody">${e.link ? `<p class="small" style="margin:.2rem 0 .4rem"><a href="${e.link}">Full profile &rarr;</a></p>` : ''}
+        ${e.rows.slice().sort((a, b) => b.yr.localeCompare(a.yr)).map(line).join('')}</div></details>`; };
+
+  let view = 'group', limit = 60;
+  const sortBy = () => $('#so').value || 'n';
+  const ranker = (key) => {
+    const so = sortBy();
+    return (a, b) => so === 'az' ? key(a).localeCompare(key(b), 'en')
+      : so === 'opp' ? tally(b.rows).o - tally(a.rows).o || b.rows.length - a.rows.length
+      : so === 'sup' ? tally(b.rows).s - tally(a.rows).s || b.rows.length - a.rows.length
+      : so === 'new' ? (b.last || '').localeCompare(a.last || '') || b.rows.length - a.rows.length
+      : b.rows.length - a.rows.length || key(a).localeCompare(key(b), 'en');
+  };
+  const NOTES = {
+    group: 'Grouped by who is behind the testimony. Organizations are listed with everyone who filed for them. Biggest first.',
+    bill: 'Every bill that drew testimony, most-testified first. Open one to see who was on each side.',
+    all: 'One card per filing.',
+  };
 
   function draw() {
     const rows = current();
+    $('#viewnote').textContent = NOTES[view];
+    let html = '', shown = 0, total = 0, unit = 'filings';
+    if (view === 'group') {
+      const g = $('#grp').value;
+      html = GROUPS.filter(G => !g || G[0] === g).map(G => {
+        const rs = rows.filter(r => grpOf(r) === G[0]); if (!rs.length) return '';
+        const es = entities(rs); es.forEach(e => e.last = e.rows.reduce((m, r) => r.yr > m ? r.yr : m, ''));
+        es.sort(ranker(e => e.name)); total += es.length; const cap = g ? limit : 12;
+        const t = tally(rs);
+        return `<section class="tgroup"><div class="tg-h"><h3>${esc(G[1])}</h3><span class="small muted">${num(rs.length)} filings from ${num(es.length)} ${G[0] === 'public' ? 'people' : 'filers'}</span></div>
+          <p class="small muted" style="margin:.1rem 0 .4rem">${esc(G[2])}</p>${tallyHtml(t)}${bar(t)}
+          <div class="elist">${es.slice(0, cap).map(entityRow).join('')}</div>
+          ${es.length > cap ? `<button class="btn small" type="button" data-grp="${G[0]}">See all ${num(es.length)} in this group</button>` : ''}</section>`;
+      }).join('');
+      unit = 'filers'; shown = total;
+    } else if (view === 'bill') {
+      const m = new Map(); rows.forEach(r => { let e = m.get(r.bid); if (!e) m.set(r.bid, e = { bid: r.bid, rows: [], name: r.b, last: r.yr }); e.rows.push(r); });
+      const es = [...m.values()].sort(ranker(e => e.name)); total = es.length; unit = 'bills';
+      html = es.slice(0, limit).map(e => { const b = BILLS.get(e.bid), t = tally(e.rows);
+        const side = p => { const gs = GROUPS.map(G => [G, e.rows.filter(r => r.p === p && grpOf(r) === G[0])]).filter(x => x[1].length);
+          return gs.length ? gs.map(([G, rs]) => `<div class="small"><strong>${esc(G[1])}:</strong> ${G[0] === 'public' ? `${num(rs.length)} ${rs.length === 1 ? 'person' : 'people'}` : rs.map(r => `<a href="${r.leg ? legHref(r.leg) : personHref(r.eid)}">${esc(r.who)}</a>${r.org ? ` <span class="muted">(${esc(r.org)})</span>` : ''}`).join(', ')}</div>`).join('') : '<div class="small muted">None</div>'; };
+        return `<details class="erow"><summary>
+          <span class="en">${b ? dirChip(b.dir) : ''} <strong>${bnum(e.rows[0])} (${esc(e.rows[0].yr)})</strong> <span class="small muted">${esc(b ? b.title.replace(/^An Act /, '') : '')}</span></span>
+          <span class="ec"><b>${num(t.n)}</b> <span class="small muted">filings</span></span>
+          <span class="et">${tallyHtml(t)}${bar(t)}</span></summary>
+          <div class="ebody"><h4 class="lean pro">Supported</h4>${side('Supports')}<h4 class="lean anti">Opposed</h4>${side('Opposes')}
+          <p class="small" style="margin:.6rem 0 0"><a href="${billHref(e.bid)}">Full bill page &rarr;</a></p></div></details>`; }).join('');
+      shown = Math.min(limit, total);
+    } else {
+      const rs = rows.slice().sort($('#so').value === 'az' ? (a, b) => a.who.localeCompare(b.who) : (a, b) => b.yr.localeCompare(a.yr) || a.b.localeCompare(b.b) || a.who.localeCompare(b.who));
+      total = rs.length; shown = Math.min(limit, total);
+      html = rs.slice(0, limit).map(card).join('');
+    }
     $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.rows.length)} filings`
-      + (rows.length > limit ? ` &middot; showing the first ${num(limit)}` : '');
-    table($('#tbl'), COLS, rows.slice(0, limit), { sort: 'yr', dir: -1 });
-    const m = $('#more');
-    m.hidden = rows.length <= limit;
-    m.textContent = `Show ${num(Math.min(150, rows.length - limit))} more`;
+      + (view !== 'all' ? ` &middot; ${num(total)} ${unit}` : '') + (shown < total ? ` &middot; showing ${num(shown)}` : '');
+    $('#tbl').innerHTML = html || '<div class="empty">No filings match these filters.</div>';
+    const m = $('#more'); m.hidden = view === 'group' || shown >= total; m.textContent = 'Show more';
+    $('#grpf').hidden = view !== 'group';
   }
-  $('#more').addEventListener('click', () => { limit += 150; draw(); });
+  $('#tbl').addEventListener('click', e => { const bt = e.target.closest('[data-grp]'); if (!bt) return; $('#grp').value = bt.dataset.grp; limit = 400; draw(); });
+  $$('#view button').forEach(bt => bt.addEventListener('click', () => { view = bt.dataset.v;
+    $$('#view button').forEach(x => x.setAttribute('aria-pressed', x === bt)); limit = 60;
+    const u = new URL(location); u.searchParams.set('view', view); history.replaceState(null, '', u); draw(); }));
+  $('#more').addEventListener('click', () => { limit += 60; draw(); });
   $('#dl').addEventListener('click', () => downloadCSV('ct-testimony-view.csv', current(), [
     { key: 'id', label: 'testimony_id' }, { key: 'who', label: 'who_filed' },
     { key: 'org', label: 'organization_as_filed' }, { key: 'role', label: 'role_as_filed' },
@@ -138,7 +235,8 @@ try {
     { key: 'q', label: 'phrase_matched' }, { key: 'u', label: 'document_url' }]));
   if (qs.get('bill')) $('#b').value = qs.get('bill');
   if (qs.get('yr')) $('#yr').value = qs.get('yr');
-  wire(['q', 'yr', 'b', 'p', 'k', 'c', 'h', 'sc'], () => { limit = 150; draw(); });
+  if (qs.get('view')) { view = qs.get('view'); $$('#view button').forEach(x => x.setAttribute('aria-pressed', x.dataset.v === view)); }
+  wire(['q', 'yr', 'b', 'p', 'k', 'c', 'sc', 'grp', 'so'], () => { limit = $('#grp').value ? 400 : 60; draw(); });
 } catch (e) { fail(document.querySelector('#tbl'), e); }
 
 </script>
