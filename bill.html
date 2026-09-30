@@ -23,7 +23,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 </main>
 <script type="module">
 
-import { load, $, num, esc, cap, fmtDate, plural, cite, setSources, fail, dirChip, DIRS, kindChip,
+import { load, $, num, esc, cap, fmtDate, plural, cite, setSources, fail, dirChip, DIRS, kindChip, sideBoxes, purposeHtml,
          billHref, legHref, personHref } from './assets/app.js';
 
 try {
@@ -88,7 +88,7 @@ try {
   <div class="card bill-hero" id="what">
     <h2 style="margin:0;border:0;padding:0">What it does</h2>
     ${b.purpose ? `<div><div class="small muted">Statement of purpose, as printed on the bill</div>
-      <div class="purpose">${esc(b.purpose)}</div>${b.purpose_u ? `<a class="small" href="${esc(b.purpose_u)}" rel="noopener">Bill text &#8599;</a>` : ''}</div>` : ''}
+      <div class="purpose">${purposeHtml(b.purpose)}</div>${b.purpose_u ? `<a class="small" href="${esc(b.purpose_u)}" rel="noopener">Bill text &#8599;</a>` : ''}</div>` : ''}
     ${b.summary ? `<div><div class="small muted">${esc(b.summary_kind || 'OLR summary')} (Office of Legislative Research)</div>
       <p style="margin:.3rem 0">${esc(b.summary)}</p>${b.summary_u ? `<a class="small" href="${esc(b.summary_u)}" rel="noopener">Full analysis &#8599;</a>` : ''}</div>` : ''}
     <p class="small muted" style="margin:0"><strong>How this bill is classed:</strong> ${esc((DIRS[b.dir] || DIRS.O)[1])}. The class is this site&rsquo;s reading of the statement of purpose above, and is what the lawmaker stance counts use.</p>
@@ -112,10 +112,7 @@ try {
   <h2 id="tmy">Testimony</h2>
   ${t.n ? `<p class="small muted" style="margin-top:-.4rem">${num(t.n)} filings &middot; ${kindCount(tmy)}. Labels come from the name, role and organization each witness filed under. Names open everything that person filed on cannabis bills.</p>
   ${!b.focus ? '<div class="callout note"><p class="small" style="margin:0">This is a multi-subject bill. Much of this testimony is about its other parts.</p></div>' : ''}
-  <div class="cols2">
-    <div class="card"><h3 style="margin:0 0 .3rem;color:var(--good)">Supports (${grp.Supports.length})</h3><div class="who-list">${byKind(grp.Supports).map(who).join('') || '<p class="small muted">None.</p>'}</div></div>
-    <div class="card"><h3 style="margin:0 0 .3rem;color:var(--serious)">Opposes (${grp.Opposes.length})</h3><div class="who-list">${byKind(grp.Opposes).map(who).join('') || '<p class="small muted">None.</p>'}</div></div>
-  </div>
+  ${sideBoxes(tmy, b.dir, { limit: 200 })}
   ${grp.Other.length ? `<details class="more" style="margin-top:.6rem"><summary>Position not stated, mixed or comments only (${grp.Other.length})</summary><div class="who-list">${byKind(grp.Other).map(who).join('')}</div></details>` : ''}`
   : '<p class="small muted">The General Assembly posted no written testimony for this bill.</p>'}
 

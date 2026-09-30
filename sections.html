@@ -23,62 +23,82 @@ try { var t = localStorage.getItem('ctcl-theme');
 <div class="page-head">
   <div class="eyebrow">Bills and Votes &middot; Special Sections</div>
   <h1>Special Sections</h1>
-  <p class="lede">The bills that fight over the same ground, gathered together: police stops and the
-  smell of cannabis, enforcement crackdowns, impaired driving, attempts to roll back legalization,
-  criminal justice relief and patient access. Each bill shows who pushed it, who testified for and
-  against it, and how it ended.</p>
+  <p class="lede">Bills grouped by what they fight over. Tap any bill to see who wanted it,
+  who fought it, and how the votes went.</p>
 </div>
 
+<div class="sec-legend">
+  <span><i class="big-dot R" style="margin:0"></i>Would make the rules harsher (penalties, enforcement, limits)</span>
+  <span><i class="big-dot E" style="margin:0"></i>Would expand access or ease penalties</span>
+  <span><i class="big-dot M" style="margin:0"></i>Both</span>
+</div>
 <nav class="jump" id="jump" aria-label="Sections"></nav>
 <div id="secs"></div>
 
 </main>
 <script type="module">
 
-import { load, $, num, esc, fmtDate, fail, dirChip, kindChip, billHref, legHref, personHref } from './assets/app.js';
+import { load, $, num, esc, fmtDate, fail, dirChip, DIRS, sideBoxes, sideTitles, shortPurpose, purposeHtml, billHref, legHref } from './assets/app.js';
 
 try {
   const [B, T, L, V] = await Promise.all([load('bills'), load('testimony'), load('legislators'), load('votes')]);
   const META = B.meta, LEG = new Map(L.legislators.map(l => [l.id, l])), VOTE = new Map(V.votes.map(v => [v.id, v]));
   const byBill = {}; T.rows.forEach(r => (byBill[r.bid] = byBill[r.bid] || []).push(r));
-  const lg = s => { const l = LEG.get(s.pid); return l ? `<a href="${legHref(s.pid)}">${esc((l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name)}</a>${l.party ? `<span class="muted"> (${esc(l.party)})</span>` : ''}` : esc(s.n); };
-  const KEY = ['Lawmaker', 'State Agency', 'Law Enforcement', 'Local Official', 'Industry', 'Advocate or Group', 'Health and Medical'];
-  const people = (rows, p) => {
-    const r = rows.filter(x => x.p === p);
-    const named = r.filter(x => KEY.includes(x.k)).sort((a, b) => KEY.indexOf(a.k) - KEY.indexOf(b.k));
-    const pub = r.length - named.length;
-    return named.slice(0, 12).map(x => `<span style="display:inline-flex;gap:.3rem;align-items:center;margin:.15rem .5rem .15rem 0">${kindChip(x.k)}
-      ${x.leg ? `<a href="${legHref(x.leg)}">${esc(x.who)}</a>` : x.eid ? `<a href="${personHref(x.eid)}">${esc(x.who)}</a>` : esc(x.who)}${x.org ? `<span class="muted small">${esc(x.org)}</span>` : ''}</span>`).join('')
-      + (named.length > 12 ? `<span class="muted small">and ${named.length - 12} more</span> ` : '')
-      + (pub ? `<span class="muted small">${named.length ? '+ ' : ''}${num(pub)} member${pub === 1 ? '' : 's'} of the public or anonymous</span>` : '')
-      || '<span class="muted small">None filed.</span>';
-  };
-  const card = b => {
+  const who = id => { const l = LEG.get(id); return l ? `<a href="${legHref(id)}">${esc((l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name)}</a>${l.party ? ` (${esc(l.party)})` : ''}` : ''; };
+  const WHAT = { R: 'harsher rules', E: 'expanding access' };
+  const outcome = b => b.enacted ? `<span class="chip ok">Became law: ${esc(b.pa)}</span>` : `<span class="chip warn">Did not pass</span>`;
+  const stageText = b => b.enacted ? `Passed and became ${esc(b.pa)}.` : `Did not pass. It got as far as: ${esc(b.stage.toLowerCase())}.`;
+
+  function row(b) {
     const rows = byBill[b.id] || [];
-    const floor = b.votes.map(id => VOTE.get(id)).filter(v => v && v.type === 'Final Passage');
-    const intro = b.spon.filter(s => s.role === 'Introduced'), co = b.spon.filter(s => s.role === 'Co-Sponsor');
-    return `<article class="rec">
-      <div class="top" style="display:flex;flex-wrap:wrap;gap:.4rem;justify-content:space-between;align-items:center">
-        <h3 class="rec-title" style="margin:0"><a href="${billHref(b.id)}">${esc(b.num.replace(/^(HB|SB)/, '$1 '))} (${esc(b.yr)})</a></h3>
-        <span class="chips">${dirChip(b.dir)}<span class="chip ${b.enacted ? 'ok' : 'warn'}">${b.enacted ? esc(b.pa) : 'Did Not Pass: ' + esc(b.stage)}</span></span></div>
-      <p class="rec-body" style="margin:.3rem 0">${esc(b.purpose || b.title)}</p>
-      <dl class="kv">
-        <dt>Pushed by</dt><dd>${intro.length ? intro.map(lg).join(', ') : esc(b.by || 'A committee (no individual named)')}${co.length ? ` <span class="muted small">with ${co.map(lg).join(', ')}</span>` : ''}</dd>
-        <dt>Testified for</dt><dd>${people(rows, 'Supports')}</dd>
-        <dt>Testified against</dt><dd>${people(rows, 'Opposes')}</dd>
-        ${b.amds.some(a => a.called) ? `<dt>Amendments</dt><dd>${b.amds.filter(a => a.called).map(a => `${esc(a.sched || 'LCO ' + a.lco)} by ${a.by.map(o => { const l = LEG.get(o.pid); return l ? `<a href="${legHref(o.pid)}">${esc(l.name)}</a>` : esc(o.n); }).join(', ') || 'unnamed'}: <strong>${esc(a.res || 'called')}</strong>`).join('; ')}</dd>` : ''}
-        ${floor.length ? `<dt>Floor votes</dt><dd>${floor.map(v => `${esc(v.body)} ${esc(v.res.toLowerCase())} ${v.t.y}&ndash;${v.t.n}`).join('; ')}</dd>` : ''}
-      </dl>
-      <p class="small" style="margin:.4rem 0 0"><a href="${billHref(b.id)}">Full bill page: every filing, amendment and vote &rarr;</a></p>
-    </article>`;
-  };
+    const sup = rows.filter(r => r.p === 'Supports').length, opp = rows.filter(r => r.p === 'Opposes').length;
+    const [ta, tb] = sideTitles(b.dir);
+    const intro = b.spon.filter(s => s.role === 'Introduced' && s.pid), co = b.spon.filter(s => s.role === 'Co-Sponsor' && s.pid);
+    const vs = b.votes.map(id => VOTE.get(id)).filter(Boolean).sort((x, y) => (x.date || '').localeCompare(y.date || ''));
+    const counted = vs.filter(v => v.type === 'Final Passage' || v.type === 'Committee Vote');
+    const nays = v => v.m.filter(m => m[1] === 'N').map(m => who(m[0]) || esc(m[2] || '')).filter(Boolean);
+    return `<details class="srow" id="${esc(b.id)}">
+      <summary><i class="big-dot ${esc(b.dir)}" title="${esc((DIRS[b.dir] || DIRS.O)[1])}"></i>
+        <div><div class="t">${esc(b.num.replace(/^(HB|SB)/, '$1 '))} (${esc(b.yr)}) ${outcome(b)}</div>
+          <div class="d">${esc(shortPurpose(b.purpose) || b.title)}</div>
+          <div class="tally"><span><b style="color:${ta[1] === 'bad' ? '#b3302f' : ta[1] === 'ok' ? '#177a4b' : 'inherit'}">${num(sup)}</b> ${esc(ta[0].toLowerCase())}</span>
+            <span><b style="color:${tb[1] === 'bad' ? '#b3302f' : tb[1] === 'ok' ? '#177a4b' : 'inherit'}">${num(opp)}</b> ${esc(tb[0].toLowerCase())}</span>
+            ${intro.length ? `<span class="muted">Sponsor: ${intro.map(s => esc(LEG.get(s.pid)?.name || s.n)).join(', ')}</span>` : ''}</div></div>
+        <svg class="chev" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></summary>
+      <div class="body">
+        <h4>What it would do</h4>
+        ${b.purpose ? purposeHtml(b.purpose) : `<p style="margin:0">${esc(b.title)}</p>`}
+        <p class="small muted" style="margin:.3rem 0 0">${stageText(b)}</p>
+
+        <h4>Who proposed it</h4>
+        <p style="margin:0">${intro.length ? intro.map(s => who(s.pid)).join(', ') + (co.length ? `, joined by ${co.map(s => who(s.pid)).join(', ')}` : '')
+          : `Raised by the ${esc(b.by || 'committee')}. No individual lawmaker is named as sponsor.${co.length ? ` Co-sponsors: ${co.map(s => who(s.pid)).join(', ')}.` : ''}`}</p>
+
+        <h4>Who testified, and which side</h4>
+        ${rows.length ? sideBoxes(rows, b.dir, { limit: 25 }) : '<p class="small muted" style="margin:0">No written testimony was posted for this bill.</p>'}
+        ${rows.some(r => r.p !== 'Supports' && r.p !== 'Opposes') ? `<p class="small muted" style="margin:.2rem 0 0">${num(rows.filter(r => r.p !== 'Supports' && r.p !== 'Opposes').length)} more filings took no clear side. They are on the full bill page.</p>` : ''}
+
+        ${b.amds.some(a => a.called) ? `<h4>Amendments voted on</h4><ul class="plainlist">${b.amds.filter(a => a.called).map(a => `<li><strong>${esc(a.sched ? a.sched.replace('"', 'Amendment "') : 'LCO ' + a.lco)}</strong>
+          ${a.by.length ? `offered by ${a.by.map(o => who(o.pid) || esc(o.n)).join(', ')}` : ''} &mdash; <strong>${esc(a.res || 'called')}</strong>
+          ${a.eff ? `<div class="small muted">${esc(a.eff.length > 260 ? a.eff.slice(0, 258).replace(/\s+\S*$/, '') + '…' : a.eff)}</div>` : ''}</li>`).join('')}</ul>` : ''}
+
+        ${counted.length ? `<h4>How lawmakers voted</h4><ul class="plainlist">${counted.map(v => { const n = nays(v); return `<li><strong>${esc(v.kind === 'committee' ? v.body + ' Committee' : v.body)}</strong> ${esc(v.res.toLowerCase())} it ${v.t.y}&ndash;${v.t.n} <span class="muted small">(${esc(fmtDate(v.date))})</span>
+          ${n.length && n.length <= 30 ? `<div class="small">Voted no: ${n.join(', ')}</div>` : n.length ? `<div class="small">${n.length} voted no. <a href="${billHref(b.id)}#votes">See every name</a></div>` : '<div class="small muted">No one voted no.</div>'}</li>`; }).join('')}</ul>`
+          : '<h4>How lawmakers voted</h4><p class="small muted" style="margin:0">No recorded vote. The bill never reached a committee or floor vote.</p>'}
+
+        <p style="margin:.9rem 0 0"><a class="btn" href="${billHref(b.id)}">Full bill page</a></p>
+      </div></details>`;
+  }
   $('#jump').innerHTML = META.spots.map(s => `<a class="chip" href="#${esc(s.id)}">${esc(s.t)} (${s.n})</a>`).join('');
   $('#secs').innerHTML = META.spots.map(s => {
-    const bs = B.bills.filter(b => b.spot.includes(s.id)).sort((a, b) => b.yr.localeCompare(a.yr) || b.tmy.n - a.tmy.n);
-    return `<section id="${esc(s.id)}"><h2>${esc(s.t)}</h2><p class="small muted" style="margin-top:-.4rem">${esc(s.d)}</p>
-      <div class="records">${bs.map(card).join('')}</div></section>`;
+    const bs = B.bills.filter(b => b.spot.includes(s.id)).sort((a, b) => b.yr.localeCompare(a.yr) || (b.enacted - a.enacted) || b.tmy.n - a.tmy.n);
+    const passed = bs.filter(b => b.enacted).length;
+    return `<section id="${esc(s.id)}" style="margin-bottom:1.6rem"><h2>${esc(s.t)}</h2>
+      <p class="small muted" style="margin-top:-.4rem">${esc(s.d)} ${num(bs.length)} bills, ${num(passed)} became law.</p>
+      ${bs.map(row).join('')}</section>`;
   }).join('');
-  if (location.hash) { const n = document.querySelector(location.hash); if (n) n.scrollIntoView(); }
+  const h = location.hash.slice(1);
+  if (h) { const n = document.getElementById(h); if (n) { if (n.tagName === 'DETAILS') n.open = true; n.scrollIntoView(); } }
 } catch (e) { fail(document.querySelector('#secs'), e); console.error(e); }
 
 </script>

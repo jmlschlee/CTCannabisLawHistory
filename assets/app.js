@@ -497,3 +497,63 @@ export function leanDot(p, a, withText = false) {
   const l = lean(p, a); if (!l) return '';
   return `<span class="lean ${l}" title="${LEAN_T[l]}: ${p} pro, ${a} anti">${withText ? LEAN_T[l] : ''}</span>`;
 }
+
+/* ---------------------------------------------------------------- who stood where on one bill
+   Titles say what supporting this bill means, so "for" is never ambiguous. */
+export function sideTitles(dir) {
+  if (dir === 'R') return [['Supported the harsher rules', 'bad'], ['Opposed the harsher rules', 'ok']];
+  if (dir === 'E') return [['Supported expanding access', 'ok'], ['Opposed expanding access', 'bad']];
+  return [['Supported the bill', 'warn'], ['Opposed the bill', 'warn']];
+}
+const KORDER = ['Lawmaker', 'State Agency', 'Law Enforcement', 'Local Official', 'Health and Medical', 'Industry', 'Advocate or Group', 'Member of the Public', 'Anonymous'];
+function dedupe(rows) {
+  const m = new Map();
+  for (const r of rows) {
+    const k = r.anon ? 'anon' : (r.eid || r.who);
+    if (!m.has(k)) m.set(k, { ...r, n: 0, urls: [] });
+    const x = m.get(k); x.n++; if (r.u) x.urls.push(r.u); if (!x.org && r.org) x.org = r.org;
+    x.text = (x.text ?? true) && r.how === 'Text';
+  }
+  return [...m.values()].sort((a, b) => KORDER.indexOf(a.k) - KORDER.indexOf(b.k) || a.who.localeCompare(b.who));
+}
+function personLine(x) {
+  const name = x.anon ? 'Anonymous witness' + (x.n > 1 ? `es` : '') : x.who;
+  const href = x.leg ? legHref(x.leg) : x.eid ? personHref(x.eid) : '';
+  return `<li class="pl"><div class="pl1">${href && !x.anon ? `<a href="${href}">${esc(name)}</a>` : esc(name)}${x.n > 1 ? ` <span class="muted small">&times;${x.n}</span>` : ''}
+      ${x.urls[0] ? `<a class="pdf" href="${esc(x.urls[0])}" rel="noopener" aria-label="Read the filing">PDF</a>` : ''}</div>
+    <div class="pl2">${kindChip(x.k)}${x.org || x.role ? `<span>${esc([x.role, x.org].filter(Boolean).join(' · '))}</span>` : ''}
+      ${x.text ? '<span title="The filing has no position in its file name; this side was read from the text of the filing.">&middot; side read from filing text</span>' : ''}</div></li>`;
+}
+export function sideBoxes(rows, dir, { limit = 40 } = {}) {
+  const [a, b] = sideTitles(dir);
+  const box = ([title, tone], pos) => {
+    const all = dedupe(rows.filter(r => r.p === pos));
+    const named = all.filter(x => !['Member of the Public', 'Anonymous'].includes(x.k));
+    const pub = all.filter(x => ['Member of the Public', 'Anonymous'].includes(x.k));
+    const filings = rows.filter(r => r.p === pos).length;
+    return `<div class="side ${tone}"><div class="side-h"><span class="lean ${tone === 'ok' ? 'pro' : tone === 'bad' ? 'anti' : 'mid'}"></span>${esc(title)}
+        <span class="side-n">${num(filings)}</span></div>
+      ${all.length ? `<ul class="plist">${named.slice(0, limit).map(personLine).join('')}</ul>
+        ${named.length > limit ? `<p class="small muted">and ${num(named.length - limit)} more on the full bill page</p>` : ''}
+        ${pub.length ? `<details class="more pub"><summary>${num(pub.reduce((s, x) => s + x.n, 0))} from members of the public${pub.some(x => x.anon) ? ' or anonymous' : ''}</summary><ul class="plist">${pub.map(personLine).join('')}</ul></details>` : ''}`
+        : '<p class="small muted" style="margin:.4rem 0 0">No one filed on this side.</p>'}</div>`;
+  };
+  return `<div class="sides">${box(a, 'Supports')}${box(b, 'Opposes')}</div>`;
+}
+export function shortPurpose(p, n = 190) {
+  if (!p) return '';
+  let s = p.replace(/^To\s+/, '');
+  const m = s.match(/^\(1\)\s*(.*?)(?:,\s*\(2\)|$)/);
+  if (m && m[1]) s = m[1] + (/\(2\)/.test(p) ? ', and more' : '');
+  s = s.charAt(0).toUpperCase() + s.slice(1);
+  return s.length > n ? s.slice(0, n).replace(/\s+\S*$/, '') + '…' : s.replace(/\.$/, '') + '.';
+}
+
+/* "To (1) do this, (2) do that" as a numbered list. */
+export function purposeHtml(p) {
+  if (!p) return '';
+  const parts = p.replace(/^To:?\s*/, '').split(/\s*\(\d{1,2}\)\s*/).map(x => x.replace(/[,;]?\s*(and)?\s*$/, '').trim()).filter(Boolean);
+  if (parts.length < 3) return `<p style="margin:0">${esc(p)}</p>`;
+  const lead = /^\(1\)/.test(p.replace(/^To:?\s*/, '')) ? '' : parts.shift();
+  return `${lead ? `<p style="margin:0 0 .3rem">${esc(lead)}</p>` : ''}<ol class="plist-num">${parts.map(x => `<li>${esc(x.charAt(0).toUpperCase() + x.slice(1))}</li>`).join('')}</ol>`;
+}
