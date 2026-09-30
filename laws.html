@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laws by year &middot; CT Cannabis Law Timeline</title>
+<title>Changes &middot; CT Cannabis Law</title>
 <meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta name="color-scheme" content="light dark">
-<meta property="og:title" content="Laws by year &middot; CT Cannabis Law Timeline">
+<meta property="og:title" content="Changes &middot; CT Cannabis Law">
 <meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -21,10 +21,12 @@ try { var t = localStorage.getItem('ctcl-theme');
 <main id="main">
 
 <div class="page-head">
-  <div class="eyebrow">One row per discrete change, not per bill</div>
-  <h1>Laws by year</h1>
-  <p class="lede">Every enacted change parsed from the act itself, with the text the act deleted
-  beside the text it enacted. A section that does several things carries several categories.</p>
+  <div class="eyebrow">Every enacted change, act by act</div>
+  <h1>What changed</h1>
+  <p class="lede">Each section of each act that changed a cannabis rule, with the text it
+  removed beside the text it put in its place. Bracketed words in a Connecticut act are the
+  words the act deletes, which is the only machine-readable record of what the old rule
+  said.</p>
 </div>
 <div class="notice">
 <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6 15 14H1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12" r=".8" fill="currentColor"/></svg>
@@ -32,86 +34,138 @@ try { var t = localStorage.getItem('ctcl-theme');
 General Assembly&rsquo;s published chapter pages. Those lag the session: on 29 September 2026 the
 chapter 420h page still printed a subsection that had been repealed nine months earlier.
 <a href="methodology.html">How that is handled</a>.</div></div>
+<h2>Pick a subject</h2>
+<p class="small" style="margin-top:-.4rem">Subjects are grouped, because fifteen flat labels are
+a list, not a way in. Medical, adult-use and hemp are kept apart on purpose: they are governed by
+different instruments on different timetables, and collapsing them is the commonest error in
+writing about this.</p>
+<div id="catgroups"></div>
+
+<h2>The acts</h2>
+<div class="grid three" id="acts"></div>
+
+<h2>Every change</h2>
 <div class="filters" id="f"></div>
-<div class="resultbar"><span id="count"></span><button class="btn" id="dl">Download this view as CSV</button></div>
-<div class="grid four" id="acts" style="margin-bottom:1.4rem"></div>
+<div class="resultbar"><span id="count"></span>
+  <button class="btn" id="dl" type="button">Download this view as CSV</button></div>
 <div class="records" id="list"></div>
-<div class="pagenav"><button class="btn" id="more">Show more</button></div>
+<div class="pagenav"><button class="btn" id="more" type="button" hidden>Show more</button></div>
 
 </main>
 <script type="module">
 
-import { load, $, num, esc, fmtDate, cite, setSources, selectField, searchField,
-         debounce, downloadCSV } from './assets/app.js';
-const [d, s] = await Promise.all([load('laws'), load('sources')]);
-setSources(s.map);
+import { load, $, $$, num, esc, cap, fmtDate, plural, cite, setSources, searchField,
+         selectField, clearButton, wire, downloadCSV, fail } from './assets/app.js';
 
-$('#f').innerHTML =
-  searchField('q','Search','statute, section, category, text of the change') +
-  selectField('pa','Public act', d.acts.map(a => [a.pa, `${a.pa} (${a.bill})`])) +
-  selectField('cat','Policy category', d.categories) +
-  selectField('pop','Affected population', d.populations) +
-  selectField('flag','Only show', [['rep','Repeals'],['del','Delayed effect'],['old','Changes that print the old rule']]) +
-  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+try {
+  const [d, src] = await Promise.all([load('laws'), load('sources')]);
+  setSources(src.map);
 
-$('#acts').innerHTML = d.acts.map(a =>
-  `<div class="stat"><div class="n">${num(a.n)}</div>
-   <div class="k"><strong>${esc(a.pa)}</strong><br>${esc(a.bill)} &middot; signed ${esc(fmtDate(a.signed))}
-   ${a.held==='no' ? '<br><span class="chip t3">enacted text not held \u2014 see gap GAP_0001</span>' : ''}</div></div>`).join('');
+  /* Fifteen flat categories become four groups a reader can scan. */
+  const GROUPS = [
+    ['Who may take part', ['licensing', 'ownership and control', 'social equity',
+      'medical patients and caregivers', 'home grow and possession']],
+    ['What the product must be', ['testing and laboratories', 'advertising and packaging',
+      'hemp and infused beverages']],
+    ['Who enforces it', ['agency duties and rulemaking', 'enforcement and penalties',
+      'municipal authority', 'ombudsman']],
+    ['Money and oversight', ['taxation and revenue', 'data and reporting', 'uncategorized']],
+  ];
+  const catN = {};
+  d.changes.forEach(c => (c.cat || []).forEach(k => catN[k] = (catN[k] || 0) + 1));
 
-let shown = 40;
-function current() {
-  const q = $('#q').value.trim().toLowerCase(), pa = $('#pa').value, cat = $('#cat').value,
-        pop = $('#pop').value, flag = $('#flag').value;
-  return d.changes.filter(c =>
-    (!pa || c.pa === pa) && (!cat || c.cat.includes(cat)) && (!pop || c.pop.includes(pop)) &&
-    (!flag || (flag==='rep' ? c.rep : flag==='del' ? c.del : !!c.old)) &&
-    (!q || (c.cite + ' ' + c.sec + ' ' + c.new + ' ' + c.old + ' ' + c.cat.join(' ')).toLowerCase().includes(q)));
-}
-function draw() {
-  const rows = current();
-  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.changes.length)} changes`;
-  const slice = rows.slice(0, shown);
-  $('#list').innerHTML = slice.length ? slice.map(c => `
-    <article class="rec">
-      <div class="rec-head">
-        <h3 class="rec-title">${esc(c.pa)} &middot; ${esc(c.sec)}</h3>
-        <span class="rec-sub">effective ${esc(fmtDate(c.eff))}${c.del ? ' \u2014 later than signing' : ''}</span>
-      </div>
-      <div class="chips" style="margin-bottom:.45rem">
-        ${c.rep ? '<span class="chip bad">repeal</span>' : ''}
-        ${c.cat.map(k => `<span class="chip">${esc(k)}</span>`).join('')}
-      </div>
-      ${c.repn ? `<div class="callout warn" style="margin:.5rem 0"><div class="hd">Repealed</div>
-        <p class="small" style="margin:0">${esc(c.repn)}</p></div>` : ''}
-      <dl class="kv">
-        <dt>Statutes cited</dt><dd class="mono">${esc(c.cite)}</dd>
-        <dt>Action</dt><dd>${esc(c.act)}</dd>
-        <dt>Effective</dt><dd>${esc(c.efft)}</dd>
-        <dt>Affects</dt><dd>${esc(c.pop.join('; '))}</dd>
-      </dl>
-      <div class="diff">
-        <div class="side old"><h4>Text the act deletes</h4>
-          ${c.old ? esc(c.old) : `<span class="small">${esc(c.oldb)}</span>`}</div>
-        <div class="side new"><h4>The section as enacted</h4>${esc(c.new)}</div>
-      </div>
-      ${cite(c.s, c.l)}
-    </article>`).join('') : '<div class="empty">No changes match these filters.</div>';
-  $('#more').style.display = rows.length > shown ? '' : 'none';
-  $('#more').textContent = `Show more (${num(rows.length - shown)} remaining)`;
-}
-['q','pa','cat','pop','flag'].forEach(id => $('#'+id).addEventListener('input', debounce(() => { shown=40; draw(); })));
-$('#clr').addEventListener('click', () => { ['q','pa','cat','pop','flag'].forEach(i=>$('#'+i).value=''); shown=40; draw(); });
-$('#more').addEventListener('click', () => { shown += 60; draw(); });
-$('#dl').addEventListener('click', () => downloadCSV('ct-legal-changes-view.csv', current(), [
-  {key:'id',label:'change_id'},{key:'pa',label:'public_act'},{key:'sec',label:'section'},
-  {key:'eff',label:'effective_date'},{key:'cite',label:'statutory_citation'},
-  {key:'act',label:'action'},{label:'is_repeal',get:r=>r.rep?'yes':'no'},
-  {label:'policy_category',get:r=>r.cat.join('; ')},
-  {label:'affected_population',get:r=>r.pop.join('; ')},
-  {key:'old',label:'old_rule_deleted_text'},{key:'new',label:'new_rule_as_enacted'},
-  {key:'s',label:'source_id'},{key:'l',label:'exact_locator'}]));
-draw();
+  $('#catgroups').innerHTML = `<div class="grid two">${GROUPS.map(([g, cats]) => `
+    <div class="card"><h3 style="margin:0 0 .6rem">${esc(g)}</h3>
+      <div class="chips">${cats.filter(c => catN[c]).map(c =>
+        `<button class="chip" type="button" data-cat="${esc(c)}">${esc(cap(c))}
+          <span class="muted">${num(catN[c] || 0)}</span></button>`).join('')}</div></div>`).join('')}</div>`;
+
+  $('#acts').innerHTML = d.acts.filter(a => a.n > 0)
+    .sort((a, b) => b.n - a.n).map(a => `
+    <button class="card" type="button" data-act="${esc(a.id)}"
+      style="text-align:left;cursor:pointer;font:inherit;color:inherit">
+      <div class="chips" style="margin-bottom:.4rem"><span class="chip mono">${esc(a.pa)}</span>
+        <span class="chip">${esc(a.bill)}</span></div>
+      <div style="font-weight:620;font-size:.95rem;margin-bottom:.25rem">${esc(a.short || a.title)}</div>
+      <div class="small muted">${plural(a.n, 'change')} &middot; signed ${esc(fmtDate(a.signed))}</div>
+    </button>`).join('');
+
+  $('#f').innerHTML =
+    searchField('q', 'Search', 'statute cite, act, section, text') +
+    selectField('act', 'Act', d.acts.filter(a => a.n > 0).map(a => [a.id, a.pa])) +
+    selectField('cat', 'Subject', d.categories.filter(c => catN[c]).map(c => [c, `${cap(c)} (${num(catN[c])})`])) +
+    selectField('pop', 'Who it reaches', d.populations.map(x => [x, cap(x)])) +
+    selectField('flag', 'Flag', [['rep', 'Repeals'], ['del', 'Delayed effective date'],
+                                 ['new', 'New section']]) +
+    clearButton();
+
+  let limit = 25;
+  function current() {
+    const q = $('#q').value.trim().toLowerCase(), act = $('#act').value,
+          cat = $('#cat').value, pop = $('#pop').value, flag = $('#flag').value;
+    return d.changes.filter(c =>
+      (!act || c.paid === act) &&
+      (!cat || (c.cat || []).includes(cat)) &&
+      (!pop || (c.pop || []).includes(pop)) &&
+      (!flag || (flag === 'rep' ? c.rep : flag === 'del' ? c.del : /NEW/i.test(c.act))) &&
+      (!q || (c.cite + ' ' + c.pa + ' ' + c.sec + ' ' + c.act + ' ' + (c.new || '') + ' ' + (c.old || ''))
+        .toLowerCase().includes(q)));
+  }
+
+  function draw() {
+    const rows = current();
+    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.changes.length)} enacted changes`
+      + (rows.length > limit ? ` &middot; showing the first ${num(limit)}` : '');
+    $('#list').innerHTML = rows.length ? rows.slice(0, limit).map(c => `
+      <article class="rec" id="${esc(c.id)}">
+        <div class="rec-head">
+          <h3 class="rec-title">${esc(c.pa)} &middot; ${esc(c.sec)}</h3>
+          <span class="rec-sub">effective ${esc(fmtDate(c.eff) || c.efft || 'not stated')}</span>
+        </div>
+        <div class="chips" style="margin-bottom:.5rem">
+          ${c.rep ? '<span class="chip bad">repeals a provision</span>' : ''}
+          ${c.del ? '<span class="chip warn">takes effect later than passage</span>' : ''}
+          ${/NEW/i.test(c.act) ? '<span class="chip ok">new section</span>' : ''}
+          ${(c.cat || []).slice(0, 4).map(k => `<span class="chip">${esc(cap(k))}</span>`).join('')}
+        </div>
+        <dl class="kv">
+          <dt>Statute touched</dt><dd class="mono">${esc(c.cite || 'no statute cite on the section')}</dd>
+          <dt>Who it reaches</dt><dd>${esc((c.pop || []).map(cap).join('; ') || 'Not stated in the section head')}</dd>
+        </dl>
+        <details class="more"><summary>Old text and new text</summary>
+          <div class="diff pair">
+            <div class="pane old"><div class="lab">What the act removed</div>
+              <div class="txt">${esc(c.old || c.oldb || 'the act prints no deleted text for this section')}</div></div>
+            <div class="pane new"><div class="lab">What it put in place</div>
+              <div class="txt">${esc((c.new || '').slice(0, 4000) || 'not printed')}</div></div>
+          </div>
+        </details>
+        ${cite(c.s, c.pa + ' ' + c.sec)}
+      </article>`).join('') : '<div class="empty">No changes match these filters.</div>';
+    const m = $('#more');
+    m.hidden = rows.length <= limit;
+    m.textContent = `Show ${num(Math.min(25, rows.length - limit))} more`;
+  }
+
+  document.addEventListener('click', e => {
+    const cb = e.target.closest('[data-cat]'), ab = e.target.closest('[data-act]');
+    if (cb) { $('#cat').value = cb.dataset.cat; limit = 25; draw(); $('#f').scrollIntoView(); }
+    if (ab) { $('#act').value = ab.dataset.act; limit = 25; draw(); $('#f').scrollIntoView(); }
+  });
+  $('#more').addEventListener('click', () => { limit += 25; draw(); });
+  $('#dl').addEventListener('click', () => downloadCSV('ct-law-changes-view.csv', current(), [
+    { key: 'id', label: 'change_id' }, { key: 'pa', label: 'public_act' },
+    { key: 'sec', label: 'section' }, { key: 'cite', label: 'statute_cite' },
+    { key: 'eff', label: 'effective_date' }, { key: 'efft', label: 'effective_text' },
+    { label: 'categories', get: r => (r.cat || []).join('; ') },
+    { label: 'population', get: r => (r.pop || []).join('; ') },
+    { key: 'rep', label: 'is_repeal' }, { key: 'del', label: 'delayed_effect' },
+    { key: 's', label: 'source_id' }]));
+
+  const p = new URLSearchParams(location.search);
+  wire(['q', 'act', 'cat', 'pop', 'flag'], () => { limit = 25; draw(); });
+  if (p.get('cat')) { $('#cat').value = p.get('cat'); draw(); }
+} catch (e) { fail(document.querySelector('#list'), e); }
 
 </script>
 </body>

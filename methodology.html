@@ -157,6 +157,39 @@ reporter has been contacted. The requests and the interview questions are drafte
 <a href="issues.html">issues page</a> names, for each open gap, the specific record that would
 close it and who holds it.</p>
 
+<h2>What changed after the first version went up</h2>
+
+<p>The first published version of this site had three defects worth naming, because each one
+shows a different way a research dataset goes wrong.</p>
+
+<p><strong>One person appeared as several people.</strong> Actors were keyed on the spelling the
+source used, so Jerry Farrell, Gerald Farrell and Gerald E Farrell were three separate nodes,
+Arthur Linares was three more, and the CT Cannabis Chamber of Commerce was four. Whole sentences
+had been stored in the name column, so &ldquo;Amendment sponsors Lemar, Turco, Rojas; drafter NOT
+identified&rdquo; sat in the actor list as though it were a person. Resolving this collapsed
+1,610 name rows into 990 entities. Every merge is published on the
+<a href="entities.html">name merges page</a> with the rule that produced it, and every source
+spelling survives as an alias.</p>
+
+<p><strong>Bills that failed were missing.</strong> The bill table had been built from the acts
+that passed, which meant the record showed what became law and not what was asked for and
+refused. Working backwards from the testimony corpus found eight more bills, every one of which
+had drawn written testimony on a cannabis question. Four of the eight turned out to have been
+enacted, which is why this site now carries sixteen public acts rather than twelve.</p>
+
+<p><strong>Two gaps were not gaps.</strong> The enacted text of P.A. 23-79 was logged as
+unobtainable; it was one fetch away, and parsing it added 52 sections to the change record,
+including the section that put the twenty-mile rule into 21a-420j(e). Sixty-seven testimony
+files were logged as unretrievable; the failure was a URL-encoding fault on filenames containing
+spaces and commas, and sixty-six of the sixty-seven were reachable the whole time. Both are
+marked closed on the <a href="gaps.html">gaps page</a>, with what actually went wrong.</p>
+
+<p>The ten gaps still open are a different kind of thing. No amount of fetching closes them,
+because the records are not published anywhere: there is no public conversion register, no
+published lottery award file, no version history for the policies and procedures document, and
+no published record of who requested a given amendment. That those records are unpublished is
+itself one of the findings, not a shortfall in the research.</p>
+
 <h2>Errors</h2>
 
 <p>Corrections made during the build are kept rather than quietly fixed, because the pattern of

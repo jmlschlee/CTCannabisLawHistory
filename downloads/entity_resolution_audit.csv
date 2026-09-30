@@ -1,0 +1,533 @@
+canonical_id,canonical_label,entity_type,merged_count,source_spellings,rule,confidence
+ENTITY_COMPOUND,"Descriptive record, not a single actor",unresolved,36,"Affinity entities - $63,992.50 (2023-24), $42,540 + MCEJV $30,628.80 (2025-26) | Amendment sponsors Lemar, Turco, Rojas; drafter NOT identified | Amendment sponsors named | Art Linares (Linares Land Capital; CEO Connecticut Social Equity LLC per other filings) | Asked by Derrick Gibbs (Budr, lobbying client) and Benjamin Zachs (Fine Fettle); opposed by SEC (McGee) and C-3 Ventures (Macre) | Avery Gaddis; Subira Gordon | Budget implementer; requester and drafter NOT identified; no public hearing record located for s.127 | Budr Cannabis - $69,382.25 compensation (cannabis issue declared) | CT Cannabis Chamber of Commerce (in-house communicators Burnes, Fell registered 2025-01-15) | CT Cannabis Chamber of Commerce (sponsorship tiers $1,500-$15,000 published; sponsor names not captured) | CT Cannabis Chamber of Commerce; sponsors named in press: Cannabis 360, Dope Tax Group | CT Pharmacists Association Academy of Medical Marijuana Dispensaries | Carl Tirella (Budr; registered in-house communicator) | Chamber (Jennifer Fell, registered in-house communicator 2025-01-15); Analytics Labs (Picard); Affinity Grow (Ferrarese); Fine Fettle (Zachs) | Connecticut Social Equity Holdings (Rodeo parent) - $63,810; $0 reported 2025-26 | DCP; attendees NOT established | Derrick Gibbs (Budr Cannabis, founder; OSE in-house communicator 2025-26) | Fine Fettle (not an OSE-registered client in held extract); Budr (registered client, in-house communicators Gibbs/Tirella) | GL Committee; hemp witnesses 2024 (Costanza, Goodenough, Markovich, Lewis) asked age limits and testing parity | GL: motion Osten, second Maroney; chair Lemar | General Law Committee substitute; requester of the new section NOT identified | HB 5350 chief proponent Rojas | Jason Rojas PAC (attributed to event 09102025A) and Connecticut Blue Dogs (Rep. Pat Boyd; event 09082025A) | Jennifer Fell (Root & Pivot; Chamber director in 2025 testimony) | Mohave CT, LLC - $134,501 (largest cannabis-client figure in 2025-26; $59,806 in 2023-24 with ZERO issues declared) | Origin NOT established in this lane (likely a 2023 budget implementer - L-0858) | Paul Travaglino (Radius Holdings; 2023 Chamber Industry Collaborator; registered Canna F&B Alliance communicator 2025-01-07 to 01-13) | RERACA drafters; purpose per 2025 testimony: geographic diversity | Rep. Lemar, Rep. Turco, Rep. Rojas (amendment); Sen. Maroney presented to Senate | Rep. Matthew Ritter, 1st Dist. Sen. Martin M. Looney, 11th Dist. Rep. Jason Rojas, 9th Dist. Sen. Bob Duff, 25th Dist. | Requested by DCP (""The Department of Consumer Protection asked the General Law Committee to raise this bill""); sponsor General Law Committee | Sara's Dispensary LLC; Ty's Dispensary LLC; Debbie's Dispensary LLC (Crisp Cannabis retail licensees; Mohave CT notice of acquisition to AG 2025-05-06) | Sen. Martin M. Looney, 11th Dist. Rep. Matthew Ritter, 1st Dist. | Sponsor: General Law Committee on DCP request (SB 231); HB 5350 chief proponent House Majority Leader Rojas (JFR) | Vantage Point Edge; LLC | Wheeler Clinic; Inc","the name field holds a sentence or a list of several people, so no single actor can be resolved from it",UNRESOLVED
+TMYP_0336,Joe LaChance,individual,6,"LaChance, Joe | LaChance, Joseph | LaChance, Joseph P.",same surname; given names are a known nickname pair,INFERRED
+TMYP_0001,Joseph Accettullo,individual,6,"Accettullo, Joseph | Accettullo, Joseph Raymond | Joseph Accettullo | Joseph R Accettullo",exact given name and surname; middle initial present on only one spelling,INFERRED
+PERSON_STEIN_NICHOLAS_BARD,Nicholas Bard Stein,individual,5,"Nicholas B Stein | Stein, Nicholas | Stein, Nicholas Bard",exact given name and surname,VERIFIED
+ORG_CT_MEDICAL_CANNABIS_COUNCIL_INC,"CT Medical Cannabis Council, Inc.",organization,4,"CT Medical Cannabis Council | CT Medical Cannabis Council, Inc.","identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0253,Christina Capitan,individual,4,"Capitan, Christina | Capitan, Christina E.",exact given name and surname; middle initial present on only one spelling,INFERRED
+PERSON_DEVAUGHN_WARD,DeVaughn Ward,individual,4,"DeVaughn Ward | Devaughn L Ward | Ward, DeVaughn",exact given name and surname,VERIFIED
+PERSON_ERIN_KIRK,Erin Kirk,individual,4,"Erin G Kirk | Erin Kirk | Kirk, Erin",exact given name and surname; middle initial present on only one spelling,INFERRED
+PERSON_JACOB_HONIG,Jacob Honig,individual,4,"Honig, Jacob | JACOB N HONIG | Jacob Honig",exact given name and surname,VERIFIED
+TMYP_0016,Joseph Feuerstein,individual,4,"Feuerstein, Joe | Feuerstein, Joseph",exact given name and surname,VERIFIED
+TMYP_0292,Kenneth Bastian,individual,4,"Bastian, Ken | Bastian, Kenneth",same surname; given names are a known nickname pair,INFERRED
+PERSON_CAPITANI_LISA,Lisa Capitani,individual,4,"Capitani, Lisa | Capitani, Lisa P.",exact given name and surname; middle initial present on only one spelling,INFERRED
+TMYP_0248,Matthew Schillberg,individual,4,"Schillberg, Matt | Schillberg, Matthew",same surname; given names are a known nickname pair,INFERRED
+ENTITY_NOT_STATED,Not stated in the source record,unresolved,4,(blank in filing) | LLC | NA | self,the source field was blank or held a placeholder,UNRESOLVED
+TMYP_0434,Vincent J. Candelora,individual,4,"Candelora, Vincent | Candelora, Vincent J.",exact given name and surname; middle initial present on only one spelling,INFERRED
+PERSON_ARTHUR_LINARES,Arthur Linares,individual,3,Art Linares | Arthur Linares | Arthur S Linares,same surname; given names are a known nickname pair; middle initial present on only one spelling,INFERRED
+PERSON_BECKY_GOETSCH,Becky Goetsch,individual,3,"Becky Goetsch | Goetsch, Rebecca",same surname; given names are a known nickname pair,INFERRED
+TMYP_0210,Bonnie Stewart,individual,3,"STEWART, BONNIE | Stewart, Bonnie",exact given name and surname,VERIFIED
+PERSON_BRYAN_MURRAY,Bryan Murray,individual,3,"Bryan Murray | Murray, Bryan",exact given name and surname,VERIFIED
+ORG_CT_CANNABIS_CHAMBER_OF_COMMERCE,CT Cannabis Chamber of Commerce,organization,3,CT Cannabis Chamber of Commerce | CT Cannabis Chamber of Commerce (entity),"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+PERSON_CARL_TIRELLA,Carl Tirella,individual,3,"Carl Tirella | Tirella, Carl",exact given name and surname,VERIFIED
+PERSON_DERRICK_GIBBS,Derrick Gibbs,individual,3,"Derrick Gibbs | Gibbs, Derrick",exact given name and surname,VERIFIED
+PERSON_REP_JASON_ROJAS_HOUSE_MAJORITY_LEADER,Jason Rojas,individual,3,"Rep. Jason Rojas (House Majority Leader) | Rojas, Jason",exact given name and surname,VERIFIED
+PERSON_JASON_TEAL,Jason Teal,individual,3,"Jason Teal | Teal, Jason",exact given name and surname,VERIFIED
+PERSON_JENNIFER_FELL,Jennifer Fell,individual,3,"Fell, Jennifer | Jennifer Fell",exact given name and surname,VERIFIED
+PERSON_JERRY_FARRELL,Jerry Farrell,individual,3,Gerald E Farrell | Gerald Farrell | Jerry Farrell,same surname; given names are a known nickname pair; middle initial present on only one spelling,INFERRED
+PERSON_JUSTIN_FRYTZ,Justin Frytz,individual,3,"Justin frytz | frytz, Justin",exact given name and surname,VERIFIED
+PERSON_KATIE_COVETT,Katie Covett,individual,3,"Covett, Katie | Katie Covett",exact given name and surname,VERIFIED
+PERSON_KENNARD_RAY,Kennard Ray,individual,3,"Kennard Ray | Ray, Kennard",exact given name and surname,VERIFIED
+PERSON_NATHAN_TINKER,Nathan Tinker,individual,3,"Nathan Tinker | Tinker, Nathan",exact given name and surname,VERIFIED
+PERSON_NIKOLE_BURNES,Nikole Burnes,individual,3,"Burnes, Nikole | Nikole Burnes",exact given name and surname,VERIFIED
+PERSON_PAUL_TRAVAGLINO,Paul Travaglino,individual,3,"Paul Travaglino | Travaglino, Paul",exact given name and surname,VERIFIED
+PERSON_RAY_PANTALENA,Ray Pantalena,individual,3,"Pantalena, Ray | Ray Pantalena",exact given name and surname,VERIFIED
+PERSON_RINO_FERRARESE,Rino Ferrarese,individual,3,"Ferrarese, Rino | Rino Ferrarese",exact given name and surname,VERIFIED
+PERSON_TIANA_HERCULES,Tiana Hercules,individual,3,Tiana Hercules | Tiana U Hercules | Tiana V Hercules,exact given name and surname; middle initial present on only one spelling; middle initials differ across spellings,INFERRED
+TMYP_0077,Uzma Zakir,individual,3,"Zakir, Uzma | zakir, uzma",exact given name and surname,VERIFIED
+PERSON_WESLEY_JENKS,Wesley Jenks,individual,3,"Jenks, Wesley | Wesley Jenks",exact given name and surname,VERIFIED
+PERSON_A_NEW_DAY_PAC_MARONEY,A New Day PAC,organization,2,A New Day PAC (Maroney) | A New Day PAC (chair of record Sen. James Maroney),"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0093,Abraham Santiago,individual,2,"Santiago, Abraham",exact given name and surname,VERIFIED
+TMYP_0418,Adam P Cohen,individual,2,"Cohen, Adam P",exact given name and surname,VERIFIED
+ORG_AFFINITY_DISPENSARY,Affinity Dispensary,organization,2,Affinity Dispensary (entity) | Affinity dispensary,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0358,Al Popp,individual,2,"popp, al",exact given name and surname,VERIFIED
+TMYP_0438,Aldo Cucciniello,individual,2,"Cucciniello, Aldo",exact given name and surname,VERIFIED
+TMYP_0405,Alexander Clayborne,individual,2,"Clayborne, Alexander",exact given name and surname,VERIFIED
+TMYP_0067,Alexis Terry,individual,2,"Terry, Alexis",exact given name and surname,VERIFIED
+PERSON_SICARD_ALISON,Alison Sicard,individual,2,"Sicard, Alison",exact given name and surname,VERIFIED
+TMYP_0046,Allan Popp,individual,2,"popp, allan",exact given name and surname,VERIFIED
+PERSON_CAVANAUGH_ALLISON,Allison Cavanaugh,individual,2,"Cavanaugh, Allison",exact given name and surname,VERIFIED
+PERSON_SMITH_AMANDA,Amanda Smith,individual,2,"Smith, Amanda",exact given name and surname,VERIFIED
+PERSON_MOORE_AMBER,Amber Moore,individual,2,"Moore, Amber",exact given name and surname,VERIFIED
+TMYP_0002,Amy Bogert,individual,2,"Bogert, Amy",exact given name and surname,VERIFIED
+TMYP_0071,Amy Wadsworth,individual,2,"Wadsworth, Amy",exact given name and surname,VERIFIED
+TMYP_0389,Andreas Werner,individual,2,"Werner, Andreas",exact given name and surname,VERIFIED
+TMYP_0406,Andrew Czeczot,individual,2,"Czeczot, Andrew",exact given name and surname,VERIFIED
+TMYP_0019,Andrew Gerber,individual,2,"Gerber, Andrew",exact given name and surname,VERIFIED
+TMYP_0425,Andrew Kingman,individual,2,"Kingman, Andrew",exact given name and surname,VERIFIED
+TMYP_0063,Andrew Simonow,individual,2,"Simonow, Andrew",exact given name and surname,VERIFIED
+PERSON_W_ANDY,Andy W,individual,2,"W, Andy",exact given name and surname,VERIFIED
+PERSON_LEEMAN_ANGELIQUE,Angelique Leeman,individual,2,"Leeman, Angelique",exact given name and surname,VERIFIED
+TMYP_0233,Angerlyk Frytz,individual,2,"Frytz, Angerlyk",exact given name and surname,VERIFIED
+PERSON_HARVEY_ANN,Ann Harvey,individual,2,"Harvey, Ann",exact given name and surname,VERIFIED
+TMYP_0247,Ann Marie Rosado,individual,2,"Rosado, Ann Marie",exact given name and surname,VERIFIED
+TMYP_0231,Anna Festa,individual,2,"Festa, Anna",exact given name and surname,VERIFIED
+TMYP_0086,Anthony Martorano,individual,2,"Martorano, Anthony",exact given name and surname,VERIFIED
+ORG_ARTHUR_LINARES_LINARES_LAND_CAPITAL,Arthur Linares,organization,2,"Arthur Linares (Linares Land Capital) | Arthur Linares (Rodeo Cannabis Co, CEO)","identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0342,Arthur Massolo,individual,2,"Massolo, Arthur",exact given name and surname,VERIFIED
+TMYP_0414,Audrey Rotunda,individual,2,"Rotunda, Audrey",exact given name and surname,VERIFIED
+PERSON_PRIMUS_AUSTIN,Austin Primus,individual,2,"Primus, Austin",exact given name and surname,VERIFIED
+TMYP_0015,Barbara Evans,individual,2,"Evans, Barbara",exact given name and surname,VERIFIED
+PERSON_SHAHAM_BARBARA,Barbara Shaham,individual,2,"Shaham, Barbara",exact given name and surname,VERIFIED
+PERSON_COHEN_BARRY,Barry Cohen,individual,2,"COHEN, BARRY",exact given name and surname,VERIFIED
+TMYP_0076,Ben Zachs,individual,2,"Zachs, Ben",exact given name and surname,VERIFIED
+TMYP_0470,Berm,individual,2,Berm,identical spelling,VERIFIED
+TMYP_0364,Beth Ann Saxagne,individual,2,"Saxagne, Beth Ann",exact given name and surname,VERIFIED
+ORG_BETTER_WAYS_LLC,Better Ways LLC,organization,2,Better Ways | Better Ways LLC,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0446,Billy Jean,individual,2,"Jean, Billy",exact given name and surname,VERIFIED
+PERSON_OATLEY_BRAD,Brad Oatley,individual,2,"Oatley, Brad",exact given name and surname,VERIFIED
+PERSON_KRONSTAT_BRADLEY,Bradley Kronstat,individual,2,"Kronstat, Bradley",exact given name and surname,VERIFIED
+TMYP_0037,Brandon McGee,individual,2,"McGee, Brandon",exact given name and surname,VERIFIED
+TMYP_0345,Brandon Mendes,individual,2,"Mendes, Brandon",exact given name and surname,VERIFIED
+TMYP_0503,Brandon Wyatt,individual,2,"Wyatt, Brandon",exact given name and surname,VERIFIED
+TMYP_0065,Brant Smith,individual,2,"Smith, Brant",exact given name and surname,VERIFIED
+PERSON_HEALY_BRENDEN,Brenden Healy,individual,2,"Healy, Brenden",exact given name and surname,VERIFIED
+TMYP_0469,Brian Anderson,individual,2,"Anderson, Brian",exact given name and surname,VERIFIED
+PERSON_BRIAN_C_FAYE,Brian C Faye,individual,2,Brian C Faye | Brian Faye,exact given name and surname; middle initial present on only one spelling,INFERRED
+TMYP_0474,Brian Essenter,individual,2,"Essenter, Brian",exact given name and surname,VERIFIED
+PERSON_GAGE_BRIAN,Brian Gage,individual,2,"Gage, Brian",exact given name and surname,VERIFIED
+PERSON_MCQUILLAN_BRIAN,Brian McQuillan,individual,2,"McQuillan, Brian",exact given name and surname,VERIFIED
+TMYP_0039,Brian Mulroy,individual,2,"Mulroy, Brian",exact given name and surname,VERIFIED
+TMYP_0049,Brian Quillia,individual,2,"Quillia, Brian",exact given name and surname,VERIFIED
+TMYP_0008,Bryan Cafferelli,individual,2,"Cafferelli, Bryan",exact given name and surname,VERIFIED
+PERSON_DECKER_BRYAN,Bryan Decker,individual,2,"Decker, Bryan",exact given name and surname,VERIFIED
+TMYP_0235,Bryan Hurlburt,individual,2,"Hurlburt, Bryan",exact given name and surname,VERIFIED
+ORG_CT_CANNABIS_CHAMBER_OF_COMMERCE,CT Cannabis Chamber of Commerce,organization,2,CT Cannabis Chamber | CT Cannabis Chamber of Commerce,one organization name is a leading substring of the other and both are the same kind of entity,INFERRED
+ORG_CT_HEMP_INDUSTRY_ASSOCATION,CT Hemp Industry Assocation,organization,2,CT Hemp Industry Assoc | CT Hemp Industry Assocation,one organization name is a leading substring of the other and both are the same kind of entity,INFERRED
+ORG_CT_SAM,CT Sam,organization,2,CT | CT Sam,one organization name is a leading substring of the other and both are the same kind of entity,INFERRED
+TMYP_0378,Camden Svec,individual,2,"Svec, Camden",exact given name and surname,VERIFIED
+PERSON_MURPHY_CAMILLE,Camille Murphy,individual,2,"Murphy, Camille",exact given name and surname,VERIFIED
+PERSON_CONWAY_CANDACE,Candace Conway,individual,2,"Conway, Candace",exact given name and surname,VERIFIED
+PERSON_MULHERN_CAREYANN,CareyAnn Mulhern,individual,2,"Mulhern, CareyAnn",exact given name and surname,VERIFIED
+TMYP_0471,Carl Chisem,individual,2,"Chisem, Carl",exact given name and surname,VERIFIED
+PERSON_SPARAGNA_CARLO,Carlo Sparagna,individual,2,"Sparagna, Carlo",exact given name and surname,VERIFIED
+TMYP_0464,Carlos Teixeira,individual,2,"Teixeira, Carlos",exact given name and surname,VERIFIED
+TMYP_0501,Carly Wolf,individual,2,"Wolf, Carly",exact given name and surname,VERIFIED
+PERSON_GRENIER_CAROL_ANNE,Carol Anne Grenier,individual,2,"Grenier, Carol Anne",exact given name and surname,VERIFIED
+PERSON_DUBS_CAROL,Carol Dubs,individual,2,"Dubs, Carol",exact given name and surname,VERIFIED
+PERSON_SMITH_CAROLINE_TANBEE,Caroline Tanbee Smith,individual,2,"Smith, Caroline Tanbee",exact given name and surname,VERIFIED
+PERSON_DENNIS_CAROLYN,Carolyn Dennis,individual,2,"Dennis, Carolyn",exact given name and surname,VERIFIED
+ORG_CAT_ROCK_HOLISTICS_CT_LLC,Cat Rock Holistics CT LLC,organization,2,Cat Rock Holistics LLC | Cat Rock Holistics CT LLC,one organization name is a leading substring of the other and both are the same kind of entity,INFERRED
+ORG_CCSBA_INC,Ccsba Inc.,organization,2,CCSBA | CCSBA Inc.,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0372,Chad Simard,individual,2,"Simard, Chad",exact given name and surname,VERIFIED
+PERSON_LEMKIN_CHARLES,Charles Lemkin,individual,2,"Lemkin, Charles",exact given name and surname,VERIFIED
+PERSON_OUELLETTE_CHELSEA,Chelsea Ouellette,individual,2,"Ouellette, Chelsea",exact given name and surname,VERIFIED
+TMYP_0384,Chief Richard Velky,individual,2,"Velky, Chief Richard",exact given name and surname,VERIFIED
+TMYP_0152,Chris Herb,individual,2,"Herb, Chris",exact given name and surname,VERIFIED
+TMYP_0359,Chris Poulos,individual,2,"Poulos, Chris",exact given name and surname,VERIFIED
+PERSON_ROHDE_CHRISTIAN,Christian Rohde,individual,2,"Rohde, Christian",exact given name and surname,VERIFIED
+TMYP_0424,Christian a. Herb,individual,2,"Herb, Christian A.",exact given name and surname,VERIFIED
+PERSON_HOLMS_CHRISTINA,Christina Holms,individual,2,"Holms, Christina",exact given name and surname,VERIFIED
+PERSON_SCRUGGS_CHRISTINE,Christine Scruggs,individual,2,"Scruggs, Christine",exact given name and surname,VERIFIED
+TMYP_0423,Christopher Gilrein,individual,2,"Gilrein, Christopher",exact given name and surname,VERIFIED
+PERSON_IGLESIA_CHRISTOPHER,Christopher Iglesia,individual,2,"Iglesia, Christopher",exact given name and surname,VERIFIED
+PERSON_ROMAN_CINDY,Cindy Roman,individual,2,"Roman, Cindy",exact given name and surname,VERIFIED
+TMYP_0010,Cmcc,individual,2,"CMCC, CMCC",identical spelling,VERIFIED
+TMYP_0091,Cody R,individual,2,"R, Cody",exact given name and surname,VERIFIED
+TMYP_0092,Cody Richard,individual,2,"Richard, Cody",exact given name and surname,VERIFIED
+PERSON_DUFFY_COLEEN,Coleen Duffy,individual,2,"Duffy, Coleen",exact given name and surname,VERIFIED
+PERSON_SMITH_COLLEEN,Colleen Smith,individual,2,"Smith, Colleen",exact given name and surname,VERIFIED
+ORG_COMMERCIAL_WORKERS_LCL_371,Commercial Workers Lcl 371,organization,2,Commercial Workers | Commercial Workers Lcl 371,one organization name is a leading substring of the other and both are the same kind of entity,INFERRED
+ORG_CONNECTICUT_GENERAL_ASSEMBLY,Connecticut General Assembly,organization,2,CT General Assembly | Connecticut General Assembly,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+PERSON_CONNECTICUT_HOSPITAL_ASSOCIATION,Connecticut Hospital Association,organization,2,Connecticut Hospital Association,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+PERSON_CONNECTICUT_RECREATIONAL_MARIJUANA_ALLIANCE,Connecticut Recreational Marijuana Alliance,organization,2,CT Recreational Marijuana Alliance | Connecticut Recreational Marijuana Alliance,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+PERSON_MACDOUGALL_CONSTANCE,Constance MacDougall,individual,2,"MacDougall, Constance",exact given name and surname,VERIFIED
+TMYP_0339,Craig Lewis,individual,2,"Lewis, Craig",exact given name and surname,VERIFIED
+TMYP_0437,"Crow Perrault, Lisa Silver",individual,2,"Crow Perrault, Lisa Silver",exact given name and surname,VERIFIED
+ORG_CURALEAF_LLC,"Curaleaf, LLC",organization,2,"Curaleaf | Curaleaf, LLC","identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+PERSON_AUDIBERT_CURTIS,Curtis Audibert,individual,2,"Audibert, Curtis",exact given name and surname,VERIFIED
+PERSON_MERRILL_CYNTHIA,Cynthia Merrill,individual,2,"Merrill, Cynthia",exact given name and surname,VERIFIED
+PERSON_DCP,DCP,individual,2,DCP | DCP (agency),identical spelling,VERIFIED
+PERSON_MONDOU_DANETTE,Danette Mondou,individual,2,"Mondou, Danette",exact given name and surname,VERIFIED
+TMYP_0312,Daniel Dabrowski,individual,2,"Dabrowski, Daniel",exact given name and surname,VERIFIED
+PERSON_HORVATH_DANIEL,Daniel Horvath,individual,2,"Horvath, Daniel",exact given name and surname,VERIFIED
+TMYP_0243,Daniel OKeefe,individual,2,"OKeefe, Daniel",exact given name and surname,VERIFIED
+TMYP_0167,Dannell Lyne,individual,2,"Lyne, Dannell",exact given name and surname,VERIFIED
+TMYP_0404,Dante Bartolomeo,individual,2,"Bartolomeo, Dante",exact given name and surname,VERIFIED
+TMYP_0314,Darrin Dang,individual,2,"Dang, Darrin",exact given name and surname,VERIFIED
+PERSON_GENOVAL_DASHAWN,Dashawn Genoval,individual,2,"GENOVAL, DASHAWN",exact given name and surname,VERIFIED
+TMYP_0459,Dave Rauh,individual,2,"Rauh, Dave",exact given name and surname,VERIFIED
+PERSON_ANGLISS_DAVID,David Angliss,individual,2,"ANGLISS, DAVID",exact given name and surname,VERIFIED
+TMYP_0290,David Barton,individual,2,"Barton, David",exact given name and surname,VERIFIED
+TMYP_0420,David Donnell,individual,2,"Donnell, David",exact given name and surname,VERIFIED
+TMYP_0422,David Fay,individual,2,"Fay, David",exact given name and surname,VERIFIED
+PERSON_GIBBS_DAVID,David Gibbs,individual,2,"Gibbs, David",exact given name and surname,VERIFIED
+PERSON_GODBOUT_DAVID,David Godbout,individual,2,"Godbout, David",exact given name and surname,VERIFIED
+PERSON_LIONETTI_DAVID,David Lionetti,individual,2,"Lionetti, David",exact given name and surname,VERIFIED
+PERSON_MONROE_DAVID,David Monroe,individual,2,"Monroe, David",exact given name and surname,VERIFIED
+PERSON_MORIZIO_DAVID,David Morizio,individual,2,"Morizio, David",exact given name and surname,VERIFIED
+PERSON_MULHALL_DAVID,David Mulhall,individual,2,"Mulhall, David",exact given name and surname,VERIFIED
+TMYP_0242,David Nathan,individual,2,"Nathan, David",exact given name and surname,VERIFIED
+PERSON_RENOUF_DAVID,David Renouf,individual,2,"Renouf, David",exact given name and surname,VERIFIED
+TMYP_0496,David Serrano,individual,2,"Serrano, David",exact given name and surname,VERIFIED
+TMYP_0335,Davin Kwon,individual,2,"Kwon, Davin",exact given name and surname,VERIFIED
+PERSON_PARKER_DAWN,Dawn Parker,individual,2,"Parker, Dawn",exact given name and surname,VERIFIED
+PERSON_KOLTENUK_DEBORAH,Deborah Koltenuk,individual,2,"Koltenuk, Deborah",exact given name and surname,VERIFIED
+PERSON_LOCKER_DEBORAH,Deborah Locker,individual,2,"Locker, Deborah",exact given name and surname,VERIFIED
+TMYP_0301,Demi Carrillo,individual,2,"Carrillo, Demi",exact given name and surname,VERIFIED
+PERSON_DEMOCRATIC_LEADERSHIP_PAC,Democratic Leadership PAC,organization,2,Democratic Leadership PAC | Democratic Leadership PAC (Senate Democratic caucus),"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+PERSON_SWEENEY_DENISE,Denise Sweeney,individual,2,"Sweeney, Denise",exact given name and surname,VERIFIED
+TMYP_0500,Denise Weeks,individual,2,"Weeks, Denise",exact given name and surname,VERIFIED
+TMYP_0433,Dennis Bradley,individual,2,"Bradley, Dennis",exact given name and surname,VERIFIED
+TMYP_0329,Devin Jumper,individual,2,"Jumper, Devin",exact given name and surname,VERIFIED
+TMYP_0315,Diana Davino,individual,2,"Davino, Diana",exact given name and surname,VERIFIED
+TMYP_0445,Diana Goode,individual,2,"Goode, Diana",exact given name and surname,VERIFIED
+PERSON_POWERS_DIANE,Diane Powers,individual,2,"Powers, Diane",exact given name and surname,VERIFIED
+PERSON_COOK_DONNA,Donna Cook,individual,2,"Cook, Donna",exact given name and surname,VERIFIED
+TMYP_0452,Donna Lockwood,individual,2,"Lockwood, Donna",exact given name and surname,VERIFIED
+TMYP_0035,Duncan Markovich,individual,2,"Markovich, Duncan",exact given name and surname,VERIFIED
+TMYP_0411,Ed Hawthorne,individual,2,"Hawthorne, Ed",exact given name and surname,VERIFIED
+PERSON_SULLIVAN_EDWARD,Edward Sullivan,individual,2,"SULLIVAN, EDWARD",exact given name and surname,VERIFIED
+TMYP_0237,Eileen Kopec,individual,2,"Kopec, Eileen",exact given name and surname,VERIFIED
+TMYP_0041,Elisabeth Ott,individual,2,"Ott, Elisabeth",exact given name and surname,VERIFIED
+PERSON_DALY_ELIZABETH,Elizabeth Daly,individual,2,"Daly, Elizabeth",exact given name and surname,VERIFIED
+TMYP_0400,Elizabeth Hebron,individual,2,"Hebron, Elizabeth",exact given name and surname,VERIFIED
+TMYP_0415,Emily Sabo,individual,2,"Sabo, Emily",exact given name and surname,VERIFIED
+PERSON_CASTILLO_EMMANUEL,Emmanuel Castillo,individual,2,"Castillo, Emmanuel",exact given name and surname,VERIFIED
+TMYP_0428,Eric Adames,individual,2,"Adames, Eric",exact given name and surname,VERIFIED
+TMYP_0477,Eric Gjede,individual,2,"Gjede, Eric",exact given name and surname,VERIFIED
+PERSON_THUNEM_ERIC,Eric Thunem,individual,2,"Thunem, Eric",exact given name and surname,VERIFIED
+PERSON_PIERCE_ERICA,Erica Pierce,individual,2,"pierce, erica",exact given name and surname,VERIFIED
+TMYP_0014,Erin Doolittle,individual,2,"Doolittle, Erin",exact given name and surname,VERIFIED
+TMYP_0236,Erin K Kirk,individual,2,"Kirk, Erin K",exact given name and surname,VERIFIED
+TMYP_0318,"Essenter RPh, Brian",individual,2,"Essenter RPh, Brian",exact given name and surname,VERIFIED
+PERSON_BERKOWITZ_EYAL,Eyal Berkowitz,individual,2,"Berkowitz, Eyal",exact given name and surname,VERIFIED
+PERSON_FINE_FETTLE,Fine Fettle,individual,2,Fine Fettle,exact given name and surname,VERIFIED
+ORG_FINE_FETTLE_DISPENSARIES,Fine Fettle Dispensaries,organization,2,Fine Fettle Dispensaries | Fine Fettle Dispensary,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0475,Fine Fettle Dispensary,individual,2,Fine Fettle Dispensary,exact given name and surname,VERIFIED
+ORG_FLOAT_HOUSE_48_750,"Float House - $48,750",organization,2,"Float House | Float House - $48,750",one organization name is a leading substring of the other and both are the same kind of entity,INFERRED
+PERSON_REDENTE_FRANK,Frank Redente,individual,2,"Redente, Frank",exact given name and surname,VERIFIED
+PERSON_PARMALEE_FREDERICK,Frederick Parmalee,individual,2,"Parmalee, Frederick",exact given name and surname,VERIFIED
+PERSON_FARBER_FREDRIC,Fredric Farber,individual,2,"Farber, Fredric",exact given name and surname,VERIFIED
+PERSON_GOLDEN_GABRIELA,Gabriela Golden,individual,2,"Golden, Gabriela",exact given name and surname,VERIFIED
+PERSON_CRAIG_GAIL,Gail Craig,individual,2,"Craig, Gail",exact given name and surname,VERIFIED
+PERSON_HYDE_GARY,Gary Hyde,individual,2,"Hyde, Gary",exact given name and surname,VERIFIED
+PERSON_PALMER_GARY,Gary Palmer,individual,2,"Palmer, Gary",exact given name and surname,VERIFIED
+TMYP_0441,Gauge,individual,2,Gauge,identical spelling,VERIFIED
+TMYP_0332,George Kingsley,individual,2,"Kingsley, George",exact given name and surname,VERIFIED
+PERSON_HELLER_GERALD,Gerald Heller,individual,2,"Heller, Gerald",exact given name and surname,VERIFIED
+PERSON_CAREY_GINA,Gina Carey,individual,2,"Carey, Gina",exact given name and surname,VERIFIED
+TMYP_0307,Ginne Clay,individual,2,"Clay, Ginne",exact given name and surname,VERIFIED
+TMYP_0042,Girish Patel,individual,2,"Patel, Girish",exact given name and surname,VERIFIED
+TMYP_0444,"Goetsch, PhD",individual,2,"Goetsch, PhD",identical spelling,VERIFIED
+TMYP_0367,Gokul Shah,individual,2,"Shah, Gokul",exact given name and surname,VERIFIED
+TMYP_0075,Gordon Whelpley,individual,2,"Whelpley, Gordon",exact given name and surname,VERIFIED
+TMYP_0085,"Gorman Kirk, Erin",individual,2,"Gorman Kirk, Erin",exact given name and surname,VERIFIED
+PERSON_LIONETTI_GREGG,Gregg Lionetti,individual,2,"Lionetti, Gregg",exact given name and surname,VERIFIED
+PERSON_GORSKI_GREGORY,Gregory Gorski,individual,2,"Gorski, Gregory",exact given name and surname,VERIFIED
+PERSON_GREGORY_R_GOURLEY,Gregory R Gourley,individual,2,Gregory Gourley | Gregory R Gourley,exact given name and surname; middle initial present on only one spelling,INFERRED
+TMYP_0280,Gretchen Swanson,individual,2,"Swanson, Gretchen",exact given name and surname,VERIFIED
+PERSON_MARIN_GUILLERMO,Guillermo Marin,individual,2,"Marin, Guillermo",exact given name and surname,VERIFIED
+PERSON_RAYMOND_HADLER,Hadler Raymond,individual,2,"Raymond, Hadler",exact given name and surname,VERIFIED
+PERSON_BUSSEY_HALEY,Haley Bussey,individual,2,"Bussey, Haley",exact given name and surname,VERIFIED
+TMYP_0376,Haley Steigerwald,individual,2,"Steigerwald, Haley",exact given name and surname,VERIFIED
+PERSON_MARTINEZ_HANNAH,Hannah Martinez,individual,2,"Martinez, Hannah",exact given name and surname,VERIFIED
+TMYP_0480,Hbra,individual,2,HBRA,identical spelling,VERIFIED
+TMYP_0442,Hector Gerardo,individual,2,"Gerardo, Hector",exact given name and surname,VERIFIED
+PERSON_HENRY_JR_GEORGE_MARTIN,"Henry Jr., George Martin",individual,2,"Henry Jr., George Martin",exact given name and surname,VERIFIED
+PERSON_ORPHYS_HENRY,Henry Orphys,individual,2,"Orphys, Henry",exact given name and surname,VERIFIED
+TMYP_0305,Holly Cheeseman,individual,2,"Cheeseman, Holly",exact given name and surname,VERIFIED
+ORG_HOUSE_OF_REPRESENTATIVES_STATE_OF_CONNECTICUT,"House of Representatives, State of Connecticut",organization,2,"House of Representatives, State of CT | House of Representatives, State of Connecticut","identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0333,Howard Kohlenberg,individual,2,"Kohlenberg, Howard",exact given name and surname,VERIFIED
+PERSON_MARSH_HOWARD_L,Howard L. Marsh,individual,2,"Marsh, Howard L.",exact given name and surname,VERIFIED
+TMYP_0020,Ingrid Gillespie,individual,2,"Gillespie, Ingrid",exact given name and surname,VERIFIED
+TMYP_0370,Jack Sherrie,individual,2,"Sherrie, Jack",exact given name and surname,VERIFIED
+TMYP_0448,Jackson Kachur,individual,2,"Kachur, Jackson",exact given name and surname,VERIFIED
+PERSON_MCKENNA_JACOB,Jacob McKenna,individual,2,"McKenna, Jacob",exact given name and surname,VERIFIED
+PERSON_TRUEBLOOD_JACQUELINE,Jacqueline Trueblood,individual,2,"Trueblood, Jacqueline",exact given name and surname,VERIFIED
+PERSON_DUNSEN_JADA,Jada Dunsen,individual,2,"Dunsen, Jada",exact given name and surname,VERIFIED
+TMYP_0005,Jake Bullock,individual,2,"Bullock, Jake",exact given name and surname,VERIFIED
+PERSON_AUSTIN_JAMES,James Austin,individual,2,"Austin, James",exact given name and surname,VERIFIED
+PERSON_BISHOP_JAMES,James Bishop,individual,2,"Bishop, James",exact given name and surname,VERIFIED
+TMYP_0123,James Cox,individual,2,"Cox, James",exact given name and surname,VERIFIED
+PERSON_SABIO_JAMES,James Sabio,individual,2,"Sabio, James",exact given name and surname,VERIFIED
+TMYP_0385,James Viglione,individual,2,"Viglione, James",exact given name and surname,VERIFIED
+PERSON_YOUNG_JAMES,James Young,individual,2,"Young, James",exact given name and surname,VERIFIED
+TMYP_0455,Jane M,individual,2,"M, Jane",exact given name and surname,VERIFIED
+PERSON_SMITH_JANE,Jane Smith,individual,2,"Smith, Jane",exact given name and surname,VERIFIED
+TMYP_0038,Janell Mullen,individual,2,"Mullen, Janell",exact given name and surname,VERIFIED
+TMYP_0429,Janice Averill,individual,2,"Averill, Janice",exact given name and surname,VERIFIED
+TMYP_0492,Jason Ortiz,individual,2,"Ortiz, Jason",exact given name and surname,VERIFIED
+TMYP_0043,Jason Perillo,individual,2,"Perillo, Jason",exact given name and surname,VERIFIED
+TMYP_0402,Jason Prevelige,individual,2,"Prevelige, Jason",exact given name and surname,VERIFIED
+PERSON_JASON_ROJAS_PAC,Jason Rojas PAC,organization,2,Jason Rojas PAC | Jason Rojas PAC (Rep. Rojas),"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+PERSON_SHEEHY_JAY,Jay Sheehy,individual,2,"Sheehy, Jay",exact given name and surname,VERIFIED
+TMYP_0011,Jean Cronin,individual,2,"Cronin, Jean",exact given name and surname,VERIFIED
+PERSON_PEARE_JEANNIE,Jeannie Peare,individual,2,"Peare, Jeannie",exact given name and surname,VERIFIED
+PERSON_ALFIN_JEFF,Jeff Alfin,individual,2,"Alfin, Jeff",exact given name and surname,VERIFIED
+TMYP_0426,Jeff Shaw,individual,2,"Shaw, Jeff",exact given name and surname,VERIFIED
+TMYP_0388,Jeff Wentzel,individual,2,"Wentzel, Jeff",exact given name and surname,VERIFIED
+PERSON_ROUX_JENNA,Jenna Roux,individual,2,"Roux, Jenna",exact given name and surname,VERIFIED
+PERSON_MACHON_JENNIFER,Jennifer MacHon,individual,2,"Machon, Jennifer",exact given name and surname,VERIFIED
+PERSON_MARCHAND_JENNIFER,Jennifer Marchand,individual,2,"Marchand, Jennifer",exact given name and surname,VERIFIED
+TMYP_0331,Jeremy Keyes,individual,2,"Keyes, Jeremy",exact given name and surname,VERIFIED
+TMYP_0078,Jeremy Ortiz,individual,2,"Ortiz, Jeremy",exact given name and surname,VERIFIED
+PERSON_ALBINO_JEROME_THOMAS,Jerome Thomas Albino,individual,2,"Albino, Jerome Thomas",exact given name and surname,VERIFIED
+PERSON_DYDYN_JESSICA,Jessica Dydyn,individual,2,"Dydyn, Jessica",exact given name and surname,VERIFIED
+TMYP_0447,Jessica Johnson,individual,2,"Johnson, Jessica",exact given name and surname,VERIFIED
+TMYP_0401,Jim Perras,individual,2,"Perras, Jim",exact given name and surname,VERIFIED
+TMYP_0431,Joaquin Bido,individual,2,"Bido, Joaquin",exact given name and surname,VERIFIED
+TMYP_0082,Jocelyn Cerda,individual,2,"Cerda, Jocelyn",exact given name and surname,VERIFIED
+PERSON_WATSON_JODY,Jody Watson,individual,2,"Watson, Jody",exact given name and surname,VERIFIED
+TMYP_0325,Joe Grabowski,individual,2,"Grabowski, Joe",exact given name and surname,VERIFIED
+PERSON_SLADEK_JOE,Joe Sladek,individual,2,"Sladek, Joe",exact given name and surname,VERIFIED
+PERSON_TIROLETTO_JOE,Joe Tiroletto,individual,2,"Tiroletto, Joe",exact given name and surname,VERIFIED
+TMYP_0089,Joey Petrino,individual,2,"Petrino, Joey",exact given name and surname,VERIFIED
+PERSON_ACCAVALLO_JOHN,John Accavallo,individual,2,"Accavallo, John",exact given name and surname,VERIFIED
+TMYP_0430,John Barrett,individual,2,"Barrett, John",exact given name and surname,VERIFIED
+PERSON_BAUER_JOHN,John Bauer,individual,2,"Bauer, John",exact given name and surname,VERIFIED
+PERSON_CAHILLANE_JOHN,John Cahillane,individual,2,"Cahillane, John",exact given name and surname,VERIFIED
+PERSON_CURRAN_JOHN,John Curran,individual,2,"CURRAN, JOHN",exact given name and surname,VERIFIED
+TMYP_0421,John Erlingheuser,individual,2,"Erlingheuser, John",exact given name and surname,VERIFIED
+PERSON_MCNEFF_JOHN,John McNeff,individual,2,"McNeff, John",exact given name and surname,VERIFIED
+PERSON_MONTAGUE_JOHN,John Montague,individual,2,"Montague, John",exact given name and surname,VERIFIED
+PERSON_ROLLERI_JOHN,John Rolleri,individual,2,"Rolleri, John",exact given name and surname,VERIFIED
+TMYP_0200,John Schuyler,individual,2,"Schuyler, John",exact given name and surname,VERIFIED
+PERSON_WATKINS_JOHN,John Watkins,individual,2,"Watkins, John",exact given name and surname,VERIFIED
+TMYP_0482,Joint Testimony of,individual,2,Joint Testimony of,exact given name and surname,VERIFIED
+TMYP_0147,Jonathan Green,individual,2,"Green, Jonathan",exact given name and surname,VERIFIED
+PERSON_LEONE_JONATHAN,Jonathan Leone,individual,2,"Leone, Jonathan",exact given name and surname,VERIFIED
+TMYP_0056,Jonathan Russell,individual,2,"Russell, Jonathan",exact given name and surname,VERIFIED
+TMYP_0460,Jordan Rosenzweig,individual,2,"Rosenzweig, Jordan",exact given name and surname,VERIFIED
+TMYP_0396,Joseph Biden,individual,2,"Biden, Joseph",exact given name and surname,VERIFIED
+PERSON_WOLLACK_JOSEPH,Joseph Wollack,individual,2,"Wollack, Joseph",exact given name and surname,VERIFIED
+TMYP_0410,Joshua Frazer,individual,2,"Frazer, Joshua",exact given name and surname,VERIFIED
+PERSON_PEDERSEN_JOSHUA,Joshua Pedersen,individual,2,"Pedersen, Joshua",exact given name and surname,VERIFIED
+TMYP_0366,Joshua Schultz,individual,2,"Schultz, Joshua",exact given name and surname,VERIFIED
+TMYP_0060,Josiah Schlee,individual,2,"Schlee, Josiah",exact given name and surname,VERIFIED
+TMYP_0239,Jude Malone,individual,2,"Malone, Jude",exact given name and surname,VERIFIED
+PERSON_BROWN_JULIANA,Juliana Brown,individual,2,"Brown, Juliana",exact given name and surname,VERIFIED
+TMYP_0468,Justin Welch,individual,2,"Welch, Justin",exact given name and surname,VERIFIED
+TMYP_0309,Kaitlin Comet,individual,2,"Comet, Kaitlin",exact given name and surname,VERIFIED
+PERSON_ANTHONY_KALUNDA,Kalunda Anthony,individual,2,"Anthony, Kalunda",exact given name and surname,VERIFIED
+PERSON_ANULEWICZ_KAREN,Karen Anulewicz,individual,2,"Anulewicz, Karen",exact given name and surname,VERIFIED
+PERSON_FECKO_KAREN,Karen Fecko,individual,2,"Fecko, Karen",exact given name and surname,VERIFIED
+PERSON_STEWART_KAREN,Karen Stewart,individual,2,"Stewart, Karen",exact given name and surname,VERIFIED
+TMYP_0379,Karen Swiatek,individual,2,"Swiatek, Karen",exact given name and surname,VERIFIED
+TMYP_0139,Karla Fox,individual,2,"Fox, Karla",exact given name and surname,VERIFIED
+PERSON_PATNAUDE_KATHERINE,Katherine Patnaude,individual,2,"Patnaude, Katherine",exact given name and surname,VERIFIED
+PERSON_KELLEY_KATHLEEN,Kathleen Kelley,individual,2,"Kelley, kathleen",exact given name and surname,VERIFIED
+TMYP_0408,Kathryn Dube,individual,2,"Dube, Kathryn",exact given name and surname,VERIFIED
+PERSON_MARTORANO_KATHY,Kathy Martorano,individual,2,"Martorano, Kathy",exact given name and surname,VERIFIED
+PERSON_MCCARTY_KATHY,Kathy McCarty,individual,2,"McCarty, Kathy",exact given name and surname,VERIFIED
+PERSON_GALLO_KATIE,Katie Gallo,individual,2,"Gallo, Katie",exact given name and surname,VERIFIED
+PERSON_SCHENKER_KATIE,Katie Schenker,individual,2,"Schenker, Katie",exact given name and surname,VERIFIED
+TMYP_0228,Kay Doyle,individual,2,"Doyle, Kay",exact given name and surname,VERIFIED
+PERSON_CLARKE_KEISHA,Keisha Clarke,individual,2,"Clarke, Keisha",exact given name and surname,VERIFIED
+TMYP_0319,Keith Farrell,individual,2,"Farrell, Keith",exact given name and surname,VERIFIED
+TMYP_0341,Kelly Marsella,individual,2,"Marsella, Kelly",exact given name and surname,VERIFIED
+TMYP_0047,Kelly Poulsen,individual,2,"Poulsen, Kelly",exact given name and surname,VERIFIED
+PERSON_S_KEN,Ken S,individual,2,"s, ken",exact given name and surname,VERIFIED
+TMYP_0481,Keri Hoehne,individual,2,"Hoehne, Keri",exact given name and surname,VERIFIED
+PERSON_BAEZ_KEVIN,Kevin Baez,individual,2,"Baez, Kevin",exact given name and surname,VERIFIED
+TMYP_0449,Kevin Kelly,individual,2,"Kelly, Kevin",exact given name and surname,VERIFIED
+PERSON_MILLEN_KEVIN,Kevin Millen,individual,2,"Millen, Kevin",exact given name and surname,VERIFIED
+TMYP_0057,Kevin Sabet,individual,2,"Sabet, Kevin",exact given name and surname,VERIFIED
+TMYP_0275,Kevin Skulczyck,individual,2,"Skulczyck, Kevin",exact given name and surname,VERIFIED
+TMYP_0003,Kevnesha Boyd,individual,2,"Boyd, Kevnesha",exact given name and surname,VERIFIED
+PERSON_WALKER_KEVON,Kevon Walker,individual,2,"Walker, Kevon",exact given name and surname,VERIFIED
+TMYP_0040,Kiersten Naumann,individual,2,"Naumann, Kiersten",exact given name and surname,VERIFIED
+TMYP_0465,Kimberly Testone,individual,2,"Testone, Kimberly",exact given name and surname,VERIFIED
+PERSON_MIKKELSON_KRISTA,Krista Mikkelson,individual,2,"Mikkelson, Krista",exact given name and surname,VERIFIED
+TMYP_0021,Kristen Gilliland,individual,2,"Gilliland, Kristen",exact given name and surname,VERIFIED
+PERSON_FUSCO_LL,LL Fusco,individual,2,"Fusco, LL",exact given name and surname,VERIFIED
+ORG_LA_DISPENSARIES,La Dispensaries,organization,2,La | La Dispensaries,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0007,Larry Cafero,individual,2,"Cafero, Larry",exact given name and surname,VERIFIED
+TMYP_0454,Laura Lynch,individual,2,"Lynch, Laura",exact given name and surname,VERIFIED
+PERSON_WYETH_LAURA,Laura Wyeth,individual,2,"Wyeth, Laura",exact given name and surname,VERIFIED
+PERSON_MONDOU_LAUREL,Laurel Mondou,individual,2,"Mondou, Laurel",exact given name and surname,VERIFIED
+TMYP_0395,Laurie Zrenda,individual,2,"Zrenda, Laurie",exact given name and surname,VERIFIED
+TMYP_0090,Lavaughn Price,individual,2,"Price, Lavaughn",exact given name and surname,VERIFIED
+TMYP_0479,Leanne Harpin,individual,2,"Harpin, Leanne",exact given name and surname,VERIFIED
+PERSON_STEWART_LEE,Lee Stewart,individual,2,"Stewart, Lee",exact given name and surname,VERIFIED
+PERSON_KAUFMAN_LEWIS,Lewis Kaufman,individual,2,"Kaufman, Lewis",exact given name and surname,VERIFIED
+PERSON_DALESSIO_LINDA,Linda Dalessio,individual,2,"Dalessio, Linda",exact given name and surname,VERIFIED
+TMYP_0334,Linda Kowalski,individual,2,"Kowalski, Linda",exact given name and surname,VERIFIED
+PERSON_SCATENA_LISA,Lisa Scatena,individual,2,"Scatena, Lisa",exact given name and surname,VERIFIED
+PERSON_BRIEN_LORI,Lori Brien,individual,2,"Brien, Lori",exact given name and surname,VERIFIED
+TMYP_0052,Lou Rinaldi,individual,2,"Rinaldi, Lou",exact given name and surname,VERIFIED
+TMYP_0439,Lucy Dathan,individual,2,"Dathan, Lucy",exact given name and surname,VERIFIED
+TMYP_0453,Luisi,individual,2,Luisi,identical spelling,VERIFIED
+PERSON_BOYD_LYANDRE,Lyandre Boyd,individual,2,"Boyd, Lyandre",exact given name and surname,VERIFIED
+TMYP_0375,M.D. Sprague,individual,2,"Sprague, M.D.",exact given name and surname,VERIFIED
+TMYP_0493,Marc Perrone,individual,2,"Perrone, Marc",exact given name and surname,VERIFIED
+TMYP_0244,Marcela Osello,individual,2,"Osello, Marcela",exact given name and surname,VERIFIED
+PERSON_DALY_MARGARET,Margaret Daly,individual,2,"Daly, Margaret",exact given name and surname,VERIFIED
+PERSON_KELLY_MARGARET,Margaret Kelly,individual,2,"Kelly, Margaret",exact given name and surname,VERIFIED
+TMYP_0073,Margaret Watt,individual,2,"Watt, Margaret",exact given name and surname,VERIFIED
+PERSON_WHITEMAN_MARGARET,Margaret Whiteman,individual,2,"Whiteman, Margaret",exact given name and surname,VERIFIED
+PERSON_HOMAYONPOUR_MARIETTA,Marietta Homayonpour,individual,2,"Homayonpour, Marietta",exact given name and surname,VERIFIED
+TMYP_0226,Maritza Bond,individual,2,"Bond, Maritza",exact given name and surname,VERIFIED
+PERSON_MONTANEZ_MARITZA,Maritza Montanez,individual,2,"Montanez, Maritza",exact given name and surname,VERIFIED
+PERSON_SKIDMORE_MARJORIE,Marjorie Skidmore,individual,2,"Skidmore, Marjorie",exact given name and surname,VERIFIED
+PERSON_ALLIOD_MARK,Mark Alliod,individual,2,"Alliod, Mark",exact given name and surname,VERIFIED
+PERSON_CAPLAN_MARK,Mark Caplan,individual,2,"Caplan, Mark",exact given name and surname,VERIFIED
+TMYP_0316,Mark DeCaprio,individual,2,"DeCaprio, Mark",exact given name and surname,VERIFIED
+TMYP_0473,Mark Espinosa,individual,2,"Espinosa, Mark",exact given name and surname,VERIFIED
+PERSON_MARK_KACZYNSKI,Mark Kaczynski,individual,2,Mark H Kaczynski | Mark Kaczynski,exact given name and surname; middle initial present on only one spelling,INFERRED
+PERSON_MACKENN_MARK,Mark MacKenn,individual,2,"MacKenn, Mark",exact given name and surname,VERIFIED
+PERSON_SEMMELROCK_MARK,Mark Semmelrock,individual,2,"SEMMELROCK, MARK",exact given name and surname,VERIFIED
+PERSON_BASSETT_MARTHA,Martha Bassett,individual,2,"Bassett, Martha",exact given name and surname,VERIFIED
+PERSON_ROVEDA_MARTI,Marti Roveda,individual,2,"Roveda, Marti",exact given name and surname,VERIFIED
+PERSON_GANNON_MARTIN_CRAIG,Martin Craig Gannon,individual,2,"Gannon, Martin Craig",exact given name and surname,VERIFIED
+PERSON_SQUIRE_MARTIN,Martin Squire,individual,2,"Squire, Martin",exact given name and surname,VERIFIED
+PERSON_MARY_BETH_PANTALENA,Mary Beth Pantalena,individual,2,Mary Beth Pantalena | Mary Pantalena,exact given name and surname; middle initial present on only one spelling,INFERRED
+PERSON_LECLAIR_MARY_JANE,Mary Jane LeClair,individual,2,"LeClair, Mary Jane",exact given name and surname,VERIFIED
+TMYP_0491,Mary Jane Oatman,individual,2,"Oatman, Mary Jane",exact given name and surname,VERIFIED
+PERSON_KOLITSIDAS_MARYANNE,MaryAnne Kolitsidas,individual,2,"Kolitsidas, MaryAnne",exact given name and surname,VERIFIED
+TMYP_0487,Mashantucket Pequot Tribal Nation,individual,2,Mashantucket Pequot Tribal Nation,exact given name and surname,VERIFIED
+TMYP_0416,Matt Sipala,individual,2,"Sipala, Matt",exact given name and surname,VERIFIED
+TMYP_0009,Matthew Carter,individual,2,"Carter, Matthew",exact given name and surname,VERIFIED
+PERSON_COLEMAN_MAUREEN,Maureen Coleman,individual,2,"Coleman, Maureen",exact given name and surname,VERIFIED
+TMYP_0488,"McConney Moore, Kelly",individual,2,"McConney Moore, Kelly",exact given name and surname,VERIFIED
+TMYP_0483,Melissa Keilty,individual,2,"Keilty, Melissa",exact given name and surname,VERIFIED
+TMYP_0036,Melissa McGarry,individual,2,"McGarry, Melissa",exact given name and surname,VERIFIED
+TMYP_0380,Meredith Taylor,individual,2,"Taylor, Meredith",exact given name and surname,VERIFIED
+PERSON_BERTHIAUME_MICHAEL,Michael Berthiaume,individual,2,"Berthiaume, Michael",exact given name and surname,VERIFIED
+PERSON_GOLDSTEIN_MICHAEL,Michael Goldstein,individual,2,"Goldstein, Michael",exact given name and surname,VERIFIED
+TMYP_0022,Michael Goodenough,individual,2,"Goodenough, Michael",exact given name and surname,VERIFIED
+PERSON_GOSTOMSKI_MICHAEL,Michael Gostomski,individual,2,"Gostomski, Michael",exact given name and surname,VERIFIED
+PERSON_PALLEIN_MICHAEL,Michael Pallein,individual,2,"Pallein, Michael",exact given name and surname,VERIFIED
+TMYP_0044,Michael Pineau,individual,2,"Pineau, Michael",exact given name and surname,VERIFIED
+PERSON_VAGNINI_MICHAEL,Michael Vagnini,individual,2,"Vagnini, Michael",exact given name and surname,VERIFIED
+PERSON_DUMESNIL_MICHELE,Michele Dumesnil,individual,2,"Dumesnil, Michele",exact given name and surname,VERIFIED
+TMYP_0461,Michelle Seagull,individual,2,"Seagull, Michelle",exact given name and surname,VERIFIED
+TMYP_0286,Mitchell Ancona,individual,2,"Ancona, Mitchell",exact given name and surname,VERIFIED
+TMYP_0013,Monica DiLossi,individual,2,"DiLossi, Monica",exact given name and surname,VERIFIED
+TMYP_0352,N,individual,2,N,identical spelling,VERIFIED
+TMYP_0267,NA,individual,2,"NA, NA",identical spelling,VERIFIED
+ORG_NAMI_CT,NAMI CT,organization,2,NAMI CT | NAMI Connecticut,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0017,Nancy French,individual,2,"French, Nancy",exact given name and surname,VERIFIED
+TMYP_0489,National Safety Council,organization,2,National Safety Council,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0266,Neal Musk,individual,2,"Musk, Neal",exact given name and surname,VERIFIED
+TMYP_0088,Nevil Patel,individual,2,"Patel, Nevil",exact given name and surname,VERIFIED
+PERSON_MAZZAMARO_NICHOLAS,Nicholas Mazzamaro,individual,2,"Mazzamaro, Nicholas",exact given name and surname,VERIFIED
+PERSON_NICHOLAS_TAMBORRINO,Nicholas Tamborrino,individual,2,Nicholas Tamborrino | Nick Tamborrino,same surname; given names are a known nickname pair,INFERRED
+PERSON_WOODARD_NICHOLAS,Nicholas Woodard,individual,2,"Woodard, Nicholas",exact given name and surname,VERIFIED
+TMYP_0311,Nick Costanza,individual,2,"Costanza, Nick",exact given name and surname,VERIFIED
+TMYP_0409,Nicole Eaton,individual,2,"Eaton, Nicole",exact given name and surname,VERIFIED
+PERSON_HAMPTON_NICOLE,Nicole Hampton,individual,2,"Hampton, Nicole",exact given name and surname,VERIFIED
+PERSON_SFERRA_NOAH,Noah Sferra,individual,2,"Sferra, Noah",exact given name and surname,VERIFIED
+TMYP_0045,Norman Plude,individual,2,"Plude, Norman",exact given name and surname,VERIFIED
+TMYP_0458,Olivia McGuire,individual,2,"McGuire, Olivia",exact given name and surname,VERIFIED
+TMYP_0283,Olivia a,individual,2,"A, Olivia",exact given name and surname,VERIFIED
+TMYP_0478,Omar Green,individual,2,"Green, Omar",exact given name and surname,VERIFIED
+TMYP_0355,P,individual,2,"p, p",identical spelling,VERIFIED
+TMYP_0303,Paige Cecchi,individual,2,"Cecchi, Paige",exact given name and surname,VERIFIED
+PERSON_MILLER_PATRICK,Patrick Miller,individual,2,"Miller, Patrick",exact given name and surname,VERIFIED
+TMYP_0368,Patrick Shatzer,individual,2,"Shatzer, Patrick",exact given name and surname,VERIFIED
+PERSON_BALLASY_PAUL,Paul Ballasy,individual,2,"Ballasy, Paul",exact given name and surname,VERIFIED
+PERSON_CAIAFA_PAUL,Paul Caiafa,individual,2,"Caiafa, Paul",exact given name and surname,VERIFIED
+TMYP_0051,Paul Reinhardt,individual,2,"Reinhardt, Paul",exact given name and surname,VERIFIED
+TMYP_0353,Pete Onofrio,individual,2,"Onofrio, Pete",exact given name and surname,VERIFIED
+TMYP_0294,Peter Bogdan,individual,2,"Bogdan, Peter",exact given name and surname,VERIFIED
+TMYP_0182,Peter Niedermeyer,individual,2,"Niedermeyer, Peter",exact given name and surname,VERIFIED
+TMYP_0284,Peter a,individual,2,"A, Peter",exact given name and surname,VERIFIED
+PERSON_DECAPRIO_PHILIP,Philip DeCaprio,individual,2,"DeCaprio, Philip",exact given name and surname,VERIFIED
+TMYP_0392,Pierce Wylie,individual,2,"Wylie, Pierce",exact given name and surname,VERIFIED
+TMYP_0495,R. H. Barry Sample,individual,2,"Sample, R. H. Barry",exact given name and surname,VERIFIED
+TMYP_0337,Rachel Lang,individual,2,"Lang, Rachel",exact given name and surname,VERIFIED
+TMYP_0054,Rafael Rosario,individual,2,"Rosario, Rafael",exact given name and surname,VERIFIED
+PERSON_FORMICA_RALPH,Ralph Formica,individual,2,"Formica, Ralph",exact given name and surname,VERIFIED
+PERSON_VOLPE_RALPH,Ralph Volpe,individual,2,"Volpe, Ralph",exact given name and surname,VERIFIED
+PERSON_ANDERSON_RAYMOND,Raymond Anderson,individual,2,"Anderson, Raymond",exact given name and surname,VERIFIED
+TMYP_0025,Rebecca Harvey,individual,2,"Harvey, Rebecca",exact given name and surname,VERIFIED
+PERSON_BLAZEJOWSKI_REBECCA_JEAN,Rebecca Jean Blazejowski,individual,2,"Blazejowski, Rebecca Jean",exact given name and surname,VERIFIED
+PERSON_ABANDULA_REGENE,Regene Abandula,individual,2,"Abandula, Regene",exact given name and surname,VERIFIED
+PERSON_MASSARO_RICHARD,Richard Massaro,individual,2,"Massaro, Richard",exact given name and surname,VERIFIED
+TMYP_0251,Richard Velky,individual,2,"Velky, Richard",exact given name and surname,VERIFIED
+PERSON_CAPPELLETTI_ROBERT,Robert Cappelletti,individual,2,"Cappelletti, Robert",exact given name and surname,VERIFIED
+PERSON_COOK_ROBERT,Robert Cook,individual,2,"Cook, Robert",exact given name and surname,VERIFIED
+PERSON_CUMMINGS_ROBERT,Robert Cummings,individual,2,"Cummings, Robert",exact given name and surname,VERIFIED
+TMYP_0129,Robert Day,individual,2,"Day, Robert",exact given name and surname,VERIFIED
+PERSON_IGNAGNI_ROBERT,Robert Ignagni,individual,2,"Ignagni, Robert",exact given name and surname,VERIFIED
+TMYP_0412,Robert MacArthur,individual,2,"MacArthur, Robert",exact given name and surname,VERIFIED
+PERSON_SMITH_ROBERT,Robert Smith,individual,2,"Smith, Robert",exact given name and surname,VERIFIED
+PERSON_WARREN_ROBERT,Robert Warren,individual,2,"Warren, Robert",exact given name and surname,VERIFIED
+PERSON_KRISTOFF_ROBIN,Robin Kristoff,individual,2,"Kristoff, Robin",exact given name and surname,VERIFIED
+PERSON_WAHL_ROBYN,Robyn Wahl,individual,2,"Wahl, Robyn",exact given name and surname,VERIFIED
+PERSON_CHACE_ROGER,Roger Chace,individual,2,"Chace, Roger",exact given name and surname,VERIFIED
+TMYP_0494,Ronald Petronella,individual,2,"Petronella, Ronald",exact given name and surname,VERIFIED
+ORG_RUNNING_BROOK_HEMP_CO,Running Brook Hemp Co.,organization,2,Running Brook Farms | Running Brook Hemp Co.,one organization name is a leading substring of the other and both are the same kind of entity,INFERRED
+TMYP_0245,Ryan Picard,individual,2,"Picard, Ryan",exact given name and surname,VERIFIED
+PERSON_SHEPPARD_RYAN,Ryan Sheppard,individual,2,"Sheppard, Ryan",exact given name and surname,VERIFIED
+PERSON_SULLIVAN_RYAN,Ryan Sullivan,individual,2,"Sullivan, Ryan",exact given name and surname,VERIFIED
+PERSON_SEC_REINVESTMENT_COMMITTEE_MEMBERS,SEC Reinvestment Committee Members,organization,2,SEC Reinvestment Committee Member | SEC Reinvestment Committee Members,one organization name is a leading substring of the other and both are the same kind of entity,INFERRED
+TMYP_0486,Sal Luciano,individual,2,"Luciano, Sal",exact given name and surname,VERIFIED
+PERSON_SCHERTZ_SAMANTHA,Samantha Schertz,individual,2,"Schertz, Samantha",exact given name and surname,VERIFIED
+PERSON_COOMBES_SANDY,Sandy Coombes,individual,2,"Coombes, Sandy",exact given name and surname,VERIFIED
+ORG_SANTIAGO_FOR_CONNECTICUT,Santiago for Connecticut,committee,2,Santiago for CT | Santiago for Connecticut,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0476,Sarah Gersten,individual,2,"Gersten, Sarah",exact given name and surname,VERIFIED
+PERSON_HUDOCK_SARAH,Sarah Hudock,individual,2,"hudock, sarah",exact given name and surname,VERIFIED
+PERSON_MILLER_SARAH,Sarah Miller,individual,2,"Miller, Sarah",exact given name and surname,VERIFIED
+TMYP_0490,Sarah Noon,individual,2,"Noon, Sarah",exact given name and surname,VERIFIED
+PERSON_STOVER_SARAH,Sarah Stover,individual,2,"Stover, Sarah",exact given name and surname,VERIFIED
+PERSON_KERR_SCOT,Scot Kerr,individual,2,"Kerr, Scot",exact given name and surname,VERIFIED
+PERSON_CRANE_SCOTT,Scott Crane,individual,2,"Crane, Scott",exact given name and surname,VERIFIED
+PERSON_GOETJEN_SCOTT,Scott Goetjen,individual,2,"Goetjen, Scott",exact given name and surname,VERIFIED
+PERSON_SCHULZ_SCOTT,Scott Schulz,individual,2,"Schulz, Scott",exact given name and surname,VERIFIED
+TMYP_0417,Sean Auyash,individual,2,"Auyash, Sean",exact given name and surname,VERIFIED
+TMYP_0252,Sean Scanlon,individual,2,"Scanlon, Sean",exact given name and surname,VERIFIED
+TMYP_0083,Seth Feinberg,individual,2,"Feinberg, Seth",exact given name and surname,VERIFIED
+PERSON_SETH_SHOLES,Seth Sholes,individual,2,Seth R Sholes | Seth Sholes,exact given name and surname; middle initial present on only one spelling,INFERRED
+TMYP_0498,Shaleen Title,individual,2,"Title, Shaleen",exact given name and surname,VERIFIED
+PERSON_RANKIN_SHARENA,Sharena Rankin,individual,2,"Rankin, Sharena",exact given name and surname,VERIFIED
+PERSON_BRUNE_SHARON,Sharon Brune,individual,2,"Brune, Sharon",exact given name and surname,VERIFIED
+TMYP_0304,Sharon Centrone,individual,2,"Centrone, Sharon",exact given name and surname,VERIFIED
+TMYP_0340,Shawn Magill,individual,2,"Magill, Shawn",exact given name and surname,VERIFIED
+TMYP_0369,Shawn Sheehan,individual,2,"Sheehan, Shawn",exact given name and surname,VERIFIED
+TMYP_0502,Shawn Wooden,individual,2,"Wooden, Shawn",exact given name and surname,VERIFIED
+TMYP_0382,Shirley Thomas,individual,2,"Thomas, Shirley",exact given name and surname,VERIFIED
+TMYP_0074,Shirley Weldon,individual,2,"Weldon, Shirley",exact given name and surname,VERIFIED
+TMYP_0064,"Smith MD, JoAnn M",individual,2,"Smith MD, JoAnn M",exact given name and surname,VERIFIED
+TMYP_0184,Sohair Omar,individual,2,"Omar, Sohair",exact given name and surname,VERIFIED
+TMYP_0363,Solmarie Santiago,individual,2,"Santiago, Solmarie",exact given name and surname,VERIFIED
+PERSON_SOLO_SOLO,Solo,individual,2,"Solo, Solo",identical spelling,VERIFIED
+PERSON_BERNSTEIN_STACEY,Stacey Bernstein,individual,2,"Bernstein, Stacey",exact given name and surname,VERIFIED
+TMYP_0504,Stacey Zimmerman,individual,2,"Zimmerman, Stacey",exact given name and surname,VERIFIED
+PERSON_FARBER_STACY,Stacy Farber,individual,2,"Farber, Stacy",exact given name and surname,VERIFIED
+TMYP_0328,Stella Johnson,individual,2,"Johnson, Stella",exact given name and surname,VERIFIED
+PERSON_BRODERICK_STEPHAN,Stephan Broderick,individual,2,"Broderick, Stephan",exact given name and surname,VERIFIED
+PERSON_SAVINO_STEPHEN,Stephen Savino,individual,2,"Savino, Stephen",exact given name and surname,VERIFIED
+TMYP_0484,Steve Kennedy,individual,2,"Kennedy, Steve",exact given name and surname,VERIFIED
+TMYP_0356,Steve Palauskas,individual,2,"Palauskas, Steve",exact given name and surname,VERIFIED
+TMYP_0050,Steve Reilly,individual,2,"Reilly, Steve",exact given name and surname,VERIFIED
+TMYP_0451,Steven Levine,individual,2,"Levine, Steven",exact given name and surname,VERIFIED
+PERSON_MAFFIOLINI_STEVEN,Steven Maffiolini,individual,2,"Maffiolini, Steven",exact given name and surname,VERIFIED
+PERSON_YOUNG_STEVEN,Steven Young,individual,2,"Young, Steven",exact given name and surname,VERIFIED
+PERSON_MENDEZ_SUSAN,Susan Mendez,individual,2,"Mendez, Susan",exact given name and surname,VERIFIED
+TMYP_0463,Tanya Stone,individual,2,"Stone, Tanya",exact given name and surname,VERIFIED
+ORG_THE_CONNECTICUT_HEMP_INDUSTRY_ASSOCIATION,The Connecticut Hemp Industry Association,organization,2,Connecticut Hemp Industry Association | The Connecticut Hemp Industry Association,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+ORG_THECBGGURUS,TheCBGGurus,organization,2,TheCBGGurus | TheCBGGurus LLC,"identical organization name once legal suffixes, a leading ""The"" and the CT/Connecticut variation are normalized away",STRONGLY SUPPORTED
+TMYP_0466,Thibault,individual,2,Thibault,identical spelling,VERIFIED
+TMYP_0006,Thomas Burr,individual,2,"Burr, Thomas",exact given name and surname,VERIFIED
+PERSON_HEALY_THOMAS_F,Thomas F. Healy,individual,2,"HEALY, Thomas F.",exact given name and surname,VERIFIED
+PERSON_GOLDFUSS_THOMAS,Thomas Goldfuss,individual,2,"Goldfuss, Thomas",exact given name and surname,VERIFIED
+PERSON_KARVOSKY_THOMAS,Thomas Karvosky,individual,2,"Karvosky, Thomas",exact given name and surname,VERIFIED
+TMYP_0238,Thomas Macre,individual,2,"Macre, Thomas",exact given name and surname,VERIFIED
+TMYP_0177,Thomas Mongellow,individual,2,"Mongellow, Thomas",exact given name and surname,VERIFIED
+PERSON_SOBOCINSKI_THOMAS,Thomas Sobocinski,individual,2,"Sobocinski, Thomas",exact given name and surname,VERIFIED
+PERSON_WALSH_THOMAS,Thomas Walsh,individual,2,"Walsh, Thomas",exact given name and surname,VERIFIED
+PERSON_PALLET_TIARRA,Tiarra Pallet,individual,2,"Pallet, Tiarra",exact given name and surname,VERIFIED
+TMYP_0135,Timothy Egan,individual,2,"Egan, Timothy",exact given name and surname,VERIFIED
+PERSON_SHELANSKY_TODD,Todd Shelansky,individual,2,"Shelansky, Todd",exact given name and surname,VERIFIED
+PERSON_PRAH_TONIMARIE,ToniMarie Prah,individual,2,"Prah, ToniMarie",exact given name and surname,VERIFIED
+TMYP_0062,Tyler Semrow,individual,2,"Semrow, Tyler",exact given name and surname,VERIFIED
+PERSON_PATEL_UDAY,Uday Patel,individual,2,"Patel, Uday",exact given name and surname,VERIFIED
+PERSON_FAUTNER_ULYSSES,Ulysses Fautner,individual,2,"Fautner, Ulysses",exact given name and surname,VERIFIED
+PERSON_KENT_VALERIE,Valerie Kent,individual,2,"Kent, Valerie",exact given name and surname,VERIFIED
+PERSON_SANDS_VALERIE,Valerie Sands,individual,2,"Sands, Valerie",exact given name and surname,VERIFIED
+TMYP_0293,Vanessa Bastian,individual,2,"Bastian, Vanessa",exact given name and surname,VERIFIED
+TMYP_0349,Vannesa Moreno,individual,2,"Moreno, Vannesa",exact given name and surname,VERIFIED
+PERSON_BUCCHIERI_VINCENT,Vincent Bucchieri,individual,2,"Bucchieri, Vincent",exact given name and surname,VERIFIED
+PERSON_VINCENT_M_LOMBARDI,Vincent M Lombardi,individual,2,Vincent Lombardi | Vincent M Lombardi,exact given name and surname; middle initial present on only one spelling,INFERRED
+TMYP_0255,Vincenzo Davis,individual,2,"Davis, Vincenzo",exact given name and surname,VERIFIED
+PERSON_SHOOK_WENDI,Wendi Shook,individual,2,"Shook, Wendi",exact given name and surname,VERIFIED
+TMYP_0403,William Tong,individual,2,"Tong, William",exact given name and surname,VERIFIED
+PERSON_WADSWORTH_WILLIAM,William Wadsworth,individual,2,"Wadsworth, William",exact given name and surname,VERIFIED
+TMYP_0079,Yanira Pinto,individual,2,"Pinto, Yanira",exact given name and surname,VERIFIED
+TMYP_0399,Zach Druga,individual,2,"Druga, Zach",exact given name and surname,VERIFIED
+TMYP_0240,Zachary McKeown,individual,2,"McKeown, Zachary",exact given name and surname,VERIFIED
+PERSON_WILLIAMS_ZANAIYA,Zanaiya Williams,individual,2,"Williams, Zanaiya",exact given name and surname,VERIFIED
+PERSON_DEMBEK_ZYGMUNT,Zygmunt Dembek,individual,2,"Dembek, Zygmunt",exact given name and surname,VERIFIED
+ENTITY_ANONYMOUS,Anonymous witness,individual,1,Anonymous,the source record withheld the name,UNRESOLVED

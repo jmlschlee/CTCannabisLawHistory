@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home &middot; CT Cannabis Law Timeline</title>
+<title>Home &middot; CT Cannabis Law</title>
 <meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta name="color-scheme" content="light dark">
-<meta property="og:title" content="Home &middot; CT Cannabis Law Timeline">
+<meta property="og:title" content="Home &middot; CT Cannabis Law">
 <meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -20,99 +20,112 @@ try { var t = localStorage.getItem('ctcl-theme');
 <body>
 <main id="main">
 
-<div class="page-head">
+<div class="page-head" style="max-width:66ch">
   <div class="eyebrow">Connecticut &middot; 2012 to 2027</div>
-  <h1>What changed in Connecticut cannabis law, and who shaped it</h1>
-  <p class="lede">Every discrete change to the law, traced to the act that made it. Every bill,
-  every amendment including the ones never voted on, every roll call, and every word of public
-  testimony filed for and against. Then, separately and carefully, what the record does and does
-  not show about influence.</p>
+  <h1>How Connecticut cannabis law actually changed</h1>
+  <p class="lede">Every enacted change, traced back to the bill that carried it, the people
+  who testified for and against it, and the agency that implemented it. Built from the
+  public acts themselves. Every number on this site opens onto the document it came from.</p>
 </div>
 
-<div class="notice">
-<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6 15 14H1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12" r=".8" fill="currentColor"/></svg>
-<div><strong>Statutory text here comes from the enacted public acts</strong>, not from the
-General Assembly&rsquo;s published chapter pages. Those lag the session: on 29 September 2026 the
-chapter 420h page still printed a subsection that had been repealed nine months earlier.
-<a href="methodology.html">How that is handled</a>.</div></div>
+<div class="grid four" id="stats"></div>
 
-<div class="grid four" id="stats" style="margin-bottom:1.6rem"></div>
+<h2>Start here</h2>
+<p class="small" style="margin-top:-.4rem">Three ways in, depending on what you came for.</p>
+<div class="grid three" id="entry"></div>
 
+<h2>What the record shows</h2>
+<div class="grid two" id="findings"></div>
+
+<h2>The shape of it</h2>
 <div class="grid two">
   <div class="chartbox">
-    <h3>Everything dated, by year</h3>
-    <div class="sub">Bill actions, laws taking effect, agency decisions and access events.</div>
+    <h3>Dated events per year</h3>
+    <div class="sub">Every act, bill action, vote, filing and agency step that carries a date.</div>
     <div id="byYear"></div>
   </div>
   <div class="chartbox">
-    <h3>Where the law actually changed</h3>
-    <div class="sub">Discrete enacted changes by policy category. One section can carry several.</div>
+    <h3>Changes by subject</h3>
+    <div class="sub">A change can touch more than one subject, so these sum to more than the
+    total number of changes.</div>
     <div id="byCat"></div>
   </div>
 </div>
 
-<h2>Start here</h2>
-<div class="grid three" id="issues"></div>
-
-<h2>The turning points</h2>
-<div class="card pad-lg"><div class="tl" id="miles"></div></div>
-
-<h2>Three things this site will not do</h2>
+<h2>What this site will not do</h2>
 <div class="grid three">
-  <div class="card">
-    <h3>Treat sequence as causation</h3>
-    <p class="small">A contribution, an award or a piece of testimony followed by a favorable
-    decision is two dated public facts. Every influence record carries an alternative explanation
-    and an explicit line saying it records visibility, not causation.</p>
-  </div>
-  <div class="card">
-    <h3>Guess who wrote the language</h3>
-    <p class="small">Bill records give introducers, committees and LCO numbers. They never give a
-    drafting requester. Where authorship is not in the record, the page says unknown and names the
-    earliest source found.</p>
-  </div>
-  <div class="card">
-    <h3>Hide what it cannot show</h3>
-    <p class="small">Twelve open gaps are published with the exact record that would close each,
-    and ten claims are published as things that must <em>not</em> be said, with the safer wording
-    beside them. <a href="guardrails.html">See the guardrails</a>.</p>
-  </div>
+  <div class="card"><h3>It does not allege corruption</h3>
+    <p class="small" style="margin:0">Testifying, lobbying, donating and attending events are
+    lawful, ordinary and disclosed. The site records what happened and, separately, what
+    followed. It never claims one caused the other.</p></div>
+  <div class="card"><h3>It does not guess at a gap</h3>
+    <p class="small" style="margin:0">Where the record runs out, the site says so and names the
+    document that would close it. Fourteen such gaps are listed by name.</p></div>
+  <div class="card"><h3>It does not quote a stale statute</h3>
+    <p class="small" style="margin:0">Statutory text comes from the enacted acts, never from the
+    chapter pages, which were still printing a repealed subsection nine months after the
+    repeal took effect.</p></div>
 </div>
+
+<h2>Recent milestones</h2>
+<div class="tl" id="mile"></div>
 
 </main>
 <script type="module">
 
-import { load, $, num, esc, setSources } from './assets/app.js';
+import { load, $, num, esc, fmtDate, plural, fail } from './assets/app.js';
 import { barChart, columnChart } from './assets/charts.js';
-const [h, s] = await Promise.all([load('home'), load('sources')]);
-setSources(s.map);
 
-const S = [
-  ['legal_changes','discrete legal changes','laws.html'],
-  ['bills','bills tracked','bills.html'],
-  ['testimony','testimony records','testimony.html'],
-  ['influence','influence events','influence.html'],
-  ['statutes','statutes touched','statutes.html'],
-  ['amendments','amendments filed','bills.html'],
-  ['sources','sources in the ledger','sources.html'],
-  ['gaps','open gaps','guardrails.html'],
-];
-$('#stats').innerHTML = S.map(([k,lab,href]) =>
-  `<a class="stat" href="${href}" style="text-decoration:none;display:block">
-     <div class="n">${num(h.counts[k])}</div><div class="k">${esc(lab)}</div></a>`).join('');
+try {
+  const d = await load('home');
+  const c = d.counts;
 
-columnChart($('#byYear'), h.events_by_year.map(r => ({k:r.y, n:r.n})), {everyN:2});
-barChart($('#byCat'), h.categories.slice(0,10));
+  $('#stats').innerHTML = [
+    ['hero', c.legal_changes, 'enacted legal changes, 2012 to 2027'],
+    ['', c.acts, 'public acts read section by section'],
+    ['', c.testimony, 'testimony filings by ' + num(c.tmy_people) + ' named parties'],
+    ['', c.bills, 'bills tracked, ' + num(c.failed_bills) + ' of which did not pass'],
+  ].map(([k, n, lab]) =>
+    `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
 
-$('#issues').innerHTML = h.issues.slice(0,9).map(i =>
-  `<a class="card" href="issues.html#${esc(i.id)}" style="text-decoration:none;color:inherit;display:block">
-     <h3 style="margin-bottom:.2rem">${esc(i.name)}</h3>
-     <p class="small" style="margin:0 0 .5rem">${esc(i.desc)}</p>
-     <span class="chip">${num(i.n)} changes</span></a>`).join('');
+  $('#entry').innerHTML = [
+    ['timeline.html', 'Follow it in order',
+     'Every dated event from the 2012 medical act to the changes taking effect in 2027, in one stream you can filter.'],
+    ['people.html', 'See who showed up',
+     'The people and organizations who filed testimony, ranked by how often, with what they supported and opposed.'],
+    ['laws.html', 'Read what changed',
+     'Each enacted change with the old text beside the new, the effective date, and the act and section it came from.'],
+  ].map(([h, t, p]) => `<a class="card" href="${h}" style="text-decoration:none;display:block">
+      <h3 style="margin:0 0 .3rem">${esc(t)} &rarr;</h3>
+      <p class="small" style="margin:0;color:var(--ink-2)">${esc(p)}</p></a>`).join('');
 
-$('#miles').innerHTML = h.latest.map(m =>
-  `<div class="tl-item"><div class="tl-date">${esc(m.d)}</div><div class="tl-dot milestone"></div>
-   <div class="tl-title">${esc(m.title)}</div></div>`).join('');
+  $('#findings').innerHTML = [
+    ['The rules most operators follow are not regulations',
+     'Adult-use requirements, testing among them, sit in a Department policies and procedures document rather than in regulations adopted under chapter 54. That document skips notice, comment, Attorney General review and the Legislative Regulation Review Committee. Its version history is not published.',
+     'agencies.html', 'See the implementation record'],
+    [plural(c.uncalled, 'amendment') + ' were filed and never called',
+     'An amendment that is filed and never called is the clearest record of what someone asked for and did not get. One 2012 bill alone carries 49 of them. They are shown here as prominently as the ones that passed.',
+     'bills.html', 'See the bill lineage'],
+    ['Nothing in the influence record reaches the top of the scale',
+     'A strength-5 rating needs a document tying an actor directly to a drafting or decision act. No such document is in the public record examined, so the site says so rather than implying more than it holds.',
+     'influence.html', 'See the influence record'],
+    [plural(c.gaps_open, 'gap') + ' remain open, and each one names its document',
+     'Where the record cannot answer a question, the gap is logged with the specific record that would close it and the body that holds it. Two were closed by going back to the public record; the rest cannot be, because the documents are not published. No records request in this project has been sent.',
+     'gaps.html', 'See the open gaps'],
+  ].map(([t, p, h, cta]) => `<div class="card">
+      <h3 style="margin:0 0 .4rem">${esc(t)}</h3>
+      <p class="small" style="margin:0 0 .7rem">${esc(p)}</p>
+      <a class="chip" href="${h}">${esc(cta)} &rarr;</a></div>`).join('');
+
+  columnChart($('#byYear'), d.events_by_year.map(r => ({ k: r.y, n: r.n })), { everyN: 2 });
+  barChart($('#byCat'), d.categories.slice(0, 9).map(r => ({ k: r.k, n: r.n })));
+
+  const m = d.latest.slice(-9).reverse();
+  $('#mile').innerHTML = m.map(e => `<div class="tl-item"><div class="tl-dot"></div>
+    <div class="tl-date">${esc(fmtDate(e.d) || e.d)}</div>
+    <div class="tl-title">${esc(e.title)}</div></div>`).join('')
+    + `<p class="small" style="margin-top:1rem"><a href="timeline.html">All ${num(d.counts.timeline)} dated events &rarr;</a></p>`;
+} catch (e) { fail(document.querySelector('#stats'), e); }
 
 </script>
 </body>

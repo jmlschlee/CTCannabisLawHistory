@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who testified &middot; CT Cannabis Law</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Who testified &middot; CT Cannabis Law">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Ranked by how often they filed</div>
+  <h1>Who testified</h1>
+  <p class="lede">Every named party who filed testimony on a Connecticut cannabis bill, ordered
+  by the number of filings. The same person filing as &ldquo;Accettullo, Joseph&rdquo; and as
+  &ldquo;Joseph R Accettullo&rdquo; is one person here, and every spelling the record used is
+  shown on their entry.</p>
+</div>
+
+<div class="grid four" id="stats"></div>
+
+<div class="callout note">
+  <div class="hd">What a filing count does and does not mean</div>
+  <p class="small" style="margin:0">It counts written positions filed on the public record. It
+  is not a measure of influence, of time spent, or of whether anyone was persuaded. Someone who
+  filed once may have been decisive; someone who filed ten times may have been ignored. The
+  <a href="influence.html">influence page</a> explains the evidence scale in full.</p>
+</div>
+
+<div class="filters" id="f"></div>
+<div class="resultbar">
+  <span id="count"></span>
+  <span style="display:flex;gap:.6rem;align-items:center">
+    <span class="segmented" id="sortseg" role="group" aria-label="Sort">
+      <button type="button" data-s="n" aria-pressed="true">Most filings</button>
+      <button type="button" data-s="bills" aria-pressed="false">Most bills</button>
+      <button type="button" data-s="who" aria-pressed="false">A to Z</button>
+    </span>
+    <button class="btn" id="dl" type="button">Download CSV</button>
+  </span>
+</div>
+<div class="records" id="list"></div>
+<div class="pagenav"><button class="btn" id="more" type="button" hidden>Show more</button></div>
+
+</main>
+<script type="module">
+
+import { load, $, $$, num, esc, plural, searchField, selectField, clearButton, wire,
+         downloadCSV, fail } from './assets/app.js';
+
+try {
+  const d = await load('testimony');
+  const S = d.summary;
+  const POS = { Supports: 'var(--s3)', Opposes: 'var(--s2)', Other: 'var(--s8)' };
+
+  $('#stats').innerHTML = [
+    ['hero', S.people, 'named parties filed testimony'],
+    ['', S.records, 'filings in total'],
+    ['', S.repeat, 'filed on more than one occasion'],
+    ['', S.once_only, 'filed exactly once'],
+  ].map(([k, n, lab]) =>
+    `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
+
+  const years = [...new Set(d.speakers.flatMap(s => [s.first, s.last]))].sort().reverse();
+  $('#f').innerHTML =
+    searchField('q', 'Search a name or organization', 'name, organization') +
+    selectField('yr', 'Active in', years) +
+    selectField('st', 'Stance', [['sup', 'Supported at least once'],
+                                 ['opp', 'Opposed at least once'],
+                                 ['both', 'Both supported and opposed']]) +
+    selectField('rep', 'Frequency', [['rep', 'Filed more than once'], ['one', 'Filed once']]) +
+    clearButton();
+
+  let sortKey = 'n', limit = 60;
+
+  function current() {
+    const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value,
+          st = $('#st').value, rep = $('#rep').value;
+    let rows = d.speakers.filter(s => {
+      if (q && !(s.who + ' ' + s.orgs.join(' ') + ' ' + s.aka.join(' ')).toLowerCase().includes(q)) return false;
+      if (yr && !(s.first <= yr && s.last >= yr)) return false;
+      if (st === 'sup' && !s.sup) return false;
+      if (st === 'opp' && !s.opp) return false;
+      if (st === 'both' && !(s.sup && s.opp)) return false;
+      if (rep === 'rep' && s.n < 2) return false;
+      if (rep === 'one' && s.n !== 1) return false;
+      return true;
+    });
+    rows.sort(sortKey === 'who'
+      ? (a, b) => a.who.localeCompare(b.who, 'en')
+      : (a, b) => b[sortKey] - a[sortKey] || a.who.localeCompare(b.who, 'en'));
+    return rows;
+  }
+
+  function draw() {
+    const rows = current();
+    const hi = Math.max(1, ...rows.map(r => r.n));
+    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.speakers.length)} named parties`;
+    const view = rows.slice(0, limit);
+    $('#list').innerHTML = view.length ? view.map((s, i) => {
+      const segs = [['Supports', s.sup], ['Opposes', s.opp], ['Other', s.oth]]
+        .filter(([, v]) => v > 0)
+        .map(([k, v]) => `<i style="flex:0 0 ${(v / hi) * 100}%;background:${POS[k]}"
+              title="${esc(k)}: ${num(v)}"></i>`).join('');
+      const stance = [s.sup ? `${num(s.sup)} supporting` : '', s.opp ? `${num(s.opp)} opposing` : '',
+                      s.oth ? `${num(s.oth)} other or unstated` : ''].filter(Boolean).join(' &middot; ');
+      return `<div class="rank">
+        <div class="pos">${num(i + 1)}</div>
+        <div>
+          <div class="who">${esc(s.who)}</div>
+          <div class="meta">${esc(s.orgs.slice(0, 2).join('; ') || 'no organization given')}${
+            s.norgs > 2 ? ` and ${num(s.norgs - 2)} more` : ''} &middot; ${esc(s.first)}&ndash;${esc(s.last)}
+            &middot; ${stance}</div>
+          ${s.aka.length ? `<div class="meta">also filed as ${esc(s.aka.join('; '))}</div>` : ''}
+          <div class="track" role="img" aria-label="${esc(s.who)}: ${stance.replace(/&middot;/g, ',')}">${segs}</div>
+        </div>
+        <div class="n">${num(s.n)}<small>${s.n === 1 ? 'FILING' : 'FILINGS'}</small>
+          <small>on ${plural(s.bills, 'bill')}</small></div>
+      </div>`;
+    }).join('') : '<div class="empty">No one matches these filters.</div>';
+    const more = $('#more');
+    more.hidden = rows.length <= limit;
+    more.textContent = `Show ${num(Math.min(60, rows.length - limit))} more of ${num(rows.length - limit)} remaining`;
+  }
+
+  $('#more').addEventListener('click', () => { limit += 60; draw(); });
+  $$('#sortseg button').forEach(b => b.addEventListener('click', () => {
+    sortKey = b.dataset.s;
+    $$('#sortseg button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    limit = 60; draw();
+  }));
+  $('#dl').addEventListener('click', () => downloadCSV('ct-who-testified.csv', current(), [
+    { key: 'who', label: 'party' }, { key: 'n', label: 'filings' },
+    { key: 'bills', label: 'bills' }, { key: 'first', label: 'first_year' },
+    { key: 'last', label: 'last_year' }, { key: 'sup', label: 'supporting' },
+    { key: 'opp', label: 'opposing' }, { key: 'oth', label: 'other_or_unstated' },
+    { label: 'organizations', get: r => r.orgs.join('; ') },
+    { label: 'other_spellings_in_the_record', get: r => r.aka.join('; ') }]));
+
+  wire(['q', 'yr', 'st', 'rep'], () => { limit = 60; draw(); });
+} catch (e) { fail(document.querySelector('#list'), e); }
+
+</script>
+</body>
+</html>

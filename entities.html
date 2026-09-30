@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Name merges &middot; CT Cannabis Law</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Name merges &middot; CT Cannabis Law">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Check the work</div>
+  <h1>Where two names were treated as one</h1>
+  <p class="lede">The public record spells the same person several ways. Deciding that
+  &ldquo;Jerry Farrell&rdquo; and &ldquo;Gerald E Farrell&rdquo; are one man is a judgment, not a
+  fact on the page, so every such judgment is published here with the rule that produced it and
+  how confident it is. Disagree with any of them and the underlying rows are unchanged.</p>
+</div>
+
+<div class="grid four" id="stats"></div>
+
+<div class="callout note">
+  <div class="hd">How conservative this is</div>
+  <p class="small" style="margin:0 0 .5rem">Two people are merged only when the surname matches
+  <em>and</em> the given names are compatible. Different given names never merge, so Jane Smith
+  and John Smith stay apart. Conflicting middle initials block a merge. An individual is never
+  merged with a campaign committee, so a legislator never becomes their own PAC.</p>
+  <p class="small" style="margin:0">Nothing is destroyed. Every spelling the source used is kept
+  on the entity and shown wherever that entity appears.</p>
+</div>
+
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span>
+  <button class="btn" id="dl" type="button">Download CSV</button></div>
+<div class="records" id="list"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, cap, plural, searchField, selectField, clearButton, wire,
+         downloadCSV, fail } from './assets/app.js';
+
+try {
+  const d = await load('entities');
+  const S = d.summary;
+  const TONE = { VERIFIED: 'ok', 'STRONGLY SUPPORTED': '', INFERRED: 'warn', UNRESOLVED: 'bad' };
+  const WHY = {
+    VERIFIED: 'The spellings agree on every part of the name that both carry.',
+    'STRONGLY SUPPORTED': 'The names match once ordinary legal and formatting noise is normalized away.',
+    INFERRED: 'This rests on a nickname, an initial, or a name being contained in a longer one. It is a judgment. Check it before relying on it.',
+    UNRESOLVED: 'No single actor could be resolved. The rows are kept and labeled rather than dropped.',
+  };
+
+  $('#stats').innerHTML = [
+    ['hero', S.entities, 'entities after resolution'],
+    ['', S.input_rows, 'name rows read in'],
+    ['', S.collapsed, 'duplicate rows folded together'],
+    ['', S.merges, 'merge decisions, all listed below'],
+  ].map(([k, n, lab]) =>
+    `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
+
+  $('#f').innerHTML =
+    searchField('q', 'Search', 'any spelling, or the resolved name') +
+    selectField('conf', 'Confidence', d.by_confidence.map(c => [c.k, `${c.k} (${num(c.n)})`])) +
+    selectField('type', 'Kind', d.by_type.map(t => [t.k, `${cap(t.k)} (${num(t.n)})`])) +
+    clearButton();
+
+  function current() {
+    const q = $('#q').value.trim().toLowerCase(),
+          c = $('#conf').value, t = $('#type').value;
+    return d.merges.filter(m =>
+      (!c || m.conf === c) && (!t || m.type === t) &&
+      (!q || (m.lab + ' ' + m.spellings).toLowerCase().includes(q)));
+  }
+
+  function draw() {
+    const rows = current();
+    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.merges.length)} merge decisions`;
+    $('#list').innerHTML = rows.length ? rows.map(m => `
+      <article class="rec">
+        <div class="rec-head">
+          <h3 class="rec-title">${esc(m.lab)}</h3>
+          <span class="rec-sub">${plural(m.n, 'source spelling')} &middot; ${esc(cap(m.type))}</span>
+        </div>
+        <div class="chips" style="margin-bottom:.5rem">
+          <span class="chip ${TONE[m.conf] || ''}">${esc(m.conf)}</span>
+        </div>
+        <dl class="kv">
+          <dt>Spellings in the record</dt><dd>${m.spellings.split(' | ').map(s =>
+            `<span class="mono">${esc(s)}</span>`).join('<br>')}</dd>
+          <dt>Rule applied</dt><dd>${esc(m.rule)}</dd>
+          <dt>What that means</dt><dd>${esc(WHY[m.conf] || '')}</dd>
+        </dl>
+      </article>`).join('') : '<div class="empty">No merge decisions match these filters.</div>';
+  }
+
+  $('#dl').addEventListener('click', () => downloadCSV('ct-entity-merges.csv', current(), [
+    { key: 'lab', label: 'resolved_name' }, { key: 'type', label: 'entity_type' },
+    { key: 'n', label: 'spellings_merged' }, { key: 'spellings', label: 'source_spellings' },
+    { key: 'rule', label: 'rule' }, { key: 'conf', label: 'confidence' }]));
+
+  wire(['q', 'conf', 'type'], draw);
+} catch (e) { fail(document.querySelector('#list'), e); }
+
+</script>
+</body>
+</html>

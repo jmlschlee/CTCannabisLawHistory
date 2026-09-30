@@ -16,11 +16,15 @@ example, on its methodology page.
 
 | Thing | Where |
 |---|---|
-| 14 web pages | the `.html` files in this folder |
+| 17 web pages | the `.html` files in this folder |
 | Styling and behavior | `assets/` — one CSS file, two JavaScript files |
-| The data the pages read | `data/` — 12 JSON files |
-| The same data as spreadsheets | `downloads/` — 21 CSV files, 1 workbook, 1 PDF report |
+| The data the pages read | `data/` — 13 JSON files |
+| The same data as spreadsheets | `downloads/` — 22 CSV files, 1 workbook, 1 PDF report |
 | Netlify settings | `netlify.toml`, `_headers`, `_redirects` |
+
+What the site covers: 463 enacted legal changes across 16 public acts, 23 bills (7 of which did
+not pass), 110 statute sections, 683 testimony filings by 504 named parties, 1,035 influence
+events, and 12 logged gaps — 2 of them closed from the public record, 10 still open.
 
 **There is no build step.** No npm, no Node, no compiler, no framework. The files you see are the
 files the browser gets. That is deliberate: a site with no build step cannot break because a
@@ -149,8 +153,10 @@ under `:root`, with dark mode values right below it. Change a value in one place
 everywhere. The palette was validated for color-vision deficiency and contrast; if you change the
 categorical colors, validate the new set rather than trusting how it looks.
 
-**Navigation** — the `NAV` array at the top of `assets/app.js`. The header and footer on every
-page are generated from it, so adding a page means adding one line there.
+**Navigation** — the `NAV` array at the top of `assets/app.js`. The header, the "More" menu and
+the footer on every page are generated from it, so adding a page means adding one line there.
+The `PRIMARY` array just below it decides which links get a permanent slot in the top bar and
+which sit behind "More".
 
 **The data** — do not hand-edit `data/*.json`. Those files are generated from the CSVs in the
 research project. Editing them by hand means a figure on a page can quietly disagree with the CSV
@@ -188,4 +194,4 @@ stores one thing in the browser: your light/dark choice.
 
 ---
 
-Built from primary public records by Josiah Schlee, CT Cannabis Record Package.
+Built from primary public records. CT Cannabis Record Package.

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open gaps &middot; CT Cannabis Law</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Open gaps &middot; CT Cannabis Law">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">What is missing, and whether it can be got</div>
+  <h1>Open gaps</h1>
+  <p class="lede">Every question this record cannot answer, with the specific document that
+  would answer it and the body that holds it. Two of these were closed by going back to the
+  public record rather than by asking anyone for anything. The rest cannot be, and the reason
+  they cannot be is itself a finding.</p>
+</div>
+
+<div class="grid four" id="stats"></div>
+
+<div class="callout caution">
+  <div class="hd">Why most of these cannot simply be looked up</div>
+  <p class="small" style="margin:0 0 .5rem">A gap here is not a gap in the research. It is a
+  gap in what Connecticut publishes. There is no public conversion register, no published
+  lottery award file, no published version history for the policies and procedures document,
+  and no published record of who requested a given amendment. Those records exist inside the
+  agencies that hold them; none of them is on a website to be fetched.</p>
+  <p class="small" style="margin:0"><strong>No records request in this project has been
+  sent.</strong> Each one below is drafted and held.</p>
+</div>
+
+<h2>Closed from the public record</h2>
+<p class="small" style="margin-top:-.4rem">These needed no request. They needed another look.</p>
+<div class="records" id="closed"></div>
+
+<h2>Still open</h2>
+<p class="small" style="margin-top:-.4rem">Each of these names the exact record that would
+close it. None of them is published.</p>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span>
+  <button class="btn" id="dl" type="button">Download CSV</button></div>
+<div class="records" id="list"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, cap, plural, searchField, selectField, clearButton, wire,
+         downloadCSV, fail } from './assets/app.js';
+
+try {
+  const d = await load('issues');
+  const G = d.gaps || [];
+  const isClosed = g => /^CLOSED/i.test(g.st || '');
+  const closed = G.filter(isClosed), open = G.filter(g => !isClosed(g));
+
+  $('#stats').innerHTML = [
+    ['hero', G.length, 'gaps logged in total'],
+    ['', closed.length, 'closed from the public record'],
+    ['', open.length, 'still open, each with a drafted request'],
+    ['', 0, 'requests sent to anyone'],
+  ].map(([k, n, lab]) =>
+    `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
+
+  $('#closed').innerHTML = closed.length ? closed.map(g => `
+    <article class="rec" id="${esc(g.id)}">
+      <div class="rec-head">
+        <h3 class="rec-title">${esc(g.what)}</h3>
+        <span class="chip ok">Closed</span>
+      </div>
+      <dl class="kv">
+        <dt>Gap</dt><dd class="mono">${esc(g.id)}</dd>
+        <dt>Held by</dt><dd>${esc(g.who)}</dd>
+        <dt>Why it mattered</dt><dd>${esc(g.why)}</dd>
+        <dt>How it closed</dt><dd>${esc(g.st)}</dd>
+      </dl>
+    </article>`).join('') : '<div class="empty">None closed yet.</div>';
+
+  $('#f').innerHTML =
+    searchField('q', 'Search', 'record, body, reason') +
+    selectField('who', 'Held by', [...new Set(open.map(g => g.who))].sort()) +
+    clearButton();
+
+  function current() {
+    const q = $('#q').value.trim().toLowerCase(), who = $('#who').value;
+    return open.filter(g => (!who || g.who === who) &&
+      (!q || (g.id + ' ' + g.what + ' ' + g.why + ' ' + (g.rec || '')).toLowerCase().includes(q)));
+  }
+  function draw() {
+    const rows = current();
+    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(open.length)} open gaps`;
+    $('#list').innerHTML = rows.length ? rows.map(g => `
+      <article class="rec" id="${esc(g.id)}">
+        <div class="rec-head">
+          <h3 class="rec-title">${esc(g.what)}</h3>
+          <span class="chip bad">${esc(g.st || 'Drafted, not sent')}</span>
+        </div>
+        <dl class="kv">
+          <dt>Gap</dt><dd class="mono">${esc(g.id)}</dd>
+          <dt>Held by</dt><dd>${esc(g.who)}</dd>
+          <dt>Why it matters</dt><dd>${esc(g.why)}</dd>
+          <dt>The exact record</dt><dd>${esc(g.rec || '')}</dd>
+        </dl>
+      </article>`).join('') : '<div class="empty">No gaps match these filters.</div>';
+  }
+  $('#dl').addEventListener('click', () => downloadCSV('ct-open-gaps.csv', current(), [
+    { key: 'id', label: 'gap_id' }, { key: 'who', label: 'custodian' },
+    { key: 'what', label: 'record_requested' }, { key: 'why', label: 'reason' },
+    { key: 'rec', label: 'exact_record' }, { key: 'st', label: 'status' }]));
+  wire(['q', 'who'], draw);
+} catch (e) { fail(document.querySelector('#list'), e); }
+
+</script>
+</body>
+</html>

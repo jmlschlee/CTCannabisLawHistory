@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Testimony &middot; CT Cannabis Law Timeline</title>
+<title>Testimony &middot; CT Cannabis Law</title>
 <meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta name="color-scheme" content="light dark">
-<meta property="og:title" content="Testimony &middot; CT Cannabis Law Timeline">
+<meta property="og:title" content="Testimony &middot; CT Cannabis Law">
 <meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -21,94 +21,108 @@ try { var t = localStorage.getItem('ctcl-theme');
 <main id="main">
 
 <div class="page-head">
-  <div class="eyebrow">Who showed up, and which way</div>
-  <h1>Public hearing testimony</h1>
-  <p class="lede">Every written testimony record the committee index lists for every cannabis
-  bill, with the speaker, the organization and the position exactly as filed. Files that could not
-  be retrieved are listed as not retrieved rather than dropped.</p>
+  <div class="eyebrow">Every written position on the public record</div>
+  <h1>Testimony</h1>
+  <p class="lede">What was filed, by whom, on which bill, taking which position. Filing
+  testimony is participation in a public process. A position recorded here says nothing about
+  whether it was persuasive, and nothing about anyone&rsquo;s motive.</p>
 </div>
-<div class="callout note">
-  <div class="hd">What a position field means here</div>
-  <p class="small" style="margin:0">The committee names each testimony file with the filer&rsquo;s
-  stated position. Where the filename does not carry one, the row reads <em>not stated in the
-  filename</em> rather than a guess. Testifying is participation in a public process; it is not
-  evidence of influence on the outcome.</p>
-</div>
-<div class="chartbox" style="margin-bottom:1.2rem">
-  <h3>Positions filed, by bill</h3>
+
+<div class="grid four" id="stats"></div>
+
+<div class="chartbox">
+  <h3>Positions filed on each bill</h3>
   <div class="sub">Counts are printed beside every bar, so the chart reads without color.</div>
-  <div id="chart"></div>
+  <div id="byBill"></div>
 </div>
+
+<h2>Every filing</h2>
 <div class="filters" id="f"></div>
-<div class="resultbar"><span id="count"></span><button class="btn" id="dl">Download this view as CSV</button></div>
-<div id="list"></div>
+<div class="resultbar"><span id="count"></span>
+  <button class="btn" id="dl" type="button">Download this view as CSV</button></div>
+<div id="tbl"></div>
+<div class="pagenav"><button class="btn" id="more" type="button" hidden>Show more</button></div>
 
 </main>
 <script type="module">
 
-import { load, $, num, esc, cite, setSources, selectField, searchField, debounce,
-         downloadCSV, table } from './assets/app.js';
+import { load, $, num, esc, plural, searchField, selectField, clearButton, wire,
+         downloadCSV, table, fail } from './assets/app.js';
 import { stackedBars } from './assets/charts.js';
-const [d, s] = await Promise.all([load('testimony'), load('sources')]);
-setSources(s.map);
 
-const byBill = {};
-d.rows.forEach(r => {
-  const k = `${r.yr} ${r.b}`;
-  const o = byBill[k] || (byBill[k] = {k, sup:0, opp:0, un:0});
-  if (r.p === 'Supports') o.sup++; else if (r.p === 'Opposes') o.opp++; else o.un++;
-});
-const SERIES = [
-  {key:'sup', label:'Supports',                   color:'var(--s1)'},
-  {key:'opp', label:'Opposes',                    color:'var(--s2)'},
-  {key:'un',  label:'Position not in the filename', color:'var(--s3)'},
-];
-stackedBars($('#chart'), Object.values(byBill).sort((a,b)=>
-  (b.sup+b.opp+b.un)-(a.sup+a.opp+a.un)), SERIES);
+try {
+  const d = await load('testimony');
+  const S = d.summary;
 
-$('#f').innerHTML =
-  searchField('q','Search','speaker, organization, role') +
-  selectField('b','Bill', d.bills) +
-  selectField('p','Position', d.positions) +
-  selectField('anon','Filer', [['no','Named filers only'],['yes','Anonymous filers only']]) +
-  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+  $('#stats').innerHTML = [
+    ['hero', S.records, 'testimony filings retrieved'],
+    ['', S.people, 'named parties filed them'],
+    ['', S.bills, 'bills drew testimony'],
+    ['', S.anonymous, 'filings where the record withheld the name'],
+  ].map(([k, n, lab]) =>
+    `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
 
-function current() {
-  const q = $('#q').value.trim().toLowerCase(), b = $('#b').value, p = $('#p').value,
-        an = $('#anon').value;
-  return d.rows.filter(r =>
-    (!b || `${r.yr} ${r.b}` === b) && (!p || r.p === p) &&
-    (!an || (an === 'yes') === r.anon) &&
-    (!q || (r.who + ' ' + r.org + ' ' + r.role).toLowerCase().includes(q)));
-}
-function draw() {
-  const rows = current();
-  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.rows.length)} testimony records`;
-  table($('#list'), [
-    {key:'who', label:'Filed by', html:r => esc(r.who) + (r.anon
-      ? ' <span class="chip">anonymous</span>' : '')},
-    {key:'org', label:'Organization as filed', html:r => r.org ? esc(r.org) : '<span class="small">\u2014</span>'},
-    {key:'role', label:'Role as filed', html:r => r.role ? esc(r.role) : '<span class="small">\u2014</span>'},
-    {label:'Bill', key:'bk', get:r=>`${r.yr} ${r.b}`,
-      html:r=>`<span class="mono">${esc(r.yr)} ${esc(r.b)}</span>`},
-    {key:'p', label:'Position', html:r => {
-      const cls = r.p === 'Supports' ? 'chip ok' : r.p === 'Opposes' ? 'chip bad' : 'chip';
-      return `<span class="${cls}">${esc(r.p)}</span>`;
-    }},
-    {key:'st', label:'File', html:r => r.st === 'RETRIEVED'
-      ? (r.u ? `<a href="${esc(r.u)}" rel="noopener">open</a>` : 'retrieved')
-      : '<span class="chip t3">not retrieved</span>'},
-  ], rows, {sort:'who'});
-}
-['q','b','p','anon'].forEach(id => $('#'+id).addEventListener('input', debounce(draw)));
-$('#clr').addEventListener('click', () => { ['q','b','p','anon'].forEach(i=>$('#'+i).value=''); draw(); });
-$('#dl').addEventListener('click', () => downloadCSV('ct-testimony-view.csv', current(), [
-  {key:'id',label:'testimony_id'},{key:'yr',label:'session_year'},{key:'b',label:'bill'},
-  {key:'c',label:'committee'},{key:'who',label:'speaker_as_filed'},
-  {label:'is_anonymous',get:r=>r.anon?'yes':'no'},{key:'role',label:'role_as_filed'},
-  {key:'org',label:'organization_as_filed'},{key:'p',label:'position'},
-  {key:'st',label:'retrieval_status'},{key:'u',label:'url'}]));
-draw();
+  const agg = {};
+  d.rows.forEach(r => {
+    const k = `${r.yr} ${r.b}`;
+    (agg[k] = agg[k] || { k, Supports: 0, Opposes: 0, Other: 0 });
+    agg[k][r.p === 'Supports' ? 'Supports' : r.p === 'Opposes' ? 'Opposes' : 'Other']++;
+  });
+  const bars = Object.values(agg).sort((a, b) =>
+    (b.Supports + b.Opposes + b.Other) - (a.Supports + a.Opposes + a.Other));
+  stackedBars($('#byBill'), bars, [
+    { key: 'Supports', label: 'Supports', color: 'var(--s3)' },
+    { key: 'Opposes', label: 'Opposes', color: 'var(--s2)' },
+    { key: 'Other', label: 'Other or unstated', color: 'var(--s8)' }]);
+
+  $('#f').innerHTML =
+    searchField('q', 'Search', 'name, organization, role as filed') +
+    selectField('yr', 'Session', d.years) +
+    selectField('b', 'Bill', [...new Set(d.rows.map(r => r.b))].sort()) +
+    selectField('p', 'Position', d.positions) +
+    clearButton();
+
+  let limit = 150;
+  function current() {
+    const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value,
+          b = $('#b').value, p = $('#p').value;
+    return d.rows.filter(r =>
+      (!yr || r.yr === yr) && (!b || r.b === b) && (!p || r.p === p) &&
+      (!q || (r.who + ' ' + r.org + ' ' + r.role).toLowerCase().includes(q)));
+  }
+
+  const COLS = [
+    { key: 'who', label: 'Who filed', html: r => r.anon
+        ? '<span class="muted">Anonymous witness</span>'
+        : `<a href="people.html?q=${encodeURIComponent(r.who)}">${esc(r.who)}</a>` },
+    { key: 'org', label: 'Organization as filed', html: r => esc(r.org) || '<span class="muted">none given</span>' },
+    { key: 'b', label: 'Bill', html: r => `<span class="mono">${esc(r.b)}</span>` },
+    { key: 'yr', label: 'Session', num: true },
+    { key: 'p', label: 'Position', html: r =>
+        `<span class="chip ${r.p === 'Supports' ? 'ok' : r.p === 'Opposes' ? 'bad' : ''}">${esc(r.p)}</span>` },
+    { key: 'u', label: 'Document', html: r => r.u
+        ? `<a href="${esc(r.u)}" rel="noopener">Open filing</a>`
+        : '<span class="muted">not linked</span>' },
+  ];
+
+  function draw() {
+    const rows = current();
+    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.rows.length)} filings`
+      + (rows.length > limit ? ` &middot; showing the first ${num(limit)}` : '');
+    table($('#tbl'), COLS, rows.slice(0, limit), { sort: 'yr', dir: -1 });
+    const m = $('#more');
+    m.hidden = rows.length <= limit;
+    m.textContent = `Show ${num(Math.min(150, rows.length - limit))} more`;
+  }
+  $('#more').addEventListener('click', () => { limit += 150; draw(); });
+  $('#dl').addEventListener('click', () => downloadCSV('ct-testimony-view.csv', current(), [
+    { key: 'id', label: 'testimony_id' }, { key: 'who', label: 'who_filed' },
+    { key: 'org', label: 'organization_as_filed' }, { key: 'role', label: 'role_as_filed' },
+    { key: 'b', label: 'bill' }, { key: 'yr', label: 'session_year' },
+    { key: 'c', label: 'committee' }, { key: 'p', label: 'position' },
+    { key: 'u', label: 'document_url' }]));
+  wire(['q', 'yr', 'b', 'p'], () => { limit = 150; draw(); });
+} catch (e) { fail(document.querySelector('#tbl'), e); }
 
 </script>
 </body>
