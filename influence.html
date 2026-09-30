@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/app.css">
+<script src="assets/vendor/d3.min.js" defer></script>
 <script>
 /* set the theme before first paint so the page never flashes the wrong one */
 try { var t = localStorage.getItem('ctcl-theme');
@@ -38,6 +39,28 @@ try { var t = localStorage.getItem('ctcl-theme');
   A 5 would need a document tying an actor directly to a drafting or decision act, and no such
   document is in the public record examined.</p>
 </div>
+
+<h2 id="map">The map</h2>
+<p class="small" style="margin-top:-.4rem">Who is tied to whom in the record. Each dot is a person,
+company, committee or bill; each line is at least one recorded event between them. Drag to pan,
+scroll or pinch to zoom, click a dot to see its links. A line is a record of an event, not a finding
+of influence.</p>
+<div class="net-wrap">
+  <div class="net-tools">
+    <div class="field"><label for="nt">Evidence</label><select id="nt">
+      <option value="nontmy">Lobbying, Money, Meetings and Language</option>
+      <option value="">All Evidence Types</option></select></div>
+    <div class="field"><label for="ns">Minimum Strength</label><select id="ns">
+      <option value="0">Any</option><option value="3">3 and Above</option><option value="4">4 and Above</option></select></div>
+    <div class="field grow"><label for="nq">Find on the map</label><input id="nq" type="search" placeholder="Name of a person, company or committee" autocomplete="off"></div>
+    <label class="check" style="margin:0 0 .35rem"><input type="checkbox" id="nd" checked> Hide dots with a single link</label>
+    <button class="btn" id="nr" type="button" style="margin-bottom:.1rem">Reset View</button>
+  </div>
+  <svg id="net" role="img" aria-label="Network of recorded influence events"></svg>
+  <div class="net-info" id="ninfo" hidden></div>
+</div>
+<div class="legend-inline" id="nleg" style="margin:.6rem 0 0"></div>
+<p class="small muted" id="nnote" style="margin:.3rem 0 0"></p>
 
 <div class="grid two">
   <div class="chartbox">
@@ -153,6 +176,95 @@ try {
     ], uniq, { sort: 'str', dir: -1 });
     $('#ego').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+
+  /* ---- network map */
+  const NCOL = { individual: 'var(--s1)', organization: 'var(--s2)', committee: 'var(--s4)', bill: 'var(--s3)', other: 'var(--s8)', body: 'var(--s6)' };
+  const ECOL = { 'campaign contribution': 'var(--s7)', 'lobbying registration': 'var(--s2)', 'meeting or event record': 'var(--s6)',
+    'bill or amendment language': 'var(--s3)', 'public statement or event': 'var(--s5)', 'testimony': 'var(--s8)' };
+  $('#nleg').innerHTML = 'Dots: ' + Object.entries(NCOL).filter(([k]) => k !== 'body').map(([k, c]) => `<span><i style="background:${c};border-radius:50%"></i>${esc(cap(k))}</span>`).join('') +
+    ' &nbsp; Lines: ' + Object.entries(ECOL).map(([k, c]) => `<span><i style="background:${c};height:3px"></i>${esc(cap(k))}</span>`).join('');
+  let focusId = null;
+  function drawNet() {
+    if (!window.d3) { setTimeout(drawNet, 150); return; }
+    const t = $('#nt').value, ms = Number($('#ns').value), hide1 = $('#nd').checked;
+    const rows = d.rows.filter(r => r.aid !== 'WITHHELD' && r.atype !== 'unresolved' && r.ttype !== 'unresolved' &&
+      !/^ENTITY_NOT_STATED/.test(r.tid) && !/^ENTITY_NOT_STATED/.test(r.aid) &&
+      (t === '' || r.et !== 'testimony') && r.str >= ms);
+    const N = new Map(), E = new Map();
+    for (const r of rows) {
+      if (!N.has(r.aid)) N.set(r.aid, { id: r.aid, lab: r.a, type: r.atype, deg: 0 });
+      if (!N.has(r.tid)) N.set(r.tid, { id: r.tid, lab: r.t, type: r.ttype, deg: 0 });
+      const k = r.aid + '>' + r.tid;
+      if (!E.has(k)) E.set(k, { source: r.aid, target: r.tid, n: 0, types: new Set(), et: r.et });
+      const e = E.get(k); e.n++; e.types.add(r.et);
+    }
+    for (const e of E.values()) { N.get(e.source).deg++; N.get(e.target).deg++; }
+    let nodes = [...N.values()], links = [...E.values()];
+    if (hide1) { const keep = new Set(nodes.filter(n => n.deg >= 2).map(n => n.id));
+      links = links.filter(l => keep.has(l.source) || keep.has(l.target));
+      const used = new Set(links.flatMap(l => [l.source, l.target])); nodes = nodes.filter(n => used.has(n.id) && (keep.has(n.id) || true));
+      links = links.filter(l => keep.has(l.source) && keep.has(l.target) || N.get(l.source).deg >= 3 || N.get(l.target).deg >= 3);
+      const used2 = new Set(links.flatMap(l => [l.source, l.target])); nodes = nodes.filter(n => used2.has(n.id)); }
+    $('#nnote').textContent = `${num(nodes.length)} dots and ${num(links.length)} lines from ${num(rows.length)} events. Records whose other party is not named in the source are left off the map; they are in the list below.`;
+    const svg = d3.select('#net'); svg.selectAll('*').remove();
+    const W = svg.node().clientWidth || 1000, H = svg.node().clientHeight || 620;
+    const g = svg.append('g');
+    const zoom = d3.zoom().scaleExtent([.2, 6]).on('zoom', ev => g.attr('transform', ev.transform));
+    svg.call(zoom);
+    const r = n => 3.5 + Math.sqrt(n.deg) * 2.2;
+    const sim = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(n => n.id).distance(l => 26 + 6 * Math.min(6, l.n)).strength(.5))
+      .force('charge', d3.forceManyBody().strength(n => -40 - n.deg * 6))
+      .force('collide', d3.forceCollide().radius(n => r(n) + 3))
+      .force('x', d3.forceX(W / 2).strength(.045)).force('y', d3.forceY(H / 2).strength(.06)).stop();
+    for (let i = 0; i < 320; i++) sim.tick();
+    const lk = g.append('g').attr('stroke-opacity', .55).selectAll('line').data(links).join('line')
+      .attr('x1', l => l.source.x).attr('y1', l => l.source.y).attr('x2', l => l.target.x).attr('y2', l => l.target.y)
+      .attr('stroke', l => ECOL[l.et] || 'var(--s8)').attr('stroke-width', l => Math.min(4, .8 + l.n * .35));
+    const nd = g.append('g').selectAll('circle').data(nodes).join('circle')
+      .attr('cx', n => n.x).attr('cy', n => n.y).attr('r', r)
+      .attr('fill', n => NCOL[n.type] || 'var(--s8)').attr('stroke', 'var(--surface)').attr('stroke-width', 1.2)
+      .style('cursor', 'pointer').attr('tabindex', 0).attr('role', 'button').attr('aria-label', n => n.lab);
+    nd.append('title').text(n => `${n.lab} (${n.deg} link${n.deg === 1 ? '' : 's'})`);
+    const top = new Set(nodes.slice().sort((a, b) => b.deg - a.deg).slice(0, 28).map(n => n.id));
+    const lb = g.append('g').selectAll('text').data(nodes).join('text')
+      .attr('x', n => n.x + r(n) + 2).attr('y', n => n.y + 3.5).text(n => n.lab.length > 34 ? n.lab.slice(0, 32) + '…' : n.lab)
+      .attr('display', n => top.has(n.id) ? null : 'none');
+    // fit
+    const xs = nodes.map(n => n.x), ys = nodes.map(n => n.y);
+    const bx = [Math.min(...xs) - 20, Math.max(...xs) + 120], by = [Math.min(...ys) - 20, Math.max(...ys) + 20];
+    const k = Math.min(2, .95 / Math.max((bx[1] - bx[0]) / W, (by[1] - by[0]) / H));
+    const fit = d3.zoomIdentity.translate(W / 2 - k * (bx[0] + bx[1]) / 2, H / 2 - k * (by[0] + by[1]) / 2).scale(k);
+    svg.call(zoom.transform, fit);
+    $('#nr').onclick = () => { focusId = null; highlight(null); svg.transition().duration(400).call(zoom.transform, fit); };
+    const nb = new Map(nodes.map(n => [n.id, new Set([n.id])]));
+    links.forEach(l => { nb.get(l.source.id).add(l.target.id); nb.get(l.target.id).add(l.source.id); });
+    function highlight(n) {
+      if (!n) { nd.attr('opacity', 1); lk.attr('stroke-opacity', .55); lb.attr('display', x => top.has(x.id) ? null : 'none'); $('#ninfo').hidden = true; return; }
+      const s = nb.get(n.id);
+      nd.attr('opacity', x => s.has(x.id) ? 1 : .12);
+      lk.attr('stroke-opacity', l => l.source.id === n.id || l.target.id === n.id ? .9 : .04);
+      lb.attr('display', x => s.has(x.id) ? null : 'none');
+      const mine = links.filter(l => l.source.id === n.id || l.target.id === n.id)
+        .map(l => ({ o: l.source.id === n.id ? l.target : l.source, l })).sort((a, b) => b.l.n - a.l.n);
+      $('#ninfo').hidden = false;
+      $('#ninfo').innerHTML = `<strong>${esc(n.lab)}</strong> <span class="muted small">${esc(cap(n.type))}</span>
+        <ul class="clean small" style="margin:.4rem 0;max-height:190px;overflow:auto">${mine.slice(0, 25).map(m => `<li style="margin:.15rem 0">${esc(m.o.lab)} <span class="muted">&middot; ${[...m.l.types].map(x => esc(cap(x))).join(', ')}${m.l.n > 1 ? ' &times;' + m.l.n : ''}</span></li>`).join('')}</ul>
+        <button class="btn" type="button" id="negos">Open this actor&rsquo;s full record</button>`;
+      const b = $('#negos'); if (BY_ID[n.id]) b.onclick = () => showEgo(n.id); else b.remove();
+    }
+    nd.on('click', (ev, n) => { ev.stopPropagation(); focusId = n.id; highlight(n); })
+      .on('keydown', (ev, n) => { if (ev.key === 'Enter') { focusId = n.id; highlight(n); } });
+    svg.on('click', () => { focusId = null; highlight(null); });
+    $('#nq').oninput = () => {
+      const q = $('#nq').value.trim().toLowerCase(); if (q.length < 2) { highlight(null); return; }
+      const n = nodes.find(x => x.lab.toLowerCase().includes(q)); if (!n) return;
+      highlight(n); svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(W / 2 - 1.8 * n.x, H / 2 - 1.8 * n.y).scale(1.8));
+    };
+  }
+  ['nt', 'ns', 'nd'].forEach(i => $('#' + i).addEventListener('change', drawNet));
+  drawNet();
 
   /* ---- event list */
   $('#f').innerHTML =

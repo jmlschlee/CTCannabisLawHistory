@@ -21,133 +21,206 @@ try { var t = localStorage.getItem('ctcl-theme');
 <main id="main">
 
 <div class="page-head">
-  <div class="eyebrow">Raised bill to public act &mdash; and the ones that died</div>
+  <div class="eyebrow">Bills and Votes &middot; Raised Bill to Public Act, and the Ones That Died</div>
   <h1>Bills</h1>
-  <p class="lede">How each bill moved, what was proposed along the way, and what was refused.
-  Bills that did not pass are shown beside the ones that did, and amendments that were filed and
-  never called are shown as prominently as the ones that passed: they are the clearest record of
-  what someone asked for and did not get.</p>
+  <p class="lede">Every Connecticut bill from 2012 to 2026 that the General Assembly indexed under
+  marijuana, cannabis or hemp, or whose title names them: how far each got, who sponsored it, who
+  testified for and against it, and how every committee and floor vote went.</p>
 </div>
 
 <div class="grid four" id="stats"></div>
 
-<div class="callout caution">
-  <div class="hd">A correction worth knowing about</div>
-  <p class="small" style="margin:0">An earlier version of this dataset tracked only the bills
-  that produced a cannabis public act. Eight more were found by working backwards from the
-  testimony record: every one had drawn written testimony on a cannabis question, and none was in
-  the bill table. Four of the eight turned out to have been enacted, which is why this site now
-  carries sixteen public acts rather than twelve. The other four failed and are below.</p>
+<h2 id="rank">Bills that did not pass, ranked by testimony</h2>
+<p class="small muted" style="margin-top:-.4rem">Only bills whose title is about cannabis or hemp are ranked. Multi-subject budget and omnibus bills are left out, because most of their testimony is about something else.</p>
+<div class="tabs" id="rt" role="group" aria-label="Rank by">
+  <button type="button" data-v="sup" aria-pressed="true">Most Support</button>
+  <button type="button" data-v="opp" aria-pressed="false">Most Opposition</button>
+  <button type="button" data-v="div" aria-pressed="false">Most Divided</button>
+  <button type="button" data-v="n" aria-pressed="false">Most Testimony</button>
+  <button type="button" data-v="net" aria-pressed="false">Most One-Sided Support</button>
 </div>
+<label class="check"><input type="checkbox" id="rtext" checked> Include positions read from the testimony text, not just the filename</label>
+<div class="legend-inline" style="margin-bottom:.6rem">
+  <span><i style="background:var(--good)"></i>Supports (filename)</span>
+  <span><i style="background:color-mix(in srgb, var(--good) 45%, var(--surface))"></i>Supports (read from text)</span>
+  <span><i style="background:var(--serious)"></i>Opposes (filename)</span>
+  <span><i style="background:color-mix(in srgb, var(--serious) 45%, var(--surface))"></i>Opposes (read from text)</span>
+  <span><i style="background:var(--surface-sunk)"></i>Not stated or mixed</span></div>
+<div class="ranklist" id="rl"></div>
+<details class="more" style="margin-top:.8rem"><summary>How positions are counted</summary>
+  <p class="small">Since about 2019 the General Assembly has put the witness&rsquo;s position in the
+  testimony file name (&ldquo;-Supports-&rdquo;, &ldquo;-Opposes-&rdquo;). That is the
+  <strong>filename</strong> count, and it is the witness&rsquo;s own statement. Older filings carry
+  no position in the name. For those, the first two pages of each PDF were read and searched for a
+  plain statement such as &ldquo;in support of&rdquo;, &ldquo;urge you to pass&rdquo;, &ldquo;in
+  opposition to&rdquo; or &ldquo;urge you to reject&rdquo;; scanned filings were run through text
+  recognition first. That is the <strong>read from text</strong> count. It is automatic and can be
+  wrong, so it is shown in a lighter shade, can be switched off above, and every filing links to the
+  PDF so the reading can be checked. A filing with both kinds of phrase is counted as mixed.</p></details>
 
-<div class="callout note">
-  <div class="hd">What the bill record cannot give</div>
-  <p class="small" style="margin:0">Introducers, committees and LCO numbers, yes. A drafting
-  requester, no. Every cannabis act here was raised by a committee rather than a named member, so
-  no individual author appears on the face of the record. Who asked for a given amendment is
-  unknown throughout this dataset and is logged as gap GAP_0003.</p>
-</div>
-
+<h2 id="all">Every bill</h2>
 <div class="filters" id="f"></div>
 <div class="resultbar"><span id="count"></span>
-  <button class="btn" id="dl" type="button">Download this view as CSV</button></div>
+  <button class="btn" id="dl" type="button">Download This View as CSV</button></div>
 <div class="records" id="list"></div>
+<div class="pagenav"><button class="btn" id="more" type="button" hidden>Show more</button></div>
 
 </main>
 <script type="module">
 
 import { load, $, num, esc, cap, fmtDate, plural, cite, setSources, searchField,
-         selectField, clearButton, wire, downloadCSV, table, fail } from './assets/app.js';
+         selectField, clearButton, wire, downloadCSV, fail } from './assets/app.js';
 
 try {
-  const [d, src] = await Promise.all([load('bills'), load('sources')]);
+  const [d, src, V, L] = await Promise.all([load('bills'), load('sources'), load('votes'), load('legislators')]);
   setSources(src.map);
-  const B = d.bills;
+  const B = d.bills, META = d.meta, VOTE = new Map(V.votes.map(v => [v.id, v]));
+  const LEG = new Map(L.legislators.map(l => [l.id, l]));
+  const qs = new URLSearchParams(location.search);
   const failed = B.filter(b => !b.enacted);
+  const SI = s => META.stages.indexOf(s);
 
   $('#stats').innerHTML = [
-    ['hero', B.length, 'cannabis bills tracked'],
-    ['', B.length - failed.length, 'became public acts'],
+    ['hero', B.length, 'cannabis bills, 2012 to 2026'],
+    ['', B.filter(b => b.enacted).length, 'became public acts'],
     ['', failed.length, 'did not pass'],
-    ['', B.reduce((a, b) => a + (b.amds || []).filter(x => x.called !== true).length, 0),
-     'amendments filed and never called'],
-  ].map(([k, n, lab]) =>
-    `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
+    ['', V.votes.length, 'committee and floor votes, member by member'],
+  ].map(([k, n, lab]) => `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
 
+  const stageBar = b => {
+    const i = b.enacted ? 5 : Math.min(SI(b.stage), 4);
+    return `<div class="stagebar ${b.enacted ? 'enacted' : 'dead'}" title="${esc(b.stage)}" aria-label="Furthest stage: ${esc(b.stage)}">
+      ${[0, 1, 2, 3, 4, 5].map(k => `<i class="${k <= i ? 'on' : ''}"></i>`).join('')}</div>`;
+  };
+  const tmyBar = (t, withText = true) => {
+    const tot = t.n || 1;
+    const seg = (n, c, lab) => n ? `<i style="width:${n / tot * 100}%;background:${c}" title="${lab}: ${n}"></i>` : '';
+    return `<div class="tmybar">${seg(t.sup, 'var(--good)', 'Supports, filename')}${withText ? seg(t.supT, 'color-mix(in srgb, var(--good) 45%, var(--surface))', 'Supports, read from text') : ''}
+      ${seg(t.opp, 'var(--serious)', 'Opposes, filename')}${withText ? seg(t.oppT, 'color-mix(in srgb, var(--serious) 45%, var(--surface))', 'Opposes, read from text') : ''}</div>`;
+  };
+
+  /* ------------------------------------------------ ranking */
+  let rk = 'sup';
+  function drawRank() {
+    const wt = $('#rtext').checked;
+    const S = b => b.tmy.sup + (wt ? b.tmy.supT : 0), O = b => b.tmy.opp + (wt ? b.tmy.oppT : 0);
+    let rows = failed.filter(b => b.focus && b.tmy.n > 0);
+    const key = { sup: b => S(b), opp: b => O(b), n: b => b.tmy.n,
+      div: b => (S(b) + O(b) >= 6 ? Math.min(S(b), O(b)) / Math.max(S(b), O(b)) * 100 + Math.min(S(b), O(b)) / 1000 : -1),
+      net: b => S(b) - O(b) }[rk];
+    rows = rows.filter(b => key(b) > 0).sort((a, b) => key(b) - key(a)).slice(0, 15);
+    $('#rl').innerHTML = rows.length ? rows.map((b, i) => `<a class="rank" href="#${esc(b.id)}" data-open="${esc(b.id)}" style="text-decoration:none;color:inherit">
+      <div class="pos">${i + 1}</div>
+      <div><div class="who">${esc(b.num)} (${esc(b.yr)}) &middot; ${esc(b.title.replace(/^An Act /, ''))}</div>
+        <div class="meta">${esc(b.stage)} &middot; ${b.topics.map(esc).join(', ')}</div>
+        ${tmyBar(b.tmy, wt)}
+        <div class="meta">${num(S(b))} support &middot; ${num(O(b))} oppose &middot; ${num(b.tmy.n - S(b) - O(b))} not stated or mixed</div></div>
+      <div class="n">${rk === 'div' ? Math.round(Math.min(S(b), O(b)) / Math.max(S(b), O(b)) * 100) + '%' : num(key(b))}
+        <small>${{ sup: 'support', opp: 'oppose', n: 'filings', div: 'balance', net: 'net support' }[rk]}</small></div></a>`).join('')
+      : '<div class="empty">No bill fits.</div>';
+  }
+  $('#rt').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; rk = b.dataset.v;
+    $('#rt').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); drawRank(); });
+  $('#rtext').addEventListener('change', drawRank);
+  drawRank();
+
+  /* ------------------------------------------------ every bill */
   $('#f').innerHTML =
-    searchField('q', 'Search', 'bill number, title, act') +
+    searchField('q', 'Search', 'bill number, title, sponsor, act') +
     selectField('yr', 'Session', [...new Set(B.map(b => b.yr))].sort().reverse()) +
-    selectField('out', 'Outcome', [['yes', 'Became a public act'], ['no', 'Did not pass']]) +
+    selectField('tp', 'Topic', META.topics) +
+    selectField('out', 'Outcome', [['yes', 'Became a Public Act'], ['no', 'Did Not Pass']]) +
+    selectField('st', 'Got As Far As', META.stages) +
+    selectField('sc', 'Scope', [['focus', 'Cannabis and Hemp Bills Only'], ['omni', 'Budget and Multi-Subject Only']], { all: 'All Bills' }) +
     clearButton();
 
+  let limit = 30;
   function current() {
-    const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value, out = $('#out').value;
-    return B.filter(b =>
-      (!yr || b.yr === yr) &&
-      (!out || (out === 'yes' ? b.enacted : !b.enacted)) &&
-      (!q || (b.num + ' ' + b.title + ' ' + (b.pa || '') + ' ' + b.why).toLowerCase().includes(q)));
+    const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value, out = $('#out').value,
+          tp = $('#tp').value, st = $('#st').value, sc = $('#sc').value;
+    return B.filter(b => (!yr || b.yr === yr) && (!out || (out === 'yes' ? b.enacted : !b.enacted)) &&
+      (!tp || b.topics.includes(tp)) && (!st || b.stage === st) && (!sc || (sc === 'focus' ? b.focus : !b.focus)) &&
+      (!q || (b.num + ' ' + b.yr + ' ' + b.title + ' ' + (b.pa || '') + ' ' + b.by + ' ' + b.spon.map(s => s.n).join(' ')).toLowerCase().includes(q)));
+  }
+  const person = (pid, fallback) => { const l = LEG.get(pid); return l ? `<a href="legislators.html?id=${esc(pid)}">${esc((l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name)}</a>` : esc(fallback); };
+
+  function voteRow(v) {
+    const Y = v.m.filter(m => m[1] === 'Y'), N = v.m.filter(m => m[1] === 'N');
+    const names = ms => ms.map(m => { const l = LEG.get(m[0]); return l ? `<a href="legislators.html?id=${esc(m[0])}">${esc(l.name)}</a>` : `<span title="Two members print identically on this roll call">${esc(m[2] || '')}</span>`; }).join(', ');
+    return `<div class="vrow" style="grid-template-columns:minmax(0,1fr) auto">
+      <div><div class="l1"><strong>${esc(v.kind === 'committee' ? v.body + ' Committee' : v.body + ' Floor')}</strong>
+        <span class="muted">&middot; ${esc(v.type)}${v.action ? ' &middot; ' + esc(v.action) : ''}${v.kind === 'floor' && v.label ? ' &middot; ' + esc(cap(v.label.replace(/^(House|Senate) Roll Call Vote /, 'Roll Call '))) : ''}</span></div>
+        <details class="more" style="margin-top:.2rem"><summary class="small">Who voted Yea (${Y.length}) and Nay (${N.length})</summary>
+          <p class="small" style="margin:.4rem 0"><span class="v Y">Yea</span> ${names(Y) || '<span class="muted">none</span>'}</p>
+          <p class="small" style="margin:.4rem 0"><span class="v N">Nay</span> ${names(N) || '<span class="muted">none</span>'}</p></details></div>
+      <div class="end"><span class="small nowrap">${esc(fmtDate(v.date))}</span><br>
+        <span class="chip ${/Passed|Adopted/.test(v.res) ? 'ok' : 'bad'}">${esc(v.res)} ${v.t.y}&ndash;${v.t.n}</span><br>
+        <a class="small" href="${esc(v.u)}" rel="noopener">${v.kind === 'committee' ? 'Tally Sheet' : 'Roll Call'} &#8599;</a></div></div>`;
+  }
+
+  function card(b) {
+    const vs = b.votes.map(id => VOTE.get(id)).filter(Boolean).sort((x, y) => (x.date || '').localeCompare(y.date || ''));
+    const called = b.amds.filter(a => a.called).length, uncalled = b.amds.length - called;
+    const t = b.tmy;
+    return `<article class="rec bill-card" id="${esc(b.id)}">
+      <div class="top"><h3 class="rec-title" style="margin:0">${esc(b.num)} <span class="muted" style="font-weight:400">(${esc(b.yr)})</span></h3>
+        <span class="chips">${b.topics.map(x => `<span class="chip">${esc(x)}</span>`).join('')}
+        <span class="chip ${b.enacted ? 'ok' : 'warn'}">${b.enacted ? esc(b.pa) : 'Did Not Pass'}</span></span></div>
+      <p class="rec-body" style="margin:.25rem 0 .1rem">${esc(b.title)}</p>
+      ${stageBar(b)}<div class="small muted">Got as far as: <strong>${esc(b.stage)}</strong>${b.last ? ` &middot; last action ${esc(fmtDate(b.last))}` : ''}</div>
+      <dl class="kv" style="margin-top:.6rem">
+        <dt>Introduced by</dt><dd>${b.spon.filter(s => s.role === 'Introduced').map(s => s.pid ? person(s.pid, s.n) : esc(s.n)).join(', ') || esc(b.by || 'Not stated on the bill status page')}</dd>
+        ${b.spon.some(s => s.role === 'Co-Sponsor') ? `<dt>Co-sponsors</dt><dd>${b.spon.filter(s => s.role === 'Co-Sponsor').map(s => person(s.pid, s.n)).join(', ')}</dd>` : ''}
+        <dt>Testimony</dt><dd>${t.n ? `${tmyBar(t)}<span class="small">${num(t.sup + t.supT)} support (${num(t.supT)} read from text) &middot; ${num(t.opp + t.oppT)} oppose (${num(t.oppT)} read from text) &middot; ${num(t.ns + t.mix + t.com)} not stated, mixed or comments &middot;
+          <a href="testimony.html?bill=${encodeURIComponent(b.num.slice(0, 2) + '-' + b.num.slice(2).padStart(5, '0'))}&yr=${esc(b.yr)}">See all ${num(t.n)} filings</a></span>${!b.focus ? '<br><span class="small muted">Multi-subject bill: most of this testimony is not about cannabis.</span>' : ''}`
+          : '<span class="muted">No written testimony is posted for this bill.</span>'}</dd>
+        <dt>Votes</dt><dd>${vs.length ? plural(vs.length, 'recorded vote') : '<span class="muted">No committee or floor roll call is posted.</span>'}</dd>
+        ${b.why ? `<dt>Why it is here</dt><dd>${esc(cap(b.why))}</dd>` : ''}
+      </dl>
+      ${vs.length ? `<details class="more"${vs.length <= 3 ? ' open' : ''}><summary>Committee and floor votes, ${num(vs.length)}</summary><div class="vlist" style="margin-top:.4rem">${vs.map(voteRow).join('')}</div></details>` : ''}
+      ${b.amds.length ? `<details class="more"><summary>Amendments, ${num(b.amds.length)} &mdash; ${num(uncalled)} never called</summary>
+        <div class="vlist" style="margin-top:.4rem">${b.amds.map(a => `<div class="vrow" style="grid-template-columns:minmax(0,1fr) auto">
+          <div><a href="${esc(a.u)}" rel="noopener"><strong>LCO ${esc(a.lco)}</strong></a> <span class="muted small">${esc(a.lab)}</span><br>
+          <span class="small">Offered by: ${a.by.length ? a.by.map(o => person(o.pid, o.n)).join(', ') : '<span class="muted">not printed on the amendment</span>'}</span></div>
+          <div class="end"><span class="chip ${a.called ? '' : 'warn'}">${a.called ? 'Called' : 'Never Called'}</span></div></div>`).join('')}</div></details>` : ''}
+      ${b.hist.length ? `<details class="more"><summary>Full bill history, ${plural(b.hist.length, 'action')}</summary>
+        <div class="tl" style="margin-top:.6rem">${b.hist.map(h => `<div class="tl-item"><div class="tl-dot"></div>
+          <div class="tl-date">${esc(fmtDate(h.d) || h.d)}</div><div class="tl-title" style="font-size:.9rem;font-weight:550">${esc(h.a)}</div></div>`).join('')}</div></details>` : ''}
+      <p class="small" style="margin:.6rem 0 0"><a href="${esc(b.l)}" rel="noopener">Bill status page at the General Assembly &#8599;</a>${b.docs.map(x => ` &middot; <a href="${esc(x.url)}" rel="noopener">${esc(x.label)}</a>`).join('')}</p>
+      ${cite(b.s, b.l)}
+    </article>`;
   }
 
   function draw() {
-    const rows = current().sort((a, b) => (b.yr || '').localeCompare(a.yr || '') ||
-      (a.num || '').localeCompare(b.num || ''));
-    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(B.length)} bills`;
-    $('#list').innerHTML = rows.length ? rows.map(b => {
-      const called = (b.amds || []).filter(a => a.called === true).length;
-      const uncalled = (b.amds || []).filter(a => a.called !== true).length;
-      return `<article class="rec" id="${esc(b.id)}">
-        <div class="rec-head">
-          <h3 class="rec-title">${esc(b.num)} <span class="muted" style="font-weight:400">(${esc(b.yr)})</span></h3>
-          <span class="chip ${b.enacted ? 'ok' : 'bad'}">${b.enacted ? esc(b.pa) : 'Did not pass'}</span>
-        </div>
-        <p class="rec-body" style="margin:.1rem 0 .5rem">${esc(b.title)}</p>
-        <dl class="kv">
-          <dt>Introduced by</dt><dd>${esc(b.by || 'not stated on the bill status page')}</dd>
-          <dt>Why it is here</dt><dd>${esc(cap(b.why))}</dd>
-          <dt>The record</dt><dd>${plural((b.hist || []).length, 'dated action')} &middot;
-            ${plural(called, 'amendment')} called &middot;
-            <strong>${num(uncalled)} filed and never called</strong> &middot;
-            ${plural((b.votes || []).length, 'roll call')} &middot;
-            ${b.tmy ? plural(b.tmy, 'testimony record') : 'no testimony retrieved for this bill'}</dd>
-        </dl>
-        ${(b.hist || []).length ? `<details class="more"><summary>Full bill history, ${plural((b.hist || []).length, 'action')}</summary>
-          <div class="tl" style="margin-top:.6rem">${b.hist.map(h => `<div class="tl-item">
-            <div class="tl-dot"></div><div class="tl-date">${esc(fmtDate(h.d) || h.d)}</div>
-            <div class="tl-title" style="font-size:.9rem;font-weight:550">${esc(h.a)}</div>
-            <div class="tl-detail">${esc(cap(h.t))}${h.w ? ' &middot; ' + esc(h.w) : ''}</div></div>`).join('')}</div>
-        </details>` : ''}
-        ${(b.amds || []).length ? `<details class="more"><summary>Amendments, ${num(b.amds.length)}
-          &mdash; ${num(uncalled)} never called</summary>
-          <div id="amd-${esc(b.id)}" style="margin-top:.6rem"></div></details>` : ''}
-        ${cite(b.s, b.l)}
-      </article>`;
-    }).join('') : '<div class="empty">No bills match these filters.</div>';
-
-    rows.forEach(b => {
-      const n = document.getElementById('amd-' + b.id);
-      if (!n || !(b.amds || []).length) return;
-      table(n, [
-        { key: 'lco', label: 'LCO' },
-        { key: 'ch', label: 'Chamber' },
-        { key: 'called', label: 'Called?', html: r =>
-            `<span class="chip ${r.called === true ? 'ok' : 'warn'}">${r.called === true ? 'Called' : 'Never called'}</span>` },
-        { key: 'lab', label: 'As listed on the bill status page' },
-      ], b.amds, { sort: 'called' });
-    });
+    const rows = current().sort((a, b) => (b.yr || '').localeCompare(a.yr || '') || SI(b.stage) - SI(a.stage) || (b.tmy.n - a.tmy.n));
+    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(B.length)} bills` + (rows.length > limit ? ` &middot; showing ${num(limit)}` : '');
+    $('#list').innerHTML = rows.length ? rows.slice(0, limit).map(card).join('') : '<div class="empty">No bills match these filters.</div>';
+    const m = $('#more'); m.hidden = rows.length <= limit; m.textContent = `Show ${num(Math.min(30, rows.length - limit))} more`;
   }
+  $('#more').addEventListener('click', () => { limit += 30; draw(); });
+  $('#dl').addEventListener('click', () => downloadCSV('ct-cannabis-bills-view.csv', current(), [
+    { key: 'num', label: 'bill' }, { key: 'yr', label: 'session_year' }, { key: 'title', label: 'title' },
+    { label: 'topics', get: b => b.topics.join('; ') }, { key: 'stage', label: 'furthest_stage' }, { key: 'pa', label: 'public_act' },
+    { label: 'introduced_by', get: b => b.spon.filter(s => s.role === 'Introduced').map(s => s.n).join('; ') || b.by },
+    { label: 'cosponsors', get: b => b.spon.filter(s => s.role === 'Co-Sponsor').map(s => s.n).join('; ') },
+    { label: 'testimony_total', get: b => b.tmy.n }, { label: 'supports_filename', get: b => b.tmy.sup }, { label: 'supports_text', get: b => b.tmy.supT },
+    { label: 'opposes_filename', get: b => b.tmy.opp }, { label: 'opposes_text', get: b => b.tmy.oppT },
+    { label: 'recorded_votes', get: b => b.votes.length }, { label: 'amendments', get: b => b.amds.length },
+    { label: 'amendments_never_called', get: b => b.amds.filter(a => !a.called).length }, { key: 'l', label: 'bill_status_url' }]));
 
-  $('#dl').addEventListener('click', () => downloadCSV('ct-bills-view.csv', current(), [
-    { key: 'num', label: 'bill' }, { key: 'yr', label: 'session_year' },
-    { key: 'title', label: 'title' }, { key: 'by', label: 'introduced_by' },
-    { key: 'pa', label: 'public_act' }, { key: 'enacted', label: 'enacted' },
-    { label: 'dated_actions', get: b => (b.hist || []).length },
-    { label: 'amendments_called', get: b => (b.amds || []).filter(a => a.called === true).length },
-    { label: 'amendments_never_called', get: b => (b.amds || []).filter(a => a.called !== true).length },
-    { label: 'roll_calls', get: b => (b.votes || []).length },
-    { key: 'tmy', label: 'testimony_records' }, { key: 's', label: 'source_id' }]));
-
-  wire(['q', 'yr', 'out'], draw);
-} catch (e) { fail(document.querySelector('#list'), e); }
+  // Deep link: bills.html?id=BILL_2025_HB5429 or #BILL_...
+  const want = qs.get('id') || location.hash.slice(1);
+  if (qs.get('yr')) $('#yr').value = qs.get('yr');
+  if (want && B.some(b => b.id === want)) { const b = B.find(x => x.id === want); $('#q').value = b.num; $('#yr').value = b.yr; }
+  wire(['q', 'yr', 'tp', 'out', 'st', 'sc'], () => { limit = 30; draw(); });
+  if (want) { const n = document.getElementById(want); if (n) { const dd = n.querySelector('details.more'); if (dd) dd.open = true; n.scrollIntoView(); } }
+  $('#rl').addEventListener('click', e => {
+    const a = e.target.closest('[data-open]'); if (!a) return; e.preventDefault();
+    const b = B.find(x => x.id === a.dataset.open); $('#q').value = b.num; $('#yr').value = b.yr; $('#out').value = ''; $('#tp').value = ''; $('#st').value = ''; $('#sc').value = '';
+    limit = 30; draw(); const n = document.getElementById(b.id); if (n) { const dd = n.querySelector('details.more'); if (dd) dd.open = true; n.scrollIntoView({ behavior: 'smooth' }); }
+    history.replaceState(null, '', '?id=' + b.id);
+  });
+} catch (e) { fail(document.querySelector('#list'), e); console.error(e); }
 
 </script>
 </body>

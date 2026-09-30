@@ -31,8 +31,8 @@ try { var t = localStorage.getItem('ctcl-theme');
 <div class="grid four" id="stats"></div>
 
 <h2>Start here</h2>
-<p class="small" style="margin-top:-.4rem">Three ways in, depending on what you came for.</p>
-<div class="grid three" id="entry"></div>
+<p class="small" style="margin-top:-.4rem">Four ways in, depending on what you came for.</p>
+<div class="grid four" id="entry"></div>
 
 <h2>What the record shows</h2>
 <div class="grid two" id="findings"></div>
@@ -73,7 +73,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 </main>
 <script type="module">
 
-import { load, $, num, esc, fmtDate, plural, fail } from './assets/app.js';
+import { load, $, num, esc, cap, fmtDate, plural, fail } from './assets/app.js';
 import { barChart, columnChart } from './assets/charts.js';
 
 try {
@@ -83,29 +83,35 @@ try {
   $('#stats').innerHTML = [
     ['hero', c.legal_changes, 'enacted legal changes, 2012 to 2027'],
     ['', c.acts, 'public acts read section by section'],
-    ['', c.testimony, 'testimony filings by ' + num(c.tmy_people) + ' named parties'],
-    ['', c.bills, 'bills tracked, ' + num(c.failed_bills) + ' of which did not pass'],
+    ['', c.bills, 'cannabis bills since 2012, ' + num(c.failed_bills) + ' of which did not pass'],
+    ['', c.member_votes, 'lawmaker votes from ' + num(c.votes) + ' tally sheets and roll calls'],
   ].map(([k, n, lab]) =>
     `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
 
   $('#entry').innerHTML = [
+    ['legislators.html', 'Look up a lawmaker',
+     'How every legislator voted on cannabis bills, in committee and on the floor, by topic and year, with what they sponsored.'],
+    ['bills.html', 'See the bills that died',
+     'Every cannabis bill since 2012, how far it got, and the ones that failed ranked by support and opposition in testimony.'],
     ['timeline.html', 'Follow it in order',
      'Every dated event from the 2012 medical act to the changes taking effect in 2027, in one stream you can filter.'],
-    ['people.html', 'See who showed up',
-     'The people and organizations who filed testimony, ranked by how often, with what they supported and opposed.'],
     ['laws.html', 'Read what changed',
      'Each enacted change with the old text beside the new, the effective date, and the act and section it came from.'],
   ].map(([h, t, p]) => `<a class="card" href="${h}" style="text-decoration:none;display:block">
       <h3 style="margin:0 0 .3rem">${esc(t)} &rarr;</h3>
       <p class="small" style="margin:0;color:var(--ink-2)">${esc(p)}</p></a>`).join('');
 
+  const ft = d.failed_top || {};
   $('#findings').innerHTML = [
+    ...(ft.sup ? [[`The most-supported bill that failed: ${ft.sup.num.replace(/^(HB|SB)/, '$1 ')} (${ft.sup.yr})`,
+     `${ft.sup.title}. ${ft.sup.n} written filings supported it. It got no further than: ${ft.sup.stage}. The most-opposed failed bill was ${ft.opp.num.replace(/^(HB|SB)/, '$1 ')} (${ft.opp.yr}), with ${ft.opp.n} filings against it.`,
+     'bills.html#rank', 'See the ranking']] : []),
     ['The rules most operators follow are not regulations',
      'Adult-use requirements, testing among them, sit in a Department policies and procedures document rather than in regulations adopted under chapter 54. That document skips notice, comment, Attorney General review and the Legislative Regulation Review Committee. Its version history is not published.',
      'agencies.html', 'See the implementation record'],
     [plural(c.uncalled, 'amendment') + ' were filed and never called',
-     'An amendment that is filed and never called is the clearest record of what someone asked for and did not get. One 2012 bill alone carries 49 of them. They are shown here as prominently as the ones that passed.',
-     'bills.html', 'See the bill lineage'],
+     'An amendment that is filed and never called is the clearest record of what someone asked for and did not get. One 2012 bill alone, the medical marijuana act, carries ' + (d.top_uncalled ? d.top_uncalled.n : 49) + ' of them. They are shown here as prominently as the ones that passed.',
+     'bills.html', 'See every amendment'],
     ['Nothing in the influence record reaches the top of the scale',
      'A strength-5 rating needs a document tying an actor directly to a drafting or decision act. No such document is in the public record examined, so the site says so rather than implying more than it holds.',
      'influence.html', 'See the influence record'],
@@ -118,7 +124,7 @@ try {
       <a class="chip" href="${h}">${esc(cta)} &rarr;</a></div>`).join('');
 
   columnChart($('#byYear'), d.events_by_year.map(r => ({ k: r.y, n: r.n })), { everyN: 2 });
-  barChart($('#byCat'), d.categories.slice(0, 9).map(r => ({ k: r.k, n: r.n })));
+  barChart($('#byCat'), d.categories.slice(0, 9).map(r => ({ k: cap(r.k), n: r.n })));
 
   const m = d.latest.slice(-9).reverse();
   $('#mile').innerHTML = m.map(e => `<div class="tl-item"><div class="tl-dot"></div>

@@ -45,7 +45,7 @@ is quoted verbatim, which is why some rows read &ldquo;per cent&rdquo; rather th
 </main>
 <script type="module">
 
-import { load, $, num, esc, cite, setSources, selectField, searchField, debounce,
+import { load, $, num, esc, cap, cite, setSources, selectField, searchField, debounce,
          downloadCSV, table } from './assets/app.js';
 const [d, laws, s] = await Promise.all([load('statutes'), load('laws'), load('sources')]);
 setSources(s.map);
@@ -78,7 +78,7 @@ function draw() {
         Part of this section was repealed</div>
         <p class="small" style="margin:0">${esc(x.repeal)}</p></div>` : ''}
       <dl class="kv">
-        <dt>Topics</dt><dd>${esc(x.topic)}</dd>
+        <dt>Topics</dt><dd>${esc(String(x.topic || '').split('; ').map(cap).join('; '))}</dd>
         <dt>Acts touching it</dt><dd>${esc(x.acts)}</dd>
         <dt>First in dataset</dt><dd>${esc(x.first || '\u2014')}</dd>
         <dt>Latest in dataset</dt><dd>${esc(x.last || '\u2014')}</dd>

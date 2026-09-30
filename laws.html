@@ -83,11 +83,11 @@ try {
   $('#acts').innerHTML = d.acts.filter(a => a.n > 0)
     .sort((a, b) => b.n - a.n).map(a => `
     <button class="card" type="button" data-act="${esc(a.id)}"
-      style="text-align:left;cursor:pointer;font:inherit;color:inherit">
+      style="text-align:left;cursor:pointer;font:inherit;color:inherit;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch">
       <div class="chips" style="margin-bottom:.4rem"><span class="chip mono">${esc(a.pa)}</span>
         <span class="chip">${esc(a.bill)}</span></div>
-      <div style="font-weight:620;font-size:.95rem;margin-bottom:.25rem">${esc(a.short || a.title)}</div>
-      <div class="small muted">${plural(a.n, 'change')} &middot; signed ${esc(fmtDate(a.signed))}</div>
+      <h3 style="font-weight:640;font-size:.98rem;margin:0 0 .25rem">${esc(a.short || a.title)}</h3>
+      <div class="small muted" style="margin-top:auto">${plural(a.n, 'change')} &middot; signed ${esc(fmtDate(a.signed))} &middot; <a href="bills.html?id=${esc(a.billid || '')}" onclick="event.stopPropagation()">bill history</a></div>
     </button>`).join('');
 
   $('#f').innerHTML =

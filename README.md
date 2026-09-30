@@ -16,14 +16,16 @@ example, on its methodology page.
 
 | Thing | Where |
 |---|---|
-| 17 web pages | the `.html` files in this folder |
+| 18 web pages | the `.html` files in this folder |
 | Styling and behavior | `assets/` — one CSS file, two JavaScript files |
-| The data the pages read | `data/` — 13 JSON files |
-| The same data as spreadsheets | `downloads/` — 22 CSV files, 1 workbook, 1 PDF report |
+| The data the pages read | `data/` — 15 JSON files |
+| The same data as spreadsheets | `downloads/` — 24 CSV files, 1 workbook, 1 PDF report |
+| How the bill, vote and testimony data was pulled from the General Assembly | `tools/cga/` |
 | Netlify settings | `netlify.toml`, `_headers`, `_redirects` |
 
-What the site covers: 463 enacted legal changes across 16 public acts, 23 bills (7 of which did
-not pass), 110 statute sections, 683 testimony filings by 504 named parties, 1,035 influence
+What the site covers: 463 enacted legal changes across 16 public acts, 231 cannabis bills from 2012
+to 2026 (190 of which did not pass), 19,148 member votes from 324 committee tally sheets and floor
+roll calls, 491 lawmakers, 110 statute sections, 3,898 testimony filings across 18 committees, 1,035 influence
 events, and 12 logged gaps — 5 closed from the public record, 6 partly closed and 1 still open (checked 30 September 2026).
 
 **There is no build step.** No npm, no Node, no compiler, no framework. The files you see are the

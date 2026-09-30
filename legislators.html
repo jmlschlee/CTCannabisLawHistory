@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lawmakers &middot; CT Cannabis Law</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Lawmakers &middot; CT Cannabis Law">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Bills and Votes &middot; Every Recorded Vote Since 2012</div>
+  <h1>Lawmakers</h1>
+  <p class="lede">How each Connecticut legislator voted on cannabis bills: in committee, on the
+  House floor and on the Senate floor, from 2012 to 2026. Pick a topic to compare every lawmaker,
+  or pick a lawmaker to see their full record, the bills they sponsored, the amendments they
+  offered and the testimony they filed.</p>
+</div>
+
+<div class="grid four" id="stats"></div>
+
+<div class="callout note">
+  <div class="hd">How to read a vote</div>
+  <p class="small" style="margin:0">A <strong>Yea</strong> is a vote for the bill in front of the
+  committee or chamber on that day. It is not, by itself, a vote &ldquo;for cannabis&rdquo;: some
+  bills in a topic expand access and some restrict it, so every count links to the bills behind it.
+  Stance counts use <strong>committee votes and final-passage votes</strong> only. Amendment votes
+  are listed in each record but not counted, because a Yea on an amendment can help or hurt the
+  bill. <strong>Why</strong> a member voted is not on a tally sheet; the closest public evidence is
+  what they sponsored, the amendments they offered, the testimony they filed and the floor debate,
+  all linked below. Party is shown only for members on the General Assembly&rsquo;s current
+  (2026) roster, because older roll calls do not print it.</p>
+</div>
+
+<h2 id="compare">Compare by topic</h2>
+<p class="small muted" style="margin-top:-.4rem">Who voted for, and against, each kind of cannabis bill. Bars run left for Nay and right for Yea. Click a name to open that lawmaker&rsquo;s record.</p>
+<div class="filters static" id="cf"></div>
+<div class="chartbox">
+  <div class="legend-inline" style="margin-bottom:.6rem">
+    <span><i style="background:var(--serious)"></i>Nay</span>
+    <span><i style="background:var(--good)"></i>Yea</span>
+    <span>Minimum two counted votes in the topic</span></div>
+  <div id="cmp"></div>
+  <div class="pagenav"><button class="btn" id="cmpMore" type="button" hidden>Show more</button></div>
+</div>
+
+<h2 id="record">One lawmaker&rsquo;s record</h2>
+<div class="split-pane">
+  <aside class="card" style="padding:.6rem">
+    <div class="field" style="padding:.2rem .3rem .5rem"><label for="lq">Find a lawmaker</label>
+      <input id="lq" type="search" placeholder="Name or district" autocomplete="off"></div>
+    <div class="segmented" id="lch" role="group" aria-label="Chamber" style="margin:0 .3rem .5rem">
+      <button type="button" data-v="" aria-pressed="true">All</button>
+      <button type="button" data-v="House" aria-pressed="false">House</button>
+      <button type="button" data-v="Senate" aria-pressed="false">Senate</button>
+      <button type="button" data-v="cur" aria-pressed="false">Current</button></div>
+    <div class="pick-list" id="ll" role="list"></div>
+  </aside>
+  <section id="prof" aria-live="polite"></section>
+</div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, cap, fmtDate, plural, selectField, downloadCSV, table, fail } from './assets/app.js';
+
+try {
+  const [L, V, B] = await Promise.all([load('legislators'), load('votes'), load('bills')]);
+  const LEG = L.legislators, VOTE = new Map(V.votes.map(v => [v.id, v])), BILL = new Map(B.bills.map(b => [b.id, b]));
+  const META = B.meta, TOPICS = META.topics;
+  const byId = new Map(LEG.map(l => [l.id, l]));
+  const qs = new URLSearchParams(location.search);
+  const COUNTED = new Set(['Final Passage', 'Committee Vote']);
+  const VL = { Y: 'Yea', N: 'Nay', A: 'Absent', X: 'Absent' };
+  const chamberLabel = l => `${l.ch === 'House' ? 'Rep.' : 'Sen.'} ${l.name}`;
+  const where = l => l.dist && l.dist !== '?' ? `${l.ch} District ${l.dist}` : `${l.ch}, district not printed on the roll call`;
+
+  $('#stats').innerHTML = [
+    ['hero', LEG.length, 'lawmakers with a recorded cannabis vote, sponsorship or amendment'],
+    ['', META.counts.member_votes, 'individual member votes, each linked to its tally sheet or roll call'],
+    ['', V.votes.length, 'committee and floor votes on cannabis bills'],
+    ['', META.counts.bills, 'cannabis bills, 2012 to 2026, passed or not'],
+  ].map(([k, n, lab]) => `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
+
+  /* ------------------------------------------------ compare by topic */
+  $('#cf').innerHTML =
+    selectField('ct', 'Topic', TOPICS.filter(t => t !== 'Budget and Multi-Subject Bills').map(t => [t, t]), { all: 'All Cannabis Topics' }) +
+    selectField('cc', 'Chamber', [['House', 'House'], ['Senate', 'Senate']], { all: 'Both Chambers' }) +
+    selectField('cs', 'Serving', [['cur', 'Serving Now (2026 Roster)']], { all: 'Everyone Since 2012' }) +
+    selectField('co', 'Sort', [['yes', 'Most Yea First'], ['no', 'Most Nay First'], ['n', 'Most Votes First'], ['name', 'Name']], { all: 'Most Yea First' });
+  let cmpLimit = 40;
+  function tallies(l, topic) {
+    if (!topic) {
+      const c = { Y: 0, N: 0, A: 0 };
+      for (const [t, x] of Object.entries(l.topics)) if (t !== 'Budget and Multi-Subject Bills') { c.Y += x.Y; c.N += x.N; c.A += x.A; }
+      return c;
+    }
+    return l.topics[topic] || { Y: 0, N: 0, A: 0 };
+  }
+  function drawCmp() {
+    const t = $('#ct').value, ch = $('#cc').value, cur = $('#cs').value, o = $('#co').value || 'yes';
+    let rows = LEG.filter(l => (!ch || l.ch === ch) && (!cur || l.current))
+      .map(l => ({ l, c: tallies(l, t) })).filter(r => r.c.Y + r.c.N >= 2);
+    const share = r => r.c.Y / (r.c.Y + r.c.N);
+    rows.sort(o === 'no' ? (a, b) => share(a) - share(b) || b.c.N - a.c.N
+      : o === 'n' ? (a, b) => (b.c.Y + b.c.N) - (a.c.Y + a.c.N)
+      : o === 'name' ? (a, b) => a.l.sur.localeCompare(b.l.sur)
+      : (a, b) => share(b) - share(a) || b.c.Y - a.c.Y);
+    const hi = Math.max(1, ...rows.map(r => Math.max(r.c.Y, r.c.N)));
+    $('#cmp').innerHTML = rows.length ? `<div class="diverge">
+      <div class="axis"><div></div><div><span>&larr; Nay</span><span>Yea &rarr;</span></div><div style="text-align:right">Yea&ndash;Nay</div></div>
+      ${rows.slice(0, cmpLimit).map(r => `<div class="row click" data-id="${esc(r.l.id)}" tabindex="0" role="button"
+        aria-label="${esc(chamberLabel(r.l))}: ${r.c.Y} Yea, ${r.c.N} Nay">
+        <div class="lab" title="${esc(chamberLabel(r.l))}">${esc(chamberLabel(r.l))}
+          <span class="muted small">${r.l.party ? '(' + esc(r.l.party) + ') ' : ''}${r.l.dist && r.l.dist !== '?' ? esc(r.l.dist) : ''}</span></div>
+        <div class="bar"><div class="l"><i style="width:${(r.c.N / hi) * 100}%;background:var(--serious)"></i></div>
+          <div class="r"><i style="width:${(r.c.Y / hi) * 100}%;background:var(--good)"></i></div></div>
+        <div class="val">${num(r.c.Y)}&ndash;${num(r.c.N)}</div></div>`).join('')}</div>`
+      : '<div class="empty">No lawmaker has two or more counted votes on this topic with these filters.</div>';
+    const m = $('#cmpMore'); m.hidden = rows.length <= cmpLimit;
+    m.textContent = `Show ${num(Math.min(40, rows.length - cmpLimit))} more of ${num(rows.length)}`;
+  }
+  ['ct', 'cc', 'cs', 'co'].forEach(i => $('#' + i).addEventListener('input', () => { cmpLimit = 40; drawCmp(); }));
+  $('#cmpMore').addEventListener('click', () => { cmpLimit += 40; drawCmp(); });
+  const openFrom = e => { const r = e.target.closest('[data-id]'); if (r) { pick(r.dataset.id, true); } };
+  $('#cmp').addEventListener('click', openFrom);
+  $('#cmp').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFrom(e); } });
+  if (qs.get('topic')) $('#ct').value = qs.get('topic');
+  drawCmp();
+
+  /* ------------------------------------------------ list */
+  let chF = '', cur = qs.get('id') && byId.has(qs.get('id')) ? qs.get('id') : LEG[0].id;
+  function drawList() {
+    const q = $('#lq').value.trim().toLowerCase();
+    const rows = LEG.filter(l => (!chF || (chF === 'cur' ? l.current : l.ch === chF)) &&
+      (!q || (l.name + ' ' + l.aka.join(' ') + ' ' + l.dist + ' ' + l.ch).toLowerCase().includes(q))).slice(0, 250);
+    $('#ll').innerHTML = rows.map(l => `<button type="button" role="listitem" data-id="${esc(l.id)}" aria-current="${l.id === cur}">
+      <span><span class="t">${esc(l.name)}</span><br><span class="s">${esc(where(l))}${l.party ? ' &middot; ' + esc(l.party) : ''} &middot; ${l.first}&ndash;${l.last}</span></span>
+      <span class="n">${num(l.n.votes)}</span></button>`).join('') || '<div class="empty">No match.</div>';
+  }
+  $('#lq').addEventListener('input', drawList);
+  $('#lch').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    chF = b.dataset.v; $('#lch').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); drawList();
+  });
+  $('#ll').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) pick(b.dataset.id, false); });
+
+  /* ------------------------------------------------ profile */
+  function pick(id, scroll) {
+    cur = id; drawList(); drawProfile();
+    const u = new URL(location); u.searchParams.set('id', id); history.replaceState(null, '', u);
+    if (scroll) $('#record').scrollIntoView({ behavior: 'smooth' });
+  }
+  function drawProfile() {
+    const l = byId.get(cur); if (!l) return;
+    const rec = l.v.map(([vid, c]) => ({ v: VOTE.get(vid), c })).filter(r => r.v)
+      .map(r => ({ ...r, b: BILL.get(r.v.bid) })).sort((a, b) => (b.v.date || '').localeCompare(a.v.date || ''));
+    const topicRows = TOPICS.filter(t => l.topics[t]).map(t => ({ k: t, Y: l.topics[t].Y, N: l.topics[t].N, A: l.topics[t].A }))
+      .sort((a, b) => (a.k === 'Budget and Multi-Subject Bills') - (b.k === 'Budget and Multi-Subject Bills') || (b.Y + b.N) - (a.Y + a.N));
+    const yrs = {}; rec.filter(r => COUNTED.has(r.v.type)).forEach(r => { const y = r.v.yr; (yrs[y] = yrs[y] || { k: y, Y: 0, N: 0, A: 0 })[r.c === 'Y' ? 'Y' : r.c === 'N' ? 'N' : 'A']++; });
+    $('#prof').innerHTML = `<div class="card">
+      <div class="profile-head"><h2>${esc(chamberLabel(l))}</h2>
+        <span class="chips">${l.party ? `<span class="chip">${l.party === 'D' ? 'Democrat' : l.party === 'R' ? 'Republican' : esc(l.party)}</span>` : ''}
+        <span class="chip">${esc(where(l))}</span>${l.current ? '<span class="chip ok">Serving Now</span>' : ''}</span></div>
+      <p class="small muted" style="margin:.3rem 0 0">On the cannabis record from ${l.first} to ${l.last}${l.aka.length ? ` &middot; printed on tally sheets and roll calls as ${l.aka.map(esc).join('; ')}` : ''}</p>
+      <div class="kpis">
+        <div class="kpi"><b>${num(l.n.votes)}</b><span>Votes Recorded</span></div>
+        <div class="kpi"><b>${num(l.n.yea)}</b><span>Yea</span></div>
+        <div class="kpi"><b>${num(l.n.nay)}</b><span>Nay</span></div>
+        <div class="kpi"><b>${num(l.n.spon)}</b><span>Bills Sponsored</span></div>
+        <div class="kpi"><b>${num(l.n.amd)}</b><span>Amendments Offered</span></div>
+        <div class="kpi"><b>${num(l.n.tmy)}</b><span>Testimony Filed</span></div>
+      </div>
+      <h3 style="margin:.2rem 0 .1rem">Stance by topic</h3>
+      <p class="small muted" style="margin:0 0 .5rem">Committee and final-passage votes on bills in each topic. A bill can sit in more than one topic.</p>
+      <div id="pt"></div>
+      ${Object.keys(yrs).length > 1 ? `<h3 style="margin:1rem 0 .1rem">Year by year</h3><div id="py"></div>` : ''}
+    </div>
+
+    <div class="card" style="margin-top:.8rem">
+      <h3 style="margin:0 0 .3rem">Every vote</h3>
+      <div class="tabs" id="vt" role="group" aria-label="Vote type">
+        <button type="button" data-v="counted" aria-pressed="true">Committee and Final Passage</button>
+        <button type="button" data-v="amd" aria-pressed="false">Amendments and Motions</button>
+        <button type="button" data-v="" aria-pressed="false">All ${num(rec.length)}</button>
+        <button type="button" class="btn" id="vdl" style="margin-left:auto">Download CSV</button></div>
+      <div id="vtab"></div>
+    </div>
+
+    <div class="grid two" style="margin-top:.8rem">
+      <div class="card"><h3 style="margin:0 0 .4rem">Bills sponsored</h3>${l.spon.length ? `<ul class="clean">${
+        [...new Map(l.spon.map(s => [s.bid, s])).values()].map(s => { const b = BILL.get(s.bid); return b ? `<li style="margin:.35rem 0">
+          <a href="bills.html?id=${esc(b.id)}#${esc(b.id)}"><strong>${esc(b.num)}</strong> (${esc(b.yr)})</a> <span class="chip">${esc(s.role)}</span>
+          <span class="chip ${b.enacted ? 'ok' : 'warn'}">${b.enacted ? esc(b.pa) : 'Did Not Pass'}</span><br><span class="small">${esc(b.title)}</span></li>` : ''; }).join('')}</ul>`
+        : '<p class="small muted">No cannabis bill in this dataset names this member as introducer or co-sponsor. Committee bills name no individual.</p>'}</div>
+      <div class="card"><h3 style="margin:0 0 .4rem">Amendments offered</h3>${l.amd.length ? `<ul class="clean">${l.amd.map(a => { const b = BILL.get(a.bid); return `<li style="margin:.35rem 0">
+          <a href="${esc(a.u)}" rel="noopener">LCO ${esc(a.lco)}</a> to <a href="bills.html?id=${esc(a.bid)}#${esc(a.bid)}">${esc(b ? b.num + ' (' + b.yr + ')' : a.bid)}</a>
+          <span class="chip ${a.called ? '' : 'warn'}">${a.called ? 'Called' : 'Never Called'}</span><br><span class="small muted">${esc(a.lab)}</span></li>`; }).join('')}</ul>`
+        : '<p class="small muted">No amendment in this dataset lists this member under &ldquo;Offered by.&rdquo;</p>'}</div>
+    </div>
+    <div class="card" style="margin-top:.8rem"><h3 style="margin:0 0 .4rem">Testimony filed</h3>${l.tmy.length ? `<ul class="clean">${l.tmy.map(t => { const b = BILL.get(t.bid); return `<li style="margin:.3rem 0">
+        <a href="${esc(t.u)}" rel="noopener">${esc(b ? b.num + ' (' + b.yr + ')' : t.bid)}</a> &middot; ${esc(t.c)} committee
+        <span class="chip ${t.p === 'Supports' ? 'ok' : t.p === 'Opposes' ? 'bad' : ''}">${esc(cap(t.p))}</span></li>`; }).join('')}</ul>`
+      : '<p class="small muted">No written testimony on a cannabis bill in this dataset is filed under this member&rsquo;s name.</p>'}
+      <p class="small muted" style="margin:.6rem 0 0">Floor remarks are in the House and Senate transcripts for each session day, which the General Assembly publishes by day:
+      <a href="https://www.cga.ct.gov/asp/menu/clerkdoclist.asp?house=H&doc_type=trn" rel="noopener">House transcripts</a> and
+      <a href="https://www.cga.ct.gov/asp/menu/clerkdoclist.asp?house=S&doc_type=trn" rel="noopener">Senate transcripts</a>. Use a vote&rsquo;s date to find the debate. They are not indexed by member here.</p></div>`;
+
+    const dv = (rows, link) => { const hi = Math.max(1, ...rows.map(r => Math.max(r.Y, r.N)));
+      return `<div class="diverge"><div class="axis"><div></div><div><span>&larr; Nay</span><span>Yea &rarr;</span></div><div style="text-align:right">Yea&ndash;Nay</div></div>
+      ${rows.map(r => `<div class="row${link ? ' click' : ''}"${link ? ` data-topic="${esc(r.k)}" role="button" tabindex="0"` : ''}><div class="lab" title="${esc(r.k)}">${esc(r.k)}</div>
+        <div class="bar"><div class="l"><i style="width:${r.N / hi * 100}%;background:var(--serious)"></i></div><div class="r"><i style="width:${r.Y / hi * 100}%;background:var(--good)"></i></div></div>
+        <div class="val">${r.Y}&ndash;${r.N}${r.A ? ` <span title="Absent or abstained">(${r.A})</span>` : ''}</div></div>`).join('')}</div>`; };
+    $('#pt').innerHTML = topicRows.length ? dv(topicRows, true) + '<p class="small muted" style="margin:.4rem 0 0">Click a topic to compare every lawmaker on it. Numbers in brackets are absences or abstentions.</p>' : '<div class="empty">No counted votes.</div>';
+    $('#pt').addEventListener('click', e => { const r = e.target.closest('[data-topic]'); if (r) { $('#ct').value = r.dataset.topic; cmpLimit = 40; drawCmp(); $('#compare').scrollIntoView({ behavior: 'smooth' }); } });
+    if ($('#py')) $('#py').innerHTML = dv(Object.values(yrs).sort((a, b) => a.k.localeCompare(b.k)), false);
+
+    let mode = 'counted';
+    const rowsFor = () => rec.filter(r => mode === '' ? true : mode === 'counted' ? COUNTED.has(r.v.type) : !COUNTED.has(r.v.type));
+    let vlim = 60;
+    const drawV = () => {
+      const rows = rowsFor();
+      $('#vtab').innerHTML = rows.length ? `<div class="vlist">${rows.slice(0, vlim).map(r => `<div class="vrow">
+        <span class="v ${r.c}">${VL[r.c]}</span>
+        <div class="mid"><div class="l1"><a href="bills.html?id=${esc(r.b.id)}#${esc(r.b.id)}"><strong>${esc(r.b.num)}</strong> (${esc(r.b.yr)})</a>
+          <span class="muted">&middot; ${esc(r.v.kind === 'committee' ? r.v.body + ' Committee' : r.v.body + ' Floor')} &middot; ${esc(r.v.type)}${r.v.inf ? '<span title="Older Senate roll calls carry no description; identified from vote order and the bill history."> *</span>' : ''}</span></div>
+          <div class="l2" title="${esc(r.b.title)}">${esc(r.b.title)}</div>
+          <div class="chips" style="margin-top:.25rem">${r.b.topics.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div></div>
+        <div class="end"><span class="nowrap small">${esc(fmtDate(r.v.date) || r.v.yr)}</span><br>
+          <span class="small">${esc(r.v.res)} ${r.v.t.y}&ndash;${r.v.t.n}</span><br>
+          <a class="small" href="${esc(r.v.u)}" rel="noopener">${r.v.kind === 'committee' ? 'Tally Sheet' : 'Roll Call'} &#8599;</a></div></div>`).join('')}</div>
+        ${rows.length > vlim ? `<div class="pagenav"><button class="btn" type="button" id="vmore">Show ${num(Math.min(60, rows.length - vlim))} more of ${num(rows.length)}</button></div>` : ''}
+        ${rows.some(r => r.v.inf) ? '<p class="small muted" style="margin:.6rem 0 0">* Older Senate roll calls print no description. The last Senate roll call on a day the bill history records a Senate vote on the bill is treated as final passage; earlier ones that day as amendment or motion votes.</p>' : ''}`
+        : '<div class="empty">No votes of this kind.</div>';
+      const m = $('#vmore'); if (m) m.addEventListener('click', () => { vlim += 60; drawV(); });
+    };
+    $('#vt').addEventListener('click', e => {
+      const b = e.target.closest('button[data-v]'); if (!b) return;
+      mode = b.dataset.v; vlim = 60; $('#vt').querySelectorAll('button[data-v]').forEach(x => x.setAttribute('aria-pressed', x === b)); drawV();
+    });
+    $('#vdl').addEventListener('click', () => downloadCSV(`ct-cannabis-votes-${l.sur.replace(/\W+/g, '-').toLowerCase()}.csv`, rowsFor(),
+      [{ label: 'member', get: () => chamberLabel(l) }, { label: 'date', get: r => r.v.date }, { label: 'bill', get: r => r.b.num },
+       { label: 'session', get: r => r.b.yr }, { label: 'title', get: r => r.b.title }, { label: 'topics', get: r => r.b.topics.join('; ') },
+       { label: 'vote_taken_in', get: r => r.v.body }, { label: 'vote_type', get: r => r.v.type }, { label: 'member_vote', get: r => VL[r.c] },
+       { label: 'result', get: r => r.v.res }, { label: 'yea', get: r => r.v.t.y }, { label: 'nay', get: r => r.v.t.n }, { label: 'record_url', get: r => r.v.u }]));
+    drawV();
+  }
+  drawList(); drawProfile();
+  if (qs.get('id')) $('#record').scrollIntoView();
+} catch (e) { fail(document.querySelector('#cmp'), e); console.error(e); }
+
+</script>
+</body>
+</html>

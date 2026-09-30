@@ -1,223 +1,368 @@
-amendment_id,bill_id,bill_number,session_year,lco_number,label,chamber,called,adopted,source_id,note
-AMD_2021_LCO10988,BILL_2021_SB1201,SB1201,2021,10988,House Schedule E LCO# 10988 (D),House,yes,,SOURCE_0014,
-AMD_2021_LCO10981,BILL_2021_SB1201,SB1201,2021,10981,House Schedule B LCO# 10981 (R),House,yes,,SOURCE_0014,
-AMD_2021_LCO10984,BILL_2021_SB1201,SB1201,2021,10984,House Schedule A LCO# 10984 (D),House,yes,,SOURCE_0014,
-AMD_2021_LCO10935,BILL_2021_SB1201,SB1201,2021,10935,House Schedule D LCO# 10935 (R),House,yes,,SOURCE_0014,
-AMD_2021_LCO10936,BILL_2021_SB1201,SB1201,2021,10936,House Schedule C LCO# 10936 (R),House,yes,,SOURCE_0014,
-AMD_2021_LCO10928,BILL_2021_SB1201,SB1201,2021,10928,Senate Schedule B LCO# 10928 (D) [doc] [Co-sponsors],Senate,yes,,SOURCE_0014,
-AMD_2021_LCO10906,BILL_2021_SB1201,SB1201,2021,10906,Senate Schedule A LCO# 10906 (D),Senate,yes,,SOURCE_0014,
-AMD_2021_LCO10986,BILL_2021_SB1201,SB1201,2021,10986,House LCO Amendment #10986 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2021_LCO10953,BILL_2021_SB1201,SB1201,2021,10953,House LCO Amendment #10953 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2022_LCO5358,BILL_2022_HB5329,HB5329,2022,5358,House Schedule A LCO# 5358 (D),House,yes,,SOURCE_0014,
-AMD_2022_LCO4818,BILL_2022_HB5329,HB5329,2022,4818,House LCO Amendment #4818 (D),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO9161,BILL_2023_HB6699,HB6699,2023,9161,Senate Schedule A LCO# 9161 (R),Senate,yes,,SOURCE_0014,
-AMD_2023_LCO7520,BILL_2023_HB6699,HB6699,2023,7520,House Schedule B LCO# 7520 (R),House,yes,,SOURCE_0014,
-AMD_2023_LCO7505,BILL_2023_HB6699,HB6699,2023,7505,House Schedule A LCO# 7505 (J),House,yes,,SOURCE_0014,
-AMD_2023_LCO7438,BILL_2023_HB6699,HB6699,2023,7438,House LCO Amendment #7438 (J),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO7260,BILL_2023_HB6699,HB6699,2023,7260,House LCO Amendment #7260 (J),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO4912,BILL_2024_HB5150,HB5150,2024,4912,House Schedule A LCO# 4912 (D),House,yes,,SOURCE_0014,
-AMD_2024_LCO5492,BILL_2024_HB5150,HB5150,2024,5492,Senate LCO Amendment #5492 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO5320,BILL_2024_HB5150,HB5150,2024,5320,Senate LCO Amendment #5320 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO5329,BILL_2024_HB5150,HB5150,2024,5329,Senate LCO Amendment #5329 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO5324,BILL_2024_HB5150,HB5150,2024,5324,Senate LCO Amendment #5324 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO5030,BILL_2024_HB5150,HB5150,2024,5030,House LCO Amendment #5030 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO5023,BILL_2024_HB5150,HB5150,2024,5023,House LCO Amendment #5023 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO4847,BILL_2024_HB5150,HB5150,2024,4847,House LCO Amendment #4847 (D),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO4791,BILL_2024_HB5150,HB5150,2024,4791,House LCO Amendment #4791 (D)  [doc] [Co-sponsors],House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO4211,BILL_2024_HB5150,HB5150,2024,4211,House LCO Amendment #4211 (D),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO3982,BILL_2024_HB5150,HB5150,2024,3982,House LCO Amendment #3982 (D),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO9665,BILL_2025_HB6855,HB6855,2025,9665,House Schedule A LCO# 9665 (D),House,yes,,SOURCE_0014,
-AMD_2025_LCO10422,BILL_2025_HB7181,HB7181,2025,10422,House Schedule A LCO# 10422 (D),House,yes,,SOURCE_0014,
-AMD_2025_LCO10582,BILL_2025_HB7287,HB7287,2025,10582,Senate Schedule E LCO# 10582 (R),Senate,yes,,SOURCE_0014,
-AMD_2025_LCO10580,BILL_2025_HB7287,HB7287,2025,10580,Senate Schedule D LCO# 10580 (R),Senate,yes,,SOURCE_0014,
-AMD_2025_LCO10587,BILL_2025_HB7287,HB7287,2025,10587,Senate Schedule C LCO# 10587 (R),Senate,yes,,SOURCE_0014,
-AMD_2025_LCO10553,BILL_2025_HB7287,HB7287,2025,10553,Senate Schedule B LCO# 10553 (R),Senate,yes,,SOURCE_0014,
-AMD_2025_LCO10544,BILL_2025_HB7287,HB7287,2025,10544,Senate Schedule A LCO# 10544 (R),Senate,yes,,SOURCE_0014,
-AMD_2025_LCO10529,BILL_2025_HB7287,HB7287,2025,10529,Senate Schedule F LCO# 10529 (R),Senate,yes,,SOURCE_0014,
-AMD_2025_LCO10413,BILL_2025_HB7287,HB7287,2025,10413,House Schedule B LCO# 10413 (R),House,yes,,SOURCE_0014,
-AMD_2025_LCO10424,BILL_2025_HB7287,HB7287,2025,10424,House Schedule E LCO# 10424 (R),House,yes,,SOURCE_0014,
-AMD_2025_LCO10255,BILL_2025_HB7287,HB7287,2025,10255,House Schedule A LCO# 10255 (D),House,yes,,SOURCE_0014,
-AMD_2025_LCO10410,BILL_2025_HB7287,HB7287,2025,10410,House Schedule F LCO# 10410 (R),House,yes,,SOURCE_0014,
-AMD_2025_LCO10409,BILL_2025_HB7287,HB7287,2025,10409,House Schedule C LCO# 10409 (R),House,yes,,SOURCE_0014,
-AMD_2025_LCO10394,BILL_2025_HB7287,HB7287,2025,10394,House Schedule D LCO# 10394 (R),House,yes,,SOURCE_0014,
-AMD_2025_LCO10619,BILL_2025_HB7287,HB7287,2025,10619,Senate LCO Amendment #10619 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10576,BILL_2025_HB7287,HB7287,2025,10576,Senate LCO Amendment #10576 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10552,BILL_2025_HB7287,HB7287,2025,10552,Senate LCO Amendment #10552 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10543,BILL_2025_HB7287,HB7287,2025,10543,Senate LCO Amendment #10543 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10252,BILL_2025_HB7287,HB7287,2025,10252,Senate LCO Amendment #10252 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10484,BILL_2025_HB7287,HB7287,2025,10484,Senate LCO Amendment #10484 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10483,BILL_2025_HB7287,HB7287,2025,10483,Senate LCO Amendment #10483 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10256,BILL_2025_HB7287,HB7287,2025,10256,Senate LCO Amendment #10256 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10508,BILL_2025_HB7287,HB7287,2025,10508,Senate LCO Amendment #10508 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10507,BILL_2025_HB7287,HB7287,2025,10507,Senate LCO Amendment #10507 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10506,BILL_2025_HB7287,HB7287,2025,10506,Senate LCO Amendment #10506 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10512,BILL_2025_HB7287,HB7287,2025,10512,Senate LCO Amendment #10512 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10511,BILL_2025_HB7287,HB7287,2025,10511,Senate LCO Amendment #10511 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10510,BILL_2025_HB7287,HB7287,2025,10510,Senate LCO Amendment #10510 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10516,BILL_2025_HB7287,HB7287,2025,10516,Senate LCO Amendment #10516 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10515,BILL_2025_HB7287,HB7287,2025,10515,Senate LCO Amendment #10515 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10514,BILL_2025_HB7287,HB7287,2025,10514,Senate LCO Amendment #10514 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10513,BILL_2025_HB7287,HB7287,2025,10513,Senate LCO Amendment #10513 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10509,BILL_2025_HB7287,HB7287,2025,10509,Senate LCO Amendment #10509 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10519,BILL_2025_HB7287,HB7287,2025,10519,Senate LCO Amendment #10519 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10500,BILL_2025_HB7287,HB7287,2025,10500,Senate LCO Amendment #10500 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10247,BILL_2025_HB7287,HB7287,2025,10247,Senate LCO Amendment #10247 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10485,BILL_2025_HB7287,HB7287,2025,10485,Senate LCO Amendment #10485 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10458,BILL_2025_HB7287,HB7287,2025,10458,Senate LCO Amendment #10458 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10457,BILL_2025_HB7287,HB7287,2025,10457,Senate LCO Amendment #10457 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10464,BILL_2025_HB7287,HB7287,2025,10464,Senate LCO Amendment #10464 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10463,BILL_2025_HB7287,HB7287,2025,10463,Senate LCO Amendment #10463 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10336,BILL_2025_HB7287,HB7287,2025,10336,Senate LCO Amendment #10336 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10374,BILL_2025_HB7287,HB7287,2025,10374,Senate LCO Amendment #10374 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10335,BILL_2025_HB7287,HB7287,2025,10335,Senate LCO Amendment #10335 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10333,BILL_2025_HB7287,HB7287,2025,10333,Senate LCO Amendment #10333 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10375,BILL_2025_HB7287,HB7287,2025,10375,Senate LCO Amendment #10375 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10446,BILL_2025_HB7287,HB7287,2025,10446,House LCO Amendment #10446 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10377,BILL_2025_HB7287,HB7287,2025,10377,Senate LCO Amendment #10377 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10380,BILL_2025_HB7287,HB7287,2025,10380,Senate LCO Amendment #10380 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10381,BILL_2025_HB7287,HB7287,2025,10381,Senate LCO Amendment #10381 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10382,BILL_2025_HB7287,HB7287,2025,10382,Senate LCO Amendment #10382 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10383,BILL_2025_HB7287,HB7287,2025,10383,Senate LCO Amendment #10383 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10376,BILL_2025_HB7287,HB7287,2025,10376,Senate LCO Amendment #10376 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10389,BILL_2025_HB7287,HB7287,2025,10389,Senate LCO Amendment #10389 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10388,BILL_2025_HB7287,HB7287,2025,10388,Senate LCO Amendment #10388 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10386,BILL_2025_HB7287,HB7287,2025,10386,Senate LCO Amendment #10386 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10384,BILL_2025_HB7287,HB7287,2025,10384,Senate LCO Amendment #10384 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10364,BILL_2025_HB7287,HB7287,2025,10364,House LCO Amendment #10364 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10355,BILL_2025_HB7287,HB7287,2025,10355,House LCO Amendment #10355 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10425,BILL_2025_HB7287,HB7287,2025,10425,House LCO Amendment #10425 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10404,BILL_2025_HB7287,HB7287,2025,10404,House LCO Amendment #10404 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO5403,BILL_2026_HB5350,HB5350,2026,5403,Senate Schedule A LCO# 5403 (R),Senate,yes,,SOURCE_0014,
-AMD_2026_LCO5269,BILL_2026_HB5350,HB5350,2026,5269,Senate Schedule B LCO# 5269 (R),Senate,yes,,SOURCE_0014,
-AMD_2026_LCO4345,BILL_2026_HB5350,HB5350,2026,4345,House Schedule D LCO# 4345 (D),House,yes,,SOURCE_0014,
-AMD_2026_LCO4340,BILL_2026_HB5350,HB5350,2026,4340,House Schedule C LCO# 4340 (R),House,yes,,SOURCE_0014,
-AMD_2026_LCO4339,BILL_2026_HB5350,HB5350,2026,4339,House Schedule B LCO# 4339 (R),House,yes,,SOURCE_0014,
-AMD_2026_LCO4294,BILL_2026_HB5350,HB5350,2026,4294,House Schedule E LCO# 4294 (R),House,yes,,SOURCE_0014,
-AMD_2026_LCO4259,BILL_2026_HB5350,HB5350,2026,4259,House Schedule A LCO# 4259 (D),House,yes,,SOURCE_0014,
-AMD_2026_LCO5401,BILL_2026_HB5350,HB5350,2026,5401,Senate LCO Amendment #5401 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO5425,BILL_2026_HB5350,HB5350,2026,5425,Senate LCO Amendment #5425 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO5413,BILL_2026_HB5350,HB5350,2026,5413,Senate LCO Amendment #5413 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4335,BILL_2026_HB5350,HB5350,2026,4335,House LCO Amendment #4335 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4324,BILL_2026_HB5350,HB5350,2026,4324,House LCO Amendment #4324 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4286,BILL_2026_HB5350,HB5350,2026,4286,House LCO Amendment #4286 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4288,BILL_2026_HB5350,HB5350,2026,4288,House LCO Amendment #4288 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4290,BILL_2026_HB5350,HB5350,2026,4290,House LCO Amendment #4290 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4291,BILL_2026_HB5350,HB5350,2026,4291,House LCO Amendment #4291 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4298,BILL_2026_HB5350,HB5350,2026,4298,House LCO Amendment #4298 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4317,BILL_2026_HB5350,HB5350,2026,4317,House LCO Amendment #4317 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4312,BILL_2026_HB5350,HB5350,2026,4312,House LCO Amendment #4312 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO4309,BILL_2026_HB5350,HB5350,2026,4309,House LCO Amendment #4309 (R),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2026_LCO6124,BILL_2026_HB5222,HB5222,2026,6124,House Schedule A LCO# 6124 (J),House,yes,,SOURCE_0014,
-AMD_2026_LCO6092,BILL_2026_HB5222,HB5222,2026,6092,House LCO Amendment #6092 (D),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO5048,BILL_2012_HB5389,HB5389,2012,5048,Senate Schedule G LCO# 5048[pdf],Senate,yes,,SOURCE_0014,
-AMD_2012_LCO4815,BILL_2012_HB5389,HB5389,2012,4815,Senate Schedule F LCO# 4815[pdf],Senate,yes,,SOURCE_0014,
-AMD_2012_LCO4750,BILL_2012_HB5389,HB5389,2012,4750,Senate Schedule E LCO# 4750[pdf],Senate,yes,,SOURCE_0014,
-AMD_2012_LCO4523,BILL_2012_HB5389,HB5389,2012,4523,Senate Schedule D LCO# 4523[pdf],Senate,yes,,SOURCE_0014,
-AMD_2012_LCO4520,BILL_2012_HB5389,HB5389,2012,4520,Senate Schedule A LCO# 4520[pdf],Senate,yes,,SOURCE_0014,
-AMD_2012_LCO4184,BILL_2012_HB5389,HB5389,2012,4184,Senate Schedule B LCO# 4184[pdf],Senate,yes,,SOURCE_0014,
-AMD_2012_LCO4182,BILL_2012_HB5389,HB5389,2012,4182,Senate Schedule C LCO# 4182[pdf],Senate,yes,,SOURCE_0014,
-AMD_2012_LCO3972,BILL_2012_HB5389,HB5389,2012,3972,House Schedule C LCO# 3972[pdf],House,yes,,SOURCE_0014,
-AMD_2012_LCO3426,BILL_2012_HB5389,HB5389,2012,3426,House Schedule B LCO# 3426[pdf],House,yes,,SOURCE_0014,
-AMD_2012_LCO3891,BILL_2012_HB5389,HB5389,2012,3891,House Schedule A LCO# 3891[pdf],House,yes,,SOURCE_0014,
-AMD_2012_LCO4977,BILL_2012_HB5389,HB5389,2012,4977,Senate LCO Amendment #4977 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4822,BILL_2012_HB5389,HB5389,2012,4822,Senate LCO Amendment #4822 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4821,BILL_2012_HB5389,HB5389,2012,4821,Senate LCO Amendment #4821 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4633,BILL_2012_HB5389,HB5389,2012,4633,Senate LCO Amendment #4633 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4716,BILL_2012_HB5389,HB5389,2012,4716,Senate LCO Amendment #4716 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4632,BILL_2012_HB5389,HB5389,2012,4632,Senate LCO Amendment #4632 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4744,BILL_2012_HB5389,HB5389,2012,4744,Senate LCO Amendment #4744 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4736,BILL_2012_HB5389,HB5389,2012,4736,Senate LCO Amendment #4736 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4735,BILL_2012_HB5389,HB5389,2012,4735,Senate LCO Amendment #4735 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4727,BILL_2012_HB5389,HB5389,2012,4727,Senate LCO Amendment #4727 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4739,BILL_2012_HB5389,HB5389,2012,4739,Senate LCO Amendment #4739 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4616,BILL_2012_HB5389,HB5389,2012,4616,Senate LCO Amendment #4616 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4609,BILL_2012_HB5389,HB5389,2012,4609,Senate LCO Amendment #4609 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4521,BILL_2012_HB5389,HB5389,2012,4521,Senate LCO Amendment #4521 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4572,BILL_2012_HB5389,HB5389,2012,4572,Senate LCO Amendment #4572 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4526,BILL_2012_HB5389,HB5389,2012,4526,Senate LCO Amendment #4526 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4534,BILL_2012_HB5389,HB5389,2012,4534,Senate LCO Amendment #4534 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4573,BILL_2012_HB5389,HB5389,2012,4573,Senate LCO Amendment #4573 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4533,BILL_2012_HB5389,HB5389,2012,4533,Senate LCO Amendment #4533 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4664,BILL_2012_HB5389,HB5389,2012,4664,Senate LCO Amendment #4664 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4663,BILL_2012_HB5389,HB5389,2012,4663,Senate LCO Amendment #4663 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4638,BILL_2012_HB5389,HB5389,2012,4638,Senate LCO Amendment #4638 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4531,BILL_2012_HB5389,HB5389,2012,4531,Senate LCO Amendment #4531 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4524,BILL_2012_HB5389,HB5389,2012,4524,Senate LCO Amendment #4524 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4529,BILL_2012_HB5389,HB5389,2012,4529,Senate LCO Amendment #4529 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4390,BILL_2012_HB5389,HB5389,2012,4390,Senate LCO Amendment #4390 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4215,BILL_2012_HB5389,HB5389,2012,4215,Senate LCO Amendment #4215 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4277,BILL_2012_HB5389,HB5389,2012,4277,Senate LCO Amendment #4277 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4280,BILL_2012_HB5389,HB5389,2012,4280,Senate LCO Amendment #4280 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4250,BILL_2012_HB5389,HB5389,2012,4250,Senate LCO Amendment #4250 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4189,BILL_2012_HB5389,HB5389,2012,4189,Senate LCO Amendment #4189 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4190,BILL_2012_HB5389,HB5389,2012,4190,Senate LCO Amendment #4190 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4185,BILL_2012_HB5389,HB5389,2012,4185,Senate LCO Amendment #4185 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4194,BILL_2012_HB5389,HB5389,2012,4194,Senate LCO Amendment #4194 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4193,BILL_2012_HB5389,HB5389,2012,4193,Senate LCO Amendment #4193 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4192,BILL_2012_HB5389,HB5389,2012,4192,Senate LCO Amendment #4192 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4252,BILL_2012_HB5389,HB5389,2012,4252,Senate LCO Amendment #4252 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4249,BILL_2012_HB5389,HB5389,2012,4249,Senate LCO Amendment #4249 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4191,BILL_2012_HB5389,HB5389,2012,4191,Senate LCO Amendment #4191 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4253,BILL_2012_HB5389,HB5389,2012,4253,Senate LCO Amendment #4253 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4195,BILL_2012_HB5389,HB5389,2012,4195,Senate LCO Amendment #4195 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4180,BILL_2012_HB5389,HB5389,2012,4180,Senate LCO Amendment #4180 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO4179,BILL_2012_HB5389,HB5389,2012,4179,Senate LCO Amendment #4179 [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO3935,BILL_2012_HB5389,HB5389,2012,3935,House LCO Amendment #3935 [pdf],House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO3915,BILL_2012_HB5389,HB5389,2012,3915,House LCO Amendment #3915 [pdf],House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO3907,BILL_2012_HB5389,HB5389,2012,3907,House LCO Amendment #3907 [pdf],House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO3896,BILL_2012_HB5389,HB5389,2012,3896,House LCO Amendment #3896 [pdf],House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO3880,BILL_2012_HB5389,HB5389,2012,3880,House LCO Amendment #3880 [pdf],House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2012_LCO3865,BILL_2012_HB5389,HB5389,2012,3865,House LCO Amendment #3865 [pdf],House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5544,BILL_2016_HB5450,HB5450,2016,5544,Senate Schedule C LCO# 5544 (R) [pdf],Senate,yes,,SOURCE_0014,
-AMD_2016_LCO5480,BILL_2016_HB5450,HB5450,2016,5480,Senate Schedule G LCO# 5480 (R) [pdf],Senate,yes,,SOURCE_0014,
-AMD_2016_LCO5448,BILL_2016_HB5450,HB5450,2016,5448,Senate Schedule A LCO# 5448 (R) [pdf],Senate,yes,,SOURCE_0014,
-AMD_2016_LCO5486,BILL_2016_HB5450,HB5450,2016,5486,Senate Schedule F LCO# 5486 (R) [pdf],Senate,yes,,SOURCE_0014,
-AMD_2016_LCO5500,BILL_2016_HB5450,HB5450,2016,5500,Senate Schedule B LCO# 5500 (R) [pdf],Senate,yes,,SOURCE_0014,
-AMD_2016_LCO5497,BILL_2016_HB5450,HB5450,2016,5497,Senate Schedule D LCO# 5497 (R) [pdf],Senate,yes,,SOURCE_0014,
-AMD_2016_LCO5463,BILL_2016_HB5450,HB5450,2016,5463,Senate Schedule I LCO# 5463 (R) [pdf],Senate,yes,,SOURCE_0014,
-AMD_2016_LCO5551,BILL_2016_HB5450,HB5450,2016,5551,Senate Schedule H LCO# 5551 (R) [pdf],Senate,yes,,SOURCE_0014,
-AMD_2016_LCO5498,BILL_2016_HB5450,HB5450,2016,5498,Senate Schedule E LCO# 5498 (R) [pdf],Senate,yes,,SOURCE_0014,
-AMD_2016_LCO4425,BILL_2016_HB5450,HB5450,2016,4425,House Schedule B LCO# 4425 (R) [pdf],House,yes,,SOURCE_0014,
-AMD_2016_LCO4338,BILL_2016_HB5450,HB5450,2016,4338,House Schedule A LCO# 4338 (D) [pdf],House,yes,,SOURCE_0014,
-AMD_2016_LCO4348,BILL_2016_HB5450,HB5450,2016,4348,House Schedule C LCO# 4348 (D) [pdf],House,yes,,SOURCE_0014,
-AMD_2016_LCO5552,BILL_2016_HB5450,HB5450,2016,5552,Senate LCO Amendment #5552 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5501,BILL_2016_HB5450,HB5450,2016,5501,Senate LCO Amendment #5501 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5458,BILL_2016_HB5450,HB5450,2016,5458,Senate LCO Amendment #5458 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5499,BILL_2016_HB5450,HB5450,2016,5499,Senate LCO Amendment #5499 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5504,BILL_2016_HB5450,HB5450,2016,5504,Senate LCO Amendment #5504 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5479,BILL_2016_HB5450,HB5450,2016,5479,Senate LCO Amendment #5479 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5481,BILL_2016_HB5450,HB5450,2016,5481,Senate LCO Amendment #5481 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5505,BILL_2016_HB5450,HB5450,2016,5505,Senate LCO Amendment #5505 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5506,BILL_2016_HB5450,HB5450,2016,5506,Senate LCO Amendment #5506 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5502,BILL_2016_HB5450,HB5450,2016,5502,Senate LCO Amendment #5502 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5482,BILL_2016_HB5450,HB5450,2016,5482,Senate LCO Amendment #5482 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5478,BILL_2016_HB5450,HB5450,2016,5478,Senate LCO Amendment #5478 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5488,BILL_2016_HB5450,HB5450,2016,5488,Senate LCO Amendment #5488 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5496,BILL_2016_HB5450,HB5450,2016,5496,Senate LCO Amendment #5496 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5485,BILL_2016_HB5450,HB5450,2016,5485,Senate LCO Amendment #5485 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO5460,BILL_2016_HB5450,HB5450,2016,5460,Senate LCO Amendment #5460 (R) [pdf],Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO4265,BILL_2016_HB5450,HB5450,2016,4265,House LCO Amendment #4265 (D) [pdf],House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2016_LCO4257,BILL_2016_HB5450,HB5450,2016,4257,House LCO Amendment #4257 (D) [pdf],House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO9444,BILL_2023_SB0009,SB0009,2023,9444,House Schedule A LCO# 9444 (D),House,yes,,SOURCE_0014,
-AMD_2023_LCO8777,BILL_2023_SB0009,SB0009,2023,8777,Senate Schedule C LCO# 8777 (J),Senate,yes,,SOURCE_0014,
-AMD_2023_LCO8759,BILL_2023_SB0009,SB0009,2023,8759,Senate Schedule B LCO# 8759 (R),Senate,yes,,SOURCE_0014,
-AMD_2023_LCO8735,BILL_2023_SB0009,SB0009,2023,8735,Senate Schedule A LCO# 8735 (J),Senate,yes,,SOURCE_0014,
-AMD_2023_LCO9244,BILL_2023_SB0009,SB0009,2023,9244,House LCO Amendment #9244 (D),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO8639,BILL_2023_SB0009,SB0009,2023,8639,Senate LCO Amendment #8639 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO8698,BILL_2023_SB0009,SB0009,2023,8698,Senate LCO Amendment #8698 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO8697,BILL_2023_SB0009,SB0009,2023,8697,Senate LCO Amendment #8697 (R),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO8661,BILL_2023_SB0009,SB0009,2023,8661,Senate LCO Amendment #8661 (J),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO8253,BILL_2023_SB0009,SB0009,2023,8253,Senate LCO Amendment #8253 (J),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10592,BILL_2025_SB0970,SB0970,2025,10592,Senate LCO Amendment #10592 (D),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10414,BILL_2025_SB0970,SB0970,2025,10414,Senate LCO Amendment #10414 (D),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10096,BILL_2025_SB0970,SB0970,2025,10096,Senate LCO Amendment #10096 (D),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO9957,BILL_2025_SB0970,SB0970,2025,9957,Senate LCO Amendment #9957 (D),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO8166,BILL_2025_SB0970,SB0970,2025,8166,Senate LCO Amendment #8166 (D),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2025_LCO10720,BILL_2025_HB7178,HB7178,2025,10720,House Schedule A LCO# 10720 (J),House,yes,,SOURCE_0014,
-AMD_2024_LCO4874,BILL_2024_HB5235,HB5235,2024,4874,House Schedule A LCO# 4874 (D),House,yes,,SOURCE_0014,
-AMD_2024_LCO4786,BILL_2024_HB5235,HB5235,2024,4786,House LCO Amendment #4786 (D),House,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO7553,BILL_2023_SB1058,SB1058,2023,7553,Senate Schedule A LCO# 7553 (D) [doc] [Co-sponsors],Senate,yes,,SOURCE_0014,
-AMD_2023_LCO7609,BILL_2023_SB1058,SB1058,2023,7609,Senate LCO Amendment #7609 (D),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2023_LCO7503,BILL_2023_SB1058,SB1058,2023,7503,Senate LCO Amendment #7503 (D),Senate,no,,SOURCE_0014,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
-AMD_2024_LCO5357,BILL_2024_HB5236,HB5236,2024,5357,House Schedule A LCO# 5357 (D),House,yes,,SOURCE_0014,
-AMD_2025_LCO7494,BILL_2025_HB6930,HB6930,2025,7494,House Schedule A LCO# 7494 (J) [doc] [Co-sponsors],House,yes,,SOURCE_0014,
+bill,session_year,lco,chamber,label,called,offered_by,amendment_url
+HB5389,2012,5048,Senate,Senate Schedule G LCO# 5048,True,Sen. Kane,https://www.cga.ct.gov/2012/amd/S/2012HB-05389-R00SG-AMD.htm
+HB5389,2012,4815,Senate,Senate Schedule F LCO# 4815,True,Sen. Mckinney; Sen. Boucher,https://www.cga.ct.gov/2012/amd/S/2012HB-05389-R00SF-AMD.htm
+HB5389,2012,4750,Senate,Senate Schedule E LCO# 4750,True,Sen. Boucher,https://www.cga.ct.gov/2012/amd/S/2012HB-05389-R00SE-AMD.htm
+HB5389,2012,4523,Senate,Senate Schedule D LCO# 4523,True,Sen. Boucher,https://www.cga.ct.gov/2012/amd/S/2012HB-05389-R00SD-AMD.htm
+HB5389,2012,4520,Senate,Senate Schedule A LCO# 4520,True,Sen. Boucher,https://www.cga.ct.gov/2012/amd/S/2012HB-05389-R00SA-AMD.htm
+HB5389,2012,4184,Senate,Senate Schedule B LCO# 4184,True,Sen. Boucher,https://www.cga.ct.gov/2012/amd/S/2012HB-05389-R00SB-AMD.htm
+HB5389,2012,4182,Senate,Senate Schedule C LCO# 4182,True,Sen. Boucher,https://www.cga.ct.gov/2012/amd/S/2012HB-05389-R00SC-AMD.htm
+HB5389,2012,3972,House,House Schedule C LCO# 3972,True,Rep. Candelora,https://www.cga.ct.gov/2012/amd/H/2012HB-05389-R00HC-AMD.htm
+HB5389,2012,3426,House,House Schedule B LCO# 3426,True,Rep. Shaban,https://www.cga.ct.gov/2012/amd/H/2012HB-05389-R00HB-AMD.htm
+HB5389,2012,3891,House,House Schedule A LCO# 3891,True,Rep. Fox; Sen. Coleman; Rep. Bacchiochi,https://www.cga.ct.gov/2012/amd/H/2012HB-05389-R00HA-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4977,False,Sen. Kane,https://www.cga.ct.gov/2012/lcoamd/2012LCO04977-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4822,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04822-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4821,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04821-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4633,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04633-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4716,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04716-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4632,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04632-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4744,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04744-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4736,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04736-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4735,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04735-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4727,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04727-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4739,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04739-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4616,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04616-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4609,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04609-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4521,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04521-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4572,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04572-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4526,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04526-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4534,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04534-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4573,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04573-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4533,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04533-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4664,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04664-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4663,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04663-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4638,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04638-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4531,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04531-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4524,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04524-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4529,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04529-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4390,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04390-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4215,False,Sen. Boucher; Sen. Markley,https://www.cga.ct.gov/2012/lcoamd/2012LCO04215-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4277,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04277-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4280,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04280-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4250,False,Sen. Boucher; Sen. Markley,https://www.cga.ct.gov/2012/lcoamd/2012LCO04250-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4189,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04189-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4190,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04190-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4185,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04185-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4194,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04194-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4193,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04193-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4192,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04192-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4252,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04252-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4249,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04249-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4191,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04191-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4253,False,Sen. Boucher; Sen. Markley,https://www.cga.ct.gov/2012/lcoamd/2012LCO04253-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4195,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04195-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4180,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04180-R00-AMD.htm
+HB5389,2012,,Senate,Senate LCO Amendment #4179,False,Sen. Boucher,https://www.cga.ct.gov/2012/lcoamd/2012LCO04179-R00-AMD.htm
+HB5389,2012,,House,House LCO Amendment #3935,False,Rep. Cafero,https://www.cga.ct.gov/2012/lcoamd/2012LCO03935-R00-AMD.htm
+HB5389,2012,,House,House LCO Amendment #3915,False,Rep. Lavielle; Rep. Candelora,https://www.cga.ct.gov/2012/lcoamd/2012LCO03915-R00-AMD.htm
+HB5389,2012,,House,House LCO Amendment #3907,False,Rep. Ryan; Rep. Abercrombie,https://www.cga.ct.gov/2012/lcoamd/2012LCO03907-R00-AMD.htm
+HB5389,2012,,House,House LCO Amendment #3896,False,Rep. Candelora; Rep. Lavielle,https://www.cga.ct.gov/2012/lcoamd/2012LCO03896-R00-AMD.htm
+HB5389,2012,,House,House LCO Amendment #3880,False,Rep. Candelora; Rep. Lavielle,https://www.cga.ct.gov/2012/lcoamd/2012LCO03880-R00-AMD.htm
+HB5389,2012,,House,House LCO Amendment #3865,False,Rep. Lavielle; Rep. Candelora,https://www.cga.ct.gov/2012/lcoamd/2012LCO03865-R00-AMD.htm
+HB5476,2014,5616,House,House Schedule A LCO# 5616,True,Rep. Ziobron; Rep. Baram; Rep. Kiner; Rep. Carter; Rep. Altobello; Rep. Fritz; Sen. Doyle; Sen. Witkos,https://www.cga.ct.gov/2014/amd/H/2014HB-05476-R00HA-AMD.htm
+HB5476,2014,,House,House LCO Amendment #4945,False,Rep. Ziobron; Rep. Carter; Rep. Kiner; Rep. Baram,https://www.cga.ct.gov/2014/lcoamd/2014LCO04945-R00-AMD.htm
+SB1064,2015,7787,Senate,Senate Schedule A LCO# 7787,True,Sen. Coleman,https://www.cga.ct.gov/2015/amd/S/2015SB-01064-R00SA-AMD.htm
+SB1064,2015,,Senate,Senate LCO Amendment #8935,False,Sen. Coleman,https://www.cga.ct.gov/2015/lcoamd/2015LCO08935-R00-AMD.htm
+SB1064,2015,,Senate,Senate LCO Amendment #8910,False,Sen. Coleman,https://www.cga.ct.gov/2015/lcoamd/2015LCO08910-R00-AMD.htm
+SB1064,2015,,Senate,Senate LCO Amendment #8654,False,Sen. Fasano,https://www.cga.ct.gov/2015/lcoamd/2015LCO08654-R00-AMD.htm
+SB1064,2015,,Senate,Senate LCO Amendment #8006,False,Sen. Boucher,https://www.cga.ct.gov/2015/lcoamd/2015LCO08006-R00-AMD.htm
+SB1064,2015,,Senate,Senate LCO Amendment #8088,False,Sen. Boucher,https://www.cga.ct.gov/2015/lcoamd/2015LCO08088-R00-AMD.htm
+SB1502,2015,9742,House,House Schedule A LCO# 9742,True,Rep. Klarides; Rep. Candelora; Rep. Hoydick; Rep. Miner; Rep. O'Neill,https://www.cga.ct.gov/2015/amd/S/2015SB-01502-R00HA-AMD.htm
+SB1502,2015,9746,Senate,Senate Schedule C LCO# 9746,True,Sen. Looney; Sen. Duff; Rep. Sharkey; Rep. Aresimowicz,https://www.cga.ct.gov/2015/amd/S/2015SB-01502-R00SC-AMD.htm
+SB1502,2015,9729,Senate,Senate Schedule B LCO# 9729,True,Sen. Looney; Rep. Sharkey; Sen. Duff; Rep. Aresimowicz; Rep. Sayers; Rep. Jutila; Rep. Baram; Rep. Simmons; Rep. Scanlon; Rep. Perone; Sen. Bye,https://www.cga.ct.gov/2015/amd/S/2015SB-01502-R00SB-AMD.htm
+SB1502,2015,9711,Senate,Senate Schedule D LCO# 9711,True,Sen. Fasano; Sen. Witkos; Sen. Markley; Sen. Boucher; Sen. Chapin; Sen. Formica; Sen. Frantz; Sen. Guglielmo; Sen. Hwang; Sen. Kane; Sen. Kelly; Sen. Kissel; Sen. Linares; Sen. Martin; Sen. Mclachlan,https://www.cga.ct.gov/2015/amd/S/2015SB-01502-R00SD-AMD.htm
+SB1502,2015,9706,Senate,Senate Schedule A LCO# 9706,True,Sen. Fonfara; Rep. Berger,https://www.cga.ct.gov/2015/amd/S/2015SB-01502-R00SA-AMD.htm
+SB1502,2015,,Senate,Senate LCO Amendment #9738,False,Sen. Looney; Sen. Duff; Rep. Sharkey; Rep. Aresimowicz,https://www.cga.ct.gov/2015/lcoamd/2015LCO09738-R00-AMD.htm
+SB1502,2015,,Senate,Senate LCO Amendment #9730,False,Sen. Boucher,https://www.cga.ct.gov/2015/lcoamd/2015LCO09730-R00-AMD.htm
+SB1502,2015,,Senate,Senate LCO Amendment #9723,False,Sen. Fasano; Sen. Witkos; Sen. Markley; Sen. Martin; Sen. Boucher; Sen. Chapin; Sen. Formica; Sen. Frantz; Sen. Guglielmo; Sen. Hwang; Sen. Kane; Sen. Kelly; Sen. Kissel; Sen. Linares; Sen. Mclachlan,https://www.cga.ct.gov/2015/lcoamd/2015LCO09723-R00-AMD.htm
+SB1502,2015,,Senate,Senate LCO Amendment #9726,False,Sen. Boucher,https://www.cga.ct.gov/2015/lcoamd/2015LCO09726-R00-AMD.htm
+SB1502,2015,,Senate,Senate LCO Amendment #9718,False,Sen. Fasano; Sen. Witkos; Sen. Boucher,https://www.cga.ct.gov/2015/lcoamd/2015LCO09718-R00-AMD.htm
+SB1502,2015,,Senate,Senate LCO Amendment #9712,False,Sen. Looney; Rep. Sharkey; Sen. Duff; Rep. Aresimowicz; Rep. Sayers; Rep. Jutila; Rep. Baram; Rep. Simmons; Rep. Scanlon,https://www.cga.ct.gov/2015/lcoamd/2015LCO09712-R00-AMD.htm
+HB5450,2016,5544,Senate,Senate Schedule C LCO# 5544 (R),True,Sen. Boucher,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00SC-AMD.htm
+HB5450,2016,5480,Senate,Senate Schedule G LCO# 5480 (R),True,Sen. Boucher,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00SG-AMD.htm
+HB5450,2016,5448,Senate,Senate Schedule A LCO# 5448 (R),True,Sen. Boucher,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00SA-AMD.htm
+HB5450,2016,5486,Senate,Senate Schedule F LCO# 5486 (R),True,Sen. Boucher,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00SF-AMD.htm
+HB5450,2016,5500,Senate,Senate Schedule B LCO# 5500 (R),True,Sen. Boucher,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00SB-AMD.htm
+HB5450,2016,5497,Senate,Senate Schedule D LCO# 5497 (R),True,Sen. Boucher,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00SD-AMD.htm
+HB5450,2016,5463,Senate,Senate Schedule I LCO# 5463 (R),True,Sen. Boucher,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00SI-AMD.htm
+HB5450,2016,5551,Senate,Senate Schedule H LCO# 5551 (R),True,Sen. Boucher,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00SH-AMD.htm
+HB5450,2016,5498,Senate,Senate Schedule E LCO# 5498 (R),True,Sen. Boucher,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00SE-AMD.htm
+HB5450,2016,4425,House,House Schedule B LCO# 4425 (R),True,Rep. Shaban,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00HB-AMD.htm
+HB5450,2016,4338,House,House Schedule A LCO# 4338 (D),True,Rep. Gentile; Rep. Rojas; Rep. Ritter M. ; Sen. Gerratana,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00HA-AMD.htm
+HB5450,2016,4348,House,House Schedule C LCO# 4348 (D),True,Rep. Candelaria; Rep. Walker; Rep. Currey; Rep. Lemar; Rep. Porter; Rep. Johnson; Rep. Albis; Rep. Haddad; Rep. Urban; Rep. Lesser; Rep. Vargas; Rep. Arce; Rep. Sanchez; Rep. Lopes; Rep. Megna; Rep. Gonzalez; Rep. Ritter M. ,https://www.cga.ct.gov/2016/amd/H/2016HB-05450-R00HC-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5552 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05552-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5501 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05501-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5458 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05458-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5499 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05499-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5504 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05504-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5479 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05479-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5481 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05481-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5505 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05505-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5506 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05506-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5502 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05502-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5482 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05482-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5478 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05478-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5488 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05488-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5496 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05496-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5485 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05485-R00-AMD.htm
+HB5450,2016,,Senate,Senate LCO Amendment #5460 (R),False,Sen. Boucher,https://www.cga.ct.gov/2016/lcoamd/2016LCO05460-R00-AMD.htm
+HB5450,2016,,House,House LCO Amendment #4265 (D),False,Rep. Gentile; Rep. Rojas; Rep. Ritter M. ; Sen. Gerratana,https://www.cga.ct.gov/2016/lcoamd/2016LCO04265-R00-AMD.htm
+HB5450,2016,,House,House LCO Amendment #4257 (D),False,Rep. Gentile; Rep. Rojas; Rep. Ritter M. ,https://www.cga.ct.gov/2016/lcoamd/2016LCO04257-R00-AMD.htm
+HB6551,2017,,House,House LCO Amendment #8099 (J),False,,https://www.cga.ct.gov/2017/lcoamd/2017LCO08099-R00-AMD.htm
+SB603,2017,,Senate,Senate LCO Amendment #7372 (D),False,,https://www.cga.ct.gov/2017/lcoamd/2017LCO07372-R00-AMD.htm
+HB7371,2019,,House,House LCO Amendment #7507 (D),False,Rep. D'Agostino,https://www.cga.ct.gov/2019/lcoamd/pdf/2019LCO07507-R00-AMD.pdf
+SB893,2019,7541,Senate,Senate Schedule A LCO# 7541 (D),True,Sen. Cohen,https://www.cga.ct.gov/2019/amd/S/pdf/2019SB-00893-R00SA-AMD.pdf
+SB893,2019,,Senate,Senate LCO Amendment #7520 (D),False,Sen. Cohen,https://www.cga.ct.gov/2019/lcoamd/pdf/2019LCO07520-R00-AMD.pdf
+HB5596,2021,7892,House,House Schedule A LCO# 7892 (D),True,Rep. Wood; Sen. Lesser,https://www.cga.ct.gov/2021/amd/H/pdf/2021HB-05596-R00HA-AMD.pdf
+HB6100,2021,8153,House,House Schedule A LCO# 8153 (J),True,Rep. D'Agostino; Rep. Rutigliano,https://www.cga.ct.gov/2021/amd/H/pdf/2021HB-06100-R00HA-AMD.pdf
+HB6100,2021,,House,House LCO Amendment #7994 (J),False,Rep. D'Agostino; Rep. Rutigliano,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO07994-R00-AMD.pdf
+HB6100,2021,,House,House LCO Amendment #7695 (J),False,Rep. D'Agostino; Sen. Maroney; Rep. Rutigliano,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO07695-R00-AMD.pdf
+SB861,2021,,Senate,Senate LCO Amendment #7623 (R),False,Sen. Cicarella; Sen. Champagne; Sen. Hwang; Sen. Miner; Sen. Sampson,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO07623-R00-AMD.pdf
+SB1118,2021,10470,Senate,Senate Schedule A LCO# 10470 (D),True,Sen. Winfield,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01118-R00SA-AMD.pdf
+SB1118,2021,10461,Senate,Senate Schedule C LCO# 10461 (R),True,Sen. Somers; Sen. Kissel; Sen. Hwang; Sen. Berthel,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01118-R00SC-AMD.pdf
+SB1118,2021,10464,Senate,Senate Schedule D LCO# 10464 (R),True,Sen. Somers; Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01118-R00SD-AMD.pdf
+SB1118,2021,10453,Senate,Senate Schedule B LCO# 10453 (R),True,Sen. Berthel; Sen. Hwang; Sen. Martin; Sen. Somers; Sen. Kissel,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01118-R00SB-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10705 (R),False,Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10705-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10557 (R),False,Rep. Candelora,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10557-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10540 (R),False,Rep. Candelora,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10540-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10696 (R),False,Rep. Howard,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10696-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10660 (R),False,Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10660-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10652 (R),False,Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10652-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10649 (R),False,Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10649-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10651 (R),False,Rep. Perillo,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10651-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10699 (R),False,Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10699-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10703 (R),False,Rep. Howard,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10703-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10698 (R),False,,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10698-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10625 (R),False,Rep. Cheeseman; Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10625-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10621 (R),False,Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10621-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10632 (R),False,Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10632-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10618 (R),False,Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10618-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10620 (R),False,Rep. Fishbein,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10620-R00-AMD.pdf
+SB1118,2021,,House,House LCO Amendment #10595 (R),False,Rep. Fishbein; Rep. Howard,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10595-R00-AMD.pdf
+SB1118,2021,,Senate,Senate LCO Amendment #10482 (R),False,Sen. Miner,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10482-R00-AMD.pdf
+SB1118,2021,,Senate,Senate LCO Amendment #10463 (R),False,Sen. Somers,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10463-R00-AMD.pdf
+SB1118,2021,,Senate,Senate LCO Amendment #10467 (R),False,Sen. Sampson,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10467-R00-AMD.pdf
+SB1118,2021,,Senate,Senate LCO Amendment #10465 (R),False,Sen. Somers,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10465-R00-AMD.pdf
+SB1118,2021,,Senate,Senate LCO Amendment #10458 (D),False,Sen. Winfield,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10458-R00-AMD.pdf
+SB1118,2021,,Senate,Senate LCO Amendment #10450 (R),False,Sen. Somers,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10450-R00-AMD.pdf
+SB1118,2021,,Senate,Senate LCO Amendment #10443 (R),False,Sen. Somers; Sen. Martin; Sen. Champagne; Sen. Berthel,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10443-R00-AMD.pdf
+SB1118,2021,,Senate,Senate LCO Amendment #10435 (R),False,Sen. Berthel; Sen. Hwang; Sen. Martin; Sen. Somers,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10435-R00-AMD.pdf
+SB1118,2021,,Senate,Senate LCO Amendment #10434 (R),False,Sen. Somers,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10434-R00-AMD.pdf
+SB1201,2021,10988,House,House Schedule E LCO# 10988 (D),True,Rep. Steinberg,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01201-R00HE-AMD.pdf
+SB1201,2021,10981,House,House Schedule B LCO# 10981 (R),True,Rep. Candelora; Rep. Zupkus; Rep. Devlin; Rep. Fishbein; Rep. O'Dea; Rep. Rutigliano; Rep. Perillo; Rep. Cheeseman; Rep. Rebimbas,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01201-R00HB-AMD.pdf
+SB1201,2021,10984,House,House Schedule A LCO# 10984 (D),True,Rep. Stafstrom,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01201-R00HA-AMD.pdf
+SB1201,2021,10935,House,House Schedule D LCO# 10935 (R),True,Rep. Dubitsky; Rep. Fishbein; Rep. Fiorello; Rep. Dauphinais; Rep. Anderson,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01201-R00HD-AMD.pdf
+SB1201,2021,10936,House,House Schedule C LCO# 10936 (R),True,Rep. Howard,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01201-R00HC-AMD.pdf
+SB1201,2021,10928,Senate,Senate Schedule B LCO# 10928 (D),True,Sen. Winfield,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01201-R00SB-AMD.pdf
+SB1201,2021,10906,Senate,Senate Schedule A LCO# 10906 (D),True,Sen. Winfield,https://www.cga.ct.gov/2021/amd/S/pdf/2021SB-01201-R00SA-AMD.pdf
+SB1201,2021,,House,House LCO Amendment #10986 (R),False,Rep. Candelora; Rep. Zupkus; Rep. Devlin; Rep. Fishbein; Rep. O'Dea; Rep. Rutigliano; Rep. Perillo; Rep. Cheeseman; Rep. Rebimbas; Rep. Carney,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10986-R00-AMD.pdf
+SB1201,2021,,House,House LCO Amendment #10953 (R),False,Rep. Howard,https://www.cga.ct.gov/2021/lcoamd/pdf/2021LCO10953-R00-AMD.pdf
+HB5147,2022,,House,House LCO Amendment #4618 (R),False,Rep. Rutigliano,https://www.cga.ct.gov/2022/lcoamd/pdf/2022LCO04618-R00-AMD.pdf
+HB5255,2022,6319,Senate,Senate Schedule A LCO# 6319 (R),True,Sen. Miner,https://www.cga.ct.gov/2022/amd/H/pdf/2022HB-05255-R00SA-AMD.pdf
+HB5255,2022,5781,House,House Schedule A LCO# 5781 (J),True,Rep. Lemar; Sen. Haskell; Rep. Carney; Sen. Somers,https://www.cga.ct.gov/2022/amd/H/pdf/2022HB-05255-R00HA-AMD.pdf
+HB5255,2022,,House,House LCO Amendment #5704 (J),False,Rep. Lemar; Sen. Haskell; Rep. Carney; Sen. Somers,https://www.cga.ct.gov/2022/lcoamd/pdf/2022LCO05704-R00-AMD.pdf
+HB5329,2022,5358,House,House Schedule A LCO# 5358 (D),True,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2022/amd/H/pdf/2022HB-05329-R00HA-AMD.pdf
+HB5329,2022,,House,House LCO Amendment #4818 (D),False,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2022/lcoamd/pdf/2022LCO04818-R00-AMD.pdf
+HB5330,2022,5603,House,House Schedule A LCO# 5603 (D),True,Rep. D'Agostino,https://www.cga.ct.gov/2022/amd/H/pdf/2022HB-05330-R00HA-AMD.pdf
+HB5330,2022,,House,House LCO Amendment #4858 (D),False,Rep. D'Agostino,https://www.cga.ct.gov/2022/lcoamd/pdf/2022LCO04858-R00-AMD.pdf
+HB5393,2022,5505,House,House Schedule A LCO# 5505 (J),True,Rep. Stafstrom; Rep. Fishbein,https://www.cga.ct.gov/2022/amd/H/pdf/2022HB-05393-R00HA-AMD.pdf
+SB2,2022,6390,House,House Schedule A LCO# 6390 (R),True,Rep. Dauphinais; Rep. Betts; Rep. Fiorello; Rep. Wilson; Rep. Zupkus; Rep. Lanoue,https://www.cga.ct.gov/2022/amd/S/pdf/2022SB-00002-R00HA-AMD.pdf
+SB2,2022,5219,Senate,Senate Schedule A LCO# 5219 (J),True,Sen. Looney; Sen. Mccrory; Sen. Duff; Sen. Miller P.; Sen. Anwar; Sen. Moore; Sen. Kelly; Sen. Slap; Rep. Linehan; Sen. Winfield; Rep. Steinberg; Sen. Somers; Sen. Cabrera; Sen. Kissel; Sen. Cassano; Sen. Hwang; Sen. Cohen; Sen. Berthel; Sen. Daugherty Abrams; Sen. Fazio; Sen. Flexer; Sen. Sampson; Sen. Fonfara; Sen. Formica; Sen. Haskell; Sen. Miner; Sen. Kushner; Sen. Martin; Sen. Lesser; Sen. Witkos; Sen. Lopes; Sen. Cicarella,https://www.cga.ct.gov/2022/amd/S/pdf/2022SB-00002-R00SA-AMD.pdf
+SB2,2022,,House,House LCO Amendment #5999 (R),False,Rep. Rebimbas,https://www.cga.ct.gov/2022/lcoamd/pdf/2022LCO05999-R00-AMD.pdf
+SB2,2022,,House,House LCO Amendment #6009 (R),False,Rep. Rebimbas,https://www.cga.ct.gov/2022/lcoamd/pdf/2022LCO06009-R00-AMD.pdf
+SB2,2022,,House,House LCO Amendment #6363 (R),False,Rep. Dauphinais,https://www.cga.ct.gov/2022/lcoamd/pdf/2022LCO06363-R00-AMD.pdf
+SB2,2022,,Senate,Senate LCO Amendment #5200 (J),False,Sen. Looney; Sen. Lesser; Sen. Duff; Sen. Lopes; Sen. Anwar; Sen. Mccrory; Sen. Cabrera; Sen. Miller P.; Sen. Cassano; Sen. Moore; Sen. Cohen; Sen. Slap; Sen. Daugherty Abrams; Sen. Winfield; Sen. Flexer; Sen. Somers; Sen. Fonfara; Rep. Linehan; Sen. Haskell; Rep. Steinberg; Sen. Kushner,https://www.cga.ct.gov/2022/lcoamd/pdf/2022LCO05200-R00-AMD.pdf
+SB2,2022,,Senate,Senate LCO Amendment #5125 (D),False,Sen. Looney; Sen. Duff; Sen. Anwar,https://www.cga.ct.gov/2022/lcoamd/pdf/2022LCO05125-R00-AMD.pdf
+HB6694,2023,8473,House,House Schedule A LCO# 8473 (D),True,Rep. D'Agostino,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06694-R00HA-AMD.pdf
+HB6694,2023,,Senate,Senate LCO Amendment #10200 (D),False,Sen. Maroney; Rep. D'Agostino,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO10200-R00-AMD.pdf
+HB6694,2023,,House,House LCO Amendment #8196 (D),False,Rep. D'Agostino,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO08196-R00-AMD.pdf
+HB6694,2023,,House,House LCO Amendment #7784 (D),False,Rep. D'Agostino,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO07784-R00-AMD.pdf
+HB6699,2023,9161,Senate,Senate Schedule A LCO# 9161 (R),True,Sen. Kissel,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06699-R00SA-AMD.pdf
+HB6699,2023,7520,House,House Schedule B LCO# 7520 (R),True,Rep. Anderson,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06699-R00HB-AMD.pdf
+HB6699,2023,7505,House,House Schedule A LCO# 7505 (J),True,Rep. D'Agostino; Rep. Rutigliano,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06699-R00HA-AMD.pdf
+HB6699,2023,,House,House LCO Amendment #7438 (J),False,Rep. D'Agostino; Rep. Rutigliano,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO07438-R00-AMD.pdf
+HB6699,2023,,House,House LCO Amendment #7260 (J),False,Rep. D'Agostino; Rep. Rutigliano,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO07260-R00-AMD.pdf
+HB6700,2023,10158,House,House Schedule B LCO# 10158 (J),True,Rep. Foster; Rep. Dubitsky; Rep. Boyd; Rep. Barry; Rep. Horn; Sen. Osten,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06700-R00HB-AMD.pdf
+HB6700,2023,9778,House,House Schedule A LCO# 9778 (D),True,Rep. D'Agostino,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06700-R00HA-AMD.pdf
+HB6718,2023,9470,Senate,Senate Schedule A LCO# 9470 (J),True,Sen. Maher; Rep. Linehan; Sen. Seminara,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06718-R00SA-AMD.pdf
+HB6718,2023,8194,House,House Schedule A LCO# 8194 (D),True,Rep. Linehan; Rep. D'Agostino; Sen. Maher; Rep. Keitt,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06718-R00HA-AMD.pdf
+HB6718,2023,,Senate,Senate LCO Amendment #9402 (D),False,Sen. Maher; Rep. Linehan,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO09402-R00-AMD.pdf
+HB6718,2023,,House,House LCO Amendment #8190 (D),False,Rep. Linehan; Sen. Maher; Rep. Keitt,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO08190-R00-AMD.pdf
+HB6768,2023,8635,House,House Schedule A LCO# 8635 (J),True,Rep. D'Agostino; Sen. Somers; Sen. Maroney; Sen. Fazio; Rep. Mccarthy Vahey; Sen. Anwar,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06768-R00HA-AMD.pdf
+HB6768,2023,,House,House LCO Amendment #8588 (D),False,Rep. D'Agostino,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO08588-R00-AMD.pdf
+HB6768,2023,,House,House LCO Amendment #7022 (J),False,Rep. D'Agostino; Sen. Anwar; Sen. Maroney; Sen. Somers; Rep. Mccarthy Vahey; Sen. Fazio,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO07022-R00-AMD.pdf
+HB6787,2023,8169,House,House Schedule A LCO# 8169 (J),True,Rep. Stafstrom; Sen. Winfield; Rep. Fishbein,https://www.cga.ct.gov/2023/amd/H/pdf/2023HB-06787-R00HA-AMD.pdf
+SB9,2023,9444,House,House Schedule A LCO# 9444 (D),True,Rep. Mccarthy Vahey,https://www.cga.ct.gov/2023/amd/S/pdf/2023SB-00009-R00HA-AMD.pdf
+SB9,2023,8777,Senate,Senate Schedule C LCO# 8777 (J),True,Sen. Anwar; Sen. Somers,https://www.cga.ct.gov/2023/amd/S/pdf/2023SB-00009-R00SC-AMD.pdf
+SB9,2023,8759,Senate,Senate Schedule B LCO# 8759 (R),True,Sen. Somers,https://www.cga.ct.gov/2023/amd/S/pdf/2023SB-00009-R00SB-AMD.pdf
+SB9,2023,8735,Senate,Senate Schedule A LCO# 8735 (J),True,Sen. Anwar; Sen. Somers; Sen. Lopes; Sen. Marx; Sen. Cabrera,https://www.cga.ct.gov/2023/amd/S/pdf/2023SB-00009-R00SA-AMD.pdf
+SB9,2023,,House,House LCO Amendment #9244 (D),False,Rep. Mccarthy Vahey,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO09244-R00-AMD.pdf
+SB9,2023,,Senate,Senate LCO Amendment #8639 (R),False,Sen. Harding,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO08639-R00-AMD.pdf
+SB9,2023,,Senate,Senate LCO Amendment #8698 (R),False,Sen. Kelly,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO08698-R00-AMD.pdf
+SB9,2023,,Senate,Senate LCO Amendment #8697 (R),False,Sen. Kelly,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO08697-R00-AMD.pdf
+SB9,2023,,Senate,Senate LCO Amendment #8661 (J),False,Sen. Anwar; Sen. Somers; Sen. Lopes; Sen. Marx; Sen. Cabrera,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO08661-R00-AMD.pdf
+SB9,2023,,Senate,Senate LCO Amendment #8253 (J),False,Sen. Anwar; Sen. Somers,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO08253-R00-AMD.pdf
+SB994,2023,8599,Senate,Senate Schedule A LCO# 8599 (J),True,Sen. Cohen; Rep. Lemar; Sen. Hwang; Rep. Kennedy,https://www.cga.ct.gov/2023/amd/S/pdf/2023SB-00994-R00SA-AMD.pdf
+SB1058,2023,7553,Senate,Senate Schedule A LCO# 7553 (D),True,Sen. Maroney; Rep. D'Agostino; Sen. Duff,https://www.cga.ct.gov/2023/amd/S/pdf/2023SB-01058-R00SA-AMD.pdf
+SB1058,2023,,Senate,Senate LCO Amendment #7609 (D),False,Sen. Maroney; Rep. D'Agostino; Sen. Duff,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO07609-R00-AMD.pdf
+SB1058,2023,,Senate,Senate LCO Amendment #7503 (D),False,Sen. Maroney; Rep. D'Agostino; Sen. Duff,https://www.cga.ct.gov/2023/lcoamd/pdf/2023LCO07503-R00-AMD.pdf
+HB5150,2024,4912,House,House Schedule A LCO# 4912 (D),True,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2024/amd/H/pdf/2024HB-05150-R00HA-AMD.pdf
+HB5150,2024,,Senate,Senate LCO Amendment #5492 (R),False,Sen. Kelly,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO05492-R00-AMD.pdf
+HB5150,2024,,Senate,Senate LCO Amendment #5320 (R),False,Sen. Kelly,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO05320-R00-AMD.pdf
+HB5150,2024,,Senate,Senate LCO Amendment #5329 (R),False,Sen. Kelly,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO05329-R00-AMD.pdf
+HB5150,2024,,Senate,Senate LCO Amendment #5324 (R),False,Sen. Kelly,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO05324-R00-AMD.pdf
+HB5150,2024,,House,House LCO Amendment #5030 (R),False,Rep. Lanoue,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO05030-R00-AMD.pdf
+HB5150,2024,,House,House LCO Amendment #5023 (R),False,Rep. Fishbein; Rep. Carpino,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO05023-R00-AMD.pdf
+HB5150,2024,,House,House LCO Amendment #4847 (D),False,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO04847-R00-AMD.pdf
+HB5150,2024,,House,House LCO Amendment #4791 (D),False,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO04791-R00-AMD.pdf
+HB5150,2024,,House,House LCO Amendment #4211 (D),False,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO04211-R00-AMD.pdf
+HB5150,2024,,House,House LCO Amendment #3982 (D),False,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO03982-R00-AMD.pdf
+HB5235,2024,4874,House,House Schedule A LCO# 4874 (D),True,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2024/amd/H/pdf/2024HB-05235-R00HA-AMD.pdf
+HB5235,2024,,House,House LCO Amendment #4786 (D),False,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO04786-R00-AMD.pdf
+HB5236,2024,5357,House,House Schedule A LCO# 5357 (D),True,Rep. D'Agostino; Sen. Maroney,https://www.cga.ct.gov/2024/amd/H/pdf/2024HB-05236-R00HA-AMD.pdf
+HB5477,2024,,House,House LCO Amendment #4409 (D),False,Rep. Kavros Degraw,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO04409-R00-AMD.pdf
+SB200,2024,5899,Senate,Senate Schedule A LCO# 5899 (D),True,Sen. Maroney; Rep. D'Agostino,https://www.cga.ct.gov/2024/amd/S/pdf/2024SB-00200-R00SA-AMD.pdf
+SB200,2024,,Senate,Senate LCO Amendment #5808 (D),False,Sen. Maroney; Rep. D'Agostino,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO05808-R00-AMD.pdf
+SB200,2024,,Senate,Senate LCO Amendment #5773 (D),False,Sen. Maroney,https://www.cga.ct.gov/2024/lcoamd/pdf/2024LCO05773-R00-AMD.pdf
+HB6854,2025,9218,House,House Schedule A LCO# 9218 (J),True,Rep. Lemar; Sen. Maroney; Rep. Rutigliano; Sen. Cicarella; Rep. Turco,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-06854-R00HA-AMD.pdf
+HB6855,2025,9665,House,House Schedule A LCO# 9665 (D),True,Rep. Lemar; Sen. Maroney; Rep. Turco,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-06855-R00HA-AMD.pdf
+HB6865,2025,10707,House,House Schedule A LCO# 10707 (D),True,Rep. Walker; Sen. Osten; Rep. Haddad,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-06865-R00HA-AMD.pdf
+HB6930,2025,7494,House,House Schedule A LCO# 7494 (J),True,Rep. Lemar; Sen. Maroney; Rep. Rutigliano,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-06930-R00HA-AMD.pdf
+HB7132,2025,9081,Senate,Senate Schedule A LCO# 9081 (R),True,Sen. Harding; Sen. Sampson,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07132-R00SA-AMD.pdf
+HB7132,2025,8098,House,House Schedule A LCO# 8098 (J),True,Rep. Stafstrom; Rep. Fishbein,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07132-R00HA-AMD.pdf
+HB7132,2025,8089,House,House Schedule B LCO# 8089 (R),True,Rep. Howard,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07132-R00HB-AMD.pdf
+HB7178,2025,10720,House,House Schedule A LCO# 10720 (J),True,Rep. Lemar; Rep. Rutigliano,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07178-R00HA-AMD.pdf
+HB7181,2025,10422,House,House Schedule A LCO# 10422 (D),True,Rep. Rojas; Rep. Candelaria J.; Rep. Lemar; Rep. Wilson; Sen. Maroney; Rep. Gonzalez; Rep. Felipe,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07181-R00HA-AMD.pdf
+HB7287,2025,10582,Senate,Senate Schedule E LCO# 10582 (R),True,Sen. Martin,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00SE-AMD.pdf
+HB7287,2025,10580,Senate,Senate Schedule D LCO# 10580 (R),True,Sen. Martin,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00SD-AMD.pdf
+HB7287,2025,10587,Senate,Senate Schedule C LCO# 10587 (R),True,Sen. Martin,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00SC-AMD.pdf
+HB7287,2025,10553,Senate,Senate Schedule B LCO# 10553 (R),True,Sen. Fazio,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00SB-AMD.pdf
+HB7287,2025,10544,Senate,Senate Schedule A LCO# 10544 (R),True,Sen. Fazio,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00SA-AMD.pdf
+HB7287,2025,10529,Senate,Senate Schedule F LCO# 10529 (R),True,Sen. Martin,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00SF-AMD.pdf
+HB7287,2025,10413,House,House Schedule B LCO# 10413 (R),True,Rep. Candelora V.; Rep. Zupkus; Rep. O'Dea; Rep. Nuccio; Rep. Rutigliano; Rep. Polletta; Rep. Ackert,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00HB-AMD.pdf
+HB7287,2025,10424,House,House Schedule E LCO# 10424 (R),True,Rep. Fishbein,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00HE-AMD.pdf
+HB7287,2025,10255,House,House Schedule A LCO# 10255 (D),True,Rep. Horn; Rep. Walker,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00HA-AMD.pdf
+HB7287,2025,10410,House,House Schedule F LCO# 10410 (R),True,Rep. Candelora V.; Rep. Zupkus; Rep. O'Dea; Rep. Nuccio; Rep. Rutigliano; Rep. Polletta; Rep. Ackert,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00HF-AMD.pdf
+HB7287,2025,10409,House,House Schedule C LCO# 10409 (R),True,Rep. Candelora V.; Rep. Zupkus; Rep. O'Dea; Rep. Nuccio; Rep. Rutigliano; Rep. Polletta; Rep. Ackert,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00HC-AMD.pdf
+HB7287,2025,10394,House,House Schedule D LCO# 10394 (R),True,Rep. Fishbein,https://www.cga.ct.gov/2025/amd/H/pdf/2025HB-07287-R00HD-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10619 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10619-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10576 (R),False,Sen. Harding; Sen. Cicarella; Sen. Somers,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10576-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10552 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10552-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10543 (R),False,Sen. Harding,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10543-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10252 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10252-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10484 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10484-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10483 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10483-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10256 (R),False,Sen. Sampson; Sen. Berthel; Sen. Gordon,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10256-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10508 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10508-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10507 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10507-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10506 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10506-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10512 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10512-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10511 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10511-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10510 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10510-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10516 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10516-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10515 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10515-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10514 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10514-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10513 (R),False,Sen. Sampson; Sen. Berthel,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10513-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10509 (R),False,Sen. Gordon,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10509-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10519 (R),False,Sen. Gordon,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10519-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10500 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10500-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10247 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10247-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10485 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10485-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10458 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10458-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10457 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10457-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10464 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10464-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10463 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10463-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10336 (R),False,Sen. Harding; Sen. Berthel; Sen. Martin; Sen. Fazio; Sen. Sampson; Sen. Gordon; Sen. Cicarella; Sen. Kissel; Sen. Somers; Sen. Perillo J.; Sen. Hwang,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10336-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10374 (R),False,Sen. Harding; Sen. Berthel; Sen. Martin; Sen. Fazio; Sen. Sampson; Sen. Gordon; Sen. Cicarella; Sen. Kissel; Sen. Somers; Sen. Perillo J.; Sen. Hwang,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10374-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10335 (R),False,Sen. Harding; Sen. Berthel; Sen. Martin; Sen. Fazio; Sen. Sampson; Sen. Gordon; Sen. Cicarella; Sen. Kissel; Sen. Somers; Sen. Perillo J.; Sen. Hwang,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10335-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10333 (R),False,Sen. Harding; Sen. Berthel; Sen. Martin; Sen. Fazio; Sen. Sampson; Sen. Gordon; Sen. Cicarella; Sen. Kissel; Sen. Somers; Sen. Perillo J.; Sen. Hwang,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10333-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10375 (R),False,Sen. Harding; Sen. Berthel; Sen. Martin; Sen. Fazio; Sen. Sampson; Sen. Gordon; Sen. Cicarella; Sen. Kissel; Sen. Somers; Sen. Perillo J.; Sen. Hwang,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10375-R00-AMD.pdf
+HB7287,2025,,House,House LCO Amendment #10446 (R),False,Rep. Romano; Rep. Dauphinais,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10446-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10377 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10377-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10380 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10380-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10381 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10381-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10382 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10382-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10383 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10383-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10376 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10376-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10389 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10389-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10388 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10388-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10386 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10386-R00-AMD.pdf
+HB7287,2025,,Senate,Senate LCO Amendment #10384 (R),False,Sen. Sampson,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10384-R00-AMD.pdf
+HB7287,2025,,House,House LCO Amendment #10364 (R),False,Rep. Romano; Rep. Dauphinais,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10364-R00-AMD.pdf
+HB7287,2025,,House,House LCO Amendment #10355 (R),False,Rep. Dauphinais,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10355-R00-AMD.pdf
+HB7287,2025,,House,House LCO Amendment #10425 (R),False,Rep. Howard,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10425-R00-AMD.pdf
+HB7287,2025,,House,House LCO Amendment #10404 (R),False,Rep. Candelora V.; Rep. Zupkus; Rep. O'Dea; Rep. Nuccio; Rep. Rutigliano; Rep. Polletta; Rep. Ackert,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10404-R00-AMD.pdf
+SB970,2025,,Senate,Senate LCO Amendment #10592 (D),False,Sen. Maroney; Sen. Osten,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10592-R00-AMD.pdf
+SB970,2025,,Senate,Senate LCO Amendment #10414 (D),False,Sen. Maroney; Sen. Osten,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10414-R00-AMD.pdf
+SB970,2025,,Senate,Senate LCO Amendment #10096 (D),False,Sen. Maroney; Sen. Osten,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO10096-R00-AMD.pdf
+SB970,2025,,Senate,Senate LCO Amendment #9957 (D),False,Sen. Maroney; Sen. Osten,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO09957-R00-AMD.pdf
+SB970,2025,,Senate,Senate LCO Amendment #8166 (D),False,Sen. Maroney,https://www.cga.ct.gov/2025/lcoamd/pdf/2025LCO08166-R00-AMD.pdf
+HB5003,2026,5577,Senate,Senate Schedule B LCO# 5577 (R),True,Sen. Harding; Sen. Somers; Sen. Martin; Sen. Berthel; Sen. Sampson; Sen. Perillo J.,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05003-R00SB-AMD.pdf
+HB5003,2026,5578,Senate,Senate Schedule D LCO# 5578 (R),True,Sen. Harding; Sen. Somers; Sen. Martin; Sen. Berthel; Sen. Sampson; Sen. Perillo J.,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05003-R00SD-AMD.pdf
+HB5003,2026,5544,Senate,Senate Schedule A LCO# 5544 (R),True,Sen. Sampson,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05003-R00SA-AMD.pdf
+HB5003,2026,5546,Senate,Senate Schedule C LCO# 5546 (R),True,Sen. Sampson,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05003-R00SC-AMD.pdf
+HB5003,2026,5550,Senate,Senate Schedule E LCO# 5550 (R),True,Sen. Sampson,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05003-R00SE-AMD.pdf
+HB5003,2026,4985,House,House Schedule B LCO# 4985 (D),True,Rep. Howard,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05003-R00HB-AMD.pdf
+HB5003,2026,4978,House,House Schedule B LCO# 4978 (R),True,Rep. Howard,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05003-R00HB-AMD.pdf
+HB5003,2026,4985,House,House Schedule A LCO# 4985 (D),True,Rep. Sanchez E.; Rep. Wilson; Sen. Kushner,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05003-R00HA-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5641 (R),False,Sen. Somers; Sen. Berthel,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05641-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5586 (R),False,Sen. Somers; Sen. Berthel,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05586-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5595 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05595-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5582 (R),False,Sen. Somers; Sen. Berthel,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05582-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5589 (R),False,Sen. Somers; Sen. Berthel,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05589-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5588 (R),False,Sen. Somers; Sen. Berthel,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05588-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5591 (R),False,Sen. Harding; Sen. Cicarella; Sen. Gordon,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05591-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5571 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05571-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5569 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05569-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5555 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05555-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5551 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05551-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5556 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05556-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5545 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05545-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5547 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05547-R00-AMD.pdf
+HB5003,2026,,Senate,Senate LCO Amendment #5548 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05548-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4863 (D),False,Rep. Sanchez E.; Rep. Wilson; Sen. Kushner,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04863-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4833 (R),False,Rep. Weir,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04833-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4801 (R),False,Rep. Weir,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04801-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4803 (R),False,Rep. Weir,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04803-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4804 (R),False,Rep. Weir,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04804-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4805 (R),False,Rep. Weir,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04805-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4806 (R),False,Rep. Weir,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04806-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4817 (R),False,Rep. Weir,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04817-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4814 (R),False,Rep. Weir,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04814-R00-AMD.pdf
+HB5003,2026,,House,House LCO Amendment #4793 (D),False,Rep. Sanchez E.; Rep. Wilson; Sen. Kushner,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04793-R00-AMD.pdf
+HB5222,2026,6124,House,House Schedule A LCO# 6124 (J),True,Rep. Lemar; Sen. Maroney; Rep. Rutigliano; Sen. Cicarella,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05222-R00HA-AMD.pdf
+HB5222,2026,,House,House LCO Amendment #6092 (D),False,Rep. Lemar; Sen. Maroney,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO06092-R00-AMD.pdf
+HB5350,2026,5403,Senate,Senate Schedule A LCO# 5403 (R),True,Sen. Harding; Sen. Cicarella,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05350-R00SA-AMD.pdf
+HB5350,2026,5269,Senate,Senate Schedule B LCO# 5269 (R),True,Sen. Cicarella,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05350-R00SB-AMD.pdf
+HB5350,2026,4345,House,House Schedule D LCO# 4345 (D),True,Rep. Lemar; Rep. Turco; Rep. Rojas,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05350-R00HD-AMD.pdf
+HB5350,2026,4340,House,House Schedule C LCO# 4340 (R),True,Rep. Candelora V.; Rep. Weir; Rep. Rutigliano; Rep. Reddington-Hughes; Rep. Zawistowski; Rep. Haines; Rep. Yaccarino; Rep. Fishbein; Rep. Piscopo,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05350-R00HC-AMD.pdf
+HB5350,2026,4339,House,House Schedule B LCO# 4339 (R),True,Rep. Candelora V.; Rep. Rutigliano; Rep. Fishbein,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05350-R00HB-AMD.pdf
+HB5350,2026,4294,House,House Schedule E LCO# 4294 (R),True,Rep. Candelora V.; Rep. Rutigliano,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05350-R00HE-AMD.pdf
+HB5350,2026,4259,House,House Schedule A LCO# 4259 (D),True,Rep. Lemar; Rep. Turco; Rep. Rojas,https://www.cga.ct.gov/2026/amd/H/pdf/2026HB-05350-R00HA-AMD.pdf
+HB5350,2026,,Senate,Senate LCO Amendment #5401 (R),False,Sen. Somers,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05401-R00-AMD.pdf
+HB5350,2026,,Senate,Senate LCO Amendment #5425 (R),False,Sen. Cicarella,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05425-R00-AMD.pdf
+HB5350,2026,,Senate,Senate LCO Amendment #5413 (R),False,Sen. Cicarella,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05413-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4335 (R),False,Rep. Marra T.,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04335-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4324 (R),False,Rep. Howard,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04324-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4286 (R),False,Rep. Candelora V.; Rep. Piscopo; Rep. Rutigliano; Rep. Weir; Rep. Zawistowski; Rep. Reddington-Hughes; Rep. Yaccarino; Rep. Haines,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04286-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4288 (R),False,Rep. Candelora V.; Rep. Piscopo; Rep. Rutigliano; Rep. Weir; Rep. Zawistowski; Rep. Yaccarino; Rep. Haines,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04288-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4290 (R),False,Rep. Candelora V.; Rep. Rutigliano,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04290-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4291 (R),False,Rep. Candelora V.; Rep. Rutigliano,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04291-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4298 (R),False,Rep. Candelora V.; Rep. Rutigliano,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04298-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4317 (R),False,Rep. Howard,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04317-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4312 (R),False,Rep. Candelora V.; Rep. Rutigliano,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04312-R00-AMD.pdf
+HB5350,2026,,House,House LCO Amendment #4309 (R),False,Rep. Candelora V.; Rep. Rutigliano,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO04309-R00-AMD.pdf
+SB1,2026,5808,House,House Schedule B LCO# 5808 (R),True,Rep. Candelora V.; Rep. Zupkus; Rep. O'Dea; Rep. Nuccio; Rep. Rutigliano; Rep. Polletta; Rep. Ackert,https://www.cga.ct.gov/2026/amd/S/pdf/2026SB-00001-R00HB-AMD.pdf
+SB1,2026,5790,House,House Schedule A LCO# 5790 (R),True,Rep. Candelora V.; Rep. Zupkus; Rep. O'Dea; Rep. Nuccio; Rep. Rutigliano; Rep. Polletta; Rep. Ackert,https://www.cga.ct.gov/2026/amd/S/pdf/2026SB-00001-R00HA-AMD.pdf
+SB1,2026,5764,Senate,Senate Schedule B LCO# 5764 (R),True,Sen. Harding; Sen. Berthel; Sen. Martin; Sen. Fazio; Sen. Sampson; Sen. Gordon; Sen. Cicarella; Sen. Kissel; Sen. Somers; Sen. Perillo J.; Sen. Hwang,https://www.cga.ct.gov/2026/amd/S/pdf/2026SB-00001-R00SB-AMD.pdf
+SB1,2026,5762,Senate,Senate Schedule A LCO# 5762 (D),True,Sen. Looney; Rep. Ritter; Sen. Duff; Rep. Rojas,https://www.cga.ct.gov/2026/amd/S/pdf/2026SB-00001-R00SA-AMD.pdf
+SB1,2026,,Senate,Senate LCO Amendment #5768 (R),False,Sen. Harding; Sen. Berthel; Sen. Martin; Sen. Fazio; Sen. Sampson; Sen. Gordon; Sen. Cicarella; Sen. Kissel; Sen. Somers; Sen. Perillo J.; Sen. Hwang,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05768-R00-AMD.pdf
+SB1,2026,,Senate,Senate LCO Amendment #5761 (D),False,Sen. Looney; Rep. Ritter; Sen. Duff; Rep. Rojas,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO05761-R00-AMD.pdf
+SB477,2026,6177,Senate,Senate Schedule C LCO# 6177 (R),True,Sen. Fazio,https://www.cga.ct.gov/2026/amd/S/pdf/2026SB-00477-R00SC-AMD.pdf
+SB477,2026,6173,Senate,Senate Schedule B LCO# 6173 (D),True,Sen. Looney; Rep. Rojas; Rep. Ritter; Sen. Fonfara; Sen. Duff; Rep. Horn,https://www.cga.ct.gov/2026/amd/S/pdf/2026SB-00477-R00SB-AMD.pdf
+SB477,2026,6140,Senate,Senate Schedule A LCO# 6140 (D),True,Sen. Looney; Rep. Rojas; Rep. Ritter; Sen. Fonfara; Sen. Duff; Rep. Horn,https://www.cga.ct.gov/2026/amd/S/pdf/2026SB-00477-R00SA-AMD.pdf
+SB477,2026,,House,House LCO Amendment #6186 (R),False,Rep. Dubitsky; Rep. Dauphinais; Sen. Somers,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO06186-R00-AMD.pdf
+SB477,2026,,House,House LCO Amendment #6185 (R),False,Rep. Dubitsky; Rep. Dauphinais; Sen. Somers,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO06185-R00-AMD.pdf
+SB477,2026,,Senate,Senate LCO Amendment #6168 (R),False,Sen. Somers,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO06168-R00-AMD.pdf
+SB477,2026,,Senate,Senate LCO Amendment #6166 (R),False,Sen. Fazio,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO06166-R00-AMD.pdf
+SB477,2026,,Senate,Senate LCO Amendment #6160 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO06160-R00-AMD.pdf
+SB477,2026,,Senate,Senate LCO Amendment #6158 (R),False,Sen. Sampson,https://www.cga.ct.gov/2026/lcoamd/pdf/2026LCO06158-R00-AMD.pdf

@@ -21,25 +21,34 @@ try { var t = localStorage.getItem('ctcl-theme');
 <main id="main">
 
 <div class="page-head">
-  <div class="eyebrow">Every written position on the public record</div>
+  <div class="eyebrow">Bills and Votes &middot; Every Written Filing, Every Committee</div>
   <h1>Testimony</h1>
-  <p class="lede">What was filed, by whom, on which bill, taking which position. Filing
-  testimony is participation in a public process. A position recorded here says nothing about
-  whether it was persuasive, and nothing about anyone&rsquo;s motive.</p>
+  <p class="lede">Every piece of written testimony the General Assembly posted for the cannabis
+  bills on this site, 2012 to 2026, across every committee that heard them: General Law,
+  Judiciary, Public Health, Finance, Labor and the rest. Each filing opens the PDF itself.</p>
 </div>
 
 <div class="grid four" id="stats"></div>
 
+<div class="callout note">
+  <div class="hd">Where each position comes from</div>
+  <p class="small" style="margin:0"><strong>Filename:</strong> the witness&rsquo;s position as the
+  General Assembly printed it in the file name. <strong>Read from text:</strong> older filings have
+  no position in the name, so the first pages were searched for a plain statement of support or
+  opposition, after text recognition where the PDF was a scan. That reading is automatic; check the
+  PDF before relying on one filing. <strong>Not stated:</strong> neither gave a clear answer.</p>
+</div>
+
 <div class="chartbox">
-  <h3>Positions filed on each bill</h3>
-  <div class="sub">Counts are printed beside every bar, so the chart reads without color.</div>
+  <h3>Positions filed on the most-testified bills</h3>
+  <div class="sub">The 25 cannabis bills with the most filings. Counts are printed beside every bar, so the chart reads without color.</div>
   <div id="byBill"></div>
 </div>
 
 <h2>Every filing</h2>
 <div class="filters" id="f"></div>
 <div class="resultbar"><span id="count"></span>
-  <button class="btn" id="dl" type="button">Download this view as CSV</button></div>
+  <button class="btn" id="dl" type="button">Download This View as CSV</button></div>
 <div id="tbl"></div>
 <div class="pagenav"><button class="btn" id="more" type="button" hidden>Show more</button></div>
 
@@ -52,57 +61,63 @@ import { stackedBars } from './assets/charts.js';
 
 try {
   const d = await load('testimony');
-  const S = d.summary;
+  const S = d.summary, qs = new URLSearchParams(location.search);
 
   $('#stats').innerHTML = [
-    ['hero', S.records, 'testimony filings retrieved'],
-    ['', S.people, 'named parties filed them'],
+    ['hero', S.records, 'testimony filings, all committees'],
     ['', S.bills, 'bills drew testimony'],
-    ['', S.anonymous, 'filings where the record withheld the name'],
+    ['', S.filename + S.text, 'with a position, ' + num(S.filename) + ' from the filename'],
+    ['', S.committees, 'committees heard them'],
   ].map(([k, n, lab]) =>
     `<div class="stat ${k}"><div class="n">${num(n)}</div><div class="k">${esc(lab)}</div></div>`).join('');
 
   const agg = {};
-  d.rows.forEach(r => {
-    const k = `${r.yr} ${r.b}`;
+  d.rows.filter(r => r.focus).forEach(r => {
+    const k = `${r.b.replace('-0', ' ').replace(/ 0+/, ' ')} (${r.yr})`;
     (agg[k] = agg[k] || { k, Supports: 0, Opposes: 0, Other: 0 });
     agg[k][r.p === 'Supports' ? 'Supports' : r.p === 'Opposes' ? 'Opposes' : 'Other']++;
   });
   const bars = Object.values(agg).sort((a, b) =>
-    (b.Supports + b.Opposes + b.Other) - (a.Supports + a.Opposes + a.Other));
+    (b.Supports + b.Opposes + b.Other) - (a.Supports + a.Opposes + a.Other)).slice(0, 25);
   stackedBars($('#byBill'), bars, [
-    { key: 'Supports', label: 'Supports', color: 'var(--s3)' },
-    { key: 'Opposes', label: 'Opposes', color: 'var(--s2)' },
-    { key: 'Other', label: 'Other or unstated', color: 'var(--s8)' }]);
+    { key: 'Supports', label: 'Supports', color: 'var(--good)' },
+    { key: 'Opposes', label: 'Opposes', color: 'var(--serious)' },
+    { key: 'Other', label: 'Mixed or Not Stated', color: 'var(--s8)' }]);
 
   $('#f').innerHTML =
     searchField('q', 'Search', 'name, organization, role as filed') +
     selectField('yr', 'Session', d.years) +
     selectField('b', 'Bill', [...new Set(d.rows.map(r => r.b))].sort()) +
+    selectField('c', 'Committee', d.committees) +
     selectField('p', 'Position', d.positions) +
+    selectField('h', 'Position From', [['Filename', 'Filename'], ['Text', 'Read From Text']]) +
+    selectField('sc', 'Scope', [['focus', 'Cannabis and Hemp Bills Only']], { all: 'All Bills' }) +
     clearButton();
 
   let limit = 150;
   function current() {
-    const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value,
-          b = $('#b').value, p = $('#p').value;
+    const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value, b = $('#b').value, p = $('#p').value,
+          c = $('#c').value, h = $('#h').value, sc = $('#sc').value;
     return d.rows.filter(r =>
-      (!yr || r.yr === yr) && (!b || r.b === b) && (!p || r.p === p) &&
-      (!q || (r.who + ' ' + r.org + ' ' + r.role).toLowerCase().includes(q)));
+      (!yr || r.yr === yr) && (!b || r.b === b) && (!p || r.p === p) && (!c || r.c === c) && (!h || r.how === h) &&
+      (!sc || r.focus) && (!q || (r.who + ' ' + r.org + ' ' + r.role).toLowerCase().includes(q)));
   }
 
   const COLS = [
-    { key: 'who', label: 'Who filed', html: r => r.anon
+    { key: 'who', label: 'Who Filed', html: r => r.wh ? '<span class="muted">Name withheld</span>' : r.anon
         ? '<span class="muted">Anonymous witness</span>'
-        : `<a href="people.html?q=${encodeURIComponent(r.who)}">${esc(r.who)}</a>` },
-    { key: 'org', label: 'Organization as filed', html: r => esc(r.org) || '<span class="muted">none given</span>' },
-    { key: 'b', label: 'Bill', html: r => `<span class="mono">${esc(r.b)}</span>` },
+        : r.leg ? `<a href="legislators.html?id=${esc(r.leg)}">${esc(r.who)}</a> <span class="chip">Lawmaker</span>`
+        : `<a href="people.html?q=${encodeURIComponent(r.who)}">${esc(r.who)}</a>${r.role ? `<br><span class="small muted">${esc(r.role)}</span>` : ''}` },
+    { key: 'org', label: 'Organization as Filed', html: r => esc(r.org) || '<span class="muted">None given</span>' },
+    { key: 'b', label: 'Bill', html: r => `<a class="mono nowrap" href="bills.html?id=${esc(r.bid)}">${esc(r.b)}</a>` },
     { key: 'yr', label: 'Session', num: true },
+    { key: 'c', label: 'Committee' },
     { key: 'p', label: 'Position', html: r =>
-        `<span class="chip ${r.p === 'Supports' ? 'ok' : r.p === 'Opposes' ? 'bad' : ''}">${esc(r.p)}</span>` },
+        `<span class="chip ${r.p === 'Supports' ? 'ok' : r.p === 'Opposes' ? 'bad' : ''}">${esc(r.p)}</span>` +
+        (r.how === 'Text' ? `<br><span class="small muted" title="${esc(r.q)}">read from text</span>` : '') },
     { key: 'u', label: 'Document', html: r => r.u
-        ? `<a href="${esc(r.u)}" rel="noopener">Open filing</a>`
-        : '<span class="muted">not linked</span>' },
+        ? `<a href="${esc(r.u)}" rel="noopener">Open Filing</a>`
+        : '<span class="muted">Not linked</span>' },
   ];
 
   function draw() {
@@ -119,9 +134,11 @@ try {
     { key: 'id', label: 'testimony_id' }, { key: 'who', label: 'who_filed' },
     { key: 'org', label: 'organization_as_filed' }, { key: 'role', label: 'role_as_filed' },
     { key: 'b', label: 'bill' }, { key: 'yr', label: 'session_year' },
-    { key: 'c', label: 'committee' }, { key: 'p', label: 'position' },
-    { key: 'u', label: 'document_url' }]));
-  wire(['q', 'yr', 'b', 'p'], () => { limit = 150; draw(); });
+    { key: 'c', label: 'committee' }, { key: 'p', label: 'position' }, { key: 'how', label: 'position_source' },
+    { key: 'q', label: 'phrase_matched' }, { key: 'u', label: 'document_url' }]));
+  if (qs.get('bill')) $('#b').value = qs.get('bill');
+  if (qs.get('yr')) $('#yr').value = qs.get('yr');
+  wire(['q', 'yr', 'b', 'p', 'c', 'h', 'sc'], () => { limit = 150; draw(); });
 } catch (e) { fail(document.querySelector('#tbl'), e); }
 
 </script>

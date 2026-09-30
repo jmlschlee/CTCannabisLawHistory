@@ -14,25 +14,28 @@ try { applyTheme(localStorage.getItem(THEME_KEY)); } catch (e) {}
 /* ---------------------------------------------------------------- nav
    Grouped, so fourteen links read as three ideas instead of a wall. */
 export const NAV = [
-  { group: 'The law', items: [
+  { group: 'The Law', items: [
     ['timeline.html', 'Timeline', 'Every dated event in one stream'],
     ['laws.html', 'Changes', 'Each enacted change, old text against new'],
     ['statutes.html', 'Statutes', 'By statute section, with repeals flagged'],
     ['issues.html', 'Topics', 'Fourteen subjects, kept apart on purpose'],
-    ['gaps.html', 'Gaps', 'What was missing, and what the record holds'],
   ]},
-  { group: 'The people', items: [
-    ['people.html', 'People', 'Ranked by how often they filed'],
-    ['testimony.html', 'Testimony', 'Every filing, searchable'],
-    ['influence.html', 'Influence', 'What the record shows, and what it does not'],
-    ['bills.html', 'Bills', 'How each bill moved, and what was refused'],
+  { group: 'Bills and Votes', items: [
+    ['bills.html', 'Bills', 'Every cannabis bill since 2012, passed or not'],
+    ['legislators.html', 'Lawmakers', 'How each legislator voted, by topic and year'],
+    ['testimony.html', 'Testimony', 'Every written filing, across every committee'],
+  ]},
+  { group: 'People and Influence', items: [
+    ['people.html', 'Who Testified', 'Ranked by how often they filed'],
+    ['influence.html', 'Influence', 'A map of what the record ties together'],
     ['agencies.html', 'Agencies', 'Regulation, or policy?'],
   ]},
-  { group: 'Check the work', items: [
+  { group: 'Check the Work', items: [
+    ['gaps.html', 'Gaps', 'What was missing, and what the record holds'],
     ['sources.html', 'Sources', 'Every document behind every figure'],
     ['methodology.html', 'Method', 'How this was built, and how to break it'],
     ['guardrails.html', 'Guardrails', 'The claims the record does not support'],
-    ['entities.html', 'Merges', 'Every judgment that two names are one person'],
+    ['entities.html', 'Name Merges', 'Every judgment that two names are one person'],
     ['downloads.html', 'Data', 'All of it, as CSV'],
   ]},
 ];
@@ -50,8 +53,8 @@ function here() {
 /* Six links that cover most visits, then everything else grouped behind "More".
    Sixteen links in a row is not navigation, it is a list that happens to be at the
    top of the page. */
-const PRIMARY = ['timeline.html', 'laws.html', 'people.html', 'influence.html',
-                 'bills.html', 'gaps.html'];
+const PRIMARY = ['timeline.html', 'laws.html', 'bills.html', 'legislators.html',
+                 'testimony.html', 'influence.html'];
 
 function buildHeader() {
   const cur = here();
@@ -70,10 +73,13 @@ function buildHeader() {
     </nav>
     <div class="more-wrap">
         <button type="button" class="more-btn${inRest ? ' on' : ''}" id="moreBtn"
-          aria-expanded="false" aria-controls="moreMenu" aria-haspopup="true">More
+          aria-expanded="false" aria-controls="moreMenu" aria-haspopup="true"><span class="lbl-more">More</span><span class="lbl-menu">Menu</span>
           <svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3.2 5 7l4-3.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="more-menu" id="moreMenu" role="menu" hidden>
+          <div class="grp mobile-only"><h5>Main</h5>
+            ${[['index.html', 'Home', 'Start here'], ...prim].map(([href, t, d]) => `<a role="menuitem" href="${href}"${href === cur ? ' aria-current="page"' : ''}>
+              <strong>${t}</strong><span>${d}</span></a>`).join('')}</div>
           ${rest.map(g => `<div class="grp"><h5>${g.group}</h5>
             ${g.items.map(([href, t, d]) => `<a role="menuitem" href="${href}"${href === cur ? ' aria-current="page"' : ''}>
               <strong>${t}</strong><span>${d}</span></a>`).join('')}</div>`).join('')}
@@ -152,11 +158,28 @@ export const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 export const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const num = n => Number(n).toLocaleString('en-US');
-/* Source data is lowercase by convention ("campaign contribution"). Headings and
-   labels on the page are not, so a data value gets a capital when it is shown. */
+/* Source data is lowercase by convention ("campaign contribution"). Nothing on the page is.
+   Short labels (categories, types, statuses) are shown in Title Case; longer text that reads
+   as a sentence gets a capital first letter only. */
+const SMALL = new Set(['and', 'or', 'of', 'the', 'to', 'for', 'in', 'on', 'by', 'a', 'an', 'at', 'as', 'with', 'from', 'into', 'vs', 'per', 'nor']);
+const UPPER = new Set(['thc', 'dcp', 'lco', 'cga', 'dmhas', 'drs', 'olr', 'ofa', 'llc', 'cbd', 'ose', 'sots', 'dui', 'gl', 'jud', 'fin', 'ph', 'app', 'ct', 'ceo', 'md', 'rn']);
+export function titleCase(s) {
+  const t = String(s ?? '').trim();
+  if (!t) return t;
+  return t.split(/(\s+|-|\/)/).map((w, i) => {
+    if (!w.trim() || w === '-' || w === '/') return w;
+    const bare = w.replace(/[^A-Za-z]/g, '').toLowerCase();
+    if (UPPER.has(bare) && w.length <= bare.length + 2) return w.toUpperCase();
+    if (/^\(?[a-z0-9]{1,3}\)$/.test(w)) return w;             // subsection letters: (a), (12)
+    if (/[A-Z]/.test(w.slice(1)) || /^\d/.test(w)) return w;   // McCarthy, DeGraw, 21a-420
+    if (i > 0 && SMALL.has(w.toLowerCase()) && !(w.length === 1 && w === w.toUpperCase())) return w.toLowerCase();
+    return w.replace(/[A-Za-z]/, c => c.toUpperCase());
+  }).join('');
+}
 export const cap = s => {
   const t = String(s ?? '').trim();
   if (!t) return t;
+  if (t.split(/\s+/).length <= 8 && !/[.;:!?]\s|[.;:!?]$/.test(t)) return titleCase(t);
   if (/[A-Z]/.test(t[0]) || /^\d/.test(t)) return t;
   return t[0].toUpperCase() + t.slice(1);
 };
@@ -359,6 +382,41 @@ export function fail(node, e) {
     <a href="downloads.html">download page</a> has the same figures as CSV.</div>`;
 }
 
+
+/* ---------------------------------------------------------------- casing
+   Headings, labels, chips and table headers are always in Title Case, and short
+   stat labels always start with a capital, however the data arrived. */
+const TC_SEL = 'h1, h2, h3, h4, h5, dt, summary, .chip, .eyebrow, .callout .hd, label, .tabs button, .segmented button, .kpi span, .legend-inline span, .legend span, .tl-title, .rank .who, .rec-title, .bars .lab, .stack .lab, th, option';
+function tcNode(el) {
+  const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  let n; while ((n = w.nextNode())) {
+    const v = n.nodeValue; if (!/[a-z]/.test(v)) continue;
+    if (n.parentElement && n.parentElement.closest('.mono, code, input, textarea, [data-keepcase]')) continue;
+    const lead = v.match(/^\s*/)[0], trail = v.match(/\s*$/)[0], core = v.trim();
+    if (!core) continue;
+    // A full sentence keeps sentence case, with a capital first letter.
+    const t = (/[.!?]$/.test(core) && core.split(/\s+/).length > 3) ? core.replace(/[a-z]/, c => c.toUpperCase()) : titleCase(core);
+    if (t !== core) n.nodeValue = lead + t + trail;
+  }
+}
+function capFirst(el) {
+  const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n = w.nextNode();
+  while (n && !n.nodeValue.trim()) n = w.nextNode();
+  if (!n || (n.parentElement && n.parentElement.closest('.mono, code, a[href^="http"]'))) return;
+  const m = n.nodeValue.match(/^(\s*)([a-z][a-z'’\-]*)(?=[\s,;)\/]|$)/);
+  if (m) n.nodeValue = m[1] + m[2][0].toUpperCase() + n.nodeValue.slice(m[1].length + 1);
+}
+function applyCasing(root = document.body) {
+  root.querySelectorAll(TC_SEL).forEach(tcNode);
+  root.querySelectorAll('.stat .k, .kv dd, .sub, .meta, td, .lede, p.small').forEach(capFirst);
+}
+let _tcT = null;
+function watchCasing() {
+  applyCasing();
+  new MutationObserver(() => { clearTimeout(_tcT); _tcT = setTimeout(() => applyCasing(), 30); })
+    .observe(document.body, { childList: true, subtree: true });
+}
+
 /* ---------------------------------------------------------------- boot */
 export function boot() {
   const skip = el('a', 'skip', 'Skip to content');
@@ -366,6 +424,7 @@ export function boot() {
   document.body.prepend(skip);
   buildHeader();
   buildFooter();
+  watchCasing();
 }
 
 if (!document.body.dataset.noChrome) boot();
