@@ -1,0 +1,34 @@
+# Netlify configuration.
+#
+# This site has NO build step. It is plain HTML, CSS and ES modules.
+# Netlify serves the repository root exactly as it is committed.
+# There is nothing to install, nothing to compile, and no Node version to pin.
+
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+
+# The JSON the pages read. Small, and changes only when the data is rebuilt.
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=600"
+
+# The CSV and document downloads. Immutable per release.
+[[headers]]
+  for = "/downloads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

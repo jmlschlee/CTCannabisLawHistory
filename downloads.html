@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download the data &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Download the data &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Take it with you</div>
+  <h1>Download the data</h1>
+  <p class="lede">Everything behind this site, in plain CSV plus one workbook and one report.
+  No account, no key, no terms to accept. The CSVs are the same files the pages read, so a
+  number here and a number on a page cannot disagree.</p>
+</div>
+<div class="grid two">
+  <div class="card">
+    <h3>The whole thing at once</h3>
+    <p class="small">The workbook holds every table on its own sheet, and the report is the
+    written version with the findings, the open gaps and the drafted records requests.</p>
+    <div class="chips" id="big"></div>
+  </div>
+  <div class="card">
+    <h3>How to read a CSV</h3>
+    <p class="small">Every file is UTF-8 with a header row and one record per line. Identifier
+    columns end in <span class="mono">_id</span> and join across files:
+    <span class="mono">source_id</span> joins anything to the source ledger,
+    <span class="mono">bill_id</span> joins bills, amendments, votes and testimony, and
+    <span class="mono">issue_id</span> joins everything to an issue. Dates are
+    <span class="mono">YYYY-MM-DD</span>; a blank date means the source record did not state
+    one, never that the event has no date.</p>
+  </div>
+</div>
+<div class="callout note">
+  <div class="hd">Two things to know before you publish from these files</div>
+  <p class="small" style="margin:0">Statutory text in these files came from the enacted public
+  acts, and the <span class="mono">reliability_tier</span> column tells you how far each row can
+  be pushed. Read the <a href="guardrails.html">guardrails</a> first: the record does not support
+  every claim these columns will tempt you into.</p>
+</div>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span></div>
+<div id="tbl"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, searchField, debounce, table } from './assets/app.js';
+const d = await load('downloads');
+
+const kb = b => b >= 1048576 ? (b/1048576).toFixed(1) + ' MB'
+  : b >= 1024 ? Math.round(b/1024) + ' KB' : b + ' B';
+const big = d.files.filter(f => !f.f.endsWith('.csv'));
+$('#big').innerHTML = big.map(f =>
+  `<a class="chip" href="downloads/${encodeURIComponent(f.f)}" download>${esc(f.f)}
+   &middot; ${esc(kb(f.bytes))}</a>`).join('') || '<span class="small">None.</span>';
+
+$('#f').innerHTML = searchField('q','Search the file list','file name') +
+  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+
+function current() {
+  const q = $('#q').value.trim().toLowerCase();
+  return d.files.filter(f => !q || f.f.toLowerCase().includes(q));
+}
+function draw() {
+  const rows = current();
+  const bytes = rows.reduce((a,f)=>a+f.bytes, 0);
+  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.files.length)} files
+    &middot; ${esc(kb(bytes))} in this view`;
+  table($('#tbl'), [
+    {key:'f', label:'File', html: f =>
+      `<a href="downloads/${encodeURIComponent(f.f)}" download class="mono">${esc(f.f)}</a>`},
+    {key:'rows', label:'Records', num:true,
+     html: f => f.rows == null ? '\u2014' : num(f.rows),
+     sortVal: f => f.rows == null ? -1 : f.rows},
+    {key:'bytes', label:'Size', num:true, html: f => esc(kb(f.bytes)), sortVal: f => f.bytes},
+  ], rows, {sort:'f'});
+}
+$('#q').addEventListener('input', debounce(draw));
+$('#clr').addEventListener('click', () => { $('#q').value=''; draw(); });
+draw();
+
+</script>
+</body>
+</html>

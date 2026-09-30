@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Issues &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Issues &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Fourteen ways into the same record</div>
+  <h1>Issues</h1>
+  <p class="lede">Each issue gathers the changes, the acts and the open gaps that belong to it.
+  Medical cannabis, adult use, hemp and laboratory testing are kept apart on purpose: they are
+  governed by different instruments with different effective dates, and collapsing them is the
+  commonest error in writing about this subject.</p>
+</div>
+<div class="records" id="list"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, setSources } from './assets/app.js';
+const [d, s] = await Promise.all([load('issues'), load('sources')]);
+setSources(s.map);
+const G = {}; d.gaps.forEach(g => G[g.id] = g);
+
+$('#list').innerHTML = d.issues.sort((a,b)=>b.n-a.n).map(i => `
+  <article class="rec" id="${esc(i.id)}">
+    <div class="rec-head">
+      <h3 class="rec-title">${esc(i.name)}</h3>
+      <span class="rec-sub">${num(i.n)} enacted changes</span>
+    </div>
+    <p class="rec-body" style="margin:.1rem 0 .5rem">${esc(i.desc)}</p>
+    <dl class="kv">
+      <dt>Acts touching it</dt><dd>${esc(i.acts.join('; ') || '\u2014')}</dd>
+    </dl>
+    <div class="chips" style="margin-top:.6rem">
+      <a class="chip" href="laws.html?cat=${encodeURIComponent(i.cat)}">See the ${num(i.n)} changes</a>
+      <a class="chip" href="timeline.html">See them on the timeline</a>
+    </div>
+    ${i.gaps.length ? `<div class="callout warn" style="margin:.7rem 0 0">
+      <div class="hd">${num(i.gaps.length)} open gap${i.gaps.length===1?'':'s'} on this issue</div>
+      <ul class="clean">${i.gaps.map(gid => { const g = G[gid]; return g ? `
+        <li class="small"><strong>${esc(g.id)}</strong> &middot; ${esc(g.what)}
+        <br><span style="color:var(--ink-muted)">${esc(g.why)}</span>
+        <br><em>The record that would close it:</em> ${esc(g.rec)} &mdash; held by ${esc(g.who)}.
+        <span class="chip bad">${esc(g.st)}</span></li>` : ''; }).join('')}</ul></div>` : ''}
+  </article>`).join('');
+
+if (location.hash) {
+  const t = document.getElementById(location.hash.slice(1));
+  if (t) t.scrollIntoView();
+}
+
+</script>
+</body>
+</html>

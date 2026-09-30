@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guardrails &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Guardrails &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Check the work</div>
+  <h1>Guardrails</h1>
+  <p class="lede">The claims this record does <em>not</em> support, written down. A finding that
+  fails review is more useful kept than deleted: it stops the same wrong sentence being written
+  again, and it names the record that would settle the question.</p>
+</div>
+<div class="grid four" id="ready"></div>
+<div class="chartbox">
+  <h3>Publication readiness across every reviewed claim</h3>
+  <div class="sub">Each claim was rated against the records actually held, not against how
+  interesting it would be if true.</div>
+  <div id="rchart"></div>
+</div>
+
+<h2>Do not say this</h2>
+<p class="small">Each row is a sentence that would be wrong or unsupported, the reason, and
+language that says only what the record carries.</p>
+<div class="records" id="dns"></div>
+
+<h2>Claims that failed review</h2>
+<p class="small">These are rated background only or kill/avoid. They are not findings. They are
+kept here with what is missing.</p>
+<div class="records" id="flag"></div>
+
+<h2>Every reviewed claim</h2>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span><button class="btn" id="dl">Download this view as CSV</button></div>
+<div id="tbl"></div>
+
+<h2>Words used precisely</h2>
+<p class="small">These terms are not interchangeable, and treating them as interchangeable is
+how a timeline goes wrong.</p>
+<div id="gloss"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, selectField, searchField, debounce, downloadCSV,
+         table } from './assets/app.js';
+import { barChart } from './assets/charts.js';
+const d = await load('guardrails');
+
+const TONE = {'ready now':'ok', 'needs one more record':'', 'background only':'',
+              'kill/avoid':'bad'};
+$('#ready').innerHTML = d.readiness.map(r =>
+  `<div class="stat"><div class="n">${num(r.n)}</div><div class="k">${esc(r.k)}</div></div>`).join('');
+barChart($('#rchart'), d.readiness.map(r => ({k: r.k, n: r.n})));
+
+$('#dns').innerHTML = d.do_not_say.map(g => `
+  <article class="rec">
+    <div class="rec-head">
+      <h3 class="rec-title">${esc(g.avoid)}</h3>
+      <span class="rec-sub mono">${esc(g.id)}</span>
+    </div>
+    <dl class="kv">
+      <dt>Why not</dt><dd>${esc(g.why)}</dd>
+      <dt>Say instead</dt><dd><strong>${esc(g.say)}</strong></dd>
+    </dl>
+  </article>`).join('') || '<div class="empty">No entries.</div>';
+
+$('#flag').innerHTML = d.flagged.length ? d.flagged.map(c => `
+  <article class="rec">
+    <div class="rec-head">
+      <h3 class="rec-title">${esc(c.claim)}</h3>
+      <span class="rec-sub mono">${esc(c.id)}</span>
+    </div>
+    <div class="chips" style="margin-bottom:.45rem">
+      <span class="chip ${TONE[c.rdy] === 'bad' ? 'bad' : ''}">${esc(c.rdy)}</span>
+      <span class="chip">${esc(c.st)}</span>
+      <span class="chip">risk: ${esc(c.risk)}</span>
+    </div>
+    <dl class="kv">
+      <dt>What the record holds</dt><dd>${esc(c.sup || '\u2014')}</dd>
+      <dt>What is missing</dt><dd>${esc(c.miss || '\u2014')}</dd>
+    </dl>
+  </article>`).join('') : '<div class="empty">No claims are rated background only or kill/avoid.</div>';
+
+$('#f').innerHTML =
+  searchField('q','Search','claim text') +
+  selectField('rdy','Readiness', [...new Set(d.claims.map(c=>c.rdy))]) +
+  selectField('risk','Risk', [...new Set(d.claims.map(c=>c.risk))]) +
+  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+
+function current() {
+  const q = $('#q').value.trim().toLowerCase(), r = $('#rdy').value, k = $('#risk').value;
+  return d.claims.filter(c => (!r || c.rdy === r) && (!k || c.risk === k) &&
+    (!q || (c.id + ' ' + c.claim).toLowerCase().includes(q)));
+}
+function draw() {
+  const rows = current();
+  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.claims.length)} reviewed claims`;
+  table($('#tbl'), [
+    {key:'id', label:'ID', html: r => `<span class="mono">${esc(r.id)}</span>`},
+    {key:'claim', label:'Claim'},
+    {key:'st', label:'Status'},
+    {key:'risk', label:'Risk'},
+    {key:'rdy', label:'Readiness', html: r =>
+      `<span class="chip ${TONE[r.rdy] || ''}">${esc(r.rdy)}</span>`},
+  ], rows, {sort:'id'});
+}
+['q','rdy','risk'].forEach(i => $('#'+i).addEventListener('input', debounce(draw)));
+$('#clr').addEventListener('click', () => { ['q','rdy','risk'].forEach(i=>$('#'+i).value=''); draw(); });
+$('#dl').addEventListener('click', () => downloadCSV('ct-claims-review-view.csv', current(), [
+  {key:'id',label:'claim_id'},{key:'claim',label:'claim_text'},{key:'st',label:'status'},
+  {key:'risk',label:'risk_level'},{key:'rdy',label:'publication_readiness'}]));
+draw();
+
+table($('#gloss'), [
+  {key:'t', label:'Term'},
+  {key:'d', label:'What it means here'},
+  {key:'i', label:'Issue'},
+], d.glossary, {sort:'t'});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Timeline &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Timeline &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">The spine</div>
+  <h1>Timeline</h1>
+  <p class="lede">Everything dated, in one stream: bill actions, laws taking effect, agency
+  decisions, access events and the turning points. Filter it, then follow any row to its source.</p>
+</div>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span><button class="btn" id="dl">Download this view as CSV</button></div>
+<div class="chartbox" style="margin-bottom:1.2rem">
+  <h3>Events per year in the current view</h3>
+  <div class="sub">One column per year. Hover or focus a column for the exact count.</div>
+  <div id="chart"></div>
+</div>
+<div class="card pad-lg"><div class="tl" id="list"></div></div>
+<div class="pagenav"><button class="btn" id="more">Show more</button></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, fmtDate, cite, setSources, selectField, searchField,
+         debounce, downloadCSV } from './assets/app.js';
+import { columnChart } from './assets/charts.js';
+const [t, s] = await Promise.all([load('timeline'), load('sources')]);
+setSources(s.map);
+
+$('#f').innerHTML =
+  searchField('q','Search','title, detail, actor, locator') +
+  selectField('y','Year', t.years.slice().reverse()) +
+  selectField('ty','Event type', t.types) +
+  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+
+let shown = 120;
+function current() {
+  const q = $('#q').value.trim().toLowerCase(), y = $('#y').value, ty = $('#ty').value;
+  return t.events.filter(e =>
+    (!y || e.y === y) && (!ty || e.t === ty) &&
+    (!q || (e.ti + ' ' + e.x + ' ' + e.a + ' ' + e.l).toLowerCase().includes(q)));
+}
+function draw() {
+  const rows = current();
+  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(t.events.length)} events`;
+  const byY = {}; rows.forEach(e => { if (e.y) byY[e.y] = (byY[e.y]||0)+1; });
+  const years = t.years.filter(y => y >= '2012');
+  columnChart($('#chart'), years.map(y => ({k:y, n:byY[y]||0})), {everyN:2});
+  const slice = rows.slice(0, shown);
+  $('#list').innerHTML = slice.length ? slice.map(e =>
+    `<div class="tl-item">
+       <div class="tl-date">${esc(fmtDate(e.d))}</div>
+       <div class="tl-dot${e.t==='milestone'?' milestone':''}"></div>
+       <div class="tl-title">${esc(e.ti)}</div>
+       ${e.x ? `<div class="tl-detail">${esc(e.x)}</div>` : ''}
+       <div class="chips" style="margin-top:.35rem"><span class="chip">${esc(e.t)}</span>
+         ${e.a ? `<span class="chip">${esc(e.a)}</span>` : ''}</div>
+       ${cite(e.s, e.l)}
+     </div>`).join('') : '<div class="empty">No events match these filters.</div>';
+  $('#more').style.display = rows.length > shown ? '' : 'none';
+  $('#more').textContent = `Show more (${num(rows.length - shown)} remaining)`;
+}
+['q','y','ty'].forEach(id => $('#'+id).addEventListener('input', debounce(() => { shown = 120; draw(); })));
+$('#clr').addEventListener('click', () => { $('#q').value=''; $('#y').value=''; $('#ty').value=''; shown=120; draw(); });
+$('#more').addEventListener('click', () => { shown += 200; draw(); });
+$('#dl').addEventListener('click', () => downloadCSV('ct-timeline-view.csv', current(), [
+  {key:'d',label:'date'},{key:'t',label:'event_type'},{key:'ti',label:'title'},
+  {key:'x',label:'detail'},{key:'a',label:'actors'},{key:'b',label:'bill_id'},
+  {key:'p',label:'public_act_id'},{key:'s',label:'source_id'},{key:'l',label:'exact_locator'}]));
+draw();
+
+</script>
+</body>
+</html>

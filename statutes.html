@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statute explorer &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Statute explorer &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Section by section</div>
+  <h1>Statute explorer</h1>
+  <p class="lede">Every statutory section this dataset touches, with its version history. Three
+  sections carry a permanent repeal banner, because the rule people most often quote from them was
+  repealed and the published chapter page does not say so.</p>
+</div>
+<div class="notice">
+<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6 15 14H1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12" r=".8" fill="currentColor"/></svg>
+<div><strong>Statutory text here comes from the enacted public acts</strong>, not from the
+General Assembly&rsquo;s published chapter pages. Those lag the session: on 29 September 2026 the
+chapter 420h page still printed a subsection that had been repealed nine months earlier.
+<a href="methodology.html">How that is handled</a>.</div></div>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span><button class="btn" id="dl">Download this view as CSV</button></div>
+<div class="records" id="list"></div>
+<h2>The dated provision matrix</h2>
+<p class="small">The rule as written, what added it, from when, and until when. Statutory language
+is quoted verbatim, which is why some rows read &ldquo;per cent&rdquo; rather than
+&ldquo;percent&rdquo;.</p>
+<div id="matrix"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, cite, setSources, selectField, searchField, debounce,
+         downloadCSV, table } from './assets/app.js';
+const [d, laws, s] = await Promise.all([load('statutes'), load('laws'), load('sources')]);
+setSources(s.map);
+const CH = {}; laws.changes.forEach(c => CH[c.id] = c);
+
+$('#f').innerHTML =
+  searchField('q','Search','section number, topic, act') +
+  selectField('ch','Chapter', [...new Set(d.statutes.map(x => x.ch))]) +
+  selectField('flag','Only show', [['rep','Sections with a repealed rule'],['multi','Changed more than once']]) +
+  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+
+function current() {
+  const q = $('#q').value.trim().toLowerCase(), ch = $('#ch').value, flag = $('#flag').value;
+  return d.statutes.filter(x =>
+    (!ch || x.ch === ch) &&
+    (!flag || (flag === 'rep' ? !!x.repeal : x.n > 1)) &&
+    (!q || (x.sec + ' ' + x.topic + ' ' + x.acts).toLowerCase().includes(q)));
+}
+function draw() {
+  const rows = current().sort((a,b) => b.n - a.n || a.sec.localeCompare(b.sec));
+  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.statutes.length)} statutory sections`;
+  $('#list').innerHTML = rows.length ? rows.map(x => `
+    <article class="rec" id="${esc(x.id)}">
+      <div class="rec-head">
+        <h3 class="rec-title mono">CGS ${esc(x.sec)}</h3>
+        <span class="rec-sub">${esc(x.ch)} &middot; ${num(x.n)} change${x.n===1?'':'s'} in this dataset</span>
+      </div>
+      ${x.repeal ? `<div class="callout warn"><div class="hd">
+        <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6 15 14H1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8" cy="12" r=".9" fill="currentColor"/></svg>
+        Part of this section was repealed</div>
+        <p class="small" style="margin:0">${esc(x.repeal)}</p></div>` : ''}
+      <dl class="kv">
+        <dt>Topics</dt><dd>${esc(x.topic)}</dd>
+        <dt>Acts touching it</dt><dd>${esc(x.acts)}</dd>
+        <dt>First in dataset</dt><dd>${esc(x.first || '\u2014')}</dd>
+        <dt>Latest in dataset</dt><dd>${esc(x.last || '\u2014')}</dd>
+      </dl>
+      ${x.changes.length ? `<details class="cite" style="margin-top:.6rem"><summary>
+        Show the ${num(x.changes.length)} change${x.changes.length===1?'':'s'}</summary>
+        <div class="body"><ul class="clean">${x.changes.map(id => {
+          const c = CH[id]; if (!c) return '';
+          return `<li><strong>${esc(c.pa)} ${esc(c.sec)}</strong> &middot; effective ${esc(c.eff)}
+            &middot; ${esc(c.act)}${c.rep ? ' <span class="chip bad">repeal</span>' : ''}</li>`;
+        }).join('')}</ul>
+        <p class="small" style="margin:.5rem 0 0"><a href="laws.html?q=${encodeURIComponent(x.sec)}">Open these in Laws by year</a></p>
+        </div></details>` : ''}
+    </article>`).join('') : '<div class="empty">No sections match these filters.</div>';
+}
+['q','ch','flag'].forEach(id => $('#'+id).addEventListener('input', debounce(draw)));
+$('#clr').addEventListener('click', () => { ['q','ch','flag'].forEach(i=>$('#'+i).value=''); draw(); });
+$('#dl').addEventListener('click', () => downloadCSV('ct-statutes-view.csv', current(), [
+  {key:'sec',label:'section'},{key:'ch',label:'chapter'},{key:'topic',label:'topic'},
+  {key:'n',label:'versions'},{key:'acts',label:'acts_touching_it'},{key:'repeal',label:'repeal_note'}]));
+draw();
+
+table($('#matrix'), [
+  {key:'topic', label:'Topic'},
+  {key:'cite', label:'Provision', html:r=>`<span class="mono">${esc(r.cite)}</span>`},
+  {key:'rule', label:'The rule as written'},
+  {key:'by', label:'Added or amended by'},
+  {key:'from', label:'From'},
+  {key:'until', label:'Until', html:r=>r.until ? `<span class="chip bad">${esc(r.until)}</span>` : '\u2014'},
+], d.matrix, {sort:'from'});
+
+</script>
+</body>
+</html>

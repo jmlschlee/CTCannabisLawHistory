@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Influence map &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Influence map &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Evidence, not conclusions</div>
+  <h1>Influence map</h1>
+  <p class="lede">What the public record contains about who tried to shape Connecticut cannabis
+  law. Nothing on this page asserts that anyone succeeded, and nothing asserts improper influence
+  by anybody.</p>
+</div>
+
+<div class="callout warn">
+  <div class="hd">Read the scale before you read the graph</div>
+  <p class="small" style="margin:0 0 .5rem">The strength rating measures <strong>the evidence that
+  the actor did the thing recorded</strong>. It never measures whether the action affected an
+  outcome. Registering to lobby, making a disclosed contribution, receiving an award and filing
+  testimony are all lawful, ordinary and public.</p>
+  <p class="small" style="margin:0"><strong>Nothing in this dataset reaches strength 5.</strong>
+  A 5 would need a document directly linking an actor to a drafting or decision act, and no such
+  document is in the public record examined.</p>
+</div>
+
+<div class="grid two" style="margin-bottom:1.2rem">
+  <div class="chartbox"><h3>How strong is the evidence?</h3>
+    <div class="sub">Every event, by the strength of the record behind it.</div>
+    <div id="byStr"></div></div>
+  <div class="chartbox"><h3>What kind of evidence?</h3>
+    <div class="sub">Each type establishes something different. See the table below.</div>
+    <div id="byType"></div></div>
+</div>
+
+<h2>What each kind of evidence does and does not establish</h2>
+<div id="kinds" style="margin-bottom:1.6rem"></div>
+
+<h2>One actor at a time</h2>
+<p class="lede" style="font-size:1rem">A hairball of 877 edges answers no question. Pick an actor
+and see only what the record ties to them.</p>
+<div class="filters" id="egoF"></div>
+<div class="chartbox" style="margin-bottom:1.6rem"><div id="ego"></div></div>
+
+<h2>Every recorded event</h2>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span><button class="btn" id="dl">Download this view as CSV</button></div>
+<div class="records" id="list"></div>
+<div class="pagenav"><button class="btn" id="more">Show more</button></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, fmtDate, cite, setSources, selectField, searchField,
+         debounce, downloadCSV, table } from './assets/app.js';
+import { barChart, egoNetwork } from './assets/charts.js';
+const [d, s] = await Promise.all([load('influence'), load('sources')]);
+setSources(s.map);
+
+barChart($('#byStr'), d.by_strength.map(r => ({k:`strength ${r.k} \u2014 ${d.scale[r.k]}`, n:r.n})));
+barChart($('#byType'), d.by_type);
+
+const KINDS = {
+  'testimony': ['That a named person or organization filed a written position on a named bill.',
+    'Anything about the outcome. Testifying is participation in a public process.'],
+  'campaign contribution': ['That a lawful, disclosed contribution was made on a date to a named committee.',
+    'Any connection to any decision. Sequence is not causation and no improper influence is asserted.'],
+  'lobbying registration': ['That a client registered to lobby and declared issues.',
+    'What was asked for, of whom, or whether it worked.'],
+  'meeting or event record': ['That an event happened, who hosted it and who was listed.',
+    'Who attended, what was said, or any effect.'],
+  'bill or amendment language': ['That specific language appeared in a named instrument on a date.',
+    'Who drafted it. Authorship is unknown for almost every amendment here.'],
+  'public statement or event': ['That a statement or event is on the public record.',
+    'Any effect on a decision.'],
+};
+table($('#kinds'), [
+  {key:'k', label:'Evidence type'},
+  {key:'n', label:'Events', num:true},
+  {label:'What it establishes', key:'a', get:r=>(KINDS[r.k]||['',''])[0]},
+  {label:'What it does NOT establish', key:'b', get:r=>(KINDS[r.k]||['',''])[1]},
+], d.by_type, {sort:'n', dir:-1});
+
+/* ---- ego network ---- */
+$('#egoF').innerHTML =
+  selectField('actor','Actor', d.actors.slice(0,300).map(a =>
+    [a.id, `${a.lab} (${a.n})`]), {all:'Choose an actor\u2026'}) +
+  selectField('minstr','Minimum evidence strength', [['4','4 and above'],['3','3 and above'],['2','2 and above']],
+    {all:'All strengths', value:'3'});
+function drawEgo() {
+  const id = $('#actor').value, min = Number($('#minstr').value || 0);
+  if (!id) { $('#ego').innerHTML =
+    `<div class="empty">Choose an actor above to see only the relationships the record ties to them.</div>`;
+    return; }
+  const a = d.actors.find(x => x.id === id);
+  const spokes = d.rows.filter(r => (r.aid === id || r.tid === id) && r.str >= min)
+    .map(r => ({ label: r.aid === id ? r.t : r.a, what: r.et, str: r.str }))
+    .slice(0, 26);
+  egoNetwork($('#ego'), a ? a.lab : id, spokes);
+}
+['actor','minstr'].forEach(i => $('#'+i).addEventListener('change', drawEgo));
+drawEgo();
+
+/* ---- full event list ---- */
+$('#f').innerHTML =
+  searchField('q','Search','actor, target, action, provision') +
+  selectField('et','Evidence type', d.types) +
+  selectField('str','Minimum strength', [['4','4 and above'],['3','3 and above'],['2','2 and above']]) +
+  selectField('y','Year', d.years.slice().reverse()) +
+  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+
+let shown = 50;
+function current() {
+  const q = $('#q').value.trim().toLowerCase(), et = $('#et').value,
+        st = Number($('#str').value || 0), y = $('#y').value;
+  return d.rows.filter(r =>
+    (!et || r.et === et) && r.str >= st && (!y || r.y === y) &&
+    (!q || (r.a + ' ' + r.t + ' ' + r.act + ' ' + r.prov).toLowerCase().includes(q)));
+}
+const SC = {4:'var(--s1)',3:'var(--s2)',2:'var(--ink-muted)'};
+function draw() {
+  const rows = current();
+  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.rows.length)} events`;
+  const slice = rows.slice(0, shown);
+  $('#list').innerHTML = slice.length ? slice.map(r => `
+    <article class="rec">
+      <div class="rec-head">
+        <h3 class="rec-title">${esc(r.a)}</h3>
+        <span class="rec-sub">${esc(fmtDate(r.d) || r.d || 'date not stated')}</span>
+      </div>
+      <div class="chips" style="margin-bottom:.4rem">
+        <span class="chip"><span class="dot" style="background:${SC[r.str]||'var(--rule-strong)'}"></span>
+          strength ${r.str} &middot; ${esc(d.scale[r.str])}</span>
+        <span class="chip">${esc(r.et)}</span>
+      </div>
+      <p class="rec-body" style="margin:.1rem 0 .4rem">${esc(r.act)}</p>
+      <dl class="kv">
+        <dt>Toward</dt><dd>${esc(r.t)}</dd>
+        ${r.prov ? `<dt>Bill or provision</dt><dd>${esc(r.prov)}</dd>` : ''}
+        <dt>Alternative explanation</dt><dd>${esc(r.alt)}</dd>
+        <dt>Influence asserted</dt><dd><strong>No.</strong> This row records visibility, not causation.</dd>
+      </dl>
+      ${cite(r.s, r.l)}
+    </article>`).join('') : '<div class="empty">No events match these filters.</div>';
+  $('#more').style.display = rows.length > shown ? '' : 'none';
+  $('#more').textContent = `Show more (${num(rows.length - shown)} remaining)`;
+}
+['q','et','str','y'].forEach(i => $('#'+i).addEventListener('input', debounce(() => { shown=50; draw(); })));
+$('#clr').addEventListener('click', () => { ['q','et','str','y'].forEach(i=>$('#'+i).value=''); shown=50; draw(); });
+$('#more').addEventListener('click', () => { shown += 100; draw(); });
+$('#dl').addEventListener('click', () => downloadCSV('ct-influence-view.csv', current(), [
+  {key:'id',label:'event_id'},{key:'d',label:'date'},{key:'a',label:'actor'},
+  {key:'t',label:'target'},{key:'act',label:'action'},{key:'prov',label:'provision'},
+  {key:'et',label:'evidence_type'},{key:'str',label:'strength'},
+  {key:'alt',label:'alternative_explanation'},
+  {label:'influence_asserted',get:()=>'NO. This row records visibility, not causation.'},
+  {key:'s',label:'source_id'},{key:'l',label:'exact_locator'}]));
+draw();
+
+</script>
+</body>
+</html>

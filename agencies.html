@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agencies and implementation &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Agencies and implementation &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Regulation, or policy?</div>
+  <h1>Agencies and implementation</h1>
+  <p class="lede">A regulation adopted under chapter 54 goes through notice, comment, Attorney
+  General review and the Legislative Regulation Review Committee. A policies and procedures
+  document does not. Both can tell a licensee what to do. Only one of them is law.</p>
+</div>
+<div class="callout warn">
+  <div class="hd">The finding this page exists for</div>
+  <p class="small" style="margin:0">Connecticut&rsquo;s adult-use market runs substantially on the
+  instrument that is <em>not</em> law. Requirements including the testing requirements sit in a
+  Department policies and procedures document that was never converted into adopted regulations
+  for the adult-use market. Its version history and the authority cited for each change are not
+  published, which is gap GAP_0009.</p>
+</div>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span><button class="btn" id="dl">Download this view as CSV</button></div>
+<div class="records" id="list"></div>
+<h2>Who does what</h2>
+<div id="ags"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, fmtDate, cite, setSources, selectField, searchField,
+         debounce, downloadCSV, table } from './assets/app.js';
+const [d, s] = await Promise.all([load('agencies'), load('sources')]);
+setSources(s.map);
+
+$('#f').innerHTML =
+  searchField('q','Search','subject, tracking number, outcome') +
+  selectField('ag','Agency', [...new Set(d.records.map(r=>r.ag))]) +
+  selectField('st','Status', [...new Set(d.records.map(r=>r.st))]) +
+  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+
+const isReg = r => /regulation/i.test(r.kind) && !/not a chapter 54/i.test(r.kind);
+function current() {
+  const q = $('#q').value.trim().toLowerCase(), ag = $('#ag').value, st = $('#st').value;
+  return d.records.filter(r => (!ag || r.ag === ag) && (!st || r.st === st) &&
+    (!q || (r.subj + ' ' + r.tn + ' ' + r.out + ' ' + r.kind).toLowerCase().includes(q)));
+}
+function draw() {
+  const rows = current().sort((a,b)=>(b.d||'').localeCompare(a.d||''));
+  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.records.length)} implementation records`;
+  $('#list').innerHTML = rows.length ? rows.map(r => `
+    <article class="rec">
+      <div class="rec-head">
+        <h3 class="rec-title">${esc(r.subj)}</h3>
+        <span class="rec-sub">${esc(r.ag)}${r.d ? ' &middot; ' + esc(fmtDate(r.d) || r.d) : ''}</span>
+      </div>
+      <div class="chips" style="margin-bottom:.45rem">
+        ${r.tn ? `<span class="chip mono">${esc(r.tn)}</span>` : ''}
+        <span class="chip ${isReg(r) ? 'ok' : 'bad'}">
+          ${isReg(r) ? '\u2713 chapter 54 regulation' : '\u2717 not a chapter 54 regulation'}</span>
+        <span class="chip${/withdrawn/i.test(r.st) ? ' bad' : ''}">${esc(r.st)}</span>
+      </div>
+      <dl class="kv">
+        <dt>Instrument</dt><dd>${esc(r.kind)}</dd>
+        <dt>Authority</dt><dd>${esc(r.auth)}</dd>
+        <dt>Progress</dt><dd>${esc(r.prog || '\u2014')}</dd>
+        <dt>Outcome</dt><dd>${esc(r.out || '\u2014')}</dd>
+      </dl>
+      ${r.note ? `<p class="small" style="margin:.5rem 0 0">${esc(r.note)}</p>` : ''}
+      ${cite(r.s, r.tn)}
+    </article>`).join('') : '<div class="empty">No records match these filters.</div>';
+}
+['q','ag','st'].forEach(i => $('#'+i).addEventListener('input', debounce(draw)));
+$('#clr').addEventListener('click', () => { ['q','ag','st'].forEach(i=>$('#'+i).value=''); draw(); });
+$('#dl').addEventListener('click', () => downloadCSV('ct-implementation-view.csv', current(), [
+  {key:'id',label:'policy_id'},{key:'tn',label:'tracking_number'},{key:'ag',label:'agency'},
+  {key:'subj',label:'subject'},{key:'kind',label:'instrument_type'},{key:'auth',label:'authority'},
+  {key:'d',label:'date'},{key:'st',label:'status'},{key:'prog',label:'progress'},
+  {key:'out',label:'outcome'},{key:'s',label:'source_id'}]));
+draw();
+
+table($('#ags'), [
+  {key:'name', label:'Body'},
+  {key:'type', label:'Type'},
+  {key:'role', label:'What it does here'},
+  {key:'alias', label:'Also known as'},
+], d.agencies, {sort:'type'});
+
+</script>
+</body>
+</html>

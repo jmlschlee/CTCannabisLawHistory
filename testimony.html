@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testimony &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Testimony &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Who showed up, and which way</div>
+  <h1>Public hearing testimony</h1>
+  <p class="lede">Every written testimony record the committee index lists for every cannabis
+  bill, with the speaker, the organization and the position exactly as filed. Files that could not
+  be retrieved are listed as not retrieved rather than dropped.</p>
+</div>
+<div class="callout note">
+  <div class="hd">What a position field means here</div>
+  <p class="small" style="margin:0">The committee names each testimony file with the filer&rsquo;s
+  stated position. Where the filename does not carry one, the row reads <em>not stated in the
+  filename</em> rather than a guess. Testifying is participation in a public process; it is not
+  evidence of influence on the outcome.</p>
+</div>
+<div class="chartbox" style="margin-bottom:1.2rem">
+  <h3>Positions filed, by bill</h3>
+  <div class="sub">Counts are printed beside every bar, so the chart reads without colour.</div>
+  <div id="chart"></div>
+</div>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span><button class="btn" id="dl">Download this view as CSV</button></div>
+<div id="list"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, cite, setSources, selectField, searchField, debounce,
+         downloadCSV, table } from './assets/app.js';
+import { stackedBars } from './assets/charts.js';
+const [d, s] = await Promise.all([load('testimony'), load('sources')]);
+setSources(s.map);
+
+const byBill = {};
+d.rows.forEach(r => {
+  const k = `${r.yr} ${r.b}`;
+  const o = byBill[k] || (byBill[k] = {k, sup:0, opp:0, un:0});
+  if (r.p === 'Supports') o.sup++; else if (r.p === 'Opposes') o.opp++; else o.un++;
+});
+const SERIES = [
+  {key:'sup', label:'Supports',                   color:'var(--s1)'},
+  {key:'opp', label:'Opposes',                    color:'var(--s2)'},
+  {key:'un',  label:'Position not in the filename', color:'var(--s3)'},
+];
+stackedBars($('#chart'), Object.values(byBill).sort((a,b)=>
+  (b.sup+b.opp+b.un)-(a.sup+a.opp+a.un)), SERIES);
+
+$('#f').innerHTML =
+  searchField('q','Search','speaker, organization, role') +
+  selectField('b','Bill', d.bills) +
+  selectField('p','Position', d.positions) +
+  selectField('anon','Filer', [['no','Named filers only'],['yes','Anonymous filers only']]) +
+  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+
+function current() {
+  const q = $('#q').value.trim().toLowerCase(), b = $('#b').value, p = $('#p').value,
+        an = $('#anon').value;
+  return d.rows.filter(r =>
+    (!b || `${r.yr} ${r.b}` === b) && (!p || r.p === p) &&
+    (!an || (an === 'yes') === r.anon) &&
+    (!q || (r.who + ' ' + r.org + ' ' + r.role).toLowerCase().includes(q)));
+}
+function draw() {
+  const rows = current();
+  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.rows.length)} testimony records`;
+  table($('#list'), [
+    {key:'who', label:'Filed by', html:r => esc(r.who) + (r.anon
+      ? ' <span class="chip">anonymous</span>' : '')},
+    {key:'org', label:'Organization as filed', html:r => r.org ? esc(r.org) : '<span class="small">\u2014</span>'},
+    {key:'role', label:'Role as filed', html:r => r.role ? esc(r.role) : '<span class="small">\u2014</span>'},
+    {label:'Bill', key:'bk', get:r=>`${r.yr} ${r.b}`,
+      html:r=>`<span class="mono">${esc(r.yr)} ${esc(r.b)}</span>`},
+    {key:'p', label:'Position', html:r => {
+      const cls = r.p === 'Supports' ? 'chip ok' : r.p === 'Opposes' ? 'chip bad' : 'chip';
+      return `<span class="${cls}">${esc(r.p)}</span>`;
+    }},
+    {key:'st', label:'File', html:r => r.st === 'RETRIEVED'
+      ? (r.u ? `<a href="${esc(r.u)}" rel="noopener">open</a>` : 'retrieved')
+      : '<span class="chip t3">not retrieved</span>'},
+  ], rows, {sort:'who'});
+}
+['q','b','p','anon'].forEach(id => $('#'+id).addEventListener('input', debounce(draw)));
+$('#clr').addEventListener('click', () => { ['q','b','p','anon'].forEach(i=>$('#'+i).value=''); draw(); });
+$('#dl').addEventListener('click', () => downloadCSV('ct-testimony-view.csv', current(), [
+  {key:'id',label:'testimony_id'},{key:'yr',label:'session_year'},{key:'b',label:'bill'},
+  {key:'c',label:'committee'},{key:'who',label:'speaker_as_filed'},
+  {label:'is_anonymous',get:r=>r.anon?'yes':'no'},{key:'role',label:'role_as_filed'},
+  {key:'org',label:'organization_as_filed'},{key:'p',label:'position'},
+  {key:'st',label:'retrieval_status'},{key:'u',label:'url'}]));
+draw();
+
+</script>
+</body>
+</html>

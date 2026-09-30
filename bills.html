@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bill lineage &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Bill lineage &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Raised bill to public act</div>
+  <h1>Bill lineage</h1>
+  <p class="lede">How each bill moved, what was proposed along the way, and what was refused.
+  Amendments that were <em>filed and never called</em> are shown as prominently as the ones that
+  passed: they are the clearest record of what someone asked for and did not get.</p>
+</div>
+<div class="callout note">
+  <div class="hd">What the bill record cannot give</div>
+  <p class="small" style="margin:0">Introducers, committees and LCO numbers, yes. A drafting
+  requester, no. Every cannabis act here was raised by a <strong>committee</strong>, not a named
+  member, so no individual author appears on the face of the record. Who asked for a given
+  amendment is unknown throughout this dataset and is logged as gap GAP_0003.</p>
+</div>
+<div class="filters" id="f"></div>
+<div class="resultbar"><span id="count"></span><button class="btn" id="dl">Download this view as CSV</button></div>
+<div class="records" id="list"></div>
+<h2>Bills the sweep returned that are not cannabis bills</h2>
+<p class="small">Recorded with the reason rather than silently dropped.</p>
+<div id="dropped"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, fmtDate, cite, setSources, selectField, searchField,
+         debounce, downloadCSV, table } from './assets/app.js';
+const [d, s] = await Promise.all([load('bills'), load('sources')]);
+setSources(s.map);
+
+$('#f').innerHTML =
+  searchField('q','Search','bill number, title, committee') +
+  selectField('yr','Session', [...new Set(d.bills.map(b=>b.yr))].sort().reverse()) +
+  selectField('en','Outcome', [['yes','Enacted'],['no','Did not pass']]) +
+  `<div class="field"><label for="clr">&nbsp;</label><button class="btn" id="clr">Clear</button></div>`;
+
+function current() {
+  const q = $('#q').value.trim().toLowerCase(), yr = $('#yr').value, en = $('#en').value;
+  return d.bills.filter(b =>
+    (!yr || b.yr === yr) && (!en || (en === 'yes') === b.enacted) &&
+    (!q || (b.num + ' ' + b.title + ' ' + b.by + ' ' + b.pa).toLowerCase().includes(q)));
+}
+const TYPE_ORDER = ['committee referral','public hearing','committee report','LCO drafting',
+  'calendared','amendment vote','chamber passage','concurrence','transmittal','public act assigned','signed'];
+function draw() {
+  const rows = current();
+  $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.bills.length)} bills`;
+  $('#list').innerHTML = rows.length ? rows.map(b => {
+    const called = b.amds.filter(a=>a.called), uncalled = b.amds.filter(a=>!a.called);
+    return `<article class="rec" id="${esc(b.id)}">
+      <div class="rec-head">
+        <h3 class="rec-title">${esc(b.num)} <span class="rec-sub">(${esc(b.yr)})</span></h3>
+        ${b.enacted ? `<span class="chip ok">${esc(b.pa)}</span>` : '<span class="chip">did not pass</span>'}
+      </div>
+      <p class="rec-body" style="margin:.2rem 0 .5rem">${esc(b.title)}</p>
+      <dl class="kv">
+        <dt>Introduced by</dt><dd>${esc(b.by || 'not stated')}</dd>
+        <dt>Why it is here</dt><dd>${esc(b.why)}</dd>
+        <dt>Record</dt><dd>${num(b.hist.length)} dated actions &middot;
+          ${num(called.length)} amendments called &middot;
+          <strong>${num(uncalled.length)} filed and never called</strong> &middot;
+          ${num(b.votes.length)} roll calls &middot; ${num(b.tmy)} testimony records</dd>
+      </dl>
+      <details class="cite" style="margin-top:.6rem"><summary>Full bill history, ${num(b.hist.length)} actions</summary>
+        <div class="body"><div class="tl" style="margin-top:.4rem">${b.hist.map(h =>
+          `<div class="tl-item" style="padding-bottom:.55rem"><div class="tl-date">${esc(h.d)}</div>
+           <div class="tl-dot"></div><div class="tl-title" style="font-size:.85rem;font-weight:550">${esc(h.a)}</div>
+           <div class="small">${esc(h.t)}</div></div>`).join('')}</div></div></details>
+      ${b.amds.length ? `<details class="cite"><summary>Amendments, ${num(b.amds.length)}</summary>
+        <div class="body"><ul class="clean">${b.amds.map(a =>
+          `<li>${a.called ? '<span class="chip ok">called</span>' : '<span class="chip">filed, never called</span>'}
+            ${esc(a.lab)}${a.lco ? ` <span class="mono small">LCO ${esc(a.lco)}</span>` : ''}</li>`).join('')}</ul>
+          <p class="small" style="margin:.5rem 0 0">Who requested each of these is not in the
+          public record. See gap GAP_0003.</p></div></details>` : ''}
+      ${b.votes.length ? `<details class="cite"><summary>Roll calls, ${num(b.votes.length)}</summary>
+        <div class="body"><ul class="clean">${b.votes.map(v =>
+          `<li><strong>${esc(v.ch)} ${esc(v.rc)}</strong> ${esc(v.p)}</li>`).join('')}</ul>
+          <p class="small" style="margin:.5rem 0 0">Member-by-member sheets are held for the 2026
+          session only.</p></div></details>` : ''}
+      ${cite(b.s, b.l)}
+    </article>`;
+  }).join('') : '<div class="empty">No bills match these filters.</div>';
+}
+['q','yr','en'].forEach(id => $('#'+id).addEventListener('input', debounce(draw)));
+$('#clr').addEventListener('click', () => { ['q','yr','en'].forEach(i=>$('#'+i).value=''); draw(); });
+$('#dl').addEventListener('click', () => downloadCSV('ct-bills-view.csv', current(), [
+  {key:'num',label:'bill'},{key:'yr',label:'session_year'},{key:'title',label:'title'},
+  {key:'by',label:'introduced_by'},{key:'pa',label:'public_act'},
+  {label:'enacted',get:r=>r.enacted?'yes':'no'},
+  {label:'actions',get:r=>r.hist.length},{label:'amendments',get:r=>r.amds.length},
+  {label:'uncalled_amendments',get:r=>r.amds.filter(a=>!a.called).length},
+  {label:'roll_calls',get:r=>r.votes.length},{key:'why',label:'why_in_scope'}]));
+draw();
+
+table($('#dropped'), [
+  {key:'k', label:'Bill'},
+  {key:'why', label:'Why it is not in this dataset'}], d.dropped);
+
+</script>
+</body>
+</html>

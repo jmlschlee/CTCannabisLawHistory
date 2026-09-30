@@ -1,0 +1,210 @@
+amendment_id,bill_id,bill_number,session_year,lco_number,label,chamber,called,adopted,source_id,note
+AMD_2021_LCO10988,BILL_2021_SB1201,SB1201,2021,10988,House Schedule E LCO# 10988 (D),House,yes,,SOURCE_0010,
+AMD_2021_LCO10981,BILL_2021_SB1201,SB1201,2021,10981,House Schedule B LCO# 10981 (R),House,yes,,SOURCE_0010,
+AMD_2021_LCO10984,BILL_2021_SB1201,SB1201,2021,10984,House Schedule A LCO# 10984 (D),House,yes,,SOURCE_0010,
+AMD_2021_LCO10935,BILL_2021_SB1201,SB1201,2021,10935,House Schedule D LCO# 10935 (R),House,yes,,SOURCE_0010,
+AMD_2021_LCO10936,BILL_2021_SB1201,SB1201,2021,10936,House Schedule C LCO# 10936 (R),House,yes,,SOURCE_0010,
+AMD_2021_LCO10928,BILL_2021_SB1201,SB1201,2021,10928,Senate Schedule B LCO# 10928 (D) [doc] [Co-sponsors],Senate,yes,,SOURCE_0010,
+AMD_2021_LCO10906,BILL_2021_SB1201,SB1201,2021,10906,Senate Schedule A LCO# 10906 (D),Senate,yes,,SOURCE_0010,
+AMD_2021_LCO10986,BILL_2021_SB1201,SB1201,2021,10986,House LCO Amendment #10986 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2021_LCO10953,BILL_2021_SB1201,SB1201,2021,10953,House LCO Amendment #10953 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2022_LCO5358,BILL_2022_HB5329,HB5329,2022,5358,House Schedule A LCO# 5358 (D),House,yes,,SOURCE_0010,
+AMD_2022_LCO4818,BILL_2022_HB5329,HB5329,2022,4818,House LCO Amendment #4818 (D),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2023_LCO9161,BILL_2023_HB6699,HB6699,2023,9161,Senate Schedule A LCO# 9161 (R),Senate,yes,,SOURCE_0010,
+AMD_2023_LCO7520,BILL_2023_HB6699,HB6699,2023,7520,House Schedule B LCO# 7520 (R),House,yes,,SOURCE_0010,
+AMD_2023_LCO7505,BILL_2023_HB6699,HB6699,2023,7505,House Schedule A LCO# 7505 (J),House,yes,,SOURCE_0010,
+AMD_2023_LCO7438,BILL_2023_HB6699,HB6699,2023,7438,House LCO Amendment #7438 (J),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2023_LCO7260,BILL_2023_HB6699,HB6699,2023,7260,House LCO Amendment #7260 (J),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO4912,BILL_2024_HB5150,HB5150,2024,4912,House Schedule A LCO# 4912 (D),House,yes,,SOURCE_0010,
+AMD_2024_LCO5492,BILL_2024_HB5150,HB5150,2024,5492,Senate LCO Amendment #5492 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO5320,BILL_2024_HB5150,HB5150,2024,5320,Senate LCO Amendment #5320 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO5329,BILL_2024_HB5150,HB5150,2024,5329,Senate LCO Amendment #5329 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO5324,BILL_2024_HB5150,HB5150,2024,5324,Senate LCO Amendment #5324 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO5030,BILL_2024_HB5150,HB5150,2024,5030,House LCO Amendment #5030 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO5023,BILL_2024_HB5150,HB5150,2024,5023,House LCO Amendment #5023 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO4847,BILL_2024_HB5150,HB5150,2024,4847,House LCO Amendment #4847 (D),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO4791,BILL_2024_HB5150,HB5150,2024,4791,House LCO Amendment #4791 (D)  [doc] [Co-sponsors],House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO4211,BILL_2024_HB5150,HB5150,2024,4211,House LCO Amendment #4211 (D),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2024_LCO3982,BILL_2024_HB5150,HB5150,2024,3982,House LCO Amendment #3982 (D),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO9665,BILL_2025_HB6855,HB6855,2025,9665,House Schedule A LCO# 9665 (D),House,yes,,SOURCE_0010,
+AMD_2025_LCO10422,BILL_2025_HB7181,HB7181,2025,10422,House Schedule A LCO# 10422 (D),House,yes,,SOURCE_0010,
+AMD_2025_LCO10582,BILL_2025_HB7287,HB7287,2025,10582,Senate Schedule E LCO# 10582 (R),Senate,yes,,SOURCE_0010,
+AMD_2025_LCO10580,BILL_2025_HB7287,HB7287,2025,10580,Senate Schedule D LCO# 10580 (R),Senate,yes,,SOURCE_0010,
+AMD_2025_LCO10587,BILL_2025_HB7287,HB7287,2025,10587,Senate Schedule C LCO# 10587 (R),Senate,yes,,SOURCE_0010,
+AMD_2025_LCO10553,BILL_2025_HB7287,HB7287,2025,10553,Senate Schedule B LCO# 10553 (R),Senate,yes,,SOURCE_0010,
+AMD_2025_LCO10544,BILL_2025_HB7287,HB7287,2025,10544,Senate Schedule A LCO# 10544 (R),Senate,yes,,SOURCE_0010,
+AMD_2025_LCO10529,BILL_2025_HB7287,HB7287,2025,10529,Senate Schedule F LCO# 10529 (R),Senate,yes,,SOURCE_0010,
+AMD_2025_LCO10413,BILL_2025_HB7287,HB7287,2025,10413,House Schedule B LCO# 10413 (R),House,yes,,SOURCE_0010,
+AMD_2025_LCO10424,BILL_2025_HB7287,HB7287,2025,10424,House Schedule E LCO# 10424 (R),House,yes,,SOURCE_0010,
+AMD_2025_LCO10255,BILL_2025_HB7287,HB7287,2025,10255,House Schedule A LCO# 10255 (D),House,yes,,SOURCE_0010,
+AMD_2025_LCO10410,BILL_2025_HB7287,HB7287,2025,10410,House Schedule F LCO# 10410 (R),House,yes,,SOURCE_0010,
+AMD_2025_LCO10409,BILL_2025_HB7287,HB7287,2025,10409,House Schedule C LCO# 10409 (R),House,yes,,SOURCE_0010,
+AMD_2025_LCO10394,BILL_2025_HB7287,HB7287,2025,10394,House Schedule D LCO# 10394 (R),House,yes,,SOURCE_0010,
+AMD_2025_LCO10619,BILL_2025_HB7287,HB7287,2025,10619,Senate LCO Amendment #10619 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10576,BILL_2025_HB7287,HB7287,2025,10576,Senate LCO Amendment #10576 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10552,BILL_2025_HB7287,HB7287,2025,10552,Senate LCO Amendment #10552 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10543,BILL_2025_HB7287,HB7287,2025,10543,Senate LCO Amendment #10543 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10252,BILL_2025_HB7287,HB7287,2025,10252,Senate LCO Amendment #10252 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10484,BILL_2025_HB7287,HB7287,2025,10484,Senate LCO Amendment #10484 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10483,BILL_2025_HB7287,HB7287,2025,10483,Senate LCO Amendment #10483 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10256,BILL_2025_HB7287,HB7287,2025,10256,Senate LCO Amendment #10256 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10508,BILL_2025_HB7287,HB7287,2025,10508,Senate LCO Amendment #10508 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10507,BILL_2025_HB7287,HB7287,2025,10507,Senate LCO Amendment #10507 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10506,BILL_2025_HB7287,HB7287,2025,10506,Senate LCO Amendment #10506 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10512,BILL_2025_HB7287,HB7287,2025,10512,Senate LCO Amendment #10512 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10511,BILL_2025_HB7287,HB7287,2025,10511,Senate LCO Amendment #10511 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10510,BILL_2025_HB7287,HB7287,2025,10510,Senate LCO Amendment #10510 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10516,BILL_2025_HB7287,HB7287,2025,10516,Senate LCO Amendment #10516 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10515,BILL_2025_HB7287,HB7287,2025,10515,Senate LCO Amendment #10515 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10514,BILL_2025_HB7287,HB7287,2025,10514,Senate LCO Amendment #10514 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10513,BILL_2025_HB7287,HB7287,2025,10513,Senate LCO Amendment #10513 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10509,BILL_2025_HB7287,HB7287,2025,10509,Senate LCO Amendment #10509 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10519,BILL_2025_HB7287,HB7287,2025,10519,Senate LCO Amendment #10519 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10500,BILL_2025_HB7287,HB7287,2025,10500,Senate LCO Amendment #10500 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10247,BILL_2025_HB7287,HB7287,2025,10247,Senate LCO Amendment #10247 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10485,BILL_2025_HB7287,HB7287,2025,10485,Senate LCO Amendment #10485 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10458,BILL_2025_HB7287,HB7287,2025,10458,Senate LCO Amendment #10458 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10457,BILL_2025_HB7287,HB7287,2025,10457,Senate LCO Amendment #10457 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10464,BILL_2025_HB7287,HB7287,2025,10464,Senate LCO Amendment #10464 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10463,BILL_2025_HB7287,HB7287,2025,10463,Senate LCO Amendment #10463 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10336,BILL_2025_HB7287,HB7287,2025,10336,Senate LCO Amendment #10336 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10374,BILL_2025_HB7287,HB7287,2025,10374,Senate LCO Amendment #10374 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10335,BILL_2025_HB7287,HB7287,2025,10335,Senate LCO Amendment #10335 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10333,BILL_2025_HB7287,HB7287,2025,10333,Senate LCO Amendment #10333 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10375,BILL_2025_HB7287,HB7287,2025,10375,Senate LCO Amendment #10375 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10446,BILL_2025_HB7287,HB7287,2025,10446,House LCO Amendment #10446 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10377,BILL_2025_HB7287,HB7287,2025,10377,Senate LCO Amendment #10377 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10380,BILL_2025_HB7287,HB7287,2025,10380,Senate LCO Amendment #10380 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10381,BILL_2025_HB7287,HB7287,2025,10381,Senate LCO Amendment #10381 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10382,BILL_2025_HB7287,HB7287,2025,10382,Senate LCO Amendment #10382 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10383,BILL_2025_HB7287,HB7287,2025,10383,Senate LCO Amendment #10383 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10376,BILL_2025_HB7287,HB7287,2025,10376,Senate LCO Amendment #10376 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10389,BILL_2025_HB7287,HB7287,2025,10389,Senate LCO Amendment #10389 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10388,BILL_2025_HB7287,HB7287,2025,10388,Senate LCO Amendment #10388 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10386,BILL_2025_HB7287,HB7287,2025,10386,Senate LCO Amendment #10386 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10384,BILL_2025_HB7287,HB7287,2025,10384,Senate LCO Amendment #10384 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10364,BILL_2025_HB7287,HB7287,2025,10364,House LCO Amendment #10364 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10355,BILL_2025_HB7287,HB7287,2025,10355,House LCO Amendment #10355 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10425,BILL_2025_HB7287,HB7287,2025,10425,House LCO Amendment #10425 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2025_LCO10404,BILL_2025_HB7287,HB7287,2025,10404,House LCO Amendment #10404 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO5403,BILL_2026_HB5350,HB5350,2026,5403,Senate Schedule A LCO# 5403 (R),Senate,yes,,SOURCE_0010,
+AMD_2026_LCO5269,BILL_2026_HB5350,HB5350,2026,5269,Senate Schedule B LCO# 5269 (R),Senate,yes,,SOURCE_0010,
+AMD_2026_LCO4345,BILL_2026_HB5350,HB5350,2026,4345,House Schedule D LCO# 4345 (D),House,yes,,SOURCE_0010,
+AMD_2026_LCO4340,BILL_2026_HB5350,HB5350,2026,4340,House Schedule C LCO# 4340 (R),House,yes,,SOURCE_0010,
+AMD_2026_LCO4339,BILL_2026_HB5350,HB5350,2026,4339,House Schedule B LCO# 4339 (R),House,yes,,SOURCE_0010,
+AMD_2026_LCO4294,BILL_2026_HB5350,HB5350,2026,4294,House Schedule E LCO# 4294 (R),House,yes,,SOURCE_0010,
+AMD_2026_LCO4259,BILL_2026_HB5350,HB5350,2026,4259,House Schedule A LCO# 4259 (D),House,yes,,SOURCE_0010,
+AMD_2026_LCO5401,BILL_2026_HB5350,HB5350,2026,5401,Senate LCO Amendment #5401 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO5425,BILL_2026_HB5350,HB5350,2026,5425,Senate LCO Amendment #5425 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO5413,BILL_2026_HB5350,HB5350,2026,5413,Senate LCO Amendment #5413 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4335,BILL_2026_HB5350,HB5350,2026,4335,House LCO Amendment #4335 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4324,BILL_2026_HB5350,HB5350,2026,4324,House LCO Amendment #4324 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4286,BILL_2026_HB5350,HB5350,2026,4286,House LCO Amendment #4286 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4288,BILL_2026_HB5350,HB5350,2026,4288,House LCO Amendment #4288 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4290,BILL_2026_HB5350,HB5350,2026,4290,House LCO Amendment #4290 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4291,BILL_2026_HB5350,HB5350,2026,4291,House LCO Amendment #4291 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4298,BILL_2026_HB5350,HB5350,2026,4298,House LCO Amendment #4298 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4317,BILL_2026_HB5350,HB5350,2026,4317,House LCO Amendment #4317 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4312,BILL_2026_HB5350,HB5350,2026,4312,House LCO Amendment #4312 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO4309,BILL_2026_HB5350,HB5350,2026,4309,House LCO Amendment #4309 (R),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2026_LCO6124,BILL_2026_HB5222,HB5222,2026,6124,House Schedule A LCO# 6124 (J),House,yes,,SOURCE_0010,
+AMD_2026_LCO6092,BILL_2026_HB5222,HB5222,2026,6092,House LCO Amendment #6092 (D),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO5048,BILL_2012_HB5389,HB5389,2012,5048,Senate Schedule G LCO# 5048[pdf],Senate,yes,,SOURCE_0010,
+AMD_2012_LCO4815,BILL_2012_HB5389,HB5389,2012,4815,Senate Schedule F LCO# 4815[pdf],Senate,yes,,SOURCE_0010,
+AMD_2012_LCO4750,BILL_2012_HB5389,HB5389,2012,4750,Senate Schedule E LCO# 4750[pdf],Senate,yes,,SOURCE_0010,
+AMD_2012_LCO4523,BILL_2012_HB5389,HB5389,2012,4523,Senate Schedule D LCO# 4523[pdf],Senate,yes,,SOURCE_0010,
+AMD_2012_LCO4520,BILL_2012_HB5389,HB5389,2012,4520,Senate Schedule A LCO# 4520[pdf],Senate,yes,,SOURCE_0010,
+AMD_2012_LCO4184,BILL_2012_HB5389,HB5389,2012,4184,Senate Schedule B LCO# 4184[pdf],Senate,yes,,SOURCE_0010,
+AMD_2012_LCO4182,BILL_2012_HB5389,HB5389,2012,4182,Senate Schedule C LCO# 4182[pdf],Senate,yes,,SOURCE_0010,
+AMD_2012_LCO3972,BILL_2012_HB5389,HB5389,2012,3972,House Schedule C LCO# 3972[pdf],House,yes,,SOURCE_0010,
+AMD_2012_LCO3426,BILL_2012_HB5389,HB5389,2012,3426,House Schedule B LCO# 3426[pdf],House,yes,,SOURCE_0010,
+AMD_2012_LCO3891,BILL_2012_HB5389,HB5389,2012,3891,House Schedule A LCO# 3891[pdf],House,yes,,SOURCE_0010,
+AMD_2012_LCO4977,BILL_2012_HB5389,HB5389,2012,4977,Senate LCO Amendment #4977 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4822,BILL_2012_HB5389,HB5389,2012,4822,Senate LCO Amendment #4822 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4821,BILL_2012_HB5389,HB5389,2012,4821,Senate LCO Amendment #4821 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4633,BILL_2012_HB5389,HB5389,2012,4633,Senate LCO Amendment #4633 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4716,BILL_2012_HB5389,HB5389,2012,4716,Senate LCO Amendment #4716 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4632,BILL_2012_HB5389,HB5389,2012,4632,Senate LCO Amendment #4632 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4744,BILL_2012_HB5389,HB5389,2012,4744,Senate LCO Amendment #4744 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4736,BILL_2012_HB5389,HB5389,2012,4736,Senate LCO Amendment #4736 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4735,BILL_2012_HB5389,HB5389,2012,4735,Senate LCO Amendment #4735 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4727,BILL_2012_HB5389,HB5389,2012,4727,Senate LCO Amendment #4727 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4739,BILL_2012_HB5389,HB5389,2012,4739,Senate LCO Amendment #4739 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4616,BILL_2012_HB5389,HB5389,2012,4616,Senate LCO Amendment #4616 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4609,BILL_2012_HB5389,HB5389,2012,4609,Senate LCO Amendment #4609 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4521,BILL_2012_HB5389,HB5389,2012,4521,Senate LCO Amendment #4521 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4572,BILL_2012_HB5389,HB5389,2012,4572,Senate LCO Amendment #4572 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4526,BILL_2012_HB5389,HB5389,2012,4526,Senate LCO Amendment #4526 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4534,BILL_2012_HB5389,HB5389,2012,4534,Senate LCO Amendment #4534 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4573,BILL_2012_HB5389,HB5389,2012,4573,Senate LCO Amendment #4573 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4533,BILL_2012_HB5389,HB5389,2012,4533,Senate LCO Amendment #4533 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4664,BILL_2012_HB5389,HB5389,2012,4664,Senate LCO Amendment #4664 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4663,BILL_2012_HB5389,HB5389,2012,4663,Senate LCO Amendment #4663 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4638,BILL_2012_HB5389,HB5389,2012,4638,Senate LCO Amendment #4638 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4531,BILL_2012_HB5389,HB5389,2012,4531,Senate LCO Amendment #4531 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4524,BILL_2012_HB5389,HB5389,2012,4524,Senate LCO Amendment #4524 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4529,BILL_2012_HB5389,HB5389,2012,4529,Senate LCO Amendment #4529 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4390,BILL_2012_HB5389,HB5389,2012,4390,Senate LCO Amendment #4390 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4215,BILL_2012_HB5389,HB5389,2012,4215,Senate LCO Amendment #4215 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4277,BILL_2012_HB5389,HB5389,2012,4277,Senate LCO Amendment #4277 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4280,BILL_2012_HB5389,HB5389,2012,4280,Senate LCO Amendment #4280 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4250,BILL_2012_HB5389,HB5389,2012,4250,Senate LCO Amendment #4250 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4189,BILL_2012_HB5389,HB5389,2012,4189,Senate LCO Amendment #4189 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4190,BILL_2012_HB5389,HB5389,2012,4190,Senate LCO Amendment #4190 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4185,BILL_2012_HB5389,HB5389,2012,4185,Senate LCO Amendment #4185 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4194,BILL_2012_HB5389,HB5389,2012,4194,Senate LCO Amendment #4194 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4193,BILL_2012_HB5389,HB5389,2012,4193,Senate LCO Amendment #4193 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4192,BILL_2012_HB5389,HB5389,2012,4192,Senate LCO Amendment #4192 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4252,BILL_2012_HB5389,HB5389,2012,4252,Senate LCO Amendment #4252 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4249,BILL_2012_HB5389,HB5389,2012,4249,Senate LCO Amendment #4249 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4191,BILL_2012_HB5389,HB5389,2012,4191,Senate LCO Amendment #4191 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4253,BILL_2012_HB5389,HB5389,2012,4253,Senate LCO Amendment #4253 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4195,BILL_2012_HB5389,HB5389,2012,4195,Senate LCO Amendment #4195 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4180,BILL_2012_HB5389,HB5389,2012,4180,Senate LCO Amendment #4180 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO4179,BILL_2012_HB5389,HB5389,2012,4179,Senate LCO Amendment #4179 [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO3935,BILL_2012_HB5389,HB5389,2012,3935,House LCO Amendment #3935 [pdf],House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO3915,BILL_2012_HB5389,HB5389,2012,3915,House LCO Amendment #3915 [pdf],House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO3907,BILL_2012_HB5389,HB5389,2012,3907,House LCO Amendment #3907 [pdf],House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO3896,BILL_2012_HB5389,HB5389,2012,3896,House LCO Amendment #3896 [pdf],House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO3880,BILL_2012_HB5389,HB5389,2012,3880,House LCO Amendment #3880 [pdf],House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2012_LCO3865,BILL_2012_HB5389,HB5389,2012,3865,House LCO Amendment #3865 [pdf],House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5544,BILL_2016_HB5450,HB5450,2016,5544,Senate Schedule C LCO# 5544 (R) [pdf],Senate,yes,,SOURCE_0010,
+AMD_2016_LCO5480,BILL_2016_HB5450,HB5450,2016,5480,Senate Schedule G LCO# 5480 (R) [pdf],Senate,yes,,SOURCE_0010,
+AMD_2016_LCO5448,BILL_2016_HB5450,HB5450,2016,5448,Senate Schedule A LCO# 5448 (R) [pdf],Senate,yes,,SOURCE_0010,
+AMD_2016_LCO5486,BILL_2016_HB5450,HB5450,2016,5486,Senate Schedule F LCO# 5486 (R) [pdf],Senate,yes,,SOURCE_0010,
+AMD_2016_LCO5500,BILL_2016_HB5450,HB5450,2016,5500,Senate Schedule B LCO# 5500 (R) [pdf],Senate,yes,,SOURCE_0010,
+AMD_2016_LCO5497,BILL_2016_HB5450,HB5450,2016,5497,Senate Schedule D LCO# 5497 (R) [pdf],Senate,yes,,SOURCE_0010,
+AMD_2016_LCO5463,BILL_2016_HB5450,HB5450,2016,5463,Senate Schedule I LCO# 5463 (R) [pdf],Senate,yes,,SOURCE_0010,
+AMD_2016_LCO5551,BILL_2016_HB5450,HB5450,2016,5551,Senate Schedule H LCO# 5551 (R) [pdf],Senate,yes,,SOURCE_0010,
+AMD_2016_LCO5498,BILL_2016_HB5450,HB5450,2016,5498,Senate Schedule E LCO# 5498 (R) [pdf],Senate,yes,,SOURCE_0010,
+AMD_2016_LCO4425,BILL_2016_HB5450,HB5450,2016,4425,House Schedule B LCO# 4425 (R) [pdf],House,yes,,SOURCE_0010,
+AMD_2016_LCO4338,BILL_2016_HB5450,HB5450,2016,4338,House Schedule A LCO# 4338 (D) [pdf],House,yes,,SOURCE_0010,
+AMD_2016_LCO4348,BILL_2016_HB5450,HB5450,2016,4348,House Schedule C LCO# 4348 (D) [pdf],House,yes,,SOURCE_0010,
+AMD_2016_LCO5552,BILL_2016_HB5450,HB5450,2016,5552,Senate LCO Amendment #5552 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5501,BILL_2016_HB5450,HB5450,2016,5501,Senate LCO Amendment #5501 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5458,BILL_2016_HB5450,HB5450,2016,5458,Senate LCO Amendment #5458 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5499,BILL_2016_HB5450,HB5450,2016,5499,Senate LCO Amendment #5499 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5504,BILL_2016_HB5450,HB5450,2016,5504,Senate LCO Amendment #5504 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5479,BILL_2016_HB5450,HB5450,2016,5479,Senate LCO Amendment #5479 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5481,BILL_2016_HB5450,HB5450,2016,5481,Senate LCO Amendment #5481 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5505,BILL_2016_HB5450,HB5450,2016,5505,Senate LCO Amendment #5505 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5506,BILL_2016_HB5450,HB5450,2016,5506,Senate LCO Amendment #5506 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5502,BILL_2016_HB5450,HB5450,2016,5502,Senate LCO Amendment #5502 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5482,BILL_2016_HB5450,HB5450,2016,5482,Senate LCO Amendment #5482 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5478,BILL_2016_HB5450,HB5450,2016,5478,Senate LCO Amendment #5478 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5488,BILL_2016_HB5450,HB5450,2016,5488,Senate LCO Amendment #5488 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5496,BILL_2016_HB5450,HB5450,2016,5496,Senate LCO Amendment #5496 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5485,BILL_2016_HB5450,HB5450,2016,5485,Senate LCO Amendment #5485 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO5460,BILL_2016_HB5450,HB5450,2016,5460,Senate LCO Amendment #5460 (R) [pdf],Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO4265,BILL_2016_HB5450,HB5450,2016,4265,House LCO Amendment #4265 (D) [pdf],House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2016_LCO4257,BILL_2016_HB5450,HB5450,2016,4257,House LCO Amendment #4257 (D) [pdf],House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2023_LCO9444,BILL_2023_SB0009,SB0009,2023,9444,House Schedule A LCO# 9444 (D),House,yes,,SOURCE_0010,
+AMD_2023_LCO8777,BILL_2023_SB0009,SB0009,2023,8777,Senate Schedule C LCO# 8777 (J),Senate,yes,,SOURCE_0010,
+AMD_2023_LCO8759,BILL_2023_SB0009,SB0009,2023,8759,Senate Schedule B LCO# 8759 (R),Senate,yes,,SOURCE_0010,
+AMD_2023_LCO8735,BILL_2023_SB0009,SB0009,2023,8735,Senate Schedule A LCO# 8735 (J),Senate,yes,,SOURCE_0010,
+AMD_2023_LCO9244,BILL_2023_SB0009,SB0009,2023,9244,House LCO Amendment #9244 (D),House,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2023_LCO8639,BILL_2023_SB0009,SB0009,2023,8639,Senate LCO Amendment #8639 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2023_LCO8698,BILL_2023_SB0009,SB0009,2023,8698,Senate LCO Amendment #8698 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2023_LCO8697,BILL_2023_SB0009,SB0009,2023,8697,Senate LCO Amendment #8697 (R),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2023_LCO8661,BILL_2023_SB0009,SB0009,2023,8661,Senate LCO Amendment #8661 (J),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.
+AMD_2023_LCO8253,BILL_2023_SB0009,SB0009,2023,8253,Senate LCO Amendment #8253 (J),Senate,no,,SOURCE_0010,An uncalled amendment was filed and never voted. It is evidence of what was asked for and is kept for that reason.

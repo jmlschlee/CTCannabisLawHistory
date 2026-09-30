@@ -1,0 +1,16 @@
+agency_id,name,type,role,aliases,source_id
+ORG_DEPARTMENT_OF_CONSUMER_PROTECTION,Department of Consumer Protection,state agency,"Licenses and regulates cannabis establishments; adopts regulations and, in practice, policies and procedures.",DCP; Drug Control Division; Cannabis Division,SOURCE_0010
+ORG_SOCIAL_EQUITY_COUNCIL,Social Equity Council,state agency,"Approves equity joint ventures, determines social equity status, administers the Cannabis Business Revolving Loan Fund.",SEC,SOURCE_0010
+ORG_OFFICE_OF_THE_CANNABIS_OMBUDSMAN,Office of the Cannabis Ombudsman,state agency,Established by P.A. 23-79.,Cannabis Ombudsman,SOURCE_0010
+ORG_DEPARTMENT_OF_ECONOMIC_AND_COMMUNITY_DEVELOPMENT,Department of Economic and Community Development,state agency,Administers loan and grant programs touching cannabis businesses.,DECD,SOURCE_0010
+ORG_CONNECTICUT_AGRICULTURAL_EXPERIMENT_STATION,Connecticut Agricultural Experiment Station,state agency,Reference laboratory work on cannabis testing.,CAES,SOURCE_0010
+ORG_OFFICE_OF_STATE_ETHICS,Office of State Ethics,state agency,Lobbyist registration and reporting.,OSE,SOURCE_0010
+ORG_STATE_ELECTIONS_ENFORCEMENT_COMMISSION,State Elections Enforcement Commission,state agency,Campaign finance filings.,SEEC,SOURCE_0010
+ORG_GENERAL_LAW_COMMITTEE,General Law Committee,legislative committee,The joint standing committee with cannabis jurisdiction.,GL,SOURCE_0010
+ORG_JUDICIARY_COMMITTEE,Judiciary Committee,legislative committee,Raised the 2012 medical bill.,JUD,SOURCE_0010
+ORG_PUBLIC_HEALTH_COMMITTEE,Public Health Committee,legislative committee,Raised the 2026 terminally ill patients bill.,PH,SOURCE_0010
+ORG_FINANCE_REVENUE_AND_BONDING_COMMITTEE,"Finance, Revenue and Bonding Committee",legislative committee,Fiscal referral on cannabis bills.,FIN,SOURCE_0010
+ORG_APPROPRIATIONS_COMMITTEE,Appropriations Committee,legislative committee,Fiscal referral.,APP,SOURCE_0010
+ORG_OFFICE_OF_FISCAL_ANALYSIS,Office of Fiscal Analysis,legislative office,Fiscal notes.,OFA,SOURCE_0010
+ORG_OFFICE_OF_LEGISLATIVE_RESEARCH,Office of Legislative Research,legislative office,Bill analyses and summaries.,OLR,SOURCE_0010
+ORG_LEGISLATIVE_COMMISSIONERS_OFFICE,Legislative Commissioners’ Office,legislative office,Drafts and numbers amendments (LCO numbers) and files.,LCO,SOURCE_0010

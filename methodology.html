@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology &middot; CT Cannabis Law Timeline</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Methodology &middot; CT Cannabis Law Timeline">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head">
+  <div class="eyebrow">Check the work</div>
+  <h1>How this was built, and how to break it</h1>
+  <p class="lede">This page is written so that someone who wants to prove the site wrong can do
+  it efficiently. It says where the text came from, what was counted and how, which judgments
+  are judgments, and the specific places the public record runs out.</p>
+</div>
+
+<div class="prose">
+
+<h2>The one rule that shapes everything else</h2>
+
+<p><strong>Statutory text comes from the enacted public acts. It never comes from the General
+Assembly&rsquo;s published chapter pages.</strong></p>
+
+<p>Connecticut publishes browsable chapter pages for the General Statutes. They are convenient
+and they lag the session, sometimes by a long time. A worked example, checked by hand:</p>
+
+<div class="callout warn">
+  <div class="hd">The worked example</div>
+  <p class="small" style="margin:0 0 .5rem">Public Act 25-101, section 17, repealed
+  Connecticut General Statutes section 21a-420u(f), effective 1 January 2026. On
+  29 September 2026 &mdash; nine months after the repeal took effect &mdash; the General
+  Assembly&rsquo;s chapter 420h page still printed subsection (f) as though it were in force.</p>
+  <p class="small" style="margin:0">A researcher who read the chapter page that day would have
+  described a rule that no longer existed, and would have had no way of knowing it from the page
+  itself. That is why the chapter pages are tier 3 on this site: cited when they matter as
+  evidence of what the state was publishing, never relied on for what the law says.</p>
+</div>
+
+<h2>How a Connecticut act is read</h2>
+
+<p>Two mechanics of Connecticut drafting drive most of the work on this site.</p>
+
+<p><strong>Bracketed text in a public act is text the act deletes.</strong> The act prints the
+existing statute with the words it removes inside square brackets and the words it adds in
+capital letters. That makes the brackets the only machine-readable signal of what the old rule
+was. Every old-versus-new comparison on the <a href="laws.html">laws page</a> is built from
+them.</p>
+
+<p><strong>Connecticut usually repeals a subsection by re-enacting the whole section without
+it.</strong> The act says the section &ldquo;is repealed and the following is substituted in
+lieu thereof,&rdquo; then prints the section with one subsection gone and the rest
+redesignated. That phrase is the formula for <em>amending</em>, not for repealing, and counting
+it as a repeal is the single easiest way to produce a badly wrong number. An early draft of this
+dataset counted 251 repeals on exactly that mistake. The real figure is four, and three of them
+are the removal of the twenty-mile provisions, which no structural parse can see because the
+words &ldquo;twenty miles&rdquo; simply stop appearing. Those three are flagged by hand from a
+line-by-line supersession audit, and they are labeled as hand-flagged in the data.</p>
+
+<h2>The five passes</h2>
+
+<ol class="tick">
+  <li><strong>Source inventory.</strong> Every document is entered in the source ledger before
+  anything is extracted from it, with its custodian, its citation, the date it was retrieved and
+  a note on its limits. A fact with no ledgered source does not go on the site.</li>
+  <li><strong>Change extraction.</strong> Each act is read section by section. Every section
+  that changes a cannabis rule becomes one row: which statute, what the old text said, what the
+  new text says, when it took effect, and whether the effective date is later than passage.</li>
+  <li><strong>Lineage.</strong> Each act is traced back to the bill, the substitute language,
+  the committee that reported it, the amendments offered, which amendments were called and which
+  were not, and the roll calls.</li>
+  <li><strong>People and positions.</strong> Testimony, appearances and filings are recorded as
+  events: who said what, on which bill, on which date, in which forum, taking which position.
+  Names are entered exactly as the source record spells them, with aliases kept in a separate
+  field so that one person is not silently turned into two.</li>
+  <li><strong>Adversarial review.</strong> Every claim is rated for how well the record actually
+  supports it, and the ones that fail are written down rather than dropped. That list is the
+  <a href="guardrails.html">guardrails page</a>.</li>
+</ol>
+
+<h2>How strong is the evidence</h2>
+
+<p>The <a href="influence.html">influence map</a> records events, not conclusions. Each one
+carries a strength rating, and the rating is printed on the page beside the relationship rather
+than encoded only in a color.</p>
+
+<div class="tablewrap"><table>
+<thead><tr><th>Strength</th><th>What it means</th><th>What it does not mean</th></tr></thead>
+<tbody>
+<tr><td class="num">5</td><td>A direct documentary record of the act itself &mdash; a signed
+filing, a recorded vote, an executed agreement.</td><td>Nothing on this site is rated 5. Said
+plainly: the documents that would support that rating have not been obtained.</td></tr>
+<tr><td class="num">4</td><td>Strong documentary support in a primary record: this person
+took this position on this bill on this date.</td><td>Not that the position caused the
+outcome.</td></tr>
+<tr><td class="num">3</td><td>A supported inference. The record shows the pieces and the
+connection between them is reasonable, stated, and checkable.</td><td>Not a fact. The
+inference is labeled as one everywhere it appears.</td></tr>
+<tr><td class="num">2</td><td>A weak lead worth someone&rsquo;s time. A coincidence of timing,
+a shared address, an unexplained gap.</td><td>Not evidence of anything on its own.</td></tr>
+<tr><td class="num">1</td><td>Recorded so it is not lost, and to show what was looked at and
+found thin.</td><td>Not usable in writing.</td></tr>
+</tbody></table></div>
+
+<p><strong>Influence is treated as an evidentiary category, not a verdict.</strong> Someone
+testifying, lobbying, donating or drafting is participating in a lawful process. The site
+records the participation and the outcome separately, and it does not assert that one produced
+the other. Where a pattern looks suggestive, the alternative explanations are printed next to
+it.</p>
+
+<h2>Categories are kept apart on purpose</h2>
+
+<p>Medical cannabis, adult-use cannabis, hemp, illicit-market enforcement and laboratory
+testing are governed by different instruments, on different timetables, by different bodies.
+Collapsing them into &ldquo;cannabis law&rdquo; is the commonest error in writing about this
+subject and it produces false timelines. On this site they are separate categories on every
+page, and a change is tagged with the population it actually reaches.</p>
+
+<h2>What the public record cannot show</h2>
+
+<ul class="tick">
+  <li><strong>No conversion register exists.</strong> There is no published record mapping a
+  medical dispensary facility to the hybrid retailer it became. Twenty active hybrid retailers
+  have no reconstructable route through published records.</li>
+  <li><strong>The lottery file records entries, not awards.</strong> Its 8,458 rows are
+  applications submitted. Treating them as licenses granted overstates the lottery&rsquo;s role
+  by orders of magnitude.</li>
+  <li><strong>Adult-use requirements are not in the regulations.</strong> Substantial
+  requirements, the testing requirements among them, sit in a Department policies and procedures
+  document rather than in regulations adopted under chapter 54. That document&rsquo;s version
+  history and the authority cited for each change are not published.</li>
+  <li><strong>Ownership and control are not in the public file.</strong> The state&rsquo;s
+  published data contains no legal-ownership field and no management-control field. Everything
+  on ownership in this project is reconstructed from registry, principal and agent records, and
+  labeled with how strongly each link is supported.</li>
+  <li><strong>Uncalled amendments leave no explanation.</strong> The record shows that an
+  amendment was filed and never called. It does not show who decided that, or why.</li>
+</ul>
+
+<h2>What this project has not done</h2>
+
+<p>No records request in this project has been sent. No agency, company, owner, official or
+reporter has been contacted. The requests and the interview questions are drafted and held; the
+<a href="issues.html">issues page</a> names, for each open gap, the specific record that would
+close it and who holds it.</p>
+
+<h2>Errors</h2>
+
+<p>Corrections made during the build are kept rather than quietly fixed, because the pattern of
+mistakes tells a reader something about which figures to check hardest. The repeal miscount
+above is one. A second: an early pass read the published chapter pages for current text, which
+is exactly the failure this site is organized to avoid, and every figure derived from that pass
+was rebuilt from the acts.</p>
+
+<p>If you find an error, the fastest way to show it is to name the source identifier and the
+locator. Every assertion on the site exposes both.</p>
+
+</div>
+<div class="pagenav">
+  <a class="btn" href="sources.html">Source library</a>
+  <a class="btn" href="guardrails.html">Guardrails</a>
+  <a class="btn" href="downloads.html">Download the data</a>
+</div>
+
+</main>
+<script type="module">
+
+</script>
+</body>
+</html>

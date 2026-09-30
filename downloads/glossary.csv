@@ -1,0 +1,13 @@
+term,definition,issue_id,source_id
+RERACA,"The Responsible and Equitable Regulation of Adult-Use Cannabis Act, the body of law created by June Sp. Sess. P.A. 21-1.",ISSUE_LICENSING,SOURCE_0010
+public act,"A bill that has passed both chambers and been signed or allowed to become law. The enacted act, not the published chapter page, is the authoritative text.",,SOURCE_0010
+substitute bill,"A committee’s replacement text for a raised bill. Where language first appears in a substitute, the committee record is the earliest source.",,SOURCE_0010
+LCO number,"The number the Legislative Commissioners’ Office assigns to an amendment. A called amendment was voted on; an uncalled amendment was filed and never voted, and is evidence of what was asked for.",,SOURCE_0010
+file copy,"A numbered printing of a bill as reported out. Fiscal notes and bill analyses are written against a file copy, so the file number dates the analysis.",,SOURCE_0010
+equity joint venture,"A company at least fifty per cent owned AND controlled by a person meeting the social equity criteria, sponsored by an existing licensed establishment. Two limbs, not one.",ISSUE_EQUITY,SOURCE_0010
+social equity applicant,Defined by income and residency criteria. Connecticut publishes no list of which licensees are social equity licensees.,ISSUE_EQUITY,SOURCE_0010
+backer,A person with a direct or indirect financial interest in a cannabis establishment who must register. The register carries no field saying which establishment a backer backs.,ISSUE_OWNERSHIP,SOURCE_0010
+hybrid retailer,A converted medical dispensary facility selling to both patients and adult-use customers.,ISSUE_LICENSING,SOURCE_0010
+DIA cultivator,"A disproportionately impacted area cultivator: a route to a cultivator licence outside the lottery, on payment of a substantial fee.",ISSUE_EQUITY,SOURCE_0010
+policies and procedures,An agency document that is NOT a regulation adopted under chapter 54. The distinction decides what survives a challenge.,ISSUE_AGENCY,SOURCE_0010
+joint favorable report,"The committee’s report recommending a bill. Its testimony summary is committee staff’s account, not the witness’s words.",,SOURCE_0010

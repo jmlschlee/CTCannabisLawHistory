@@ -1,0 +1,11 @@
+# Friendly short paths, so a link can be typed from memory.
+/home              /index.html        301
+/law               /laws.html         301
+/laws              /laws.html         301
+/statute           /statutes.html     301
+/bill              /bills.html        301
+/sources           /sources.html      301
+/method            /methodology.html  301
+/methodology       /methodology.html  301
+/data              /downloads.html    301
+/guardrails        /guardrails.html   301
