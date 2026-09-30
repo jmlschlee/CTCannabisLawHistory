@@ -31,7 +31,7 @@ TMYP_0869,William Huhn,Advocate or Group,CT Smart Approaches to Marijuana,9,0,1
 TMYP_0063,Andrew Simonow,Industry,Crisp Cannabis; LLC,8,0,0
 TMYP_0752,Avery Pessa,Member of the Public,,8,1,0
 TMYP_0040,Kiersten Naumann,Advocate or Group,Chair-CT SAM; CT Sam; Chair-Board Member-CT SAM-CT Assoc Prevention Prof; CTAssoc Prevention Professionals; CTAssoc Prevention Pros,8,0,2
-TMYP_0334,Linda Kowalski,Advocate or Group,Connecticut Medical Cannabis Council; CT Medical Cannabis Council; CT Medical Marijuana Council-Testimony in Support of SB 360; The CT Medical Cannabis Council-Con; Cmcc,8,2,0
+TMYP_0334,Linda Kowalski,Industry,Connecticut Medical Cannabis Council; CT Medical Cannabis Council; CT Medical Marijuana Council-Testimony in Support of SB 360; The CT Medical Cannabis Council-Con; Cmcc,8,2,0
 TMYP_0022,Michael Goodenough,Industry,DG AgTek llc Sweetheal-General Comments; Ccsba; DG AgTek LLC-General Comments,8,0,0
 TMYP_0810,Paul Kirchberg,Advocate or Group,NORML; NORML-Testimony in Support of SB 360,8,0,0
 PERSON_BERNSTEIN_STACEY,Stacey Bernstein,Member of the Public,,8,3,0
@@ -42,7 +42,7 @@ PERSON_REP_JASON_ROJAS_HOUSE_MAJORITY_LEADER,Jason Rojas,Lawmaker,Connecticut Ge
 TMYP_0981,Martin Looney,Lawmaker,State of Connecticut Senate; CT General Assembly; CT Senate; CGA,7,0,0
 TMYP_0487,Mashantucket Pequot Tribal Nation,Local Official,,7,0,0
 TMYP_0006,Thomas Burr,Advocate or Group,NAMI Connecticut; Affiliate Relations Manager-National Alliance on Mental Illness -CT; NAMI; NAMI Connecticut-Inc.,7,0,0
-TMYP_0010,Cmcc,Advocate or Group,CT Medical Cannabis Council; CT Medical Cannabis Council-General Comments,6,0,0
+TMYP_0010,Cmcc,Industry,CT Medical Cannabis Council; CT Medical Cannabis Council-General Comments,6,0,0
 TMYP_0075,Gordon Whelpley,Industry,Float House; Floating Islands; FLOAT HOUSE,6,0,0
 TMYP_0657,Jason Blakesley,Member of the Public,,6,3,0
 TMYP_0660,Juan Candelaria,Lawmaker,"95th District; Ninety-Fifth District, CT House of Representatives",6,0,0
@@ -82,7 +82,7 @@ TMYP_1588,Ben Shaiken,Advocate or Group,The Alliance; The Alliance Voice of Comm
 TMYP_1680,Betsy Gara,Advocate or Group,COST; CT Council of Small Towns,4,0,0
 TMYP_1055,Brian Herrington,Industry,Hawthorne Gardening Company-In favor; ScottsMiracle-Gro; Hawthorne Gardening Company; The ScottsMiracle-Gro Co. - The Hawthorne Gardening Co.,4,0,0
 TMYP_2374,CHA,Health and Medical,Connecticut Hospital Association,4,0,1
-ORG_CT_MEDICAL_CANNABIS_COUNCIL_INC,CT Medical Cannabis Council,Advocate or Group,,4,0,0
+ORG_CT_MEDICAL_CANNABIS_COUNCIL_INC,CT Medical Cannabis Council,Industry,,4,0,0
 TMYP_0993,CT Police Chiefs Association,Law Enforcement,,4,0,1
 PERSON_DENNIS_CAROLYN,Carolyn Dennis,Member of the Public,,4,0,0
 TMYP_1098,Cathy Osten,Lawmaker,CT Senate; Testimony in Support of SB 360,4,1,0
@@ -136,7 +136,7 @@ TMYP_2337,Charlene Tucker,State Agency,CSDE,3,0,0
 TMYP_1175,Christine Perra Rapillo,State Agency,Division of Public Defender Services; Office of Chief Public Defender; Div. of Public Defender Services,3,0,0
 TMYP_1022,Conley Monk,Advocate or Group,NVCLR; National Veterans Council for Legal Redress,3,0,0
 PERSON_CONNECTICUT_HOSPITAL_ASSOCIATION,Connecticut Hospital Association,Health and Medical,,3,0,0
-TMYP_0756,Connecticut Medical Cannabis Council,Advocate or Group,,3,0,0
+TMYP_0756,Connecticut Medical Cannabis Council,Industry,,3,0,0
 TMYP_0956,D Souza,Health and Medical,Yale University School of Medicine,3,0,1
 TMYP_0404,Dante Bartolomeo,State Agency,CT Department of Labor,3,0,0
 TMYP_0776,David Brensilver,Member of the Public,,3,0,0
@@ -216,7 +216,7 @@ TMYP_1416,Ann Marie Luisi-Rosado,Member of the Public,Canna Health Middletown; C
 TMYP_1128,Anne Manusky,Member of the Public,Connecticut Republican Assembly-CIA; CT Republican Assembly,2,0,0
 TMYP_2150,Arlene Kaye,Health and Medical,Benhaven; CT Assc or Behavior Analysis,2,0,0
 TMYP_0763,Attorney Zachary Lawrence,Member of the Public,,2,0,0
-TMYP_0414,Audrey Rotunda,Advocate or Group,NECCA; Cannawarriors-NECCA,2,1,0
+TMYP_0414,Audrey Rotunda,Industry,NECCA; Cannawarriors-NECCA,2,1,0
 TMYP_2319,Ava Hayden,Member of the Public,,2,0,0
 TMYP_0921,Beth Mack,Member of the Public,,2,0,0
 TMYP_0663,Betsey Chadwick,Advocate or Group,Middlesex County Substance Abuse Action Council,2,0,0
@@ -460,7 +460,7 @@ TMYP_0135,Timothy Egan,Member of the Public,CT State Board of Accountancy,2,0,0
 TMYP_0746,Timothy Ryan Yankee,Member of the Public,,2,0,0
 TMYP_0896,Todd DeWitt,Industry,Boomhut Brands,2,0,0
 TMYP_1049,Todd Foster,Member of the Public,,2,0,1
-TMYP_0640,Tom Schultz,Advocate or Group,Connecticut Medical Cannabis Council,2,0,0
+TMYP_0640,Tom Schultz,Industry,Connecticut Medical Cannabis Council,2,0,0
 TMYP_1902,Tony Guerrera,State Agency,Department of Motor Vehicles,2,0,0
 TMYP_1898,Tracy Marra,Lawmaker,CT General Assembly,2,0,1
 TMYP_1753,Tracy Noble,Industry,"AAA-Support 5255 Sections 2,4-5, No objections to 5255 Section 18, Concerns about 5258; Public and Government Affairs-Support 5255 Sections 2,4-5, No objections to Section 18, Concerns about 5258",2,0,0
@@ -960,7 +960,7 @@ TMYP_1473,David Kuter,Member of the Public,,1,0,0
 TMYP_0693,David LaMonde,Member of the Public,,1,0,0
 TMYP_1700,David Lehman,State Agency,CEDC,1,0,0
 PERSON_LIONETTI_DAVID,David Lionetti,Member of the Public,,1,0,0
-TMYP_1477,David Lipton,Advocate or Group,Connecticut Medical Cannabis Council,1,0,0
+TMYP_1477,David Lipton,Industry,Connecticut Medical Cannabis Council,1,0,0
 TMYP_1481,David Michel,Lawmaker,,1,0,0
 PERSON_MONROE_DAVID,David Monroe,Member of the Public,,1,0,0
 PERSON_MORIZIO_DAVID,David Morizio,Health and Medical,,1,0,0
@@ -2016,7 +2016,7 @@ TMYP_1069,"Motor Transport Assoc. of CT, Inc.",Industry,,1,0,0
 TMYP_1188,Motor Transport Association of Connecticut,Advocate or Group,,1,0,0
 TMYP_1881,Myra Watnick,Industry,"Rehabilitation Associates of CT, Inc.",1,0,0
 TMYP_1751,"N1CM, Steve",Member of the Public,,1,0,0
-TMYP_0267,NA,Advocate or Group,CT Medical Cannabis Council,1,0,0
+TMYP_0267,NA,Industry,CT Medical Cannabis Council,1,0,0
 TMYP_2593,Nadika Paranamana,Health and Medical,,1,0,0
 TMYP_1591,Nancie Spector,Member of the Public,,1,0,0
 TMYP_2121,Nancy Alisberg,Member of the Public,,1,0,0

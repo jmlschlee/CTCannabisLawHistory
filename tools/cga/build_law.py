@@ -58,6 +58,7 @@ TOPICS = [
     ('Taxes and Revenue', r'\btax|revenue|excise|deduction'),
     ('Social Equity and Reinvestment', r'social equity|equit|community (restoration|reinvestment)|angel investor'),
     ('Labor and Workplace', r'labor|workplace|workforce|wage|employ'),
+    ('Testing, Labeling and Product Safety', r'testing laborator|cannabis laborator|marijuana laborator|laborator(y|ies) (licens|employee|test)|\btested\b|testing (standard|of (cannabis|marijuana|hemp|plants))|contamina|pesticid|heavy metal|\bmold\b|microbial|label(l)?ing|packaging|potency|product safety|recall'),
     ('Licensing and Regulation', r'regulat|licens|consumer protection|antitrust|anti-trust|application fee|establishment'),
     ('Youth Prevention and Public Health', r'youth|prevention|minor|public health|study|advertis|promotional'),
 ]
@@ -355,7 +356,12 @@ for key in sorted(raw):
                 if len(day) == 1 and len(acts) == 1:
                     rec_a['vote'] = day[0]['id']; rec_a['vinf'] = True; day[0]['amd'] = a['lco']; day[0]['amdby'] = [o['pid'] for o in offered]
         amds.append(rec_a)
-    tp = topics_for(b['title'] + ' ' + (ob.get('why') or ''))
+    tp = topics_for(b['title'] + ' ' + (ob.get('why') or '') + ' ' + PURP.get(key, {}).get('purpose', '') + ' ' + PURP.get(key, {}).get('summary', ''))
+    TT = 'Testing, Labeling and Product Safety'
+    # hand-checked against each statement of purpose: these only mention the words in passing
+    if key in ('2021|HB-06100', '2025|SB-00642', '2025|SB-00970') and TT in tp: tp.remove(TT)
+    # these set rules for testing hemp plants and products
+    if key in ('2019|SB-00598', '2020|HB-07003') and TT not in tp: tp.append(TT)
     if not focus: tp = ['Budget and Multi-Subject Bills']
     bills_out.append(dict(id=bid, num=num, yr=yr, title=acts_title(b['title']), focus=focus,
         subj=subj.get(key, []), topics=tp, stage=st, enacted=bool(pa), pa=pa, paid=(act or {}).get('id', ob.get('paid', '')),
@@ -484,7 +490,7 @@ for r in rows:
 # ------------------------------------------------------------------ who is filing: a small label from the name, role and organization as filed
 RULES = [
  ('Lawmaker', r"general assembly|house of representatives|state senate|\bsenate\b.*state of|assembly district|senate district|house district|\d+(st|nd|rd|th) district"),
- ('Industry', r"government strategies|government affairs|public affairs|lobby|strategies\b|consulting"),
+ ('Industry', r"government strategies|government affairs|public affairs|lobby|strategies\b|consulting|\bNECCA\b|new england craft cannabis|cannabis chamber|cannabis (trade|industry) association|\bCTCIA\b|medical cannabis council"),
  ('Law Enforcement', r"police|sheriff|state'?s attorney|prosecutor|trooper|DESPP|emergency services and public protection|highway safety|division of criminal justice"),
  ('State Agency', r"department of|dept\.? of|commissioner|office of the (attorney general|governor|chief|state)|attorney general|ombudsman|\bOHA\b|\bOCO\b|\bDCP\b|DMHAS|\bDPH\b|\bDRS\b|\bDECD\b|CTDOT|\bCSDE\b|\bSEEC\b|judicial branch|public defender|social equity council|office of policy and management|state elections enforcement|state of connecticut(?! senate| house)"),
  ('Local Official', r"\btown of|city of|mayor|first selectm|selectm[ae]n|municipal|\balder|town council|board of education|health district|\bCCM\b|conference of municipalities|council of governments|tribal nation|\btribe\b"),
@@ -524,6 +530,51 @@ for r in rows:
     kr = classify_text(' | '.join([r['who'], r['role']]))
     selfish = re.fullmatch(r"\s*(self|myself|none|n/?a|individual|private citizen|citizen|resident|constituent|personal)?\s*", r['org'] or '', re.I) and r['org']
     r['k'] = ko if ko != 'Member of the Public' else kr if kr != 'Member of the Public' else 'Member of the Public' if selfish else eid_kind.get(r['eid'], 'Member of the Public')
+
+# ------------------------------------------------------------------ one name per organization
+# Witnesses spell the same body many ways ("DCP", "Dept. of Consumer Protection"). Group them under one name.
+ORG_ALIAS = [
+    (r"^(ct |connecticut |state of connecticut[ ,-]*)?(dcp\b|dept\.? of consumer protection|department of consumer protection|(deputy )?commissioner of consumer protection|consumer protection\b)", 'Department of Consumer Protection'),
+    (r"^(ct |connecticut )?(dph|dept\.? of public health|department of public health)\b", 'Department of Public Health'),
+    (r"^(ct |connecticut )?(dmhas|dept\.? of mental health|department of mental health)", 'Department of Mental Health and Addiction Services'),
+    (r"^(ct |connecticut )?(despp|dept\.? of emergency services|department of emergency services)", 'Department of Emergency Services and Public Protection'),
+    (r"^(ct |connecticut )?(drs|dept\.? of revenue services|department of revenue services)\b", 'Department of Revenue Services'),
+    (r"^(ct |connecticut )?(decd|dept\.? of economic|department of economic)", 'Department of Economic and Community Development'),
+    (r"^(ct |connecticut )?(doag|dept\.? of agriculture|department of agriculture)\b", 'Department of Agriculture'),
+    (r"^(ct |connecticut )?(dmv|dept\.? of motor vehicles|department of motor vehicles)\b", 'Department of Motor Vehicles'),
+    (r"^(ct |connecticut )?(opm|office of policy and management)\b", 'Office of Policy and Management'),
+    (r"(oha\s*oco|office of (the )?cannabis ombudsman|cannabis ombudsman|\boco\b)", 'Office of the Cannabis Ombudsman'),
+    (r"^(ct |connecticut )?(oag|(office of (the )?)?attorney general)", 'Office of the Attorney General'),
+    (r"^(ct |connecticut )?social equity council", 'Social Equity Council'),
+    (r"cann?a ?warriors?", 'CT CannaWarriors'),
+    (r"\bnorml\b", 'CT NORML'),
+    (r"^aclu", 'ACLU of Connecticut'),
+    (r"^(cbia|connecticut business (and|&) industry)", 'Connecticut Business and Industry Association'),
+    (r"smart approaches to marijuana|^sam\b", 'Smart Approaches to Marijuana'),
+    (r"canna(bis)? gov(ernmen)?t strategies", 'Canna Government Strategies'),
+]
+def org_key(o):
+    o = re.sub(r"\s+", ' ', (o or '').strip())
+    if not o or re.fullmatch(r"(self|myself|none|n/?a|na|not applicable|individual|private citizen|citizen|resident|constituent|personal|-)", o, re.I): return '', ''
+    for rx, name in ORG_ALIAS:
+        if re.search(rx, o, re.I): return name.lower(), name
+    k = re.sub(r"[^a-z0-9 ]", '', o.lower().replace('&', 'and'))
+    k = re.sub(r"\b(the|of|inc|llc|corp|co|ct|connecticut)\b", ' ', k)
+    return re.sub(r"\s+", ' ', k).strip(), ''
+okc = defaultdict(Counter)
+for r in rows:
+    k, nm = org_key(r['org']); r['_ok'] = k; r['_on'] = nm
+    if k: okc[k][nm or r['org']] += 1
+for r in rows:
+    r['oc'] = (r['_on'] or okc[r['_ok']].most_common(1)[0][0]) if r['_ok'] else ''
+    del r['_ok'], r['_on']
+# A filing with no organization on it is grouped under the organization that same person usually files for.
+usual = defaultdict(Counter)
+for r in rows:
+    if r['eid'] and r['oc']: usual[r['eid']][r['oc']] += 1
+for r in rows:
+    if not r['oc'] and r['eid'] in usual and r['k'] not in ('Member of the Public', 'Lawmaker', 'Anonymous'):
+        r['oc'] = usual[r['eid']].most_common(1)[0][0]
 
 # ------------------------------------------------------------------ bill testimony tallies
 tc = defaultdict(Counter)
@@ -573,7 +624,25 @@ for k, p in people.items():
         good = (B['dir'] == 'E') == (code == 'Y')
         pro += good; anti += (not good); dv.append([vid, code, 'P' if good else 'A'])
     sp = Counter(bill_by_id[x['bid']]['dir'] for x in p['spon'])
-    legs.append(dict(stance=dict(pro=pro, anti=anti, n=pro + anti, sponE=sp['E'], sponR=sp['R'], sponM=sp['M']), dv=dv, dabs=dabs,
+    vp, va = pro, anti
+    # Sponsoring or co-sponsoring a bill is a public position too. It matters most for bills that
+    # died without any vote. Each bill counts once, however many sponsor roles the person had.
+    ds = []
+    for bid in dict.fromkeys(x['bid'] for x in p['spon']):
+        d = bill_by_id[bid]['dir']
+        if d in ('E', 'R'): ds.append([bid, 'P' if d == 'E' else 'A'])
+    # A lawmaker's own written testimony with Supports or Opposes in the file name, once per bill.
+    dt = {}
+    for t in p['tmy']:
+        d = bill_by_id.get(t['bid'], {}).get('dir')
+        if d in ('E', 'R') and t['p'] in ('Supports', 'Opposes'):
+            dt[t['bid']] = [t['bid'], t['p'], 'P' if (d == 'E') == (t['p'] == 'Supports') else 'A']
+    dt = list(dt.values())
+    sp_p = sum(x[1] == 'P' for x in ds); sp_a = len(ds) - sp_p
+    tp = sum(x[2] == 'P' for x in dt); ta = len(dt) - tp
+    pro, anti = vp + sp_p + tp, va + sp_a + ta
+    legs.append(dict(stance=dict(pro=pro, anti=anti, n=pro + anti, vp=vp, va=va, spp=sp_p, spa=sp_a, tp=tp, ta=ta,
+                                 sponE=sp['E'], sponR=sp['R'], sponM=sp['M']), dv=dv, dabs=dabs, ds=ds, dt=dt,
                      id=p['id'], name=nm, ch=p['ch'], dist=p['dist'], party=(cur or {}).get('party', '') or epar, pparty=sorted({h[1] for h in hist}), current=bool(cur),
                      sur=p['sur'], first=min(p['yrs']), last=max(p['yrs']), yrs=sorted(p['yrs']),
                      aka=[n for n, _ in p['names'].most_common(4)],

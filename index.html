@@ -46,7 +46,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 <div class="legend-lean" style="margin-top:.6rem"><span class="lean pro">Pro-cannabis</span><span class="lean mid">Mixed</span><span class="lean anti">Anti-cannabis</span>
   <span class="muted">Colors used across the site. <a href="guide.html#colors">What they mean</a>.</span></div>
 
-<h2>Special sections</h2>
+<h2>Topics</h2>
 <div class="grid three" id="spots"></div>
 
 <h2>What the record shows</h2>
@@ -78,7 +78,7 @@ try {
 
   $('#qs').innerHTML = [
     ['stances.html', 'Where does my lawmaker stand?', 'Every legislator marked pro-cannabis, anti-cannabis or mixed, with the votes behind it. Also department heads, police and advocates.', 'Where They Stand'],
-    ['sections.html', 'Who wanted penalties and police stops?', 'Odor and smoke bills, enforcement task forces, impaired driving and attempts to roll back legalization, with who pushed each one.', 'Special Sections'],
+    ['sections.html', 'Who voted for what, topic by topic?', 'Testing and product safety, patients, odor and police stops, enforcement, driving and more. Every bill, who pushed it, and every vote at every stage.', 'Topics'],
     ['bills.html', 'Which bills passed, and which died?', 'All 231 cannabis bills, what each would do, how far it got, and the failed bills ranked by support and opposition.', 'Bills'],
     ['testimony.html', 'Who testified, and for which side?', 'Every written filing, labeled by who filed it: lawmaker, agency, police, town, industry, advocate or public.', 'Testimony'],
     ['laws.html', 'What actually changed in the law?', 'Each change, section by section, with the old text beside the new and the date it took effect.', 'Changes'],
@@ -92,7 +92,7 @@ try {
   $('#topPro').innerHTML = ranked.filter(l => l.stance.pro > l.stance.anti).sort((a, b) => (b.stance.pro - b.stance.anti) - (a.stance.pro - a.stance.anti)).slice(0, 5).map(li).join('');
   $('#topAnti').innerHTML = ranked.filter(l => l.stance.anti > l.stance.pro).sort((a, b) => (b.stance.anti - b.stance.pro) - (a.stance.anti - a.stance.pro)).slice(0, 5).map(li).join('');
 
-  $('#spots').innerHTML = M.spots.map(s => `<a class="card" href="sections.html#${esc(s.id)}" style="text-decoration:none;color:inherit;display:block">
+  $('#spots').innerHTML = [{ id: '?t=testing-labeling-and-product-safety', t: 'Testing, Labeling and Product Safety', d: 'Lab testing, contaminants, labels and packaging: who pushed for safer products for patients and consumers, and how they voted.', n: B.bills.filter(b => b.focus && b.topics.includes('Testing, Labeling and Product Safety')).length }, ...M.spots.map(s => ({ ...s, id: '#' + s.id }))].map(s => `<a class="card" href="sections.html${esc(s.id)}" style="text-decoration:none;color:inherit;display:block">
     <h3 style="margin:0 0 .3rem">${esc(s.t)} &rarr;</h3><p class="small" style="margin:0;color:var(--ink-2)">${esc(s.d)}</p>
     <p class="small muted" style="margin:.4rem 0 0">${plural(s.n, 'bill')}</p></a>`).join('');
 

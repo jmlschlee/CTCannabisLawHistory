@@ -18,12 +18,12 @@ export const NAV = [
     ['timeline.html', 'Timeline', 'Every dated event in one stream'],
     ['laws.html', 'Changes', 'Each enacted change, old text against new'],
     ['statutes.html', 'Statutes', 'By statute section, with repeals flagged'],
-    ['issues.html', 'Topics', 'Fourteen subjects, kept apart on purpose'],
+    ['issues.html', 'Changes by Subject', 'What became law, grouped by subject'],
   ]},
   { group: 'Bills and Votes', items: [
     ['stances.html', 'Where They Stand', 'Who is for and against cannabis, and why'],
     ['bills.html', 'Bills', 'Every cannabis bill since 2012, passed or not'],
-    ['sections.html', 'Special Sections', 'Odor and stops, enforcement, driving, rollbacks'],
+    ['sections.html', 'Topics', 'Testing, patients, odor, enforcement: every bill and every vote'],
     ['legislators.html', 'Lawmakers', 'Every vote by every legislator'],
     ['testimony.html', 'Testimony', 'Every written filing, across every committee'],
   ]},
@@ -577,7 +577,15 @@ export function lawmakerWhy(l, VOTE, BILL, LEGMAP) {
   const g = (pa, dir, code) => cnt.filter(x => x.pa === pa && x.b.dir === dir && x.c === code)
     .map(x => billLine(x.b, `Voted <strong>${x.c === 'Y' ? 'yes' : 'no'}</strong> &middot; ${esc(where(x.v))} &middot; ${esc(x.v.res.toLowerCase())} ${x.v.t.y}&ndash;${x.v.t.n}`));
   const spon = [...new Map(l.spon.map(s => [s.bid, s])).values()].map(s => ({ ...s, b: BILL.get(s.bid) })).filter(x => x.b);
-  const sp = dir => spon.filter(x => x.b.dir === dir).map(x => billLine(x.b, esc(x.role === 'Introduced' ? 'Introduced it' : 'Co-sponsored it')));
+  const novote = b => !(b.votes || []).some(id => { const v = VOTE.get(id); return v && ['Committee Vote', 'Final Passage'].includes(v.type) && (v.t.y + v.t.n) > 0; });
+  const sp = dir => spon.filter(x => x.b.dir === dir).map(x => billLine(x.b, esc(x.role === 'Introduced' ? 'Introduced it' : 'Co-sponsored it')
+    + (novote(x.b) ? ' &middot; <span class="chip warn">Died without a vote</span>' : x.b.enacted ? '' : ' &middot; did not pass')));
+  const tg = pa => (l.dt || []).filter(x => x[2] === pa).map(([bid, pos]) => { const b = BILL.get(bid); const t = l.tmy.find(q => q.bid === bid && q.p === pos);
+    return b ? billLine(b, `Filed testimony: <strong>${esc(pos)}</strong>${t && t.u ? ` &middot; <a href="${esc(t.u)}" rel="noopener">read it</a>` : ''}`) : ''; }).filter(Boolean);
+  const S = l.stance;
+  const head = `<p class="small" style="margin:.2rem 0 .6rem">Counted: <strong>${S.vp ?? S.pro} pro and ${S.va ?? S.anti} anti</strong> committee and floor votes;
+    <strong>${S.spp || 0} pro and ${S.spa || 0} anti</strong> bills sponsored or co-sponsored (each bill once, including bills that died without a vote);
+    <strong>${S.tp || 0} pro and ${S.ta || 0} anti</strong> positions in their own testimony.</p>`;
   const amd = l.amd.map(a => { const b = BILL.get(a.bid); const full = b ? b.amds.find(x => x.lco === a.lco) : null;
     return b ? `<li class="why-li"><strong>${esc(full && full.sched ? full.sched.replace('"', 'Amendment "') : 'Amendment LCO ' + a.lco)}</strong> to
       <a href="${billHref(b.id)}">${esc(b.num.replace(/^(HB|SB)/, '$1 '))} (${esc(b.yr)})</a> ${dirChip(b.dir)}
@@ -585,12 +593,12 @@ export function lawmakerWhy(l, VOTE, BILL, LEGMAP) {
       <div class="why-d">${esc(full && full.eff ? (full.eff.length > 240 ? full.eff.slice(0, 238).replace(/\s+\S*$/, '') + '…' : full.eff) : full && full.open ? 'Amendment text: ' + full.open.slice(0, 200) + '…' : '')}</div>
       <div class="why-x"><a href="${esc(a.u)}" rel="noopener">Read the amendment</a></div></li>` : ''; }).filter(Boolean);
   const tmy = l.tmy.map(t => { const b = BILL.get(t.bid); return b ? billLine(b, `Filed testimony: <strong>${esc(t.p)}</strong>${t.u ? ` &middot; <a href="${esc(t.u)}" rel="noopener">read it</a>` : ''}`) : ''; }).filter(Boolean);
-  return `<div class="why">
+  return `<div class="why">${head}
     ${whyGroup('Voted for bills that expand access or ease penalties', 'pro', g('P', 'E', 'Y'))}
     ${whyGroup('Voted against bills that add penalties or enforcement', 'pro', g('P', 'R', 'N'))}
     ${whyGroup('Voted against bills that expand access or ease penalties', 'anti', g('A', 'E', 'N'))}
     ${whyGroup('Voted for bills that add penalties or enforcement', 'anti', g('A', 'R', 'Y'))}
-    ${!cnt.length ? '<p class="small muted">No counted votes on bills that clearly expand access or add enforcement.</p>' : ''}
+    ${!cnt.length ? '<p class="small muted">No recorded votes on bills that clearly expand access or add enforcement.</p>' : ''}
     ${whyGroup('Absent or not voting on these bills', 'mid', (l.dabs || []).map(id => VOTE.get(id)).filter(Boolean).map(v => { const b = BILL.get(v.bid); return b ? billLine(b, `${dirChip(b.dir)} Absent &middot; ${esc(where(v))} &middot; ${esc(v.res.toLowerCase())} ${v.t.y}&ndash;${v.t.n}`) : ''; }).filter(Boolean))}
     ${(() => { const av = l.v.map(([vid, c]) => ({ v: VOTE.get(vid), c })).filter(x => x.v && !['Final Passage', 'Committee Vote'].includes(x.v.type) && x.v.kind === 'floor')
         .sort((a, b) => (b.v.date || '').localeCompare(a.v.date || ''));
@@ -608,11 +616,13 @@ export function lawmakerWhy(l, VOTE, BILL, LEGMAP) {
         .filter(x => x.b && !['E', 'R'].includes(x.b.dir)).sort((a, b) => (b.v.date || '').localeCompare(a.v.date || ''));
       const items = mv.map(x => billLine(x.b, `${dirChip(x.b.dir)} Voted <strong>${x.c === 'Y' ? 'yes' : x.c === 'N' ? 'no' : 'absent'}</strong> &middot; ${esc(where(x.v))} &middot; ${esc(x.v.res.toLowerCase())} ${x.v.t.y}&ndash;${x.v.t.n}`));
       return items.length ? `<details class="more"><summary>Votes on mixed, regulatory and budget bills, not counted as pro or anti (${items.length})</summary><ul class="why-ul" style="margin-top:.4rem">${items.join('')}</ul></details>` : ''; })()}
-    ${whyGroup('Sponsored bills that expand access', 'pro', sp('E'))}
-    ${whyGroup('Sponsored bills that add penalties or enforcement', 'anti', sp('R'))}
+    ${whyGroup('Sponsored bills that expand access or ease penalties (counted pro)', 'pro', sp('E'))}
+    ${whyGroup('Sponsored bills that add penalties or enforcement (counted anti)', 'anti', sp('R'))}
+    ${whyGroup('Testified for access, or against penalties (counted pro)', 'pro', tg('P'))}
+    ${whyGroup('Testified for penalties, or against access (counted anti)', 'anti', tg('A'))}
     ${whyGroup('Sponsored bills that do both, or regulate', 'mid', [...sp('M'), ...sp('N')])}
     ${whyGroup('Amendments they offered', 'mid', amd)}
-    ${whyGroup('Testimony they filed', 'mid', tmy)}
+    ${tmy.length ? `<details class="more"><summary>All testimony they filed (${tmy.length})</summary><ul class="why-ul" style="margin-top:.4rem">${tmy.join('')}</ul></details>` : ''}
   </div>`;
 }
 export function filerWhy(s, rows, BILL) {

@@ -129,7 +129,8 @@ try {
   </div>`; }).join('')}` : '<p class="small muted">No amendments were filed.</p>'}
 
   <h2 id="votes">Every vote</h2>
-  ${vs.length ? `<div class="card"><div class="vlist">${vs.map(voteBlock).join('')}</div></div>` : '<p class="small muted">No committee tally sheet or floor roll call is posted for this bill.</p>'}
+  ${vs.length ? `<div class="card"><div class="vlist">${vs.map(voteBlock).join('')}</div></div>` : `<div class="callout note"><p class="small" style="margin:0"><strong>No lawmaker ever voted on this bill.</strong> ${b.stage === 'Public Hearing Held' ? 'The committee held a public hearing and then let the bill die without taking a vote.' : b.stage === 'Introduced, No Hearing' ? 'The committee never held a hearing or took a vote on it.' : 'The General Assembly posted no tally sheet or roll call for it.'}
+      The only lawmaker positions on record are the ${b.spon.length ? `${b.spon.length} ${b.spon.length === 1 ? 'lawmaker' : 'lawmakers'} who introduced or co-sponsored it (listed above under Who pushed it)` : 'sponsors, and none are named'}${tmy.some(r => r.k === 'Lawmaker') ? ' and any lawmakers who filed testimony' : ''}. Those count toward each sponsor&rsquo;s stance on Where They Stand.</p></div>`}
 
   <h2 id="hist">History</h2>
   <div class="tl">${b.hist.map(h => `<div class="tl-item"><div class="tl-dot"></div><div class="tl-date">${esc(fmtDate(h.d) || h.d)}</div>

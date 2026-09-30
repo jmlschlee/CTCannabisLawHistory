@@ -1,210 +1,210 @@
 legislator_id,name,chamber,district,party,serving_2026,first_year,last_year,votes,yea,nay,pro_cannabis_votes,anti_cannabis_votes,sponsored_access_bills,sponsored_enforcement_bills,bills_sponsored,amendments_offered,testimony_filed,printed_as
-LEG_SENATE7KISSEL0,John A. Kissel,Senate,7,R,True,2012,2026,151,107,41,14,17,2,0,9,13,0,"John A. Kissel; Kissel J.; Kissel; Kissel, J."
-LEG_SENATE1FONFARA0,John W. Fonfara,Senate,1,D,True,2012,2026,144,88,35,13,7,2,0,5,5,0,"John W. Fonfara; Fonfara J.; Fonfara, J.; Fonfara"
-LEG_SENATE19OSTEN1,Catherine A. Osten,Senate,19,D,True,2013,2026,137,107,29,16,5,9,0,12,6,4,"Catherine A. Osten; Osten C.; Osten; Osten, C."
-LEG_HOUSE123RUTIGLIANO1,David Rutigliano,House,123,R,True,2014,2026,129,98,29,5,13,0,7,9,29,1,"Rutigliano; Rutigliano D.; Rutigliano, D."
-LEG_HOUSE12LUXENBERG0,Geoff Luxenberg,House,12,D,True,2012,2026,128,101,26,11,7,2,0,3,0,0,"Luxenberg; Luxenberg G.; Luxenberg, G."
-LEG_HOUSE95CANDELARIA0,Juan R. Candelaria,House,95,D,True,2012,2026,125,99,21,12,2,12,0,17,2,5,"Candelaria, J.; Candelaria J.; Candelaria"
-LEG_HOUSE8ACKERT0,Tim Ackert,House,8,R,True,2012,2026,125,98,26,13,6,4,3,8,6,1,"Ackert; Ackert T.; Ackert, T."
+LEG_SENATE7KISSEL0,John A. Kissel,Senate,7,R,True,2012,2026,151,107,41,16,17,2,0,9,13,0,"John A. Kissel; Kissel J.; Kissel; Kissel, J."
+LEG_SENATE1FONFARA0,John W. Fonfara,Senate,1,D,True,2012,2026,144,88,35,15,7,2,0,5,5,0,"John W. Fonfara; Fonfara J.; Fonfara, J.; Fonfara"
+LEG_SENATE19OSTEN1,Catherine A. Osten,Senate,19,D,True,2013,2026,137,107,29,26,5,9,0,12,6,4,"Catherine A. Osten; Osten C.; Osten; Osten, C."
+LEG_HOUSE123RUTIGLIANO1,David Rutigliano,House,123,R,True,2014,2026,129,98,29,5,20,0,7,9,29,1,"Rutigliano; Rutigliano D.; Rutigliano, D."
+LEG_HOUSE12LUXENBERG0,Geoff Luxenberg,House,12,D,True,2012,2026,128,101,26,13,7,2,0,3,0,0,"Luxenberg; Luxenberg G.; Luxenberg, G."
+LEG_HOUSE95CANDELARIA0,Juan R. Candelaria,House,95,D,True,2012,2026,125,99,21,24,2,12,0,17,2,5,"Candelaria, J.; Candelaria J.; Candelaria"
+LEG_HOUSE8ACKERT0,Tim Ackert,House,8,R,True,2012,2026,125,98,26,17,9,4,3,8,6,1,"Ackert; Ackert T.; Ackert, T."
 LEG_HOUSE87YACCARINO0,Dave W. Yaccarino,House,87,R,True,2012,2026,120,92,28,7,5,0,0,0,3,1,"Yaccarino; Yaccarino D.; Yaccarino, D."
-LEG_HOUSE96LEMAR0,Roland J. Lemar,House,96,D,True,2012,2026,119,91,26,10,8,6,1,11,13,0,"Lemar; Lemar R.; Lemar, R."
+LEG_HOUSE96LEMAR0,Roland J. Lemar,House,96,D,True,2012,2026,119,91,26,16,9,6,1,11,13,0,"Lemar; Lemar R.; Lemar, R."
 LEG_HOUSE15GIBSON1,Bobby G. Gibson,House,15,D,True,2018,2026,118,91,18,9,3,0,0,4,0,0,"Gibson; Gibson B.; Gibson, B."
-LEG_SENATE14MARONEY1,James J. Maroney,Senate,14,D,True,2019,2026,118,96,22,9,3,1,0,3,31,0,"James Maroney; Maroney J.; Maroney; Maroney, J."
-LEG_SENATE10WINFIELD1,Gary A. Winfield,Senate,10,D,True,2015,2026,117,86,31,16,7,6,0,10,7,0,"Gary Winfield; Winfield G.; Winfield; Winfield, G."
-LEG_HOUSE92DILLON0,Patricia A. Dillon,House,92,D,True,2012,2026,117,92,23,19,5,6,0,9,0,0,"Dillon; Dillon P.; Dillon, P."
-LEG_SENATE29FLEXER1,Mae Flexer,Senate,29,D,True,2015,2026,115,86,29,18,8,3,0,6,2,0,"Mae Flexer; Flexer M.; Flexer, M.; Mae M. Flexer"
-LEG_HOUSE93EDMONDSWALKER0,Toni E. Walker,House,93,D,True,2012,2026,112,76,22,16,6,8,0,9,3,1,"Walker; Walker T.; Walker, T."
-LEG_SENATE12COHEN3,Christine Cohen,Senate,12,D,True,2019,2026,106,78,27,5,5,1,0,4,5,0,"Christine Cohen; Cohen C.; Cohen; Cohen, C."
-LEG_HOUSE129STAFSTROM1,Steven J. Stafstrom,House,129,D,True,2015,2026,106,83,17,11,6,9,1,12,4,0,"Stafstrom; Stafstrom S.; Stafstrom, S."
+LEG_SENATE14MARONEY1,James J. Maroney,Senate,14,D,True,2019,2026,118,96,22,10,3,1,0,3,31,0,"James Maroney; Maroney J.; Maroney; Maroney, J."
+LEG_SENATE10WINFIELD1,Gary A. Winfield,Senate,10,D,True,2015,2026,117,86,31,22,7,6,0,10,7,0,"Gary Winfield; Winfield G.; Winfield; Winfield, G."
+LEG_HOUSE92DILLON0,Patricia A. Dillon,House,92,D,True,2012,2026,117,92,23,25,5,6,0,9,0,0,"Dillon; Dillon P.; Dillon, P."
+LEG_SENATE29FLEXER1,Mae Flexer,Senate,29,D,True,2015,2026,115,86,29,21,8,3,0,6,2,0,"Mae Flexer; Flexer M.; Flexer, M.; Mae M. Flexer"
+LEG_HOUSE93EDMONDSWALKER0,Toni E. Walker,House,93,D,True,2012,2026,112,76,22,24,6,8,0,9,3,1,"Walker; Walker T.; Walker, T."
+LEG_SENATE12COHEN3,Christine Cohen,Senate,12,D,True,2019,2026,106,78,27,6,5,1,0,4,5,0,"Christine Cohen; Cohen C.; Cohen; Cohen, C."
+LEG_HOUSE129STAFSTROM1,Steven J. Stafstrom,House,129,D,True,2015,2026,106,83,17,20,7,9,1,12,4,0,"Stafstrom; Stafstrom S.; Stafstrom, S."
 LEG_HOUSE76PISCOPO0,John E. Piscopo,House,76,R,True,2012,2026,103,67,36,10,6,0,0,0,3,0,"Piscopo; Piscopo J.; Piscopo, J."
-LEG_HOUSE85MUSHINSKY0,Mary M. Mushinsky,House,85,D,True,2012,2026,103,73,26,9,6,2,1,7,0,4,"Mushinsky; Mushinsky M.; Mushinsky, M."
+LEG_HOUSE85MUSHINSKY0,Mary M. Mushinsky,House,85,D,True,2012,2026,103,73,26,11,7,2,1,7,0,4,"Mushinsky; Mushinsky M.; Mushinsky, M."
 LEG_SENATE6LOPES3,Rick Lopes,Senate,6,D,True,2021,2026,103,78,23,3,3,0,0,4,4,0,Rick Lopes; Lopes R.; Lopes
-LEG_HOUSE89ZUPKUS1,Lezlye Zupkus,House,89,R,True,2014,2026,102,65,37,7,7,1,3,4,9,0,"Zupkus; Zupkus L.; Zupkus, L."
-LEG_HOUSE2ALLIEBRENNAN2,Raghib Allie-Brennan,House,2,D,True,2019,2026,102,82,19,7,2,1,0,5,0,1,"Allie-Brennan; Allie-Brennan R.; Allie-Brennan, R."
+LEG_HOUSE89ZUPKUS1,Lezlye Zupkus,House,89,R,True,2014,2026,102,65,37,8,10,1,3,4,9,0,"Zupkus; Zupkus L.; Zupkus, L."
+LEG_HOUSE2ALLIEBRENNAN2,Raghib Allie-Brennan,House,2,D,True,2019,2026,102,82,19,8,2,1,0,5,0,1,"Allie-Brennan; Allie-Brennan R.; Allie-Brennan, R."
 LEG_HOUSE77PAVALOCK1,Cara C. Pavalock-D'Amato,House,77,R,False,2015,2026,101,64,33,6,9,0,0,0,0,0,"Pavalock-D'Amato; Pavalock-D'Amato C.; Pavalock; Pavalock-D’Amato, C."
-LEG_SENATE9LESSER1,Matthew L. Lesser,Senate,9,D,True,2019,2026,101,77,22,10,6,1,0,5,3,0,"Matthew L. Lesser; Lesser M.; Lesser; Lesser, M."
-LEG_HOUSE3GONZALEZ0,Minnie Gonzalez,House,3,D,True,2012,2026,101,68,17,12,3,1,0,2,2,0,"Gonzalez; Gonzalez M.; Gonzalez, M."
-LEG_HOUSE86CANDELORA0,Vincent J. Candelora,House,86,R,True,2012,2026,100,73,26,10,11,2,4,9,26,3,"Candelora, V.; Candelora; Candelora V."
+LEG_SENATE9LESSER1,Matthew L. Lesser,Senate,9,D,True,2019,2026,101,77,22,11,6,1,0,5,3,0,"Matthew L. Lesser; Lesser M.; Lesser; Lesser, M."
+LEG_HOUSE3GONZALEZ0,Minnie Gonzalez,House,3,D,True,2012,2026,101,68,17,13,3,1,0,2,2,0,"Gonzalez; Gonzalez M.; Gonzalez, M."
+LEG_HOUSE86CANDELORA0,Vincent J. Candelora,House,86,R,True,2012,2026,100,73,26,12,17,2,4,9,26,3,"Candelora, V.; Candelora; Candelora V."
 LEG_SENATE31MARTIN1,Henri Martin,Senate,31,R,True,2015,2026,99,67,28,5,5,0,0,1,19,0,"Henri Martin; Martin; Martin H.; Martin, H."
-LEG_SENATE34CICARELLA1,Paul Cicarella,Senate,34,R,True,2021,2026,99,79,16,3,6,0,1,8,17,0,Paul Cicarella; Cicarella P.; Cicarella
-LEG_HOUSE49JOHNSON0,Susan M. Johnson,House,49,D,True,2012,2026,99,74,24,10,6,5,0,6,1,1,"Johnson, S.; Johnson; Johnson S."
-LEG_HOUSE97PAOLILLO1,Alphonse Paolillo,House,97,D,True,2018,2026,98,81,17,5,2,1,0,1,0,0,"Paolillo; Paolillo A.; Paolillo, A."
+LEG_SENATE34CICARELLA1,Paul Cicarella,Senate,34,R,True,2021,2026,99,79,16,3,7,0,1,8,17,0,Paul Cicarella; Cicarella P.; Cicarella
+LEG_HOUSE49JOHNSON0,Susan M. Johnson,House,49,D,True,2012,2026,99,74,24,15,6,5,0,6,1,1,"Johnson, S.; Johnson; Johnson S."
+LEG_HOUSE97PAOLILLO1,Alphonse Paolillo,House,97,D,True,2018,2026,98,81,17,6,2,1,0,1,0,0,"Paolillo; Paolillo A.; Paolillo, A."
 LEG_HOUSE72BUTLER0,Larry B. Butler,House,72,D,True,2012,2026,98,69,28,6,7,0,0,3,0,0,"Butler; Butler L.; Butler, L."
-LEG_HOUSE125ODEA1,Tom O'Dea,House,125,R,True,2014,2026,98,72,23,8,10,1,10,15,8,0,"O'Dea; O'Dea T.; O ' Dea; O'Dea, T."
-LEG_HOUSE47DUBITSKY2,Doug Dubitsky,House,47,R,True,2015,2026,97,66,31,10,9,5,0,5,4,0,"Dubitsky; Dubitsky D.; Dubitsky, D."
-LEG_HOUSE18GILCHREST1,Jillian Gilchrest,House,18,D,True,2019,2026,97,76,17,9,3,2,0,4,0,0,"Gilchrest; Gilchrest J.; Gilchrest, J."
+LEG_HOUSE125ODEA1,Tom O'Dea,House,125,R,True,2014,2026,98,72,23,9,20,1,10,15,8,0,"O'Dea; O'Dea T.; O ' Dea; O'Dea, T."
+LEG_HOUSE47DUBITSKY2,Doug Dubitsky,House,47,R,True,2015,2026,97,66,31,15,9,5,0,5,4,0,"Dubitsky; Dubitsky D.; Dubitsky, D."
+LEG_HOUSE18GILCHREST1,Jillian Gilchrest,House,18,D,True,2019,2026,97,76,17,11,3,2,0,4,0,0,"Gilchrest; Gilchrest J.; Gilchrest, J."
 LEG_SENATE15HARTLEY0,Joan V. Hartley,Senate,15,D,True,2012,2026,97,57,35,2,9,0,0,1,0,0,"Joan V. Hartley; Hartley J.; Hartley, J.; Hartley"
-LEG_HOUSE88ELLIOTT1,Josh Elliott,House,88,D,True,2017,2026,97,77,15,6,2,22,0,27,0,0,"Elliott; Elliott J.; Elliott, J."
-LEG_HOUSE140SIMMS1,Travis Simms,House,140,D,True,2019,2026,97,66,13,10,1,4,0,15,0,0,"Simms; Simms T.; Simms, T."
-LEG_HOUSE13DOUCETTE3,Jason Doucette,House,13,D,True,2019,2026,96,77,19,8,2,1,0,2,0,0,"Doucette; Doucette J.; Doucette, J."
-LEG_HOUSE61ZAWISTOWSKI1,Tami Zawistowski,House,61,R,True,2014,2026,96,72,24,4,6,1,5,8,3,0,"Zawistowski; Zawistowski T.; Zawistowski, T."
-LEG_HOUSE110GODFREY0,Bob Godfrey,House,110,D,True,2012,2026,95,70,25,13,5,1,0,4,0,0,"Godfrey; Godfrey B.; Godfrey, B."
-LEG_SENATE24KUSHNER1,Julie Kushner,Senate,24,D,True,2019,2026,95,72,22,8,3,3,0,9,5,0,"Julie Kushner; Kushner J.; Kushner; Kushner, J."
-LEG_HOUSE23CARNEY1,Devin R. Carney,House,23,R,True,2015,2026,94,67,20,5,4,0,4,5,3,0,"Carney; Carney D.; Carney, D."
-LEG_HOUSE54HADDAD0,Gregory Haddad,House,54,D,True,2012,2026,94,74,20,9,2,6,0,8,2,0,"Haddad; Haddad G.; Haddad, G."
+LEG_HOUSE88ELLIOTT1,Josh Elliott,House,88,D,True,2017,2026,97,77,15,28,2,22,0,27,0,0,"Elliott; Elliott J.; Elliott, J."
+LEG_HOUSE140SIMMS1,Travis Simms,House,140,D,True,2019,2026,97,66,13,14,1,4,0,15,0,0,"Simms; Simms T.; Simms, T."
+LEG_HOUSE13DOUCETTE3,Jason Doucette,House,13,D,True,2019,2026,96,77,19,9,2,1,0,2,0,0,"Doucette; Doucette J.; Doucette, J."
+LEG_HOUSE61ZAWISTOWSKI1,Tami Zawistowski,House,61,R,True,2014,2026,96,72,24,5,11,1,5,8,3,0,"Zawistowski; Zawistowski T.; Zawistowski, T."
+LEG_HOUSE110GODFREY0,Bob Godfrey,House,110,D,True,2012,2026,95,70,25,14,5,1,0,4,0,0,"Godfrey; Godfrey B.; Godfrey, B."
+LEG_SENATE24KUSHNER1,Julie Kushner,Senate,24,D,True,2019,2026,95,72,22,11,3,3,0,9,5,0,"Julie Kushner; Kushner J.; Kushner; Kushner, J."
+LEG_HOUSE23CARNEY1,Devin R. Carney,House,23,R,True,2015,2026,94,67,20,5,8,0,4,5,3,0,"Carney; Carney D.; Carney, D."
+LEG_HOUSE54HADDAD0,Gregory Haddad,House,54,D,True,2012,2026,94,74,20,15,2,6,0,8,2,0,"Haddad; Haddad G.; Haddad, G."
 LEG_SENATE28HWANG1,Tony Hwang,Senate,28,R,True,2015,2026,94,69,24,4,6,0,0,2,15,0,"Tony Hwang; Hwang T.; Hwang; Hwang, T."
 LEG_HOUSE124BAKER1,Andre F. Baker,House,124,D,True,2015,2026,93,67,16,6,3,0,0,0,0,0,"Baker; Baker A.; Baker, A."
-LEG_HOUSE128ROSARIO2,Christopher Rosario,House,128,D,True,2015,2026,92,70,17,9,1,5,0,7,0,0,"Rosario; Rosario C.; Rosario, C."
-LEG_HOUSE139RYAN0,Kevin Ryan,House,139,D,False,2012,2025,92,78,14,15,2,5,0,6,1,0,"Ryan; Ryan K.; Ryan, K."
-LEG_SENATE2MCCRORY1,Douglas McCrory,Senate,2,D,True,2017,2026,91,64,24,6,6,3,0,6,2,0,"Douglas Mccrory; McCrory D.; McCrory, D.; McCrory"
-LEG_SENATE18SOMERS1,Heather S. Somers,Senate,18,R,True,2017,2026,90,66,22,4,7,2,0,6,39,0,"Heather S. Somers; Somers; Somers H.; Somers, H."
+LEG_HOUSE128ROSARIO2,Christopher Rosario,House,128,D,True,2015,2026,92,70,17,14,1,5,0,7,0,0,"Rosario; Rosario C.; Rosario, C."
+LEG_HOUSE139RYAN0,Kevin Ryan,House,139,D,False,2012,2025,92,78,14,20,2,5,0,6,1,0,"Ryan; Ryan K.; Ryan, K."
+LEG_SENATE2MCCRORY1,Douglas McCrory,Senate,2,D,True,2017,2026,91,64,24,9,6,3,0,6,2,0,"Douglas Mccrory; McCrory D.; McCrory, D.; McCrory"
+LEG_SENATE18SOMERS1,Heather S. Somers,Senate,18,R,True,2017,2026,90,66,22,6,7,2,0,6,39,0,"Heather S. Somers; Somers; Somers H.; Somers, H."
 LEG_HOUSE10GENGA0,Henry J. Genga,House,10,D,True,2012,2026,90,67,23,8,3,0,0,8,0,0,"Genga; Genga H.; Genga, H."
 LEG_SENATE17CABRERA2,Jorge Cabrera,Senate,17,D,True,2021,2026,90,64,23,5,3,0,0,3,4,0,Jorge Cabrera; Cabrera J.; Cabrera
-LEG_HOUSE106BOLINSKY1,Mitch Bolinsky,House,106,R,True,2014,2026,90,58,23,6,3,0,2,5,0,0,"Bolinsky; Bolinsky M.; Bolinsky, M."
-LEG_SENATE27MILLER2,Patricia Billie Miller,Senate,27,D,True,2021,2026,90,65,24,7,3,2,1,9,2,0,Patricia Billie Miller; Miller P.; Miller
-LEG_SENATE3ANWAR2,Saud Anwar,Senate,3,D,True,2019,2026,90,62,27,4,6,3,1,13,9,0,"Saud Anwar; Anwar S.; Anwar; Anwar, S."
-LEG_HOUSE32CARPINO0,Christie M. Carpino,House,32,R,True,2012,2026,89,67,21,9,5,2,0,3,1,0,"Carpino; Carpino, C.; Carpino C."
+LEG_HOUSE106BOLINSKY1,Mitch Bolinsky,House,106,R,True,2014,2026,90,58,23,6,5,0,2,5,0,0,"Bolinsky; Bolinsky M.; Bolinsky, M."
+LEG_SENATE27MILLER2,Patricia Billie Miller,Senate,27,D,True,2021,2026,90,65,24,9,4,2,1,9,2,0,Patricia Billie Miller; Miller P.; Miller
+LEG_SENATE3ANWAR2,Saud Anwar,Senate,3,D,True,2019,2026,90,62,27,7,7,3,1,13,9,0,"Saud Anwar; Anwar S.; Anwar; Anwar, S."
+LEG_HOUSE32CARPINO0,Christie M. Carpino,House,32,R,True,2012,2026,89,67,21,11,5,2,0,3,1,0,"Carpino; Carpino, C.; Carpino C."
 LEG_SENATE5SLAP1,Derek Slap,Senate,5,D,True,2019,2026,89,66,22,5,3,0,0,3,2,0,Derek Slap; Slap D.; Slap
-LEG_HOUSE84SANTIAGO1,Hilda E. Santiago,House,84,D,True,2014,2026,89,69,19,6,1,1,0,7,0,0,"Santiago; Santiago H.; Santiago, H."
-LEG_HOUSE9ROJAS0,Jason Rojas,House,9,D,True,2012,2026,89,63,23,7,4,7,0,19,10,0,"Rojas; Rojas, J."
-LEG_HOUSE75REYES2,Geraldo C. Reyes,House,75,D,True,2017,2026,88,66,16,9,2,2,0,11,0,0,"Reyes; Reyes G.; Reyes, G."
-LEG_HOUSE105KLARIDESDITRIA2,Nicole Klarides-Ditria,House,105,R,True,2017,2026,87,61,24,2,4,1,2,3,0,0,"Klarides-Ditria; Klarides-Ditria N.; Klarides-Ditria, N."
-LEG_HOUSE90FISHBEIN1,Craig C. Fishbein,House,90,R,True,2017,2026,86,54,29,5,7,4,7,16,22,0,"Fishbein; Fishbein C.; Fishbein, C."
-LEG_HOUSE133VAHEY1,Cristin McCarthy Vahey,House,133,D,True,2015,2026,86,68,18,5,3,0,1,4,4,0,"Mccarthy Vahey; McCarthy Vahey C.; Vahey; McCarthy Vahey, C."
-LEG_HOUSE30VEACH1,Donna Veach,House,30,R,True,2021,2026,86,44,31,2,5,0,1,1,0,0,Veach; Veach D.
+LEG_HOUSE84SANTIAGO1,Hilda E. Santiago,House,84,D,True,2014,2026,89,69,19,7,1,1,0,7,0,0,"Santiago; Santiago H.; Santiago, H."
+LEG_HOUSE9ROJAS0,Jason Rojas,House,9,D,True,2012,2026,89,63,23,14,4,7,0,19,10,0,"Rojas; Rojas, J."
+LEG_HOUSE75REYES2,Geraldo C. Reyes,House,75,D,True,2017,2026,88,66,16,11,2,2,0,11,0,0,"Reyes; Reyes G.; Reyes, G."
+LEG_HOUSE105KLARIDESDITRIA2,Nicole Klarides-Ditria,House,105,R,True,2017,2026,87,61,24,3,6,1,2,3,0,0,"Klarides-Ditria; Klarides-Ditria N.; Klarides-Ditria, N."
+LEG_HOUSE90FISHBEIN1,Craig C. Fishbein,House,90,R,True,2017,2026,86,54,29,9,14,4,7,16,22,0,"Fishbein; Fishbein C.; Fishbein, C."
+LEG_HOUSE133VAHEY1,Cristin McCarthy Vahey,House,133,D,True,2015,2026,86,68,18,5,4,0,1,4,4,0,"Mccarthy Vahey; McCarthy Vahey C.; Vahey; McCarthy Vahey, C."
+LEG_HOUSE30VEACH1,Donna Veach,House,30,R,True,2021,2026,86,44,31,2,6,0,1,1,0,0,Veach; Veach D.
 LEG_HOUSE119KENNEDY3,Kathy Kennedy,House,119,R,True,2019,2026,86,64,22,5,4,0,0,1,1,0,"Kennedy; Kennedy K.; Kennedy, K."
 LEG_HOUSE16OSBORNE2,Melissa Osborne,House,16,D,True,2023,2026,86,68,14,4,2,0,0,0,0,0,Osborne; Osborne M.
-LEG_SENATE33NEEDLEMAN2,Norman Needleman,Senate,33,D,True,2019,2026,86,64,22,5,2,3,0,5,0,0,Norman Needleman; Needleman N.; Needleman; Norm Needleman
-LEG_HOUSE31BARRY1,Jill Barry,House,31,D,True,2019,2026,85,60,24,4,2,0,3,4,1,0,"Barry; Barry J.; Barry, J."
+LEG_SENATE33NEEDLEMAN2,Norman Needleman,Senate,33,D,True,2019,2026,86,64,22,8,2,3,0,5,0,0,Norman Needleman; Needleman N.; Needleman; Norm Needleman
+LEG_HOUSE31BARRY1,Jill Barry,House,31,D,True,2019,2026,85,60,24,4,5,0,3,4,1,0,"Barry; Barry J.; Barry, J."
 LEG_HOUSE136STEINBERG0,Jonathan Steinberg,House,136,D,True,2012,2026,85,63,19,8,1,0,0,1,3,0,"Steinberg; Steinberg J.; Steinberg, J."
-LEG_HOUSE7HALL1,Joshua M. Hall,House,7,D,True,2018,2026,85,64,16,5,0,2,0,5,0,0,"Hall, J.; Hall J.; Hall"
-LEG_HOUSE4CONCEPCION2,Julio A. Concepcion,House,4,D,True,2019,2026,85,65,14,4,2,2,0,4,0,0,"Concepcion; Concepcion J.; Concepcion, J."
+LEG_HOUSE7HALL1,Joshua M. Hall,House,7,D,True,2018,2026,85,64,16,7,0,2,0,5,0,0,"Hall, J.; Hall J.; Hall"
+LEG_HOUSE4CONCEPCION2,Julio A. Concepcion,House,4,D,True,2019,2026,85,65,14,6,2,2,0,4,0,0,"Concepcion; Concepcion J.; Concepcion, J."
 LEG_HOUSE122MCGORTY1,Ben McGorty,House,122,R,True,2015,2026,84,60,24,11,5,0,0,0,0,0,"Mcgorty, B.; McGorty, B.; McGorty B."
 LEG_HOUSE99ZULLO2,Joseph H. Zullo,House,99,R,True,2019,2026,84,59,23,4,3,0,0,0,0,0,"Zullo; Zullo J.; Zullo, J."
 LEG_HOUSE64HORN2,Maria P. Horn,House,64,D,True,2019,2026,84,67,17,7,2,0,0,1,4,0,"Horn; Horn M.; Horn, M."
-LEG_HOUSE1RITTER0,Matthew Ritter,House,1,D,True,2012,2026,84,64,20,7,1,7,0,12,8,0,"Ritter; Ritter, M.; Ritter M. "
+LEG_HOUSE1RITTER0,Matthew Ritter,House,1,D,True,2012,2026,84,64,20,14,1,7,0,12,8,0,"Ritter; Ritter, M.; Ritter M. "
 LEG_HOUSE21DEMICCO1,Mike Demicco,House,21,D,True,2014,2026,84,64,20,9,2,0,0,1,0,0,"Demicco; Demicco, M.; Demicco M."
-LEG_HOUSE25SANCHEZ1,"Robert ""Bobby"" Sanchez",House,25,D,False,2012,2025,84,58,18,7,3,3,0,4,1,0,"Sanchez, R.; Sanchez; Sanchez R."
+LEG_HOUSE25SANCHEZ1,"Robert ""Bobby"" Sanchez",House,25,D,False,2012,2025,84,58,18,10,3,3,0,4,1,0,"Sanchez, R.; Sanchez; Sanchez R."
 LEG_HOUSE17DEGRAW1,Eleni Kavros DeGraw,House,17,D,True,2021,2026,83,64,13,2,2,0,0,2,1,0,Kavros Degraw; Kavros DeGraw E.; DeGraw
-LEG_HOUSE43HOWARD2,Greg S. Howard,House,43,R,True,2021,2026,83,67,16,4,6,0,1,1,11,0,Howard; Howard G.
-LEG_SENATE32BERTHEL1,Eric C. Berthel,Senate,32,R,True,2018,2026,82,58,22,5,5,1,2,10,34,1,"Eric C. Berthel; Berthel; Berthel E.; Berthel, E."
+LEG_HOUSE43HOWARD2,Greg S. Howard,House,43,R,True,2021,2026,83,67,16,4,7,0,1,1,11,0,Howard; Howard G.
+LEG_SENATE32BERTHEL1,Eric C. Berthel,Senate,32,R,True,2018,2026,82,58,22,6,7,1,2,10,34,1,"Eric C. Berthel; Berthel; Berthel E.; Berthel, E."
 LEG_HOUSE68POLLETTA2,Joe Polletta,House,68,R,True,2019,2026,82,58,23,2,3,0,0,0,6,0,"Polletta; Polletta J.; Polletta, J."
 LEG_HOUSE104ROCHELLE1,Kara Rochelle,House,104,D,True,2019,2026,82,65,17,4,1,0,0,6,0,0,Rochelle; Rochelle K.
-LEG_HOUSE29WOOD1,Kerry S. Wood,House,29,D,True,2019,2026,82,48,13,5,1,0,1,3,1,0,"Wood; Wood, K.; Wood K."
+LEG_HOUSE29WOOD1,Kerry S. Wood,House,29,D,True,2019,2026,82,48,13,5,2,0,1,3,1,0,"Wood; Wood, K.; Wood K."
 LEG_HOUSE147BLUMENTHAL1,Matt Blumenthal,House,147,D,True,2019,2026,82,64,18,7,4,0,0,3,0,0,"Blumenthal; Blumenthal M.; Blumenthal, M."
 LEG_SENATE16SAMPSON1,Rob Sampson,Senate,16,R,True,2019,2026,82,49,32,4,6,0,0,3,61,0,Sampson; Rob Sampson; Sampson R.; Robert Sampson
 LEG_HOUSE59HALL1,Carol Hall,House,59,R,True,2018,2026,81,62,18,6,3,0,0,0,0,0,"Hall, C.; Hall C."
 LEG_HOUSE103LINEHAN1,Liz Linehan,House,103,D,True,2017,2026,81,62,15,10,1,0,0,0,6,0,"Linehan; Linehan L.; Linehan, L."
 LEG_HOUSE108CALLAHAN1,Patrick E. Callahan,House,108,R,True,2021,2026,81,63,18,1,7,0,0,0,0,0,Callahan; Callahan P.
-LEG_HOUSE39NOLAN2,Anthony L. Nolan,House,39,D,True,2019,2026,80,62,18,5,2,6,0,15,0,0,"Nolan; Nolan A.; Nolan, A."
-LEG_SENATE25DUFF0,Bob Duff,Senate,25,D,True,2012,2026,80,49,31,7,2,4,0,13,14,0,Bob Duff; Duff
+LEG_HOUSE39NOLAN2,Anthony L. Nolan,House,39,D,True,2019,2026,80,62,18,11,2,6,0,15,0,0,"Nolan; Nolan A.; Nolan, A."
+LEG_SENATE25DUFF0,Bob Duff,Senate,25,D,True,2012,2026,80,49,31,11,2,4,0,13,14,0,Bob Duff; Duff
 LEG_HOUSE20FARRAR2,Kate Farrar,House,20,D,True,2021,2026,80,63,17,3,1,0,0,2,0,0,"Farrar; Farrar K.; Farrar, K."
 LEG_HOUSE142DATHAN2,Lucy Dathan,House,142,D,True,2019,2026,80,58,19,4,3,0,0,2,0,1,"Dathan; Dathan L.; Dathan, L."
-LEG_SENATE11LOONEY0,Martin M. Looney,Senate,11,D,True,2012,2026,80,49,31,7,2,11,0,20,11,8,Martin M. Looney; Looney
-LEG_HOUSE44DAUPHINAIS2,Anne Dauphinais,House,44,R,True,2019,2026,79,45,34,3,2,3,3,6,8,0,"Dauphinais; Dauphinais A.; Dauphinais, A."
+LEG_SENATE11LOONEY0,Martin M. Looney,Senate,11,D,True,2012,2026,80,49,31,18,2,11,0,20,11,8,Martin M. Looney; Looney
+LEG_HOUSE44DAUPHINAIS2,Anne Dauphinais,House,44,R,True,2019,2026,79,45,34,6,5,3,3,6,8,0,"Dauphinais; Dauphinais A.; Dauphinais, A."
 LEG_HOUSE24SANCHEZ2,Emmanuel Sanchez,House,24,D,True,2021,2026,79,62,17,3,2,0,0,1,3,0,"Sanchez, E.; Sanchez E.; Sanchez"
-LEG_HOUSE27TURCO2,Gary A. Turco,House,27,D,True,2019,2026,79,63,16,5,2,1,2,7,4,0,Turco; Turco G.
-LEG_HOUSE82QUINN1,Michael D. Quinn,House,82,D,True,2021,2026,79,65,14,6,3,0,1,4,0,0,Quinn; Quinn M.
+LEG_HOUSE27TURCO2,Gary A. Turco,House,27,D,True,2019,2026,79,63,16,6,4,1,2,7,4,0,Turco; Turco G.
+LEG_HOUSE82QUINN1,Michael D. Quinn,House,82,D,True,2021,2026,79,65,14,6,4,0,1,4,0,0,Quinn; Quinn M.
 LEG_HOUSE73NAPOLI1,Ronald A. Napoli,House,73,D,True,2019,2026,79,62,16,5,1,0,0,3,0,0,"Napoli; Napoli R.; Napoli, R."
-LEG_HOUSE63CASE1,Jay M. Case,House,63,R,True,2014,2026,78,59,19,5,3,1,0,1,0,0,"Case; Case, J.; Case J."
-LEG_HOUSE50BOYD1,Patrick S. Boyd,House,50,D,True,2017,2026,78,59,13,10,0,2,0,4,1,0,"Boyd; Boyd P.; Boyd, P."
+LEG_HOUSE63CASE1,Jay M. Case,House,63,R,True,2014,2026,78,59,19,6,3,1,0,1,0,0,"Case; Case, J.; Case J."
+LEG_HOUSE50BOYD1,Patrick S. Boyd,House,50,D,True,2017,2026,78,59,13,12,0,2,0,4,1,0,"Boyd; Boyd P.; Boyd, P."
 LEG_HOUSE111BERGERGIRVALO1,Aimee Berger-Girvalo,House,111,D,True,2021,2026,77,57,14,2,1,0,0,1,0,0,Berger-Girvalo; Berger-Girvalo A.
-LEG_HOUSE130FELIPE1,Antonio Felipe,House,130,D,True,2020,2026,77,57,16,3,2,1,0,1,1,0,Felipe; Felipe A.
+LEG_HOUSE130FELIPE1,Antonio Felipe,House,130,D,True,2020,2026,77,57,16,4,2,1,0,1,1,0,Felipe; Felipe A.
 LEG_HOUSE80MASTROFRANCESCO1,Gale L. Mastrofrancesco,House,80,R,True,2019,2026,77,37,36,3,3,0,0,0,0,0,"Mastrofrancesco; Mastrofrancesco G.; Mastrofrancesco, G."
-LEG_HOUSE144DELANY2,Hubert D. Delany,House,144,D,True,2022,2026,77,54,17,4,3,1,0,12,0,0,Delany; Delany H.
-LEG_HOUSE53NUCCIO3,Tammy Nuccio,House,53,R,True,2021,2026,77,52,19,2,2,0,2,4,6,0,Nuccio; Nuccio T.
-LEG_HOUSE150MESKERS3,Stephen R. Meskers,House,150,D,True,2019,2026,76,58,18,4,1,1,0,1,0,0,"Meskers; Meskers S.; Meskers, S."
+LEG_HOUSE144DELANY2,Hubert D. Delany,House,144,D,True,2022,2026,77,54,17,5,3,1,0,12,0,0,Delany; Delany H.
+LEG_HOUSE53NUCCIO3,Tammy Nuccio,House,53,R,True,2021,2026,77,52,19,2,4,0,2,4,6,0,Nuccio; Nuccio T.
+LEG_HOUSE150MESKERS3,Stephen R. Meskers,House,150,D,True,2019,2026,76,58,18,5,1,1,0,1,0,0,"Meskers; Meskers S.; Meskers, S."
 LEG_HOUSE112SCOTT2,Tony J. Scott,House,112,R,True,2021,2026,76,59,14,2,1,0,0,2,0,0,Scott; Scott T.
 LEG_HOUSE145PARIS1,Corey P. Paris,House,145,D,True,2021,2026,75,52,11,1,1,0,0,1,0,0,Paris; Paris C.
 LEG_HOUSE52VAIL1,Kurt Vail,House,52,R,True,2015,2026,75,56,17,7,2,0,0,0,0,0,"Vail; Vail, K.; Vail K."
-LEG_HOUSE127BROWN1,Marcus Brown,House,127,D,True,2023,2026,75,50,9,2,2,2,0,3,0,0,"Brown, M.; Brown M.; Brown"
+LEG_HOUSE127BROWN1,Marcus Brown,House,127,D,True,2023,2026,75,50,9,4,2,2,0,3,0,0,"Brown, M.; Brown M.; Brown"
 LEG_HOUSE5KHAN2,Maryam Khan,House,5,D,True,2022,2026,75,49,17,4,2,0,0,2,0,0,Khan; Khan M.
 LEG_HOUSE19EXUM2,Tammy R. Exum,House,19,D,True,2019,2026,75,54,13,2,1,0,0,2,0,0,Exum; Exum T.
-LEG_HOUSE34HAINES2,Irene M. Haines,House,34,R,True,2019,2026,74,48,20,3,1,2,0,4,3,1,"Haines; Haines I.; Haines, I."
+LEG_HOUSE34HAINES2,Irene M. Haines,House,34,R,True,2019,2026,74,48,20,5,1,2,0,4,3,1,"Haines; Haines I.; Haines, I."
 LEG_HOUSE60GARIBAY2,Jane M. Garibay,House,60,D,True,2019,2026,74,54,18,3,2,0,0,3,0,0,Garibay; Garibay J.
-LEG_HOUSE45LANOUE3,Brian Lanoue,House,45,R,True,2019,2026,73,51,21,3,1,1,0,1,2,0,"Lanoue; Lanoue B.; Lanoue, B."
-LEG_HOUSE35ANISKOVICH4,Chris Aniskovich,House,35,R,True,2023,2026,73,57,16,0,3,0,1,1,0,0,Aniskovich; Aniskovich C.
+LEG_HOUSE45LANOUE3,Brian Lanoue,House,45,R,True,2019,2026,73,51,21,4,1,1,0,1,2,0,"Lanoue; Lanoue B.; Lanoue, B."
+LEG_HOUSE35ANISKOVICH4,Chris Aniskovich,House,35,R,True,2023,2026,73,57,16,0,4,0,1,1,0,0,Aniskovich; Aniskovich C.
 LEG_HOUSE109SANTOS2,Farley Santos,House,109,D,True,2023,2026,73,60,13,1,2,0,0,4,0,0,Santos; Santos F.
-LEG_HOUSE121GRESKO1,Joseph P. Gresko,House,121,D,True,2016,2026,73,56,17,7,1,1,0,5,0,0,"Gresko; Gresko, J.; Gresko J."
-LEG_HOUSE91DAGOSTINO1,Michael C. D'Agostino,House,91,D,False,2014,2024,73,60,6,9,0,2,0,3,33,0,"D'Agostino; D'Agostino M.; D ' Agostino; D’Agostino, M."
+LEG_HOUSE121GRESKO1,Joseph P. Gresko,House,121,D,True,2016,2026,73,56,17,8,1,1,0,5,0,0,"Gresko; Gresko, J.; Gresko J."
+LEG_HOUSE91DAGOSTINO1,Michael C. D'Agostino,House,91,D,False,2014,2024,73,60,6,11,0,2,0,3,33,0,"D'Agostino; D'Agostino M.; D ' Agostino; D’Agostino, M."
 LEG_HOUSE33CHAFEE1,Brandon Chafee,House,33,D,True,2021,2026,72,55,17,3,1,0,0,2,0,0,Chafee; Chafee B.
 LEG_HOUSE46WILSON2,Derell Wilson,House,46,D,True,2023,2026,72,57,15,4,2,0,0,2,4,0,Wilson; Wilson D.
-LEG_HOUSE14DELNICKI1,Tom Delnicki,House,14,R,True,2019,2026,72,60,12,2,2,1,3,12,0,0,"Delnicki; Delnicki T.; Delnicki, T."
+LEG_HOUSE14DELNICKI1,Tom Delnicki,House,14,R,True,2019,2026,72,60,12,3,5,1,3,12,0,0,"Delnicki; Delnicki T.; Delnicki, T."
 LEG_HOUSE102COMEY1,Robin E. Comey,House,102,D,True,2019,2026,71,49,21,3,1,0,0,2,0,0,"Comey; Comey R.; Comey, R."
-LEG_HOUSE71PIZZUTO1,William Pizzuto,House,71,R,True,2022,2026,71,58,13,2,1,0,1,3,0,0,Pizzuto; Pizzuto W.
-LEG_HOUSE28BELLO1,Amy Morrin Bello,House,28,D,True,2021,2026,70,53,17,2,1,0,1,5,0,0,Morrin Bello; Morrin Bello A.; Bello
+LEG_HOUSE71PIZZUTO1,William Pizzuto,House,71,R,True,2022,2026,71,58,13,2,2,0,1,3,0,0,Pizzuto; Pizzuto W.
+LEG_HOUSE28BELLO1,Amy Morrin Bello,House,28,D,True,2021,2026,70,53,17,2,2,0,1,5,0,0,Morrin Bello; Morrin Bello A.; Bello
 LEG_HOUSE57FOSTER1,Jaime S. Foster,House,57,D,True,2021,2026,70,56,13,2,1,0,0,3,1,0,Foster; Foster J.
-LEG_HOUSE132LEEPER2,Jennifer Leeper,House,132,D,True,2021,2026,70,53,17,2,2,0,1,1,0,0,Leeper; Leeper J.
+LEG_HOUSE132LEEPER2,Jennifer Leeper,House,132,D,True,2021,2026,70,53,17,2,3,0,1,1,0,0,Leeper; Leeper J.
 LEG_HOUSE101PARKER2,John-Michael Parker,House,101,D,True,2021,2026,70,53,17,2,1,0,0,2,0,0,Parker; Parker J.
 LEG_HOUSE114WELANDER1,Mary Welander,House,114,D,True,2021,2026,70,53,16,2,1,0,0,0,0,0,Welander; Welander M.
-LEG_HOUSE94PORTER1,Robyn A. Porter,House,94,D,False,2014,2024,70,53,8,11,3,12,0,13,1,0,"Porter; Porter R.; Porter, R."
-LEG_HOUSE135HUGHES2,Anne M. Hughes,House,135,D,True,2019,2026,69,51,17,3,1,6,0,11,0,0,Hughes; Hughes A.
+LEG_HOUSE94PORTER1,Robyn A. Porter,House,94,D,False,2014,2024,70,53,8,23,3,12,0,13,1,0,"Porter; Porter R.; Porter, R."
+LEG_HOUSE135HUGHES2,Anne M. Hughes,House,135,D,True,2019,2026,69,51,17,9,1,6,0,11,0,0,Hughes; Hughes A.
 LEG_SENATE23GASTON3,Herron Gaston,Senate,23,D,True,2023,2026,68,48,20,4,2,0,0,4,0,0,Herron Gaston; Gaston H.; Gaston
-LEG_HOUSE11CURREY1,Jeff Currey,House,11,D,False,2015,2024,68,58,9,12,3,6,0,7,1,0,"Currey; Currey J.; Currey, J."
+LEG_HOUSE11CURREY1,Jeff Currey,House,11,D,False,2015,2024,68,58,9,18,3,6,0,7,1,0,"Currey; Currey J.; Currey, J."
 LEG_HOUSE131LABRIOLA0,David K. Labriola,House,131,R,False,2012,2024,67,47,13,10,6,0,0,0,0,0,"Labriola; Labriola D.; Labriola, D."
 LEG_HOUSE118SMITH1,Frank Smith,House,118,D,True,2021,2026,67,50,17,2,1,0,0,2,0,0,"Smith; Smith, F.; Smith F."
-LEG_HOUSE48DECAPRIO2,Mark DeCaprio,House,48,R,True,2023,2026,67,36,31,3,3,0,1,1,0,1,Decaprio; DeCaprio M.; DeCaprio
+LEG_HOUSE48DECAPRIO2,Mark DeCaprio,House,48,R,True,2023,2026,67,36,31,3,4,0,1,1,0,1,Decaprio; DeCaprio M.; DeCaprio
 LEG_HOUSE74DIGIOVANCARLO2,Michael DiGiovancarlo,House,74,D,True,2021,2026,67,45,17,4,1,0,0,2,0,0,Digiovancarlo; DiGiovancarlo M.; DiGiovancarlo
 LEG_SENATE36FAZIO3,Ryan Fazio,Senate,36,R,True,2022,2026,67,50,17,0,1,0,0,3,14,0,Ryan Fazio; Fazio; Fazio R.
 LEG_HOUSE67BUCKBEE2,Bill Buckbee,House,67,R,True,2019,2026,66,51,15,4,1,0,0,1,0,0,Buckbee; Buckbee B.
 LEG_HOUSE62ANDERSON1,Mark W. Anderson,House,62,R,True,2021,2026,66,39,21,3,0,0,0,1,2,0,Anderson; Anderson M.
-LEG_HOUSE26TERCYAK0,Peter Tercyak,House,26,D,False,2012,2024,66,50,11,11,0,11,0,12,0,0,"Tercyak; Tercyak, P.; Tercyak P."
-LEG_HOUSE41BUMGARDNER1,Aundre Bumgardner,House,41,D,True,2015,2026,65,50,15,3,1,5,0,9,0,0,"Bumgardner; Bumgardner A.; Bumgardner, A."
-LEG_HOUSE113PERILLO0,Jason Perillo,House,113,R,False,2012,2025,65,38,17,5,2,0,3,3,3,0,"Perillo; Perillo, J.; Perillo J."
+LEG_HOUSE26TERCYAK0,Peter Tercyak,House,26,D,False,2012,2024,66,50,11,22,0,11,0,12,0,0,"Tercyak; Tercyak, P.; Tercyak P."
+LEG_HOUSE41BUMGARDNER1,Aundre Bumgardner,House,41,D,True,2015,2026,65,50,15,8,1,5,0,9,0,0,"Bumgardner; Bumgardner A.; Bumgardner, A."
+LEG_HOUSE113PERILLO0,Jason Perillo,House,113,R,False,2012,2025,65,38,17,5,5,0,3,3,3,0,"Perillo; Perillo, J.; Perillo J."
 LEG_HOUSE83FAZZINO1,Jonathan Fazzino,House,83,D,True,2023,2026,65,51,10,1,3,0,0,2,0,0,Fazzino; Fazzino J.
 LEG_SENATE4RAHMAN1,MD Rahman,Senate,4,D,True,2023,2026,65,46,19,0,3,0,0,2,0,0,Md Rahman; Rahman M.; Rahman
 LEG_SENATE30HARDING3,Stephen G. Harding,Senate,30,R,True,2023,2026,64,45,14,1,3,0,0,0,15,0,Stephen Harding; Harding S.; Harding
 LEG_SENATE35GORDON2,Jeff Gordon,Senate,35,R,True,2023,2026,62,48,13,1,1,0,0,2,11,0,Jeff Gordon; Gordon J.; Gordon
 LEG_HOUSE126GEE2,Fred Gee,House,126,D,True,2023,2026,61,48,13,2,1,0,0,4,0,0,Gee; Gee F.
-LEG_SENATE22MOORE1,Marilyn Moore,Senate,22,D,False,2015,2024,61,51,10,9,1,6,0,9,2,0,"Marilyn Moore; Moore M.; Moore; Moore, M."
-LEG_HOUSE37CHEESEMAN1,Holly H. Cheeseman,House,37,R,False,2017,2024,60,43,17,3,5,0,2,5,3,6,"Cheeseman; Cheeseman H.; Cheeseman, H."
-LEG_HOUSE38MCCARTY1,Kathleen M. McCarty,House,38,R,False,2015,2024,60,47,11,6,4,1,0,2,0,1,"Mccarty, K.; McCarty K.; McCarty, K.; McCarty"
+LEG_SENATE22MOORE1,Marilyn Moore,Senate,22,D,False,2015,2024,61,51,10,15,1,6,0,9,2,0,"Marilyn Moore; Moore M.; Moore; Moore, M."
+LEG_HOUSE37CHEESEMAN1,Holly H. Cheeseman,House,37,R,False,2017,2024,60,43,17,3,8,0,2,5,3,6,"Cheeseman; Cheeseman H.; Cheeseman, H."
+LEG_HOUSE38MCCARTY1,Kathleen M. McCarty,House,38,R,False,2015,2024,60,47,11,7,4,1,0,2,0,1,"Mccarty, K.; McCarty K.; McCarty, K.; McCarty"
 LEG_SENATE26MAHER2,Ceci Maher,Senate,26,D,True,2023,2026,59,38,21,3,2,0,0,2,4,0,Ceci Maher; Maher C.; Maher
 LEG_HOUSE143JOHNSON2,Dominique Johnson,House,143,D,True,2023,2026,59,45,14,3,3,0,0,1,0,0,"Johnson, D.; Johnson D.; Johnson"
 LEG_SENATE20MARX2,Martha Marx,Senate,20,D,True,2023,2026,59,40,18,0,2,0,0,3,2,0,Martha Marx; Marx M.; Marx
-LEG_HOUSE78HOXHA1,Joe Hoxha,House,78,R,True,2023,2026,58,36,16,0,1,0,1,1,0,0,Hoxha; Hoxha J.
-LEG_SENATE8WITKOS0,Kevin Witkos,Senate,8,R,False,2012,2022,58,44,11,12,4,0,1,2,5,0,"Kevin D. Witkos; Witkos K.; Witkos, K.; Witkos"
+LEG_HOUSE78HOXHA1,Joe Hoxha,House,78,R,True,2023,2026,58,36,16,0,2,0,1,1,0,0,Hoxha; Hoxha J.
+LEG_SENATE8WITKOS0,Kevin Witkos,Senate,8,R,False,2012,2022,58,44,11,12,5,0,1,2,5,0,"Kevin D. Witkos; Witkos K.; Witkos, K.; Witkos"
 LEG_HOUSE107FONCELLO2,Martin Foncello,House,107,R,True,2023,2026,58,40,18,2,1,0,0,4,0,0,Foncello; Foncello M.
 LEG_HOUSE6SANCHEZ2,James Sanchez,House,6,D,True,2023,2026,57,42,14,2,1,0,0,2,0,0,"Sanchez, J.; Sanchez J.; Sanchez"
 LEG_HOUSE100BELTON3,Kai J. Belton,House,100,D,True,2023,2026,57,44,13,1,2,0,0,1,0,0,Belton; Belton K.
 LEG_HOUSE98RADER2,Moira Rader,House,98,D,True,2023,2026,57,44,13,1,1,0,0,0,0,0,Rader; Rader M.
 LEG_HOUSE51HAYES1,Ricky L. Hayes,House,51,R,False,2019,2024,57,42,11,6,2,0,0,0,0,0,"Hayes; Hayes R.; Hayes, R."
-LEG_SENATE4CASSANO0,Steve Cassano,Senate,4,D,False,2012,2022,55,29,19,6,9,4,0,5,2,0,"Steve Cassano; Cassano, S.; Cassano; Cassano S."
-LEG_HOUSE137ROBERTS1,Kadeem Roberts,House,137,D,True,2023,2026,54,39,14,2,1,2,0,4,0,0,Roberts; Roberts K.
+LEG_SENATE4CASSANO0,Steve Cassano,Senate,4,D,False,2012,2022,55,29,19,10,9,4,0,5,2,0,"Steve Cassano; Cassano, S.; Cassano; Cassano S."
+LEG_HOUSE137ROBERTS1,Kadeem Roberts,House,137,D,True,2023,2026,54,39,14,4,1,2,0,4,0,0,Roberts; Roberts K.
 LEG_HOUSE65COOK0,Michelle Cook,House,65,D,False,2012,2024,54,44,10,7,1,0,0,0,0,0,"Cook; Cook, M.; Cook M."
-LEG_HOUSE70BRONKO1,Seth Bronko,House,70,R,True,2023,2026,54,41,13,1,1,0,1,2,0,0,Bronko; Bronko S.
-LEG_HOUSE117FERRARO1,Charles Ferraro,House,117,R,False,2015,2024,53,41,10,9,2,2,0,3,0,0,"Ferraro; Ferraro, C.; Ferraro C."
+LEG_HOUSE70BRONKO1,Seth Bronko,House,70,R,True,2023,2026,54,41,13,1,2,0,1,2,0,0,Bronko; Bronko S.
+LEG_HOUSE117FERRARO1,Charles Ferraro,House,117,R,False,2015,2024,53,41,10,11,2,2,0,3,0,0,"Ferraro; Ferraro, C.; Ferraro C."
 LEG_HOUSE81POULOS3,Christopher Poulos,House,81,D,True,2023,2026,52,35,12,3,0,0,0,2,0,1,Poulos; Poulos C.
 LEG_HOUSE66REDDINGTONHUGHES2,Karen Reddington-Hughes,House,66,R,True,2023,2026,52,32,20,2,0,0,0,0,2,0,Reddington-Hughes; Reddington-Hughes K.
 LEG_SENATE21KELLY0,Kevin C. Kelly,Senate,21,R,False,2012,2024,52,37,10,2,4,0,0,3,9,1,Kevin C. Kelly; Kevin Kelly; Kelly; Kelly K.
-LEG_HOUSE134KEITT2,Sarah Keitt,House,134,D,True,2023,2026,52,40,12,1,1,0,1,2,2,0,Keitt; Keitt S.
+LEG_HOUSE134KEITT2,Sarah Keitt,House,134,D,True,2023,2026,52,40,12,1,2,0,1,2,2,0,Keitt; Keitt S.
 LEG_HOUSE55WEIR3,Steve Weir,House,55,R,True,2023,2026,52,35,17,1,1,0,0,0,11,0,Weir; Weir S.
-LEG_HOUSE141MARRA1,Tracy Marra,House,141,R,True,2023,2026,52,40,12,1,1,0,4,6,1,2,Marra; Marra T.
-LEG_HOUSE40CONLEY2,Christine Conley,House,40,D,False,2019,2024,51,44,7,7,1,2,0,7,0,0,"Conley; Conley C.; Conley, C."
-LEG_HOUSE138GUCKER2,Kenneth Gucker,House,138,D,True,2019,2026,51,36,15,4,1,1,0,10,0,0,"Gucker; Gucker, K.; Gucker K."
+LEG_HOUSE141MARRA1,Tracy Marra,House,141,R,True,2023,2026,52,40,12,1,6,0,4,6,1,2,Marra; Marra T.
+LEG_HOUSE40CONLEY2,Christine Conley,House,40,D,False,2019,2024,51,44,7,9,1,2,0,7,0,0,"Conley; Conley C.; Conley, C."
+LEG_HOUSE138GUCKER2,Kenneth Gucker,House,138,D,True,2019,2026,51,36,15,5,1,1,0,10,0,0,"Gucker; Gucker, K.; Gucker K."
 LEG_SENATE13HOCHADEL4,Jan Hochadel,Senate,13,D,True,2023,2026,50,32,18,0,1,0,0,2,0,0,Jan Hochadel; Hochadel J.; Hochadel
 LEG_HOUSE151ARZENO2,Hector Arzeno,House,151,D,True,2023,2026,49,36,13,1,1,0,0,1,0,0,Arzeno; Arzeno H.
 LEG_HOUSE56BROWN2,Kevin Brown,House,56,D,True,2023,2026,49,36,13,1,1,0,0,1,0,0,"Brown, K.; Brown K.; Brown"
 LEG_HOUSE79FORTIER2,Mary Fortier,House,79,D,True,2023,2026,49,36,13,1,1,0,0,0,0,0,Fortier; Fortier M.
 LEG_SENATE22GADKARWILCOX2,Sujata Gadkar-Wilcox,Senate,22,D,True,2025,2026,48,28,19,0,3,0,0,2,0,0,Sujata Gadkar-Wilcox; Gadkar-Wilcox S.; Gadkar-Wilcox
-LEG_HOUSE36PALM3,Christine Palm,House,36,D,False,2019,2024,47,42,5,7,1,1,0,3,0,0,"Palm; Palm C.; Palm, C."
+LEG_HOUSE36PALM3,Christine Palm,House,36,D,False,2019,2024,47,42,5,8,1,1,0,3,0,0,"Palm; Palm C.; Palm, C."
 LEG_HOUSE109ARCONTI1,"David Arconti, Jr.",House,109,D,False,2014,2022,47,42,5,18,0,0,0,0,0,0,"Arconti; Arconti, D.; Arconti D."
-LEG_HOUSE127HENNESSY0,John (Jack) F. Hennessy,House,127,D,False,2012,2022,47,33,13,12,4,3,0,5,0,0,"Hennessy; Hennessy, J.; Hennessy J."
+LEG_HOUSE127HENNESSY0,John (Jack) F. Hennessy,House,127,D,False,2012,2022,47,33,13,15,4,3,0,5,0,0,"Hennessy; Hennessy, J.; Hennessy J."
 LEG_HOUSE22MARTINEZ3,Rebecca Martinez,House,22,D,True,2025,2026,46,33,12,0,3,0,0,2,0,1,"Martinez, R.; Martinez R.; Martinez"
 LEG_HOUSE137PERONE0,Chris Perone,House,137,D,False,2012,2022,45,32,13,10,4,0,0,0,1,0,"Perone; Perone, C.; Perone C."
-LEG_HOUSE146MICHEL2,David Michel,House,146,D,False,2019,2024,45,36,6,6,0,12,0,18,0,1,"Michel; Michel D.; Michel, D."
-LEG_HOUSE69HARRISON1,Cindy Harrison,House,69,R,False,2021,2024,44,28,16,1,2,0,1,1,0,0,Harrison; Harrison C.
+LEG_HOUSE146MICHEL2,David Michel,House,146,D,False,2019,2024,45,36,6,18,0,12,0,18,0,1,"Michel; Michel D.; Michel, D."
+LEG_HOUSE69HARRISON1,Cindy Harrison,House,69,R,False,2021,2024,44,28,16,1,3,0,1,1,0,0,Harrison; Harrison C.
 LEG_HOUSE78BETTS0,Whit Betts,House,78,R,False,2012,2022,43,26,13,6,5,0,0,0,1,0,"Betts; Betts, W.; Betts W."
 LEG_HOUSE115BORER1,Dorinda Borer,House,115,D,False,2017,2023,42,37,5,10,0,0,0,0,0,0,"Borer; Borer, D.; Borer D."
-LEG_HOUSE46RILEY1,Emmett D. Riley,House,46,D,False,2012,2022,42,33,7,8,3,2,0,2,0,0,"Riley; Riley E.; Riley, E.; Riley, M."
+LEG_HOUSE46RILEY1,Emmett D. Riley,House,46,D,False,2012,2022,42,33,7,10,3,2,0,2,0,0,"Riley; Riley E.; Riley, E.; Riley, M."
 LEG_HOUSE148FOX1,Daniel J. Fox,House,148,D,False,2012,2022,41,17,13,1,7,0,0,0,0,0,"Fox; Fox, D.; Fox D."
 LEG_SENATE21PERILLO1,Jason Perillo,Senate,21,R,True,2025,2026,41,32,8,0,3,0,0,1,9,1,Jason Perillo; Perillo J.; Perillo
 LEG_HOUSE116MCGEE2,Trenee McGee,House,116,D,True,2022,2026,41,29,10,0,1,0,0,0,0,0,"Mcgee; McGee T.; Mcgee, T."
 LEG_SENATE27LEONE1,Carlo Leone,Senate,27,D,False,2012,2020,40,26,14,17,4,0,0,1,0,0,"Leone, C.; Carlo Leone; Leone C.; Leone"
 LEG_SENATE8HONIG2,Paul Honig,Senate,8,D,True,2025,2026,40,24,16,1,1,0,0,1,0,0,Paul Honig; Honig P.; Honig
 LEG_HOUSE70REBIMBAS0,Rosa C. Rebimbas,House,70,R,False,2012,2022,40,23,14,5,5,0,0,0,4,0,"Rebimbas; Rebimbas, R.; Rebimbas R."
-LEG_HOUSE58ARNONE3,Tom Arnone,House,58,D,False,2019,2024,40,33,5,4,0,1,0,2,0,0,"Arnone; Arnone T.; Arnone, T."
+LEG_HOUSE58ARNONE3,Tom Arnone,House,58,D,False,2019,2024,40,33,5,5,0,1,0,2,0,0,"Arnone; Arnone T.; Arnone, T."
 LEG_HOUSE131JENSEN1,Arnold Jensen,House,131,R,True,2025,2026,39,30,9,0,2,0,0,0,0,0,Jensen; Jensen A.
-LEG_HOUSE71DAMELIO0,Anthony J. D'Amelio,House,71,R,False,2012,2021,38,19,8,7,5,0,1,2,0,0,"D'Amelio; D ' Amelio; D'Amelio, A.; D’Amelio, A."
-LEG_HOUSE83ABERCROMBIE0,Catherine Abercrombie,House,83,D,False,2012,2022,37,29,6,9,0,2,0,2,1,0,"Abercrombie; Abercrombie, C.; Abercrombie C."
-LEG_SENATE20FORMICA1,Paul M. Formica,Senate,20,R,False,2015,2022,37,26,8,6,2,3,0,5,3,2,"Paul M. Formica; Formica; Formica, P.; Formica P."
-LEG_HOUSE115HEFFERNAN2,William Heffernan,House,115,D,True,2024,2026,37,25,12,1,1,0,1,2,0,0,Heffernan; Heffernan W.
+LEG_HOUSE71DAMELIO0,Anthony J. D'Amelio,House,71,R,False,2012,2021,38,19,8,7,6,0,1,2,0,0,"D'Amelio; D ' Amelio; D'Amelio, A.; D’Amelio, A."
+LEG_HOUSE83ABERCROMBIE0,Catherine Abercrombie,House,83,D,False,2012,2022,37,29,6,11,0,2,0,2,1,0,"Abercrombie; Abercrombie, C.; Abercrombie C."
+LEG_SENATE20FORMICA1,Paul M. Formica,Senate,20,R,False,2015,2022,37,26,8,9,2,3,0,5,3,2,"Paul M. Formica; Formica; Formica, P.; Formica P."
+LEG_HOUSE115HEFFERNAN2,William Heffernan,House,115,D,True,2024,2026,37,25,12,1,2,0,1,2,0,0,Heffernan; Heffernan W.
 LEG_HOUSE26DEFRONZO1,David DeFronzo,House,26,D,True,2025,2026,36,24,12,0,2,0,0,0,0,0,Defronzo; DeFronzo D.
 LEG_HOUSE107HARDING1,Stephen G. Harding,House,107,R,False,2015,2022,36,28,8,8,5,0,0,0,0,0,"Harding; Harding, S.; Harding S."
-LEG_HOUSE126STALLWORTH1,Charlie Stallworth,House,126,D,False,2012,2022,35,24,11,7,4,2,0,4,0,0,"Stallworth; Stallworth, C."
-LEG_HOUSE37MENAPACE2,Nicholas Menapace,House,37,D,True,2025,2026,35,22,13,1,0,2,0,6,0,0,Menapace; Menapace N.
+LEG_HOUSE126STALLWORTH1,Charlie Stallworth,House,126,D,False,2012,2022,35,24,11,9,4,2,0,4,0,0,"Stallworth; Stallworth, C."
+LEG_HOUSE37MENAPACE2,Nicholas Menapace,House,37,D,True,2025,2026,35,22,13,3,0,2,0,6,0,0,Menapace; Menapace N.
 LEG_HOUSE36MUIR4,Renee LaMark Muir,House,36,D,True,2025,2026,35,23,12,1,3,0,0,0,0,0,Lamark Muir; LaMark Muir R.
-LEG_HOUSE42CONSTANTINE4,Savet Constantine,House,42,D,True,2025,2026,35,24,11,0,1,0,1,2,0,0,Constantine; Constantine S.
+LEG_HOUSE42CONSTANTINE4,Savet Constantine,House,42,D,True,2025,2026,35,24,11,0,2,0,1,2,0,0,Constantine; Constantine S.
 LEG_HOUSE98SCANLON1,Sean Scanlon,House,98,D,False,2015,2022,35,29,6,8,0,0,0,0,2,0,"Scanlon; Scanlon, S.; Scanlon S."
 LEG_HOUSE141WOOD0,Terrie E. Wood,House,141,R,False,2012,2022,35,23,10,4,2,0,0,2,0,0,"Wood, T.; Wood; Wood T."
 LEG_HOUSE149COURPAS3,Tina Courpas,House,149,R,True,2025,2026,35,23,11,1,1,0,0,0,0,0,Courpas; Courpas T.
@@ -212,102 +212,102 @@ LEG_HOUSE113ROMANO1,Amy Romano,House,113,R,True,2025,2026,34,24,8,0,1,0,0,0,2,0,
 LEG_HOUSE82ALTOBELLO0,"Emil ""Buddy"" Altobello",House,82,D,False,2012,2020,34,23,10,11,7,0,0,0,1,0,"Altobello, E.; Altobello; Altobello E."
 LEG_HOUSE65CANINO1,Joe Canino,House,65,R,True,2025,2026,34,24,10,1,1,0,0,0,0,0,Canino; Canino J.
 LEG_HOUSE120SHAKE3,Kaitlyn Shake,House,120,D,True,2025,2026,34,22,12,1,1,0,0,2,0,0,Shake; Shake K.
-LEG_HOUSE117SHANNON2,"Michael ""MJ"" Shannon",House,117,D,True,2025,2026,34,21,13,1,0,2,0,5,0,2,Shannon; Shannon M.
+LEG_HOUSE117SHANNON2,"Michael ""MJ"" Shannon",House,117,D,True,2025,2026,34,21,13,4,0,2,0,5,0,2,Shannon; Shannon M.
 LEG_HOUSE94WINTER2,Steven Winter,House,94,D,True,2025,2026,34,21,13,0,1,0,0,1,0,0,Winter; Winter S.
-LEG_SENATE23BRADLEY2,Dennis Bradley,Senate,23,D,False,2019,2022,33,17,7,4,5,2,0,4,0,1,"Dennis Bradley; Bradley, D.; Bradley; Bradley D."
+LEG_SENATE23BRADLEY2,Dennis Bradley,Senate,23,D,False,2019,2022,33,17,7,6,5,2,0,4,0,1,"Dennis Bradley; Bradley, D.; Bradley; Bradley D."
 LEG_HOUSE134DEVLIN1,Laura  Devlin,House,134,R,False,2015,2022,33,23,9,3,3,0,0,0,2,0,"Devlin; Devlin L.; Devlin, L."
-LEG_HOUSE42FRANCE2,Mike France,House,42,R,False,2015,2022,33,18,11,4,3,2,0,3,0,0,"France; France, M.; France M."
-LEG_HOUSE14AMAN0,Bill  Aman,House,14,R,False,2012,2016,32,26,4,12,2,2,0,2,0,0,"Aman, W.; Aman"
+LEG_HOUSE42FRANCE2,Mike France,House,42,R,False,2015,2022,33,18,11,6,3,2,0,3,0,0,"France; France, M.; France M."
+LEG_HOUSE14AMAN0,Bill  Aman,House,14,R,False,2012,2016,32,26,4,14,2,2,0,2,0,0,"Aman, W.; Aman"
 LEG_HOUSE148JACOBSON3,Jonathan Jacobson,House,148,D,True,2025,2026,32,19,13,1,2,0,0,0,0,0,Jacobson; Jacobson J.
 LEG_SENATE30MINER2,Craig Miner,Senate,30,R,False,2017,2022,31,23,8,6,5,0,0,0,4,0,"Craig Miner; Miner, C.; Miner C.; Miner"
 LEG_HOUSE69BUCHSBAUM2,Jason Buchsbaum,House,69,R,True,2025,2026,31,27,4,1,1,0,0,0,0,0,Buchsbaum; Buchsbaum J.
-LEG_HOUSE16HAMPTON1,John K. Hampton,House,16,D,False,2014,2022,31,16,4,3,1,1,0,2,0,1,"Hampton; Hampton J.; Hampton, J."
+LEG_HOUSE16HAMPTON1,John K. Hampton,House,16,D,False,2014,2022,31,16,4,4,1,1,0,2,0,1,"Hampton; Hampton J.; Hampton, J."
 LEG_HOUSE58SANTANELLA4,John Santanella,House,58,D,True,2025,2026,31,20,11,1,1,0,0,2,0,0,Santanella; Santanella J.
-LEG_SENATE13ABRAMS3,Mary Daugherty Abrams,Senate,13,D,False,2019,2022,31,24,4,10,1,3,0,4,2,0,"Mary Abrams; Daugherty Abrams M.; Abrams; Daugherty Abrams, M."
-LEG_HOUSE38GAUTHIER2,Nick Gauthier,House,38,D,True,2025,2026,31,19,12,0,1,1,0,3,0,0,Gauthier; Gauthier N.
+LEG_SENATE13ABRAMS3,Mary Daugherty Abrams,Senate,13,D,False,2019,2022,31,24,4,13,1,3,0,4,2,0,"Mary Abrams; Daugherty Abrams M.; Abrams; Daugherty Abrams, M."
+LEG_HOUSE38GAUTHIER2,Nick Gauthier,House,38,D,True,2025,2026,31,19,12,1,1,1,0,3,0,0,Gauthier; Gauthier N.
 LEG_HOUSE40GAIEWSKI3,Daniel Gaiewski,House,40,D,True,2025,2026,30,18,12,0,1,0,0,2,0,0,Gaiewski; Gaiewski D.
-LEG_HOUSE11BIGGINS2,Patrick Biggins,House,11,D,True,2025,2026,30,18,12,0,1,1,0,1,0,0,Biggins; Biggins P.
+LEG_HOUSE11BIGGINS2,Patrick Biggins,House,11,D,True,2025,2026,30,18,12,1,1,1,0,1,0,0,Biggins; Biggins P.
 LEG_HOUSE51STEWART2,Chris Stewart,House,51,R,True,2025,2026,29,9,2,0,0,0,0,0,0,0,Stewart; Stewart C.
 LEG_HOUSE66WILSON1,David T. Wilson,House,66,R,False,2017,2022,29,23,6,5,2,0,0,0,1,0,"Wilson; Wilson, D.; Wilson D."
-LEG_HOUSE6VARGAS1,"Edwin Vargas, Jr",House,6,D,False,2014,2022,29,24,5,7,0,10,0,11,1,0,"Vargas; Vargas, E.; Vargas E."
+LEG_HOUSE6VARGAS1,"Edwin Vargas, Jr",House,6,D,False,2014,2022,29,24,5,17,0,10,0,11,1,0,"Vargas; Vargas, E.; Vargas E."
 LEG_HOUSE146MAIN3,Eilish Collins Main,House,146,D,True,2025,2026,29,16,10,0,1,0,0,0,0,0,Collins Main; Collins Main E.
-LEG_HOUSE91SWEET2,Laurie Sweet,House,91,D,True,2025,2026,29,16,13,1,0,1,0,3,0,0,Sweet; Sweet L.
-LEG_SENATE26HASKELL1,Will Haskell,Senate,26,D,False,2019,2022,29,25,4,8,2,0,1,2,4,0,"Will Haskell; Haskell; Haskell W.; Haskell, W."
+LEG_HOUSE91SWEET2,Laurie Sweet,House,91,D,True,2025,2026,29,16,13,2,0,1,0,3,0,0,Sweet; Sweet L.
+LEG_SENATE26HASKELL1,Will Haskell,Senate,26,D,False,2019,2022,29,25,4,8,3,0,1,2,4,0,"Will Haskell; Haskell; Haskell W.; Haskell, W."
 LEG_HOUSE108SMITH0,Richard A. Smith,House,108,R,False,2012,2020,28,15,13,7,9,0,0,0,0,0,"Smith, R.; Smith"
-LEG_HOUSE120YOUNG1,Philip L. Young,House,120,D,False,2019,2022,27,22,4,6,1,1,0,3,0,0,"Young; Young, P.; Young P."
+LEG_HOUSE120YOUNG1,Philip L. Young,House,120,D,False,2019,2022,27,22,4,7,1,1,0,3,0,0,"Young; Young, P.; Young P."
 LEG_HOUSE62SIMANSKI0,Bill Simanski,House,62,R,False,2012,2020,25,17,8,3,3,0,0,0,0,0,"Simanski; Simanski, B."
 LEG_HOUSE120DANCHO2,Laura Dancho,House,120,R,False,2023,2024,25,18,7,1,0,0,0,0,0,0,Dancho; Dancho L.
-LEG_HOUSE48ORANGE0,Linda A. Orange,House,48,D,False,2012,2019,25,17,3,11,1,1,0,1,0,0,"Orange; Orange, L."
-LEG_HOUSE56WINKLER1,Michael Winkler,House,56,D,False,2019,2022,25,20,5,4,0,7,0,9,0,0,"Winkler; Winkler M.; Winkler, M."
+LEG_HOUSE48ORANGE0,Linda A. Orange,House,48,D,False,2012,2019,25,17,3,12,1,1,0,1,0,0,"Orange; Orange, L."
+LEG_HOUSE56WINKLER1,Michael Winkler,House,56,D,False,2019,2022,25,20,5,11,0,7,0,9,0,0,"Winkler; Winkler M.; Winkler, M."
 LEG_SENATE26BOUCHER0,Toni Boucher,Senate,26,R,False,2012,2017,25,19,6,7,5,0,0,0,80,2,"Boucher; Toni Boucher; Boucher, T.; Boucher, A."
-LEG_HOUSE57DAVIS0,Christopher Davis,House,57,R,False,2012,2020,24,17,7,6,3,1,0,1,0,0,"Davis, C.; Davis"
+LEG_HOUSE57DAVIS0,Christopher Davis,House,57,R,False,2012,2020,24,17,7,7,3,1,0,1,0,0,"Davis, C.; Davis"
 LEG_SENATE35CHAMPAGNE1,Dan Champagne,Senate,35,R,False,2019,2022,24,14,10,3,5,0,0,0,2,0,"Dan Champagne; Champagne, D.; Champagne; Champagne D."
 LEG_HOUSE138CHALESKI3,Rachel Chaleski,House,138,R,False,2023,2024,24,19,5,1,0,0,0,0,0,0,Chaleski; Chaleski R.
 LEG_HOUSE149KHANNA2,Rachel Khanna,House,149,D,False,2023,2024,24,23,1,1,0,0,0,0,0,0,Khanna; Khanna R.
 LEG_HOUSE79ZIOGAS1,Christopher Ziogas,House,79,D,False,2017,2022,23,15,4,3,0,0,0,0,0,0,"Ziogas; Ziogas C.; Ziogas, C."
 LEG_HOUSE42DENNING3,Keith Denning,House,42,D,False,2023,2024,23,18,1,0,0,0,0,2,0,0,Denning; Denning K.
-LEG_SENATE34FASANO0,Len Fasano,Senate,34,R,False,2012,2020,23,19,3,2,2,0,1,1,4,0,"Leonard Fasano; Fasano, L.; Fasano"
-LEG_HOUSE24LOPES1,Rick Lopes,House,24,D,False,2012,2020,23,15,8,7,4,2,0,2,1,0,"Lopes; Lopes, R."
-LEG_HOUSE55GREEN2,Robin Green,House,55,R,False,2017,2022,23,16,3,1,2,1,0,1,0,0,"Green; Green R.; Green, R."
-LEG_HOUSE28MORIN0,Russell A. Morin,House,28,D,False,2012,2020,23,15,8,6,4,3,0,3,0,0,"Morin; Morin, R."
+LEG_SENATE34FASANO0,Len Fasano,Senate,34,R,False,2012,2020,23,19,3,2,3,0,1,1,4,0,"Leonard Fasano; Fasano, L.; Fasano"
+LEG_HOUSE24LOPES1,Rick Lopes,House,24,D,False,2012,2020,23,15,8,9,4,2,0,2,1,0,"Lopes; Lopes, R."
+LEG_HOUSE55GREEN2,Robin Green,House,55,R,False,2017,2022,23,16,3,2,2,1,0,1,0,0,"Green; Green R.; Green, R."
+LEG_HOUSE28MORIN0,Russell A. Morin,House,28,D,False,2012,2020,23,15,8,9,4,3,0,3,0,0,"Morin; Morin, R."
 LEG_SENATE6GERRATANA1,Terry Bielinski Gerratana,Senate,6,D,False,2012,2018,23,12,11,8,2,0,0,0,2,0,"Terry B. Gerratana; Gerratana, T.; Gerratana"
 LEG_HOUSE22PETIT1,"William A. Petit, Jr.",House,22,R,False,2018,2022,23,18,5,2,3,0,0,1,0,0,"Petit; Petit, W.; Petit W."
 LEG_SENATE14SLOSSBERG0,Gayle Slossberg,Senate,14,D,False,2012,2018,22,6,15,3,6,0,0,1,0,0,"Gayle Slossberg; Slossberg, G.; Slossberg"
 LEG_SENATE36FRANTZ0,L. Scott Frantz,Senate,36,R,False,2012,2017,22,17,4,5,4,0,0,0,2,0,"L. Scott Frantz; Frantz, L.; Frantz"
-LEG_HOUSE101KOKORUDA1,Noreen Kokoruda,House,101,R,False,2012,2020,22,18,4,5,1,2,0,3,0,0,"Kokoruda; Kokoruda, N."
-LEG_HOUSE31SRINIVASAN0,Prasad Srinivasan,House,31,R,False,2012,2017,22,15,7,8,3,1,1,2,0,0,"Srinivasan; Srinivasan, P."
-LEG_HOUSE69ONEILL0,Arthur O'Neill,House,69,R,False,2012,2020,21,13,7,6,5,1,1,3,1,0,"O ' Neill; O'Neill; O'Neill, A.; O’Neill, A."
+LEG_HOUSE101KOKORUDA1,Noreen Kokoruda,House,101,R,False,2012,2020,22,18,4,7,1,2,0,3,0,0,"Kokoruda; Kokoruda, N."
+LEG_HOUSE31SRINIVASAN0,Prasad Srinivasan,House,31,R,False,2012,2017,22,15,7,9,4,1,1,2,0,0,"Srinivasan; Srinivasan, P."
+LEG_HOUSE69ONEILL0,Arthur O'Neill,House,69,R,False,2012,2020,21,13,7,7,6,1,1,3,1,0,"O ' Neill; O'Neill; O'Neill, A.; O’Neill, A."
 LEG_HOUSE144SIMMONS1,Caroline Simmons,House,144,D,False,2015,2021,21,15,6,5,2,0,0,1,2,0,"Simmons, C.; Simmons"
-LEG_HOUSE15BARAM0,David Baram,House,15,D,False,2012,2016,21,16,5,10,2,2,0,3,4,0,"Baram; Baram, D."
-LEG_HOUSE111FREY0,John H. Frey,House,111,R,False,2012,2020,21,13,7,6,2,1,1,2,0,0,"Frey; Frey, J."
-LEG_HOUSE90FRITZ0,Mary G. Fritz,House,90,D,False,2012,2016,21,3,2,2,2,1,0,1,1,0,"Fritz; Fritz, M."
-LEG_HOUSE5MCGEE1,Brandon L. McGee,House,5,D,False,2014,2021,20,16,4,5,0,2,0,3,0,0,"Mcgee; McGee; McGee, B.; McGee B."
-LEG_SENATE2COLEMAN0,Eric D. Coleman,Senate,2,D,False,2012,2016,20,9,11,5,2,2,0,2,4,0,"Eric D. Coleman; Coleman, E.; Coleman"
+LEG_HOUSE15BARAM0,David Baram,House,15,D,False,2012,2016,21,16,5,12,2,2,0,3,4,0,"Baram; Baram, D."
+LEG_HOUSE111FREY0,John H. Frey,House,111,R,False,2012,2020,21,13,7,7,3,1,1,2,0,0,"Frey; Frey, J."
+LEG_HOUSE90FRITZ0,Mary G. Fritz,House,90,D,False,2012,2016,21,3,2,3,2,1,0,1,1,0,"Fritz; Fritz, M."
+LEG_HOUSE5MCGEE1,Brandon L. McGee,House,5,D,False,2014,2021,20,16,4,7,0,2,0,3,0,0,"Mcgee; McGee; McGee, B.; McGee B."
+LEG_SENATE2COLEMAN0,Eric D. Coleman,Senate,2,D,False,2012,2016,20,9,11,7,2,2,0,2,4,0,"Eric D. Coleman; Coleman, E.; Coleman"
 LEG_HOUSEFIGUEROA,Figueroa,House,?,,False,2023,2024,20,19,1,1,0,0,0,0,0,0,Figueroa
 LEG_HOUSE22COOLEY2,Francis Rexford Cooley,House,22,R,False,2023,2024,20,16,4,1,0,0,0,0,0,0,Cooley
 LEG_HOUSE143LAVIELLE0,Gail Lavielle,House,143,R,False,2012,2020,20,14,5,4,2,0,0,1,4,1,"Lavielle; Lavielle, G."
 LEG_HOUSE73BERGER0,Jeffrey J. Berger,House,73,D,False,2012,2016,20,9,7,5,3,0,0,0,1,0,"Berger; Berger, J."
 LEG_HOUSE20VERRENGIA1,Joe Verrengia,House,20,D,False,2012,2020,20,11,7,3,4,0,0,0,0,0,"Verrengia; Verrengia, J."
 LEG_HOUSE135SHABAN0,John T. Shaban,House,135,R,False,2012,2016,20,12,8,7,5,0,0,0,2,0,"Shaban; Shaban, J."
-LEG_HOUSE33SERRA0,Joseph E. Serra,House,33,D,False,2012,2020,20,12,7,4,4,1,0,1,0,0,"Serra; Serra, J."
+LEG_HOUSE33SERRA0,Joseph E. Serra,House,33,D,False,2012,2020,20,12,7,5,4,1,0,1,0,0,"Serra; Serra, J."
 LEG_HOUSE149FLOREN0,Livvy Floren,House,149,R,False,2012,2020,20,13,3,6,0,0,0,0,0,0,"Floren; Floren, L."
 LEG_HOUSEMCGEE,Mcgee,House,?,,False,2023,2024,20,16,2,1,0,0,0,0,0,0,Mcgee
 LEG_SENATE5BYE0,Beth Bye,Senate,5,D,False,2012,2016,19,8,10,5,2,0,0,0,1,0,"Beth Bye; Bye, B.; Bye"
-LEG_HOUSE99ALBIS1,James M. Albis,House,99,D,False,2012,2018,19,8,6,6,3,4,0,4,1,0,"Albis; Albis, J."
-LEG_HOUSE118ROSE0,Kim Rose,House,118,D,False,2012,2020,19,12,3,6,0,10,0,11,0,0,"Rose; Rose, K.; Rose K."
+LEG_HOUSE99ALBIS1,James M. Albis,House,99,D,False,2012,2018,19,8,6,10,3,4,0,4,1,0,"Albis; Albis, J."
+LEG_HOUSE118ROSE0,Kim Rose,House,118,D,False,2012,2020,19,12,3,16,0,10,0,11,0,0,"Rose; Rose, K.; Rose K."
 LEG_SENATE24MCLACHLAN0,Michael A. McLachlan,Senate,24,R,False,2012,2017,19,14,5,3,4,0,0,0,2,1,"Michael A. Mclachlan; McLachlan, M.; Mclachlan"
-LEG_HOUSE116DIMASSA1,Michael DiMassa,House,116,D,False,2018,2021,19,15,3,7,1,1,0,1,0,0,"Dimassa; DiMassa, M.; DiMassa M.; DiMassa"
+LEG_HOUSE116DIMASSA1,Michael DiMassa,House,116,D,False,2018,2021,19,15,3,8,1,1,0,1,0,0,"Dimassa; DiMassa, M.; DiMassa M.; DiMassa"
 LEG_SENATE9DOYLE0,Paul R. Doyle,Senate,9,D,False,2012,2016,19,3,16,1,6,0,0,0,1,0,"Paul Doyle; Doyle, P.; Doyle"
 LEG_SENATE35GUGLIELMO0,Tony Guglielmo,Senate,35,R,False,2012,2016,19,10,4,3,0,0,0,0,2,0,"Anthony Guglielmo; Guglielmo, A.; Guglielmo"
-LEG_HOUSE103ADINOLFI0,Al  Adinolfi,House,103,R,False,2012,2016,18,9,4,6,3,1,0,1,0,0,"Adinolfi; Adinolfi, A."
-LEG_HOUSE2CARTER0,Dan Carter,House,2,R,False,2012,2016,18,13,5,7,2,1,0,1,2,0,"Carter; Carter, D."
+LEG_HOUSE103ADINOLFI0,Al  Adinolfi,House,103,R,False,2012,2016,18,9,4,7,3,1,0,1,0,0,"Adinolfi; Adinolfi, A."
+LEG_HOUSE2CARTER0,Dan Carter,House,2,R,False,2012,2016,18,13,5,8,2,1,0,1,2,0,"Carter; Carter, D."
 LEG_HOUSE51ROVERO0,Daniel Rovero,House,51,D,False,2012,2018,18,12,5,6,2,0,0,0,0,0,"Rovero; Rovero, D."
 LEG_HOUSE79NICASTRO0,"Frank N. Nicastro, Sr.",House,79,D,False,2012,2016,18,10,8,5,4,0,0,0,0,0,"Nicastro; Nicastro, F."
-LEG_HOUSE30ARESIMOWICZ0,Joe Aresimowicz,House,30,D,False,2012,2020,18,11,7,5,4,2,0,5,4,0,"Aresimowicz; Aresimowicz, J."
+LEG_HOUSE30ARESIMOWICZ0,Joe Aresimowicz,House,30,D,False,2012,2020,18,11,7,7,4,2,0,5,4,0,"Aresimowicz; Aresimowicz, J."
 LEG_SENATE16MARKLEY0,Joe Markley,Senate,16,R,False,2012,2018,18,11,7,1,4,0,0,0,5,0,"Joe Markley; Markley; Markley, J."
 LEG_HOUSE41CRUZ2,Joe de la Cruz,House,41,D,False,2019,2022,18,6,2,1,0,0,0,0,0,0,De La Cruz; de la Cruz J.
 LEG_HOUSE81FUSCO2,John Fusco,House,81,R,False,2019,2022,18,13,4,1,1,0,0,0,0,0,"Fusco; Fusco, J."
 LEG_HOUSE102REED0,Lonnie Reed,House,102,D,False,2012,2017,18,13,3,3,0,0,0,0,0,0,"Reed; Reed, L."
 LEG_SENATE32KANE0,Robert J. Kane,Senate,32,R,False,2012,2016,18,7,5,1,2,0,0,4,4,2,"Robert J. Kane; Kane; Kane, R."
 LEG_HOUSE48SMITH1,Brian Smith,House,48,D,False,2020,2022,17,13,4,1,0,0,0,3,0,0,"Smith, B.; Smith; Smith B."
-LEG_HOUSE59KINER0,David William Kiner,House,59,D,False,2012,2016,17,14,3,8,0,2,0,3,2,0,"Kiner; Kiner, D."
-LEG_SENATE23GOMES0,Ed Gomes,Senate,23,D,False,2012,2018,17,8,9,7,0,1,0,1,0,0,"Edwin A. Gomes; Gomes, E.; Gomes"
-LEG_HOUSE130SANTIAGO0,Ezequiel Santiago,House,130,D,False,2012,2019,17,13,3,5,0,6,0,6,0,0,"Santiago, E.; Santiago"
+LEG_HOUSE59KINER0,David William Kiner,House,59,D,False,2012,2016,17,14,3,10,0,2,0,3,2,0,"Kiner; Kiner, D."
+LEG_SENATE23GOMES0,Ed Gomes,Senate,23,D,False,2012,2018,17,8,9,8,0,1,0,1,0,0,"Edwin A. Gomes; Gomes, E.; Gomes"
+LEG_HOUSE130SANTIAGO0,Ezequiel Santiago,House,130,D,False,2012,2019,17,13,3,11,0,6,0,6,0,0,"Santiago, E.; Santiago"
 LEG_HOUSE149FIORELLO1,Kimberly Fiorello,House,149,R,False,2021,2022,17,12,5,0,2,0,0,0,2,0,Fiorello; Fiorello K.
-LEG_SENATE8SEMINARA1,Lisa Seminara,Senate,8,R,False,2023,2024,17,17,0,0,0,0,1,6,1,0,Lisa Seminara; Seminara; Seminara L.
+LEG_SENATE8SEMINARA1,Lisa Seminara,Senate,8,R,False,2023,2024,17,17,0,0,1,0,1,6,1,0,Lisa Seminara; Seminara; Seminara L.
 LEG_HOUSE116ESPOSITO0,"Louis P. Esposito, Jr.",House,116,D,False,2012,2016,17,10,4,5,1,0,0,0,0,0,"Esposito; Esposito, L."
 LEG_SENATE36KASSER2,Alex Kasser,Senate,36,D,False,2020,2021,16,8,5,0,3,0,0,0,0,0,Alex Kasser; Kasser A.
 LEG_HOUSE29GUERRERA0,"Antonio ""Tony"" Guerrera",House,29,D,False,2012,2018,16,10,5,4,2,0,0,0,0,0,"Guerrera; Guerrera, A."
-LEG_SENATE33LINARES1,Art Linares,Senate,33,R,False,2014,2017,16,10,4,1,3,1,0,1,2,0,"Art Linares; Linares, A.; Linares"
+LEG_SENATE33LINARES1,Art Linares,Senate,33,R,False,2014,2017,16,10,4,2,3,1,0,1,2,0,"Art Linares; Linares, A.; Linares"
 LEG_HOUSE140MORRIS0,Bruce V. Morris,House,140,D,False,2012,2017,16,11,5,5,2,0,0,1,0,0,"Morris; Morris, B."
 LEG_HOUSE35GOUPIL3,Christine Goupil,House,35,D,False,2021,2022,16,8,4,0,1,0,0,1,0,0,Goupil; Goupil C.
-LEG_HOUSE22BOUKUS0,"Elizabeth ""Betty"" Boukus",House,22,D,False,2012,2016,16,2,9,1,6,1,0,1,0,0,"Boukus; Boukus, E."
-LEG_HOUSE39HEWETT0,Ernest Hewett,House,39,D,False,2012,2016,16,11,4,5,1,2,0,3,0,0,"Hewett; Hewett, E."
+LEG_HOUSE22BOUKUS0,"Elizabeth ""Betty"" Boukus",House,22,D,False,2012,2016,16,2,9,2,6,1,0,1,0,0,"Boukus; Boukus, E."
+LEG_HOUSE39HEWETT0,Ernest Hewett,House,39,D,False,2012,2016,16,11,4,7,1,2,0,3,0,0,"Hewett; Hewett, E."
 LEG_HOUSE151ARORA1,Harry Arora,House,151,R,False,2021,2022,16,13,3,0,1,0,0,0,0,0,Arora; Arora H.
 LEG_HOUSE25SANCHEZ2,Iris N Sanchez,House,25,D,True,2026,2026,16,10,6,0,0,0,0,2,0,0,"Sanchez, I.; Sanchez I.; Sanchez"
 LEG_SENATE17CRISCO0,Joe Crisco,Senate,17,D,False,2012,2016,16,7,9,4,0,0,0,0,0,0,"Joseph J. Crisco, Jr.; Crisco, J."
-LEG_HOUSE104GENTILE0,Linda M. Gentile,House,104,D,False,2012,2018,16,11,3,4,0,1,0,1,3,0,"Gentile; Gentile, L."
-LEG_HOUSE100PHIPPS1,Quentin Phipps,House,100,D,False,2019,2021,16,12,3,3,0,2,0,3,0,0,"Phipps; Phipps Q.; Phipps, Q."
+LEG_HOUSE104GENTILE0,Linda M. Gentile,House,104,D,False,2012,2018,16,11,3,5,0,1,0,1,3,0,"Gentile; Gentile, L."
+LEG_HOUSE100PHIPPS1,Quentin Phipps,House,100,D,False,2019,2021,16,12,3,5,0,2,0,3,0,0,"Phipps; Phipps Q.; Phipps, Q."
 LEG_HOUSE97MEGNA0,Robert  Megna,House,97,D,False,2012,2016,16,9,7,4,4,0,0,0,1,0,"Megna; Megna, R."
 LEG_HOUSE143THOMAS1,Stephanie Thomas,House,143,D,False,2021,2022,16,9,1,0,0,0,0,1,0,0,Thomas; Thomas S.
 LEG_HOUSE147TONG0,William Tong,House,147,D,False,2012,2017,16,8,3,4,2,0,0,1,0,0,"Tong; Tong, W."
@@ -315,24 +315,24 @@ LEG_SENATE18MAYNARD0,Andrew  Maynard,Senate,18,D,False,2012,2016,15,5,9,3,0,0,0,
 LEG_HOUSE132KUPCHICK0,Brenda L. Kupchick,House,132,R,False,2012,2019,15,10,5,3,2,0,0,1,0,0,"Kupchick; Kupchick, B."
 LEG_HOUSE139PEMBERTON1,Larry Pemberton,House,139,D,True,2026,2026,15,9,6,0,0,0,0,0,0,0,Pemberton; Pemberton L.
 LEG_HOUSE80SAMPSON0,Rob Sampson,House,80,R,False,2012,2016,15,10,5,5,2,0,0,0,0,0,"Sampson; Sampson, R."
-LEG_SENATE3LARSON1,Tim Larson,Senate,3,D,False,2015,2018,15,8,7,8,1,1,0,1,0,0,"Tim Larson; Larson, T.; Larson"
+LEG_SENATE3LARSON1,Tim Larson,Senate,3,D,False,2015,2018,15,8,7,9,1,1,0,1,0,0,"Tim Larson; Larson, T.; Larson"
 LEG_HOUSE60SAYERS0,Peggy  Sayers,House,60,D,False,2012,2016,14,5,4,2,2,0,0,0,2,0,"Sayers; Sayers, P."
-LEG_HOUSE114KLARIDES0,Themis Klarides,House,114,R,False,2012,2020,14,10,4,4,1,1,1,2,1,0,"Klarides; Klarides, T."
+LEG_HOUSE114KLARIDES0,Themis Klarides,House,114,R,False,2012,2020,14,10,4,5,2,1,1,2,1,0,"Klarides; Klarides, T."
 LEG_HOUSE17LEGEYT0,Timothy B. LeGeyt,House,17,R,False,2012,2018,14,7,7,1,4,0,0,0,0,0,"Legeyt; LeGeyt, T."
 LEG_HOUSE18FLEISCHMANN0,Andrew M. Fleischmann,House,18,D,False,2012,2018,13,9,2,4,0,0,0,0,0,0,"Fleischmann; Fleischmann, A."
-LEG_HOUSE4ARCE1,Angel Arce,House,4,D,False,2014,2018,13,10,3,3,3,3,0,3,1,0,"Arce; Arce, A."
-LEG_HOUSE151CAMILLO0,Fred Camillo,House,151,R,False,2012,2019,13,10,2,4,0,1,0,2,0,0,"Camillo; Camillo, F."
-LEG_HOUSE100LESSER0,Matt Lesser,House,100,D,False,2012,2018,13,9,3,4,0,3,0,3,1,0,"Lesser; Lesser, M."
+LEG_HOUSE4ARCE1,Angel Arce,House,4,D,False,2014,2018,13,10,3,6,3,3,0,3,1,0,"Arce; Arce, A."
+LEG_HOUSE151CAMILLO0,Fred Camillo,House,151,R,False,2012,2019,13,10,2,5,0,1,0,2,0,0,"Camillo; Camillo, F."
+LEG_HOUSE100LESSER0,Matt Lesser,House,100,D,False,2012,2018,13,9,3,7,0,3,0,3,1,0,"Lesser; Lesser, M."
 LEG_SENATE20STILLMAN0,Andrea L. Stillman,Senate,20,D,False,2012,2014,12,3,4,2,0,0,0,1,0,0,"Andrea Stillman; Stillman, A.; Stillman"
 LEG_HOUSE56JANOWSKI0,Claire L. Janowski,House,56,D,False,2012,2016,12,9,3,3,0,0,0,0,0,0,"Janowski; Janowski, C."
 LEG_HOUSE66MINER0,Craig A. Miner,House,66,R,False,2012,2016,12,8,4,2,1,0,0,0,1,0,"Miner; Miner, C."
-LEG_HOUSE43URBAN0,Diana S. Urban,House,43,D,False,2012,2018,12,9,3,3,0,4,0,4,1,0,"Urban; Urban, D."
+LEG_HOUSE43URBAN0,Diana S. Urban,House,43,D,False,2012,2018,12,9,3,7,0,4,0,4,1,0,"Urban; Urban, D."
 LEG_HOUSE7MCCRORY0,Douglas McCrory,House,7,D,False,2012,2016,12,9,3,3,0,0,0,0,0,0,"Mccrory; McCrory, D."
 LEG_HOUSE37JUTILA0,Ed  Jutila,House,37,D,False,2012,2016,12,9,3,3,0,0,0,0,2,0,"Jutila; Jutila, E."
 LEG_HOUSE142WILMS1,Fred Wilms,House,142,R,False,2015,2018,12,8,4,3,2,0,0,0,0,0,"Wilms; Wilms, F."
 LEG_HOUSE138GIEGLER0,Janice R. Giegler,House,138,R,False,2012,2016,12,7,4,2,1,0,0,0,0,0,"Giegler; Giegler, J."
-LEG_HOUSE35MACLACHLAN2,Jesse MacLachlan,House,35,R,False,2015,2020,12,9,2,5,1,1,0,1,0,0,"Maclachlan; MacLachlan, J.; MacLachlan"
-LEG_HOUSE120HOYDICK0,Laura R. Hoydick,House,120,R,False,2012,2017,12,10,2,3,0,0,1,1,1,0,"Hoydick; Hoydick, L."
+LEG_HOUSE35MACLACHLAN2,Jesse MacLachlan,House,35,R,False,2015,2020,12,9,2,6,1,1,0,1,0,0,"Maclachlan; MacLachlan, J.; MacLachlan"
+LEG_HOUSE120HOYDICK0,Laura R. Hoydick,House,120,R,False,2012,2017,12,10,2,3,1,0,1,1,1,0,"Hoydick; Hoydick, L."
 LEG_HOUSE64WILLIS0,Roberta B. Willis,House,64,D,False,2012,2016,12,9,3,3,0,0,0,0,0,0,"Willis; Willis, R."
 LEG_HOUSE53BELSITO1,Samuel P.  Belsito Jr.,House,53,R,False,2014,2018,12,5,7,1,2,0,0,0,0,0,"Belsito; Belsito, S."
 LEG_HOUSE105CONROY1,Theresa W. Conroy,House,105,D,False,2014,2016,12,11,1,4,0,0,0,0,0,0,"Conroy; Conroy, T."
@@ -340,9 +340,9 @@ LEG_SENATE30RORABACK0,Andrew Roraback,Senate,30,R,False,2012,2012,11,9,1,5,1,0,0
 LEG_HOUSE88SHARKEY0,Brendan  Sharkey,House,88,D,False,2012,2016,11,7,3,2,0,0,0,1,4,0,Sharkey
 LEG_HOUSE19BECKER0,Brian  Becker,House,19,D,False,2012,2016,11,6,5,2,1,0,0,0,0,0,"Becker, B."
 LEG_HOUSE107SCRIBNER0,David A. Scribner,House,107,R,False,2012,2014,11,7,4,4,3,0,0,0,0,0,"Scribner, D.; Scribner"
-LEG_HOUSE41WRIGHT0,Elissa T. Wright,House,41,D,False,2012,2014,11,5,6,3,4,1,0,2,0,0,"Wright, E.; Wright"
-LEG_SENATE3LEBEAU0,Gary D. LeBeau,Senate,3,D,False,2012,2014,11,3,7,2,3,1,0,1,0,0,"Gary D. Lebeau; LeBeau, G.; LeBeau; Gary Lebeau"
-LEG_HOUSE34ZIOBRON1,Melissa Ziobron,House,34,R,False,2014,2018,11,9,2,5,0,7,2,10,2,5,"Ziobron; Ziobron, M."
+LEG_HOUSE41WRIGHT0,Elissa T. Wright,House,41,D,False,2012,2014,11,5,6,4,4,1,0,2,0,0,"Wright, E.; Wright"
+LEG_SENATE3LEBEAU0,Gary D. LeBeau,Senate,3,D,False,2012,2014,11,3,7,3,3,1,0,1,0,0,"Gary D. Lebeau; LeBeau, G.; LeBeau; Gary Lebeau"
+LEG_HOUSE34ZIOBRON1,Melissa Ziobron,House,34,R,False,2014,2018,11,9,2,12,2,7,2,10,2,5,"Ziobron; Ziobron, M."
 LEG_HOUSE50ALBERTS0,Mike  Alberts,House,50,R,False,2012,2016,11,6,4,1,1,0,0,0,0,0,Alberts
 LEG_HOUSE98WIDLITZ0,Patricia M. Widlitz,House,98,D,False,2012,2014,11,5,6,3,4,0,0,0,0,0,"Widlitz, P.; Widlitz"
 LEG_HOUSE74NOUJAIM0,Selim G. Noujaim,House,74,R,False,2012,2016,11,4,5,0,2,0,0,0,0,0,Noujaim
@@ -350,13 +350,13 @@ LEG_HOUSE115DARGAN0,Stephen D. Dargan,House,115,D,False,2012,2016,11,8,3,3,0,0,0
 LEG_SENATE12KENNEDY1,"Ted  Kennedy, Jr",Senate,12,D,False,2015,2016,11,6,5,3,0,0,0,0,0,0,"Ted Kennedy; Kennedy, T."
 LEG_HOUSE128AYALA0,"Andres Ayala, Jr ",House,128,D,False,2012,2012,10,4,5,3,3,0,0,0,0,0,"Ayala, A.; Ayala"
 LEG_HOUSE129GROGINS0,Auden  Grogins,House,129,D,False,2012,2014,10,7,2,2,0,0,0,0,0,0,"Grogins, A.; Grogins"
-LEG_HOUSE67BUCKTAYLOR1,Cecilia  Buck-Taylor,House,67,R,False,2014,2016,10,6,4,4,1,1,0,1,0,0,"Buck-Taylor; Buck-Taylor, C."
+LEG_HOUSE67BUCKTAYLOR1,Cecilia  Buck-Taylor,House,67,R,False,2014,2016,10,6,4,5,1,1,0,1,0,0,"Buck-Taylor; Buck-Taylor, C."
 LEG_HOUSE77WRIGHT0,Christopher A. Wright,House,77,D,False,2012,2014,10,1,8,0,5,0,0,0,0,0,"Wright, C."
 LEG_SENATE30CHAPIN1,Clark J. Chapin,Senate,30,R,False,2014,2016,10,6,4,2,0,0,0,0,2,0,"Clark J. Chapin; Chapin; Chapin, C."
 LEG_SENATE13BARTOLOMEO1,Dante  Bartolomeo,Senate,13,D,False,2014,2016,10,5,5,2,0,0,0,0,0,0,"Dante Bartolomeo; Bartolomeo, D."
 LEG_HOUSE58ALEXANDER1,David Alexander,House,58,D,False,2014,2016,10,8,2,4,0,0,0,0,0,0,"Alexander; Alexander, D."
 LEG_HOUSE40MOUKAWSHER0,Edward Moukawsher,House,40,D,False,2012,2014,10,3,7,1,5,0,0,0,0,0,"Moukawsher; Moukawsher, E."
-LEG_SENATE33DAILY0,Eileen M. Daily,Senate,33,D,False,2012,2012,10,1,4,1,4,1,0,1,0,0,"Eileen M. Daily; Daily, E.; Daily"
+LEG_SENATE33DAILY0,Eileen M. Daily,Senate,33,D,False,2012,2012,10,1,4,2,4,1,0,1,0,0,"Eileen M. Daily; Daily, E.; Daily"
 LEG_HOUSE112SREDZINSKI1,J.P. Sredzinski,House,112,R,False,2015,2020,10,6,4,2,2,0,0,1,0,0,"Sredzinski; Sredzinski, J."
 LEG_HOUSE44FLEXER0,Mae Flexer,House,44,D,False,2012,2014,10,7,3,2,0,0,0,0,0,0,"Flexer, M.; Flexer"
 LEG_HOUSE144MOLGANO0,Mike Molgano,House,144,R,False,2012,2014,10,6,4,4,2,0,0,0,0,0,"Molgano; Molgano, M."
@@ -378,31 +378,31 @@ LEG_SENATE31WELCH0,Jason C Welch,Senate,31,R,False,2012,2014,8,4,4,0,3,0,0,0,0,0
 LEG_HOUSE119STANESKI2,Pam Staneski,House,119,R,False,2015,2018,8,5,3,3,1,0,0,0,0,1,"Staneski; Staneski, P."
 LEG_SENATE12MEYER0,Edward Meyer,Senate,12,D,False,2012,2014,7,3,4,2,0,0,0,0,0,0,"Edward Meyer; Meyer, E."
 LEG_HOUSE27BYRON1,Gary Byron,House,27,R,False,2015,2017,7,5,2,3,0,0,0,0,0,0,"Byron; Byron, G."
-LEG_HOUSE55MULLIGAN1,Gayle  Mulligan,House,55,R,False,2015,2016,7,3,3,2,0,1,0,1,0,0,"Mulligan; Mulligan, G."
+LEG_HOUSE55MULLIGAN1,Gayle  Mulligan,House,55,R,False,2015,2016,7,3,3,3,0,1,0,1,0,0,"Mulligan; Mulligan, G."
 LEG_HOUSE100WILLIAMS2,Quentin Williams,House,100,,False,2022,2022,7,6,1,0,0,0,0,1,0,0,Williams; Williams Q.
-LEG_HOUSE75CUEVAS1,Victor  Cuevas,House,75,D,False,2014,2015,7,5,1,1,0,1,0,1,0,0,"Cuevas; Cuevas, V."
-LEG_SENATE22MUSTO0,Anthony Musto,Senate,22,D,False,2012,2014,6,2,4,1,0,1,0,2,0,0,Anthony Musto; Musto; Anthony J. Musto
+LEG_HOUSE75CUEVAS1,Victor  Cuevas,House,75,D,False,2014,2015,7,5,1,2,0,1,0,1,0,0,"Cuevas; Cuevas, V."
+LEG_SENATE22MUSTO0,Anthony Musto,Senate,22,D,False,2012,2014,6,2,4,2,0,1,0,2,0,0,Anthony Musto; Musto; Anthony J. Musto
 LEG_HOUSE124CLEMONS0,"Charles ""Don"" Clemons, Jr.",House,124,D,False,2012,2014,6,4,2,2,0,0,0,0,0,0,"Clemons; Clemons, C."
 LEG_HOUSE112HOVEY0,DebraLee Hovey,House,112,R,False,2012,2014,6,5,1,2,0,0,0,0,0,0,"Hovey; Hovey, D."
 LEG_SENATE29WILLIAMS0,Donald E Williams,Senate,29,D,False,2012,2014,6,2,4,1,0,0,0,0,0,0,"Donald E. Williams, Jr."
-LEG_SENATE19PRAGUE0,Edith G. Prague,Senate,19,D,False,2012,2012,6,1,0,1,0,1,0,1,0,0,"Edith G. Prague; Prague, E.; Prague"
-LEG_HOUSE38RITTER0,Elizabeth B. Ritter,House,38,D,False,2012,2014,6,4,2,2,0,1,0,1,0,0,"Ritter, E.; Ritter"
+LEG_SENATE19PRAGUE0,Edith G. Prague,Senate,19,D,False,2012,2012,6,1,0,2,0,1,0,1,0,0,"Edith G. Prague; Prague, E.; Prague"
+LEG_HOUSE38RITTER0,Elizabeth B. Ritter,House,38,D,False,2012,2014,6,4,2,3,0,1,0,1,0,0,"Ritter, E.; Ritter"
 LEG_HOUSE146FOX0,Gerald Fox III,House,146,D,False,2012,2014,6,4,2,2,0,0,0,0,1,0,"Fox, G.; Fox"
 LEG_HOUSE109TABORSAK0,Joe Taborsak,House,109,D,False,2012,2012,6,4,2,3,0,0,0,0,0,0,"Taborsak; Taborsak, J."
 LEG_HOUSE40SCOTT1,John F. Scott,House,40,R,False,2015,2016,6,3,3,2,0,0,0,0,0,0,Scott
 LEG_SENATE28MCKINNEY0,John McKinney,Senate,28,R,False,2012,2014,6,5,1,0,1,0,0,0,1,0,John Mckinney; Mckinney
 LEG_HOUSE125HETHERINGTON0,John W. Hetherington,House,125,R,False,2012,2012,6,3,3,1,2,0,0,0,0,0,"Hetherington; Hetherington, J."
-LEG_HOUSE12LUXENBERG1,Kelly J.S. Luxenberg,House,12,D,False,2015,2016,6,5,1,2,0,1,0,1,0,0,Luxenberg
+LEG_HOUSE12LUXENBERG1,Kelly J.S. Luxenberg,House,12,D,False,2015,2016,6,5,1,3,0,1,0,1,0,0,Luxenberg
 LEG_HOUSE150BOCCHINO2,Mike Bocchino,House,150,R,False,2015,2016,6,3,3,2,0,0,0,0,0,0,Bocchino
 LEG_HOUSE45BRYCKI1,Paul J. Brycki,House,45,D,False,2015,2016,6,5,1,2,0,0,0,0,0,0,Brycki
 LEG_HOUSE27NAFIS0,Sandy Nafis,House,27,D,False,2012,2014,6,4,2,1,0,0,0,1,0,0,"Nafis; Nafis, S."
-LEG_HOUSE146ADAMS1,Terry B. Adams,House,146,D,False,2015,2016,6,5,1,2,0,3,0,4,0,0,Adams
+LEG_HOUSE146ADAMS1,Terry B. Adams,House,146,D,False,2015,2016,6,5,1,5,0,3,0,4,0,0,Adams
 LEG_HOUSE44ROSATI1,Christine Rosati,House,44,D,False,2015,2015,5,4,1,1,0,0,0,0,0,0,Rosati
 LEG_HOUSE106LYDDY0,Christopher Lyddy,House,106,D,False,2012,2012,5,3,2,2,0,0,0,0,0,0,"Lyddy; Lyddy, C."
 LEG_HOUSE61OBRIEN0,Elaine O'Brien,House,61,D,False,2012,2012,5,3,2,1,0,0,0,0,0,0,"O ' Brien, E.; O'Brien, E."
-LEG_HOUSE94WINFIELD0,Gary Winfield,House,94,D,False,2012,2012,5,3,2,2,0,1,0,1,0,0,"Holder-Winfield; Holder-Winfield, G."
+LEG_HOUSE94WINFIELD0,Gary Winfield,House,94,D,False,2012,2012,5,3,2,3,0,1,0,1,0,0,"Holder-Winfield; Holder-Winfield, G."
 LEG_SENATE6BIZZARRO2,Gennaro Bizzarro,Senate,6,R,False,2019,2020,5,3,2,2,1,0,0,0,0,0,"Gennaro Bizzarro; Bizzarro, G."
-LEG_HOUSE6ROBLESH,Hector L. Robles,House,6,,False,2012,2012,5,1,4,1,4,1,0,1,0,0,"Robles, H.; Robles"
+LEG_HOUSE6ROBLESH,Hector L. Robles,House,6,,False,2012,2012,5,1,4,2,4,1,0,1,0,0,"Robles, H.; Robles"
 LEG_HOUSE43ROTELLA1,Kate Rotella,House,43,D,False,2019,2020,5,3,0,2,0,0,0,0,0,0,"Rotella, K.; Rotella"
 LEG_HOUSE4ROLDAN0,Kelvin  Roldan,House,4,D,False,2012,2012,5,3,2,2,0,0,0,0,0,0,"Roldan; Roldan, K."
 LEG_HOUSE133FAWCETT0,Kim  Fawcett,House,133,D,False,2012,2014,5,3,2,1,0,0,0,0,0,0,Fawcett
@@ -416,7 +416,7 @@ LEG_HOUSE52BACCHIOCHI0,Penny Bacchiochi,House,52,R,False,2012,2014,5,5,0,1,0,0,0
 LEG_HOUSE45MIKUTEL0,Steven Mikutel,House,45,D,False,2012,2014,5,0,4,0,1,0,0,0,0,0,Mikutel
 LEG_HOUSE123ROWE0,T. R. Rowe,House,123,R,False,2012,2012,5,5,0,2,0,0,0,0,0,0,"Rowe; Rowe, T."
 LEG_HOUSE42REYNOLDS0,Tom Reynolds,House,42,D,False,2012,2012,5,3,2,1,0,0,0,0,0,0,"Reynolds; Reynolds, T."
-LEG_SENATE10HARP0,Toni N. Harp,Senate,10,D,False,2012,2012,5,1,4,1,0,1,0,1,0,0,Toni N. Harp; Harp
+LEG_SENATE10HARP0,Toni N. Harp,Senate,10,D,False,2012,2012,5,1,4,2,0,1,0,1,0,0,Toni N. Harp; Harp
 LEG_HOUSE134HWANG0,Tony Hwang,House,134,R,False,2012,2014,5,3,2,0,1,0,0,0,0,0,Hwang
 LEG_HOUSE89NARDELLO0,Vickie Orsini Nardello,House,89,D,False,2012,2012,5,3,2,2,0,0,0,0,0,0,"Nardello; Nardello, V."
 LEG_SENATE36BERGSTEIN1,"Alexandra ""Alex"" Bergstein",Senate,36,D,False,2019,2019,4,3,1,1,2,0,0,0,0,0,"Bergstein, A.; Alex Bergstein"
@@ -434,7 +434,7 @@ LEG_HOUSE13THOMPSON0,John W. Thompson,House,13,D,False,2012,2012,4,2,2,1,0,0,0,0
 LEG_SENATE13SUZIO2,Len Suzio,Senate,13,R,False,2017,2018,4,4,0,2,1,0,0,0,0,0,"Suzio, L."
 LEG_HOUSE105GREENE0,"Leonard Greene, Jr.",House,105,R,False,2012,2012,4,2,2,0,1,0,0,0,0,0,Greene
 LEG_HOUSE16SCHOFIELD0,Linda Schofield,House,16,D,False,2012,2012,4,2,2,1,0,0,0,0,0,0,Schofield
-LEG_HOUSE5KIRKLEYBEY0,Marie Lopez Kirkley-Bey,House,5,D,False,2012,2012,4,2,2,1,0,1,0,1,0,0,Kirkley-Bey
+LEG_HOUSE5KIRKLEYBEY0,Marie Lopez Kirkley-Bey,House,5,D,False,2012,2012,4,2,2,2,0,1,0,1,0,0,Kirkley-Bey
 LEG_HOUSE119ROY0,Richard Roy,House,119,D,False,2012,2012,4,2,2,1,0,0,0,0,0,0,Roy
 LEG_HOUSE46RILEY,Riley,House,46,,False,2012,2012,4,2,2,1,0,0,0,0,0,0,Riley
 LEG_HOUSE6ROBLES,Robles,House,6,,False,2012,2012,4,2,2,1,0,0,0,0,0,0,Robles
@@ -443,19 +443,19 @@ LEG_HOUSE35VICINO1,Tom  Vicino,House,35,D,False,2013,2014,4,3,0,0,0,0,0,0,0,0,"V
 LEG_SENATE12KENNEDY2,"Edward Kennedy, Jr.",Senate,12,D,False,2017,2017,3,2,1,2,0,0,0,0,0,0,"Kennedy, T."
 LEG_HOUSE58STOKES2,Greg Stokes,House,58,R,False,2017,2018,3,2,1,2,1,0,0,0,0,0,"Stokes, G."
 LEG_HOUSE17HILLL,"Hill, L.",House,17,,False,2019,2019,3,0,3,1,1,0,0,0,0,0,"Hill, L."
-LEG_HOUSE36MILLER1,Philip Miller,House,36,D,False,2012,2015,3,3,0,1,0,2,0,2,0,0,"Miller, P.; Miller"
+LEG_HOUSE36MILLER1,Philip Miller,House,36,D,False,2012,2015,3,3,0,3,0,2,0,2,0,0,"Miller, P.; Miller"
 LEG_HOUSE135DUNSBY1,Adam Dunsby,House,135,R,False,2017,2017,2,2,0,1,0,0,0,0,0,0,"Dunsby, A."
 LEG_HOUSE19SLAP1,Derek Slap,House,19,D,False,2017,2019,2,2,0,1,0,0,0,0,0,0,"Slap, D."
 LEG_HOUSE17HILL,Hill,House,17,,False,2019,2020,2,2,0,1,0,0,0,0,0,0,Hill
 LEG_HOUSE45SKULCZYCK2,Kevin Skulczyck,House,45,R,False,2017,2018,2,2,0,2,0,0,0,0,0,0,"Skulczyck, K."
-LEG_HOUSE53PHEANIOUS2,Pat Wilson Pheanious,House,53,D,False,2019,2020,2,2,0,1,0,1,0,1,0,0,Wilson Pheanious; Pheanious
+LEG_HOUSE53PHEANIOUS2,Pat Wilson Pheanious,House,53,D,False,2019,2020,2,2,0,2,0,1,0,1,0,0,Wilson Pheanious; Pheanious
 LEG_HOUSE36SIEGRIST2,Robert W. Siegrist III,House,36,R,False,2017,2018,2,2,0,2,0,0,0,0,0,0,"Siegrist, R."
 LEG_HOUSE60STORMS1,Scott A. Storms,House,60,R,False,2017,2018,2,1,1,0,2,0,0,0,0,0,"Storms, S."
 LEG_SENATE23AYALA1,"Andres Ayala, Jr ",Senate,23,D,False,2014,2014,1,1,0,0,0,0,0,0,0,0,Andres Ayala
 LEG_HOUSEARORA,Arora,House,?,,False,2020,2020,1,1,0,0,0,0,0,0,0,0,Arora
 LEG_HOUSE132FARNEN1,Brian Farnen,House,132,R,False,2020,2020,1,1,0,0,0,0,0,0,0,0,Farnen
 LEG_HOUSE64OHLER1,Brian M. Ohler,House,64,R,False,2018,2018,1,0,1,0,1,0,0,0,0,0,"Ohler, B."
-LEG_HOUSE39SOTO1,Chris Soto,House,39,D,False,2018,2018,1,1,0,1,0,1,0,1,0,0,"Soto; Soto, C."
+LEG_HOUSE39SOTO1,Chris Soto,House,39,D,False,2018,2018,1,1,0,2,0,1,0,1,0,0,"Soto; Soto, C."
 LEG_HOUSE128AYALA1,Christina M Ayala,House,128,D,False,2014,2014,1,1,0,0,0,0,0,0,0,0,Ayala
 LEG_SENATE10HOLDERWINFIELDG,Gary Holder-Winfield,Senate,10,,False,2014,2014,1,1,0,0,0,0,0,0,0,0,Gary Holder-Winfield
 LEG_HOUSE119MARONEY1,James  Maroney,House,119,D,False,2014,2014,1,0,1,0,0,0,0,0,0,0,Maroney

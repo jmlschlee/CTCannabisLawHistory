@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Special Sections &middot; CT Cannabis Law</title>
+<title>Topics &middot; CT Cannabis Law</title>
 <meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta name="color-scheme" content="light dark">
-<meta property="og:title" content="Special Sections &middot; CT Cannabis Law">
+<meta property="og:title" content="Topics &middot; CT Cannabis Law">
 <meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -21,10 +21,10 @@ try { var t = localStorage.getItem('ctcl-theme');
 <main id="main">
 
 <div class="page-head">
-  <div class="eyebrow">Bills and Votes &middot; Special Sections</div>
-  <h1>Special Sections</h1>
-  <p class="lede">Bills grouped by what they fight over. Tap any bill to see who wanted it,
-  who fought it, and how the votes went.</p>
+  <div class="eyebrow">Bills and Votes &middot; Topics</div>
+  <h1>Topics</h1>
+  <p class="lede">Pick a subject, like testing and product safety or patient access. You get every bill on it,
+  who proposed it, who testified for and against, and how each lawmaker voted at each stage: committee, amendments and the floor.</p>
 </div>
 
 <div class="sec-legend">
@@ -32,7 +32,13 @@ try { var t = localStorage.getItem('ctcl-theme');
   <span><i class="big-dot E" style="margin:0"></i>Would expand access or ease penalties</span>
   <span><i class="big-dot M" style="margin:0"></i>Both</span>
 </div>
-<nav class="jump" id="jump" aria-label="Sections"></nav>
+<div class="topicpick">
+  <div class="field"><label for="tp">Topic</label><select id="tp"></select></div>
+  <div class="field"><label for="ty">Session</label><select id="ty"><option value="">All years</option></select></div>
+  <div class="field"><label for="to">Result</label><select id="to"><option value="">Passed or not</option><option value="p">Became law</option><option value="f">Did not pass</option></select></div>
+  <div class="field"><label for="td">Direction</label><select id="td"><option value="">All bills</option><option value="E">Expands access</option><option value="R">Harsher rules</option><option value="M">Both</option><option value="N">Regulation or study</option></select></div>
+</div>
+<nav class="jump" id="jump" aria-label="Topics"></nav>
 <div id="secs"></div>
 
 </main>
@@ -44,6 +50,12 @@ try {
   const [B, T, L, V] = await Promise.all([load('bills'), load('testimony'), load('legislators'), load('votes')]);
   const META = B.meta, LEG = new Map(L.legislators.map(l => [l.id, l])), VOTE = new Map(V.votes.map(v => [v.id, v]));
   const byBill = {}; T.rows.forEach(r => (byBill[r.bid] = byBill[r.bid] || []).push(r));
+  const names = (v, c) => v.m.filter(m => m[1] === c).map(m => who(m[0]) || esc(m[2] || '')).filter(Boolean);
+  // green or red only when the vote is on a bill that clearly expands access (E) or adds penalties (R)
+  const tone = (b, v, c) => !['Final Passage', 'Committee Vote'].includes(v.type) || !['E', 'R'].includes(b.dir) ? 'nt' : ((b.dir === 'E') === (c === 'Y') ? 'pro' : 'anti');
+  const nameList = (lab, tone, arr) => !arr.length ? `<div class="small muted">${lab}: nobody</div>`
+    : arr.length <= 12 ? `<div class="small"><span class="lean ${tone}">${lab} (${arr.length}):</span> ${arr.join(', ')}</div>`
+    : `<details class="nl"><summary class="small"><span class="lean ${tone}">${lab} (${arr.length})</span> &middot; show names</summary><div class="small">${arr.join(', ')}</div></details>`;
   const who = id => { const l = LEG.get(id); return l ? `<a href="${legHref(id)}">${esc((l.ch === 'House' ? 'Rep. ' : 'Sen. ') + l.name)}</a>${l.party ? ` (${esc(l.party)})` : ''}` : ''; };
   const WHAT = { R: 'harsher rules', E: 'expanding access' };
   const outcome = b => b.enacted ? `<span class="chip ok">Became law: ${esc(b.pa)}</span>` : `<span class="chip warn">Did not pass</span>`;
@@ -82,23 +94,52 @@ try {
           ${a.by.length ? `offered by ${a.by.map(o => who(o.pid) || esc(o.n)).join(', ')}` : ''} &mdash; <strong>${esc(a.res || 'called')}</strong>
           ${a.eff ? `<div class="small muted">${esc(a.eff.length > 260 ? a.eff.slice(0, 258).replace(/\s+\S*$/, '') + '…' : a.eff)}</div>` : ''}</li>`).join('')}</ul>` : ''}
 
-        ${counted.length ? `<h4>How lawmakers voted</h4><ul class="plainlist">${counted.map(v => { const n = nays(v); return `<li><strong>${esc(v.kind === 'committee' ? v.body + ' Committee' : v.body)}</strong> ${esc(v.res.toLowerCase())} it ${v.t.y}&ndash;${v.t.n} <span class="muted small">(${esc(fmtDate(v.date))})</span>
-          ${n.length && n.length <= 30 ? `<div class="small">Voted no: ${n.join(', ')}</div>` : n.length ? `<div class="small">${n.length} voted no. <a href="${billHref(b.id)}#votes">See every name</a></div>` : '<div class="small muted">No one voted no.</div>'}</li>`; }).join('')}</ul>`
-          : '<h4>How lawmakers voted</h4><p class="small muted" style="margin:0">No recorded vote. The bill never reached a committee or floor vote.</p>'}
+        <h4>How lawmakers voted, stage by stage</h4>
+        ${b.votes.length ? `<p class="small muted" style="margin:0 0 .3rem"><span class="lean pro">pro-cannabis vote</span> <span class="lean anti">anti-cannabis vote</span> <span class="lean nt">amendment, or a mixed or regulatory bill</span></p>` : ''}
+        ${vs.length ? `<ol class="stages">${vs.map(v => { const y = names(v, 'Y'), n = names(v, 'N'), ab = v.m.filter(m => !['Y', 'N'].includes(m[1])).length;
+            const a = v.amd ? b.amds.find(q => q.lco === v.amd) : null;
+            const what = v.type === 'Final Passage' ? `${esc(v.body)} floor vote on the bill` : v.type === 'Committee Vote' ? `${esc(v.body)} Committee vote to send it forward`
+              : a ? `${esc(v.body)} floor vote on ${esc(a.sched ? a.sched.replace('"', 'Amendment "') : 'amendment LCO ' + a.lco)}${a.by.length ? ' offered by ' + a.by.map(o => who(o.pid) || esc(o.n)).join(', ') : ''}` : `${esc(v.body)} ${esc(v.type.toLowerCase())}`;
+            return `<li><div><strong>${what}</strong> <span class="muted small">${esc(fmtDate(v.date))}</span></div>
+              <div class="small">${esc(v.res)} ${v.t.y}&ndash;${v.t.n}${ab ? ` &middot; ${ab} absent or not voting` : ''}</div>
+              ${a && a.eff ? `<div class="small muted">${esc(a.eff.length > 220 ? a.eff.slice(0, 218).replace(/\s+\S*$/, '') + '…' : a.eff)}</div>` : ''}
+              ${nameList('Voted yes', tone(b, v, 'Y'), y)}${nameList('Voted no', tone(b, v, 'N'), n)}</li>`; }).join('')}</ol>`
+          : `<p class="small" style="margin:0"><strong>No lawmaker ever voted on it.</strong> ${b.stage === 'Public Hearing Held' ? 'The committee held a hearing and let it die without a vote.' : b.stage === 'Introduced, No Hearing' ? 'It never got a hearing or a vote.' : 'No tally sheet or roll call was posted.'} The sponsors above are the lawmakers on record for it.</p>`}
 
         <p style="margin:.9rem 0 0"><a class="btn" href="${billHref(b.id)}">Full bill page</a></p>
       </div></details>`;
   }
-  $('#jump').innerHTML = META.spots.map(s => `<a class="chip" href="#${esc(s.id)}">${esc(s.t)} (${s.n})</a>`).join('');
-  $('#secs').innerHTML = META.spots.map(s => {
-    const bs = B.bills.filter(b => b.spot.includes(s.id)).sort((a, b) => b.yr.localeCompare(a.yr) || (b.enacted - a.enacted) || b.tmy.n - a.tmy.n);
-    const passed = bs.filter(b => b.enacted).length;
-    return `<section id="${esc(s.id)}" style="margin-bottom:1.6rem"><h2>${esc(s.t)}</h2>
-      <p class="small muted" style="margin-top:-.4rem">${esc(s.d)} ${num(bs.length)} bills, ${num(passed)} became law.</p>
-      ${bs.map(row).join('')}</section>`;
-  }).join('');
-  const h = location.hash.slice(1);
-  if (h) { const n = document.getElementById(h); if (n) { if (n.tagName === 'DETAILS') n.open = true; n.scrollIntoView(); } }
+  const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const GROUPS = [
+    ...META.topics.filter(t => t !== 'Budget and Multi-Subject Bills' && t !== 'Other Cannabis Provisions').map(t => ({ id: slug(t), t, d: '', bills: B.bills.filter(b => b.focus && b.topics.includes(t)) })),
+    ...META.spots.map(s => ({ id: s.id, t: s.t, d: s.d, spot: true, bills: B.bills.filter(b => b.spot.includes(s.id)) })),
+  ];
+  const pref = ['testing-labeling-and-product-safety', 'medical-cannabis-and-patients'];
+  $('#tp').innerHTML = `<optgroup label="Subjects">${GROUPS.filter(g => !g.spot).sort((a, b) => a.t.localeCompare(b.t)).map(g => `<option value="${g.id}">${esc(g.t)} (${g.bills.length})</option>`).join('')}</optgroup>
+    <optgroup label="Fights over the rules">${GROUPS.filter(g => g.spot).map(g => `<option value="${g.id}">${esc(g.t)} (${g.bills.length})</option>`).join('')}</optgroup>`;
+  $('#jump').innerHTML = GROUPS.map(g => `<button type="button" class="chip" data-t="${g.id}">${esc(g.t)} <span class="muted">${g.bills.length}</span></button>`).join('');
+  [...new Set(B.bills.map(b => b.yr))].sort().reverse().forEach(y => $('#ty').insertAdjacentHTML('beforeend', `<option>${y}</option>`));
+  const qs = new URLSearchParams(location.search);
+  const h0 = location.hash.slice(1);
+  let cur = qs.get('t') || (GROUPS.some(g => g.id === h0) ? h0 : '') || pref[0];
+  function draw(openId) {
+    const g = GROUPS.find(x => x.id === cur) || GROUPS[0]; cur = g.id; $('#tp').value = cur;
+    document.querySelectorAll('#jump .chip').forEach(c => c.classList.toggle('on', c.dataset.t === cur));
+    const y = $('#ty').value, o = $('#to').value, d = $('#td').value;
+    const bs = g.bills.filter(b => (!y || b.yr === y) && (!o || (o === 'p') === b.enacted) && (!d || b.dir === d))
+      .sort((a, b) => b.yr.localeCompare(a.yr) || (b.enacted - a.enacted) || b.tmy.n - a.tmy.n);
+    const voted = bs.filter(b => b.votes.length).length;
+    $('#secs').innerHTML = `<section id="${esc(g.id)}"><h2>${esc(g.t)}</h2>
+      <p class="small muted" style="margin-top:-.4rem">${g.d ? esc(g.d) + ' ' : ''}${num(bs.length)} bills &middot; ${num(bs.filter(b => b.enacted).length)} became law &middot; ${num(voted)} got at least one recorded vote. Tap a bill to open it.</p>
+      ${bs.map(row).join('') || '<div class="empty">No bills match.</div>'}</section>`;
+    if (openId) { const n = document.getElementById(openId); if (n) { n.open = true; n.scrollIntoView(); } }
+  }
+  const go = t => { cur = t; const u = new URL(location); u.searchParams.set('t', t); u.hash = ''; history.replaceState(null, '', u); draw(); };
+  $('#tp').addEventListener('change', e => go(e.target.value));
+  $('#jump').addEventListener('click', e => { const c = e.target.closest('[data-t]'); if (c) go(c.dataset.t); });
+  ['ty', 'to', 'td'].forEach(i => $('#' + i).addEventListener('change', () => draw()));
+  draw(h0 && !GROUPS.some(g => g.id === h0) ? h0 : '');
+  if (h0 && !GROUPS.some(g => g.id === h0)) { const bb = B.bills.find(b => b.id === h0); if (bb) { const g = GROUPS.find(x => x.bills.includes(bb)); if (g) { cur = g.id; draw(h0); } } }
 } catch (e) { fail(document.querySelector('#secs'), e); console.error(e); }
 
 </script>

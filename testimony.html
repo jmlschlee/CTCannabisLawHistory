@@ -146,13 +146,13 @@ try {
   // an organization or person inside a group
   const entityKey = r => {
     if (r.anon) return 'anon';
-    if (r.k === 'Member of the Public' || r.k === 'Lawmaker' || !r.org) return 'p:' + (r.eid || r.who);
-    return 'o:' + r.org.toLowerCase().replace(/^the /, '').replace(/[.,]/g, '').replace(/\s+/g, ' ').trim();
+    if (r.k === 'Member of the Public' || r.k === 'Lawmaker' || !r.oc) return 'p:' + (r.eid || r.who);
+    return 'o:' + r.oc;
   };
   function entities(rows) {
     const m = new Map();
     rows.forEach(r => { const k = entityKey(r); let e = m.get(k);
-      if (!e) { e = { k, rows: [], people: new Set(), name: k === 'anon' ? 'Anonymous witnesses' : k.startsWith('o:') ? r.org : r.who, link: k.startsWith('p:') && !r.anon ? (r.leg ? legHref(r.leg) : personHref(r.eid)) : '', kind: r.k }; m.set(k, e); }
+      if (!e) { e = { k, rows: [], people: new Set(), name: k === 'anon' ? 'Anonymous witnesses' : k.startsWith('o:') ? r.oc : r.who, link: k.startsWith('p:') && !r.anon ? (r.leg ? legHref(r.leg) : personHref(r.eid)) : '', kind: r.k }; m.set(k, e); }
       e.rows.push(r); if (!r.anon) e.people.add(r.who); });
     return [...m.values()];
   }

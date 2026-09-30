@@ -175,8 +175,8 @@ try {
       <div class="profile-head"><h2>${esc(chamberLabel(l))}</h2>
         <span class="chips">${l.party ? `<span class="chip">${l.party === 'D' ? 'Democrat' : l.party === 'R' ? 'Republican' : esc(l.party)}</span>` : ''}
         <span class="chip">${esc(where(l))}</span>${l.current ? '<span class="chip ok">Serving Now</span>' : ''}</span></div>
-      <p style="margin:.5rem 0 0">${l.stance.n ? `${leanDot(l.stance.pro, l.stance.anti, true)} <span class="small muted">&middot; ${l.stance.pro} pro-cannabis and ${l.stance.anti} anti-cannabis votes on bills that clearly expand access or add enforcement. <a href="stances.html?q=${encodeURIComponent(l.sur)}">Compare with everyone</a></span>`
-        : '<span class="small muted">No counted votes on bills that clearly expand access or add enforcement.</span>'}</p>
+      <p style="margin:.5rem 0 0">${l.stance.n ? `${leanDot(l.stance.pro, l.stance.anti, true)} <span class="small muted">&middot; ${l.stance.pro} pro-cannabis and ${l.stance.anti} anti-cannabis actions: votes, bills sponsored and testimony on bills that clearly expand access or add enforcement. <a href="stances.html?q=${encodeURIComponent(l.sur)}">Compare with everyone</a></span>`
+        : '<span class="small muted">No votes, sponsorships or testimony on bills that clearly expand access or add enforcement.</span>'}</p>
       <p class="small muted" style="margin:.3rem 0 0">On the cannabis record from ${l.first} to ${l.last}${l.aka.length ? ` &middot; printed on tally sheets and roll calls as ${l.aka.map(esc).join('; ')}` : ''}</p>
       <div class="kpis">
         <div class="kpi"><b>${num(l.n.votes)}</b><span>Votes Recorded</span></div>
