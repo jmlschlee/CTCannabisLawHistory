@@ -800,7 +800,7 @@ details.pub > summary { font-size: .84rem; }
 }
 
 /* testimony browse views */
-.viewtabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px; padding: 4px; margin: .3rem 0 .2rem; max-width: 560px; }
+.viewtabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px; padding: 4px; margin: .3rem 0 .2rem; max-width: 680px; }
 .viewtabs button { font: inherit; font-weight: 700; font-size: .92rem; border: 0; border-radius: 10px; padding: .65rem .4rem; cursor: pointer; background: transparent; color: var(--ink-2); }
 .viewtabs button[aria-pressed="true"] { background: var(--accent, #2a78d6); color: #fff; }
 .tgroup { margin: 0 0 1.6rem; }
@@ -841,3 +841,4 @@ ol.stages > li { margin: 0 0 .75rem; padding-left: .2rem; }
 ol.stages .lean { font-weight: 650; }
 details.nl > summary { cursor: pointer; list-style: revert; }
 .lean.nt::before { background: #8a8f98; } .lean.nt { color: var(--ink-2); }
+@media (max-width: 480px) { .viewtabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

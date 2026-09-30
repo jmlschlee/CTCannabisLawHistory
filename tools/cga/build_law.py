@@ -556,6 +556,8 @@ ORG_ALIAS = [
 def org_key(o):
     o = re.sub(r"\s+", ' ', (o or '').strip())
     if not o or re.fullmatch(r"(self|myself|none|n/?a|na|not applicable|individual|private citizen|citizen|resident|constituent|personal|-)", o, re.I): return '', ''
+    # a title typed into the organization box ("Medical Cannabis Advocate") is not an organization
+    if re.fullmatch(r"(ct |connecticut )?(medical )?(cannabis |marijuana )?(patient )?(advocate|patient|caregiver|activist|consumer|veteran|parent|nurse|mother|father)s?", o, re.I): return '', ''
     for rx, name in ORG_ALIAS:
         if re.search(rx, o, re.I): return name.lower(), name
     k = re.sub(r"[^a-z0-9 ]", '', o.lower().replace('&', 'and'))

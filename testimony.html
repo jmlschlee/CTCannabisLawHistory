@@ -32,6 +32,7 @@ try { var t = localStorage.getItem('ctcl-theme');
 <h2 id="browse">Browse the testimony</h2>
 <div class="viewtabs" id="view" role="group" aria-label="How to organize">
   <button type="button" data-v="group" aria-pressed="true">By Group</button>
+  <button type="button" data-v="org" aria-pressed="false">By Organization</button>
   <button type="button" data-v="bill" aria-pressed="false">By Bill</button>
   <button type="button" data-v="all" aria-pressed="false">Every Filing</button>
 </div>
@@ -144,26 +145,29 @@ try {
     ${r.u ? `<a class="small nowrap" href="${esc(r.u)}" rel="noopener">Read &#8599;</a>` : ''}</div>`; };
 
   // an organization or person inside a group
+  // By Group lists every person by name. By Organization rolls people up under the body they filed for.
+  let byOrg = false;
   const entityKey = r => {
     if (r.anon) return 'anon';
-    if (r.k === 'Member of the Public' || r.k === 'Lawmaker' || !r.oc) return 'p:' + (r.eid || r.who);
-    return 'o:' + r.oc;
+    if (byOrg && r.oc && r.k !== 'Member of the Public' && r.k !== 'Lawmaker') return 'o:' + r.oc;
+    return 'p:' + (r.eid || r.who);
   };
   function entities(rows) {
     const m = new Map();
     rows.forEach(r => { const k = entityKey(r); let e = m.get(k);
-      if (!e) { e = { k, rows: [], people: new Set(), name: k === 'anon' ? 'Anonymous witnesses' : k.startsWith('o:') ? r.oc : r.who, link: k.startsWith('p:') && !r.anon ? (r.leg ? legHref(r.leg) : personHref(r.eid)) : '', kind: r.k }; m.set(k, e); }
-      e.rows.push(r); if (!r.anon) e.people.add(r.who); });
+      if (!e) { e = { k, rows: [], people: new Map(), orgs: new Set(), name: k === 'anon' ? 'Anonymous witnesses' : k.startsWith('o:') ? r.oc : r.who, link: k.startsWith('p:') && !r.anon ? (r.leg ? legHref(r.leg) : personHref(r.eid)) : '', kind: r.k }; m.set(k, e); }
+      e.rows.push(r); if (r.oc) e.orgs.add(r.oc); if (!r.anon) e.people.set(r.eid || r.who, [r.who, r.leg ? legHref(r.leg) : personHref(r.eid)]); });
     return [...m.values()];
   }
-  const entityRow = e => { const t = tally(e.rows); const ppl = [...e.people];
+  const entityRow = e => { const t = tally(e.rows); const ppl = [...e.people.values()]; const isOrg = e.k.startsWith('o:');
     return `<details class="erow"><summary>
       <span class="en"><strong>${esc(e.name)}</strong> ${kindChip(e.kind)}
-        ${e.k.startsWith('o:') && ppl.length ? `<span class="small muted">${esc(ppl.slice(0, 3).join(', '))}${ppl.length > 3 ? ` and ${ppl.length - 3} more` : ''}</span>` : ''}</span>
+        ${isOrg ? `<span class="small">Filed by: ${ppl.map(([n]) => esc(n)).join(', ')}</span>` : e.orgs.size ? `<span class="small muted">${esc([...e.orgs].join('; '))}</span>` : ''}</span>
       <span class="ec"><b>${num(t.n)}</b> <span class="small muted">${t.n === 1 ? 'filing' : 'filings'}</span></span>
       <span class="et">${tallyHtml(t)}${bar(t)}</span></summary>
-      <div class="ebody">${e.link ? `<p class="small" style="margin:.2rem 0 .4rem"><a href="${e.link}">Full profile &rarr;</a></p>` : ''}
-        ${e.rows.slice().sort((a, b) => b.yr.localeCompare(a.yr)).map(line).join('')}</div></details>`; };
+      <div class="ebody">${e.link ? `<p class="small" style="margin:.2rem 0 .4rem"><a href="${e.link}">Everything ${esc(e.name)} filed &rarr;</a></p>` : ''}
+        ${isOrg ? `<p class="small" style="margin:.2rem 0 .4rem">People: ${ppl.map(([n, h]) => `<a href="${h}">${esc(n)}</a>`).join(', ')}</p>` : ''}
+        ${e.rows.slice().sort((a, b) => b.yr.localeCompare(a.yr)).map(r => isOrg ? line(r).replace('<span>', `<span><strong>${esc(r.who)}</strong> &middot; `) : line(r)).join('')}</div></details>`; };
 
   let view = 'group', limit = 60;
   const sortBy = () => $('#so').value || 'n';
@@ -176,7 +180,8 @@ try {
       : b.rows.length - a.rows.length || key(a).localeCompare(key(b), 'en');
   };
   const NOTES = {
-    group: 'Grouped by who is behind the testimony. Organizations are listed with everyone who filed for them. Biggest first.',
+    group: 'Every person who testified, by name, sorted into groups: public office, industry, advocacy, health, public. Biggest first.',
+    org: 'Filings rolled up by the organization named on them, with every person who filed for it. Biggest first.',
     bill: 'Every bill that drew testimony, most-testified first. Open one to see who was on each side.',
     all: 'One card per filing.',
   };
@@ -185,7 +190,8 @@ try {
     const rows = current();
     $('#viewnote').textContent = NOTES[view];
     let html = '', shown = 0, total = 0, unit = 'filings';
-    if (view === 'group') {
+    byOrg = view === 'org';
+    if (view === 'group' || view === 'org') {
       const g = $('#grp').value;
       html = GROUPS.filter(G => !g || G[0] === g).map(G => {
         const rs = rows.filter(r => grpOf(r) === G[0]); if (!rs.length) return '';
@@ -197,7 +203,7 @@ try {
           <div class="elist">${es.slice(0, cap).map(entityRow).join('')}</div>
           ${es.length > cap ? `<button class="btn small" type="button" data-grp="${G[0]}">See all ${num(es.length)} in this group</button>` : ''}</section>`;
       }).join('');
-      unit = 'filers'; shown = total;
+      unit = view === 'org' ? 'filers and organizations' : 'people'; shown = total;
     } else if (view === 'bill') {
       const m = new Map(); rows.forEach(r => { let e = m.get(r.bid); if (!e) m.set(r.bid, e = { bid: r.bid, rows: [], name: r.b, last: r.yr }); e.rows.push(r); });
       const es = [...m.values()].sort(ranker(e => e.name)); total = es.length; unit = 'bills';
@@ -219,8 +225,8 @@ try {
     $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(d.rows.length)} filings`
       + (view !== 'all' ? ` &middot; ${num(total)} ${unit}` : '') + (shown < total ? ` &middot; showing ${num(shown)}` : '');
     $('#tbl').innerHTML = html || '<div class="empty">No filings match these filters.</div>';
-    const m = $('#more'); m.hidden = view === 'group' || shown >= total; m.textContent = 'Show more';
-    $('#grpf').hidden = view !== 'group';
+    const m = $('#more'); m.hidden = view === 'group' || view === 'org' || shown >= total; m.textContent = 'Show more';
+    $('#grpf').hidden = !(view === 'group' || view === 'org');
   }
   $('#tbl').addEventListener('click', e => { const bt = e.target.closest('[data-grp]'); if (!bt) return; $('#grp').value = bt.dataset.grp; limit = 400; draw(); });
   $$('#view button').forEach(bt => bt.addEventListener('click', () => { view = bt.dataset.v;
