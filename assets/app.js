@@ -15,6 +15,7 @@ try { applyTheme(localStorage.getItem(THEME_KEY)); } catch (e) {}
    Grouped, so fourteen links read as three ideas instead of a wall. */
 export const NAV = [
   { group: 'The Law', items: [
+    ['history.html', 'How the Law Changed', 'Every law, rule and policy, in order, in plain words'],
     ['timeline.html', 'Timeline', 'Every dated event in one stream'],
     ['laws.html', 'Changes', 'Each enacted change, old text against new'],
     ['statutes.html', 'Statutes', 'By statute section, with repeals flagged'],
@@ -58,7 +59,7 @@ function here() {
 /* Six links that cover most visits, then everything else grouped behind "More".
    Sixteen links in a row is not navigation, it is a list that happens to be at the
    top of the page. */
-const PRIMARY = ['stances.html', 'bills.html', 'sections.html', 'legislators.html', 'testimony.html'];
+const PRIMARY = ['history.html', 'stances.html', 'bills.html', 'sections.html', 'legislators.html', 'testimony.html'];
 
 function buildHeader() {
   const cur = here();
@@ -247,23 +248,26 @@ export function fmtDate(d) {
 let SRCMAP = null;
 export function setSources(map) { SRCMAP = map; }
 const TIER = { '1': 'Primary record', '2': 'Official record', '3': 'Published summary (can lag the law)', '4': 'Secondary source' };
-export function cite(sourceId, locator) {
-  if (!sourceId) return '';
+/* A plain link to the official document behind a record. No internal file names, no dataset labels:
+   if there is no public document to open, nothing is shown. */
+export function officialUrl(sourceId, locator, ctx = {}) {
+  if (locator && /^https?:/.test(locator)) return locator;
+  const bid = ctx.bid || '';
+  const mb = /^BILL_(\d{4})_(HB|SB)(\d+)$/.exec(bid);
+  if (mb && (!sourceId || sourceId === 'SOURCE_0014')) return `https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&which_year=${mb[1]}&bill_num=${mb[3]}`;
   const s = (SRCMAP || {})[sourceId];
-  const title = s ? s.t : 'Source document';
-  const loc = locator && /^https?:/.test(locator) ? locator : '';
-  const url = loc || (s && /^https?:/.test(s.u) ? s.u : '');
-  const shortT = title.length > 70 ? title.slice(0, 68).replace(/\s+\S*$/, '') + '…' : title;
-  return `<details class="cite"><summary>
-      <svg width="10" height="10" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2h5l3 3v9H6z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 2v4h4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
-      Source: ${esc(shortT)}</summary>
-    <div class="body"><dl>
-      <dt>Document</dt><dd>${url ? `<a href="${esc(url)}" rel="noopener">${esc(title)} &#8599;</a>` : esc(title)}</dd>
-      ${s && s.c ? `<dt>Published by</dt><dd>${esc(s.c)}</dd>` : ''}
-      ${s && s.r ? `<dt>Kind of record</dt><dd>${esc(TIER[s.r] || 'Record')}</dd>` : ''}
-      ${locator && !loc && !/^runs\//.test(locator) ? `<dt>Where in it</dt><dd>${esc(locator)}</dd>` : ''}
-      ${s && s.n ? `<dt>Limits</dt><dd>${esc(s.n)}</dd>` : ''}
-    </dl></div></details>`;
+  if (!s) return '';
+  const m = /P\.A\. (\d\d)-(\d+) \((HB|SB) ?(\d+)\)/.exec(s.t);
+  if (m) { const y = '20' + m[1]; return `https://www.cga.ct.gov/${y}/ACT/PA/PDF/${y}PA-${m[2].padStart(5, '0')}-R00${m[3]}-${m[4].padStart(5, '0')}${/Sp\. Sess/.test(s.t) ? 'SS1' : ''}-PA.PDF`; }
+  return /^https?:/.test(s.u) && !/\{/.test(s.u) && !/cga\.ct\.gov\/?$/.test(s.u) ? s.u : '';
+}
+export function cite(sourceId, locator, ctx = {}) {
+  const url = officialUrl(sourceId, locator, ctx);
+  if (!url) return '';
+  const s = (SRCMAP || {})[sourceId];
+  const m = s && /P\.A\. \d\d-\d+/.exec(s.t);
+  const label = /cgabillstatus/.test(url) ? 'Bill history at the General Assembly' : m ? `Read ${m[0]}` : /eregulations/.test(url) ? 'State regulations site' : 'Official record';
+  return `<a class="reclink" href="${esc(url)}" rel="noopener">${esc(label)} &#8599;</a>`;
 }
 
 /* ---------------------------------------------------------------- filters */

@@ -103,7 +103,8 @@ try {
     $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(G.length)} gaps`;
     for (const k of ['closed', 'partial', 'open']) {
       const r = rows.filter(g => g.res === k);
-      $('#' + k).innerHTML = r.length ? r.map(card).join('') : '<div class="empty">None match these filters.</div>';
+      $('#' + k).innerHTML = r.map(card).join('');
+      const box = $('#' + k), h = box.previousElementSibling; box.hidden = !r.length; if (h && /^H\d$/.test(h.tagName)) h.hidden = !r.length;
     }
   }
   $('#dl').addEventListener('click', () => downloadCSV('ct-cannabis-law-gaps.csv', current(), [

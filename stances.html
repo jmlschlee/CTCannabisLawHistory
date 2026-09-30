@@ -103,7 +103,7 @@ try {
     const rows = all.filter(x => x.l === side).sort(side === 'pro' ? (a, b) => (b.p - b.a) - (a.p - a.a) || b.p - a.p
       : side === 'anti' ? (a, b) => (b.a - b.p) - (a.a - a.p) || b.a - a.a : (a, b) => (b.p + b.a) - (a.p + a.a));
     const label = { pro: 'pro-cannabis', anti: 'anti-cannabis', mid: 'mixed' }[side];
-    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> ${label} of ${num(all.length)} with enough counted ${$('#grp').value === 'leg' ? 'votes' : 'filings'}`;
+    $('#count').innerHTML = `<strong>${num(rows.length)}</strong> ${label} of ${num(all.length)} with enough counted ${$('#grp').value === 'leg' ? 'votes, sponsorships and testimony' : 'filings'}`;
     $('#list').innerHTML = rows.length ? rows.slice(0, limit).map((x, i) => `<details class="prow" data-i="${i}">
       <summary><span class="pos">${i + 1}</span>
         <span><span class="nm"><span class="lean ${x.l}"></span> ${esc(x.name)}</span> ${x.chip || ''}

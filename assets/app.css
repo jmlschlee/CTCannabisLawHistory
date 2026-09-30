@@ -842,3 +842,22 @@ ol.stages .lean { font-weight: 650; }
 details.nl > summary { cursor: pointer; list-style: revert; }
 .lean.nt::before { background: #8a8f98; } .lean.nt { color: var(--ink-2); }
 @media (max-width: 480px) { .viewtabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.reclink { display: inline-block; margin-top: .45rem; font-size: .82rem; }
+
+/* how the law changed */
+.hist-bar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; margin: .4rem 0 .6rem; }
+.hist-bar .field { min-width: 0; } .hist-bar select { width: 100%; }
+@media (max-width: 700px) { .hist-bar { grid-template-columns: 1fr 1fr; } }
+.hyear { margin: 1.4rem 0 0; }
+.hyear h2 { position: static; }
+.hlist { border-left: 3px solid var(--rule-strong); margin-left: .35rem; padding-left: 1rem; display: grid; gap: .8rem; }
+.hcard { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: .8rem .95rem; box-shadow: var(--shadow); min-width: 0; overflow-wrap: anywhere; }
+.hcard::before { content: ""; position: absolute; left: calc(-1rem - 9px); top: 1rem; width: 13px; height: 13px; border-radius: 50%; background: var(--pro); border: 2px solid var(--surface); }
+.hcard.rule::before { background: #8a8f98; }
+.hc-top { display: flex; flex-wrap: wrap; gap: .35rem .5rem; align-items: center; }
+.hc-date { font-weight: 700; font-size: .85rem; color: var(--ink-2); }
+.hcard h3 { margin: .35rem 0 .1rem; font-size: 1.05rem; }
+.hc-title { margin: 0 0 .4rem; font-size: .88rem; color: var(--ink-2); }
+.hc-what { font-size: .92rem; line-height: 1.5; }
+.hc-tags { margin-top: .5rem; }
+.hc-links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin-top: .55rem; font-size: .86rem; }

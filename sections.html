@@ -118,13 +118,13 @@ try {
   $('#tp').innerHTML = `<optgroup label="Subjects">${GROUPS.filter(g => !g.spot).sort((a, b) => a.t.localeCompare(b.t)).map(g => `<option value="${g.id}">${esc(g.t)} (${g.bills.length})</option>`).join('')}</optgroup>
     <optgroup label="Fights over the rules">${GROUPS.filter(g => g.spot).map(g => `<option value="${g.id}">${esc(g.t)} (${g.bills.length})</option>`).join('')}</optgroup>`;
   $('#jump').innerHTML = GROUPS.map(g => `<button type="button" class="chip" data-t="${g.id}">${esc(g.t)} <span class="muted">${g.bills.length}</span></button>`).join('');
-  [...new Set(B.bills.map(b => b.yr))].sort().reverse().forEach(y => $('#ty').insertAdjacentHTML('beforeend', `<option>${y}</option>`));
   const qs = new URLSearchParams(location.search);
   const h0 = location.hash.slice(1);
   let cur = qs.get('t') || (GROUPS.some(g => g.id === h0) ? h0 : '') || pref[0];
   function draw(openId) {
     const g = GROUPS.find(x => x.id === cur) || GROUPS[0]; cur = g.id; $('#tp').value = cur;
     document.querySelectorAll('#jump .chip').forEach(c => c.classList.toggle('on', c.dataset.t === cur));
+    const yv = $('#ty').value; $('#ty').innerHTML = '<option value="">All years</option>' + [...new Set(g.bills.map(b => b.yr))].sort().reverse().map(x => `<option${x === yv ? ' selected' : ''}>${x}</option>`).join('');
     const y = $('#ty').value, o = $('#to').value, d = $('#td').value;
     const bs = g.bills.filter(b => (!y || b.yr === y) && (!o || (o === 'p') === b.enacted) && (!d || b.dir === d))
       .sort((a, b) => b.yr.localeCompare(a.yr) || (b.enacted - a.enacted) || b.tmy.n - a.tmy.n);
@@ -134,7 +134,7 @@ try {
       ${bs.map(row).join('') || '<div class="empty">No bills match.</div>'}</section>`;
     if (openId) { const n = document.getElementById(openId); if (n) { n.open = true; n.scrollIntoView(); } }
   }
-  const go = t => { cur = t; const u = new URL(location); u.searchParams.set('t', t); u.hash = ''; history.replaceState(null, '', u); draw(); };
+  const go = t => { cur = t; $('#ty').value = ''; const u = new URL(location); u.searchParams.set('t', t); u.hash = ''; history.replaceState(null, '', u); draw(); };
   $('#tp').addEventListener('change', e => go(e.target.value));
   $('#jump').addEventListener('click', e => { const c = e.target.closest('[data-t]'); if (c) go(c.dataset.t); });
   ['ty', 'to', 'td'].forEach(i => $('#' + i).addEventListener('change', () => draw()));

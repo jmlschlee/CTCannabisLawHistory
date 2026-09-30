@@ -71,7 +71,7 @@ try {
   $('#f').innerHTML =
     searchField('q', 'Search', 'any spelling, or the resolved name') +
     selectField('conf', 'Confidence', d.by_confidence.map(c => [c.k, `${c.k} (${num(c.n)})`])) +
-    selectField('type', 'Kind', d.by_type.map(t => [t.k, `${cap(t.k)} (${num(t.n)})`])) +
+    selectField('type', 'Kind', [...new Set(d.merges.map(m => m.type))].sort().map(k => [k, `${cap(k)} (${num(d.merges.filter(m => m.type === k).length)})`])) +
     clearButton();
 
   function current() {

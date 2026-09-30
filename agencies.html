@@ -69,7 +69,7 @@ function draw() {
         <span class="rec-sub">${esc(r.ag)}${r.d ? ' &middot; ' + esc(fmtDate(r.d) || r.d) : ''}</span>
       </div>
       <div class="chips" style="margin-bottom:.45rem">
-        ${r.tn ? `<span class="chip mono">${esc(r.tn)}</span>` : ''}
+        ${/^PR\d{4}-\d+$/.test(r.tn) ? `<a class="chip mono" href="https://eregulations.ct.gov/eRegsPortal/Search/RMRView/${esc(r.tn)}" rel="noopener">${esc(r.tn)} &#8599;</a>` : ''}
         <span class="chip ${isReg(r) ? 'ok' : 'bad'}">
           ${isReg(r) ? '\u2713 chapter 54 regulation' : '\u2717 not a chapter 54 regulation'}</span>
         <span class="chip${/withdrawn/i.test(r.st) ? ' bad' : ''}">${esc(r.st)}</span>

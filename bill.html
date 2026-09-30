@@ -135,7 +135,7 @@ try {
   <h2 id="hist">History</h2>
   <div class="tl">${b.hist.map(h => `<div class="tl-item"><div class="tl-dot"></div><div class="tl-date">${esc(fmtDate(h.d) || h.d)}</div>
     <div class="tl-title" style="font-size:.9rem;font-weight:550" data-keepcase>${esc(h.a)}</div></div>`).join('')}</div>
-  ${cite(b.s, b.l)}`;
+  ${cite(b.s, b.l, { bid: b.id })}`;
   if (location.hash) { const n = document.querySelector(location.hash); if (n) n.scrollIntoView(); }
 } catch (e) { if (e !== 0) { fail(document.querySelector('#bill'), e); console.error(e); } }
 

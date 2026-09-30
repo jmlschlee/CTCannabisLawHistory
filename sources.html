@@ -48,6 +48,7 @@ import { load, $, num, esc, fmtDate, selectField, searchField, debounce,
 const d = await load('sources');
 
 const byTier = {};
+d.list = d.list.filter(s => /^https?:\/\//.test(s.url || '') && !/\{/.test(s.url));
 d.list.forEach(s => { const t = String(s.tier).split(' ')[0]; byTier[t] = (byTier[t]||0)+1; });
 $('#tiers').innerHTML = ['1','2','3'].map(t => `
   <div class="card">
@@ -71,7 +72,6 @@ function current() {
 }
 
 const COLS = [
-  {key:'id', label:'ID', html: r => `<a href="#${esc(r.id)}" class="mono">${esc(r.id)}</a>`},
   {key:'tier', label:'Kind of Record', html: r => {
     const t = String(r.tier).split(' ')[0];
     return `<span class="chip t${esc(t)}">${esc({'1':'Primary','2':'Official','3':'Summary','4':'Secondary'}[t] || 'Record')}</span>`; },

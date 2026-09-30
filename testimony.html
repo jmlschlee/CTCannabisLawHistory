@@ -115,7 +115,7 @@ try {
           c = $('#c').value, sc = $('#sc').value, k = $('#k').value;
     return d.rows.filter(r =>
       (!k || r.k === k) && (!yr || r.yr === yr) && (!b || r.b === b) && (!p || r.p === p) && (!c || r.c === c) &&
-      (!sc || r.focus) && (!q || (r.who + ' ' + r.org + ' ' + r.role).toLowerCase().includes(q)));
+      (!sc || r.focus || b || c) && (!q || (r.who + ' ' + r.org + ' ' + r.role).toLowerCase().includes(q)));
   }
 
   const GROUP_OF = {}; GROUPS.forEach(g => g[3].forEach(k => GROUP_OF[k] = g[0]));

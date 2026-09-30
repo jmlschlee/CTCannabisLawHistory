@@ -96,7 +96,7 @@ try {
 
   /* ------------------------------------------------ compare by topic */
   $('#cf').innerHTML =
-    selectField('ct', 'Topic', TOPICS.filter(t => t !== 'Budget and Multi-Subject Bills').map(t => [t, t]), { all: 'All Cannabis Topics' }) +
+    selectField('ct', 'Topic', TOPICS.filter(t => t !== 'Budget and Multi-Subject Bills' && L.legislators.some(l => l.topics[t])).map(t => [t, t]), { all: 'All Cannabis Topics' }) +
     selectField('cc', 'Chamber', [['House', 'House'], ['Senate', 'Senate']], { all: 'Both Chambers' }) +
     selectField('cs', 'Serving', [['cur', 'Serving Now (2026 Roster)']], { all: 'Everyone Since 2012' }) +
     selectField('cp', 'Party', [['D', 'Democrat'], ['R', 'Republican']], { all: 'Any Party' }) +

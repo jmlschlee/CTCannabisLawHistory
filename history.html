@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the Law Changed &middot; CT Cannabis Law</title>
+<meta name="description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="How the Law Changed &middot; CT Cannabis Law">
+<meta property="og:description" content="Connecticut cannabis law, year by year: what changed, when it changed, who proposed it, who testified for and against, which agency implemented it, and what the public record does and does not show about influence. Built from the enacted public acts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+/* set the theme before first paint so the page never flashes the wrong one */
+try { var t = localStorage.getItem('ctcl-theme');
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<main id="main">
+
+<div class="page-head" style="max-width:72ch">
+  <div class="eyebrow">The Law &middot; 2012 to Today</div>
+  <h1>How the Law Changed</h1>
+  <p class="lede">Every law that passed and every state rule or policy that changed cannabis in Connecticut, in the order it
+  happened. Each entry says what it did, what it affected, and links to the official text.</p>
+</div>
+
+<div class="hist-bar">
+  <div class="field"><label for="hk">Show</label><select id="hk">
+    <option value="">Laws, rules and policies</option><option value="law">Laws passed only</option><option value="rule">State rules and policies only</option></select></div>
+  <div class="field"><label for="ht">What it affected</label><select id="ht"><option value="">Everything</option></select></div>
+  <div class="field"><label for="hf">Which laws</label><select id="hf">
+    <option value="">All laws that touched cannabis</option><option value="focus">Cannabis and hemp laws only</option><option value="omni">Budget and multi-subject laws</option></select></div>
+  <div class="field"><label for="ho">Order</label><select id="ho"><option value="asc">Oldest first</option><option value="desc">Newest first</option></select></div>
+</div>
+<nav class="jump" id="yrs" aria-label="Years"></nav>
+<p class="small muted" id="count"></p>
+<div id="hist"></div>
+
+</main>
+<script type="module">
+
+import { load, $, num, esc, fmtDate, fail, dirChip, purposeHtml, billHref } from './assets/app.js';
+
+try {
+  const [B, L, A] = await Promise.all([load('bills'), load('laws'), load('agencies')]);
+  const ACT = new Map(L.acts.map(a => [a.billid, a]));
+  const clean = t => (t || '').replace(/Page \d+ of \d+/g, ' ').replace(/O L R P\S*( U B L I C)?( A C T)?( S U M M A R Y)?/g, ' ')
+    .replace(/\s+/g, ' ').replace(/^[:\s]+/, '').trim();
+  const paUrl = b => { const m = /(\d\d)-(\d+)/.exec(b.pa); if (!m) return ''; const y = '20' + m[1], ty = b.num.slice(0, 2), n = b.num.slice(2);
+    return `https://www.cga.ct.gov/${y}/ACT/PA/PDF/${y}PA-${m[2].padStart(5, '0')}-R00${ty}-${n.padStart(5, '0')}${/Sp\. Sess/.test(b.pa) ? 'SS1' : ''}-PA.PDF`; };
+  const signed = b => { const h = b.hist.find(x => /Signed by (the )?Governor/i.test(x.a)); const a = ACT.get(b.id); return (a && a.signed) || (h && h.d) || b.last; };
+  const laws = B.bills.filter(b => b.enacted).map(b => ({ kind: 'law', d: signed(b), yr: signed(b).slice(0, 4), b, topics: b.topics }));
+  const RX = /PR\d{4}-\d{3}/;
+  const rules = A.records.map(r => ({ kind: 'rule', d: /^\d{4}-\d\d-\d\d$/.test(r.d) ? r.d : (r.d || '').slice(0, 4) + '-12-31', dtxt: (r.d || '').replace(/\s*->\s*/g, ' to ').replace(/;\s*text shown in brackets in [^)]*/, ''), yr: (r.d || '').slice(0, 4), r,
+    topics: /test|lab|analyte|mycotox|pesticid|microb|heavy metal|label|remediat|potency/i.test(r.subj) ? ['Testing, Labeling and Product Safety'] : /equity|ownership/i.test(r.subj) ? ['Social Equity and Reinvestment'] : ['Licensing and Regulation'] }))
+    .filter(x => /^\d{4}$/.test(x.yr));
+  const ALL = [...laws, ...rules];
+  const TOP = [...new Set(ALL.flatMap(x => x.topics))].filter(t => t !== 'Budget and Multi-Subject Bills').sort();
+  $('#ht').insertAdjacentHTML('beforeend', TOP.map(t => `<option>${esc(t)}</option>`).join(''));
+
+  const lawCard = x => { const b = x.b, a = ACT.get(b.id);
+    const what = b.focus ? (clean(b.summary) || b.purpose) : (b.why || clean(b.summary) || b.purpose);
+    const short = what.length > 700 ? what.slice(0, 698).replace(/\s+\S*$/, '') + '…' : what;
+    return `<article class="hcard law">
+      <div class="hc-top"><span class="hc-date">${esc(fmtDate(x.d))}</span><span class="chip ok">Law passed</span>${dirChip(b.dir)}</div>
+      <h3><a href="${billHref(b.id)}">${esc(b.pa)}</a> <span class="muted">&middot; ${esc(b.num.replace(/^(HB|SB)/, '$1 '))}</span></h3>
+      <p class="hc-title">${esc(b.title)}</p>
+      ${!b.focus ? `<p class="small"><span class="chip warn">Multi-subject law</span> Only part of this act is about cannabis.${b.why ? ' The cannabis part: ' + esc(b.why) + '.' : ''}</p>` : ''}
+      <div class="hc-what"><strong>What it did:</strong> ${esc(short)}</div>
+      <div class="chips hc-tags">${b.topics.filter(t => t !== 'Budget and Multi-Subject Bills').map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>
+      <div class="hc-links">${paUrl(b) ? `<a href="${esc(paUrl(b))}" rel="noopener">Read the law &#8599;</a>` : ''}
+        <a href="${billHref(b.id)}">Who pushed it and how they voted</a>
+        ${a && a.n ? `<a href="laws.html?act=${encodeURIComponent(a.id)}">Section by section: ${num(a.n)} changes</a>` : ''}</div>
+    </article>`; };
+  const unint = t => (t || '').replace(/\s*\((text held|run|file)[^)]*\)/gi, '').replace(/\s*\|\s*[A-Z]-\d+.*$/, '').trim();
+  const ruleCard = x => { const r = x.r;
+    const kind = /proposed regulation/i.test(r.kind) ? 'Proposed regulation' : /polic/i.test(r.kind + r.tn) || /^PR\d/.test(r.kind) ? 'Agency policy' : /RCSA/.test(r.kind) ? 'State regulation' : /P\.A\.|CGS/.test(r.kind) ? 'Law, as carried out by the agency' : 'Agency action';
+    const status = r.st && !/as recorded/i.test(r.st) ? r.st : '';
+    const txt = unint(r.out && !/^(pending|withdrawn)$/i.test(r.out) ? r.out : r.prog || '');
+    return `<article class="hcard rule">
+      <div class="hc-top"><span class="hc-date">${esc(/^\d{4}-\d\d-\d\d$/.test(x.dtxt) ? fmtDate(x.dtxt) : x.dtxt)}</span><span class="chip">${esc(kind)}</span>${status ? `<span class="chip ${/withdrawn/i.test(status) ? 'bad' : 'warn'}">${esc(status)}</span>` : ''}</div>
+      <h3>${esc(r.ag)}: ${esc(r.subj.replace(/^(medical|adult use|adult-use|medical \+ adult use|adult use \+ medical)\s*—\s*/i, m => m.replace(/\s*—\s*$/, '') + ': '))}</h3>
+      ${txt ? `<div class="hc-what">${esc(txt.length > 500 ? txt.slice(0, 498).replace(/\s+\S*$/, '') + '…' : txt)}</div>` : ''}
+      <p class="small muted" style="margin:.3rem 0 0">${esc(r.kind)}${RX.test(r.tn) ? '' : ''}</p>
+      <div class="hc-links">${RX.test(r.tn + ' ' + r.kind) ? `<a href="https://eregulations.ct.gov/eRegsPortal/Search/RMRView/${esc((r.tn + ' ' + r.kind).match(RX)[0])}" rel="noopener">Find it on the state regulations site &#8599;</a>` : ''}
+        <a href="agencies.html">All agency rules and policies</a></div>
+    </article>`; };
+
+  const qs = new URLSearchParams(location.search);
+  if (qs.get('show')) $('#hk').value = qs.get('show');
+  function draw() {
+    const k = $('#hk').value, t = $('#ht').value, f = $('#hf').value, asc = $('#ho').value === 'asc';
+    const rows = ALL.filter(x => (!k || x.kind === k) && (!t || x.topics.includes(t)) && (!f || x.kind !== 'law' || (f === 'focus') === x.b.focus))
+      .sort((a, b) => asc ? a.d.localeCompare(b.d) : b.d.localeCompare(a.d));
+    const years = [...new Set(rows.map(x => x.yr))];
+    $('#yrs').innerHTML = years.map(y => `<a class="chip" href="#y${y}">${y}</a>`).join('');
+    const nl = rows.filter(x => x.kind === 'law').length;
+    $('#count').innerHTML = `<strong>${num(nl)}</strong> laws passed and <strong>${num(rows.length - nl)}</strong> state rules and policies, ${asc ? 'oldest first' : 'newest first'}.`;
+    $('#hist').innerHTML = years.map(y => { const r = rows.filter(x => x.yr === y);
+      return `<section class="hyear" id="y${y}"><h2>${y} <span class="small muted">${(n => n + (n === 1 ? ' law' : ' laws'))(r.filter(x => x.kind === 'law').length)}${r.some(x => x.kind === 'rule') ? ` &middot; ${(n => n + (n === 1 ? ' rule or policy' : ' rules and policies'))(r.filter(x => x.kind === 'rule').length)}` : ''}${+y > new Date().getFullYear() ? ' &middot; scheduled' : ''}</span></h2>
+        <div class="hlist">${r.map(x => x.kind === 'law' ? lawCard(x) : ruleCard(x)).join('')}</div></section>`; }).join('') || '<div class="empty">Nothing matches.</div>';
+  }
+  ['hk', 'ht', 'hf', 'ho'].forEach(i => $('#' + i).addEventListener('change', draw));
+  draw();
+} catch (e) { fail(document.querySelector('#hist'), e); console.error(e); }
+
+</script>
+</body>
+</html>

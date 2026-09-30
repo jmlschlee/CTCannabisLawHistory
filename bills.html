@@ -123,7 +123,8 @@ try {
     selectField('sp', 'Special Section', META.spots.map(x => [x.id, x.t])) +
     selectField('tp', 'Topic', META.topics) +
     selectField('out', 'Outcome', [['yes', 'Became a Public Act'], ['no', 'Did Not Pass']]) +
-    selectField('st', 'Got As Far As', META.stages) +
+    selectField('st', 'Got As Far As', META.stages.filter(x => B.some(b => b.stage === x))) +
+    selectField('so', 'Sort', [['new', 'Newest first'], ['old', 'Oldest first'], ['far', 'Furthest along first'], ['tmy', 'Most testimony first'], ['az', 'Bill number']], { all: null, value: 'new' }) +
     selectField('sc', 'Scope', [['focus', 'Cannabis and Hemp Bills Only'], ['omni', 'Budget and Multi-Subject Only']], { all: 'All Bills' }) +
     clearButton();
 
@@ -181,12 +182,17 @@ try {
         <div class="tl" style="margin-top:.6rem">${b.hist.map(h => `<div class="tl-item"><div class="tl-dot"></div>
           <div class="tl-date">${esc(fmtDate(h.d) || h.d)}</div><div class="tl-title" style="font-size:.9rem;font-weight:550">${esc(h.a)}</div></div>`).join('')}</div></details>` : ''}
       <p class="small" style="margin:.6rem 0 0"><a class="btn" href="${billHref(b.id)}">Open the full bill page</a> &nbsp; <a href="${esc(b.l)}" rel="noopener">Bill status page at the General Assembly &#8599;</a>${b.docs.map(x => ` &middot; <a href="${esc(x.url)}" rel="noopener">${esc(x.label)}</a>`).join('')}</p>
-      ${cite(b.s, b.l)}
+      ${cite(b.s, b.l, { bid: b.id })}
     </article>`;
   }
 
   function draw() {
-    const rows = current().sort((a, b) => (b.yr || '').localeCompare(a.yr || '') || SI(b.stage) - SI(a.stage) || (b.tmy.n - a.tmy.n));
+    const so = $('#so').value || 'new';
+    const rows = current().sort(so === 'old' ? (a, b) => a.yr.localeCompare(b.yr) || (a.first || '').localeCompare(b.first || '')
+      : so === 'far' ? (a, b) => (b.enacted - a.enacted) || SI(b.stage) - SI(a.stage) || b.yr.localeCompare(a.yr)
+      : so === 'tmy' ? (a, b) => b.tmy.n - a.tmy.n
+      : so === 'az' ? (a, b) => a.num.slice(0, 2).localeCompare(b.num.slice(0, 2)) || +a.num.slice(2) - +b.num.slice(2) || a.yr.localeCompare(b.yr)
+      : (a, b) => b.yr.localeCompare(a.yr) || (b.last || '').localeCompare(a.last || ''));
     $('#count').innerHTML = `<strong>${num(rows.length)}</strong> of ${num(B.length)} bills` + (rows.length > limit ? ` &middot; showing ${num(limit)}` : '');
     $('#list').innerHTML = rows.length ? rows.slice(0, limit).map(card).join('') : '<div class="empty">No bills match these filters.</div>';
     const m = $('#more'); m.hidden = rows.length <= limit; m.textContent = `Show ${num(Math.min(30, rows.length - limit))} more`;
@@ -208,7 +214,7 @@ try {
   if (qs.get('dir')) $('#dr').value = qs.get('dir');
   if (qs.get('section')) $('#sp').value = qs.get('section');
   if (want && B.some(b => b.id === want)) { const b = B.find(x => x.id === want); $('#q').value = b.num; $('#yr').value = b.yr; }
-  wire(['q', 'yr', 'dr', 'sp', 'tp', 'out', 'st', 'sc'], () => { limit = 30; draw(); });
+  wire(['q', 'yr', 'dr', 'sp', 'tp', 'out', 'st', 'sc', 'so'], () => { limit = 30; draw(); });
   if (want) { const n = document.getElementById(want); if (n) { const dd = n.querySelector('details.more'); if (dd) dd.open = true; n.scrollIntoView(); } }
   $('#rl').addEventListener('click', e => {
     const a = e.target.closest('[data-open]'); if (!a) return; e.preventDefault();
